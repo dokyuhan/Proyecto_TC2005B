@@ -47,7 +47,7 @@
 
 ### **Summary**
 
-Sum up your game idea in 2 sentences. A kind of elevator pitch. Keep it simple!
+Welcome to (nuestro nombre) in this dynamic Deck Builder Game you'll embark on a journey across different opponents. Choose a kingdom, embrace the perks and fight. Harness the power of your cards as you strategically build your deck, with each card possessing three unique abilities: attack, defense, and heal.
 
 ### **Gameplay**
 
@@ -55,7 +55,13 @@ What should the gameplay be like? What is the goal of the game, and what kind of
 
 ### **Mindset**
 
-What kind of mindset do you want to provoke in the player? Do you want them to feel powerful, or weak? Adventurous, or nervous? Hurried, or calm? How do you intend to provoke those emotions?
+In our game the goal is to provoke a sense of adventure, empowerment, and strategy in the player. We intend to provoke these emotions by:
+
+Empowerment: We expect pleayers to feel empowered and improved as they progress through the game, upgrading their cards and mastering their abilities. Choosing which cards to include in their deck and how to utilize them in battles, players will experience the joy of overcoming challenges and outsmarting opponents.
+
+Adventure: The game's realms will procoke a sense of adventure, Each player can choose its realm and explore the benefits of each one. Figting against opponents with other realms will make the player question if they chose or not the right realm.
+
+Strategy: By offering a variety of cards, each one with its own habilities, players will be encouraged to think strategically and plan their decisions carefully. The decision-making process of selecting cards, managing resources, and adapting to different situations will keep players engaged and entertained throughout the game.
 
 ## _Technical_
 

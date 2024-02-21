@@ -1,4 +1,6 @@
-# **Game Name Here**
+# **Awekening of the Realms**
+
+# **Despertar de los Reinos**
 
 ## _Game Design Document_
 
@@ -47,24 +49,39 @@
 
 ### **Summary**
 
-Welcome to (nuestro nombre) in this dynamic Deck Builder Game you'll embark on a journey across different opponents. Choose a kingdom, embrace the perks and fight. Harness the power of your cards as you strategically build your deck, with each card possessing three unique abilities: attack, defense, and heal.
+Welcome to _Awekening of the Realms_ in this dynamic Deck Building Game you'll embark on a journey across different opponents and kingdoms. Choose one of four kingdoms, embrace the perks and fight. Harness the power of your cards as you strategically build your deck, with each card possessing unique abilities that you must consider for each of your turns.
 
-Bienvenido a (nuestro nombre) en este dinámico juego de construcción de mazos, te embarcarás en un viaje para derrotar a diferentes oponentes. Elige un reino, aprovecha las ventajas y pelea. Aprovecha el poder de tus cartas mientras construyes estratégicamente tu mazo, considera que cada carta, ademas de tus ventajas por reino, posee tres habilidades únicas: ataque, defensa y curación.
+Bienvenido a _Despertar de los Reinos_ en este dinámico juego de construcción de mazos, te embarcarás en un viaje para derrotar a diferentes oponentes. Elige un reino, aprovecha las ventajas y pelea. Aprovecha el poder de tus cartas mientras construyes estratégicamente tu mazo, considera que cada carta, ademas de tus ventajas por reino, posee habilidades únicas que debe.
 
 ### **Gameplay**
 
-What should the gameplay be like? What is the goal of the game, and what kind of obstacles are in the way? What tactics should the player use to overcome them?
+When starting the game for the first time the user will be asked to choose between four different realms: Human, Magic, Devil and Monster. This decision will be crucial, keep on reading. Each realm will have between 10-12 cards, each one with three different statystics: attack, defense and healing. Be aware that some cards may have more than one of those stats. The user first starts with three or four basic cards from each realm, these will be used for his first matches.
+
+Every card has a the possibility to upgrade with XP points (more on that later) up to a maximum of three levels. Every player will go to battle with a deck of 10 cards, you can combine cards from all the different realms! Though you might want to have more cards from your own realm because if the card matches your realm it will be boosted.
+
+Once the players go into battle they will have five cards in front of them from which to choose to play, you can play a maximum of two cards per turn. Every turn you will need to strategically think to either attack, defend, heal or maybe a combination of all three of them. Your objective is to deplete your oponents health bar of 100 hitpoints. That means you will also have 100 hitpoints, but remember you can have healing cards that can get you back up again or even break that 100 threshold when played wisely.
+
+How will a match look like? Evey turn for every player runs at the same time, that means you have a timer to put down two of your amazing cards. Supose you are Player 1 and you play two cards that their added stats sum: 17 attack, 8 defense and 2 healing. Once you have finished putting down your cards the turn is complete and all of these stats will come to action, but don't be so sure everything worked! Player X also played his two cards and their added stats are as follows: attack 10, defense 25 and 0 healing. Now that both players have their cards down and the addes stats have been revelead we will see how we did:
+
+Our attack of 18 was completely blocked by Player X 25 defense, the remaing of defense from Player X is lost.
+
+Our defense of 8 was pretty effective, we blocked 8 of the 10 of attack our opponent launched, so we only lost 2 hitpoints
+
+Our healing gave us 5 more health, so we are actually 3 more hitpoints above than what we started.
+
+Players will need to act accordingly and decide if they want to be more agressive or more conservative. Some cards need for a number of cards to be played before they can be used. So suppose the dragon needs 5 cards to be played, so the user must use 5 of his other cards before he can use that one powerfull card.
+
+Once the match is over and the player has won it will recieve XP points to upgrade his cards and will also recieve a random card. That card may be new or not, if the card is not new then it will be turned to more XP points.
 
 ### **Mindset**
 
 In our game the goal is to provoke a sense of adventure, empowerment, and strategy in the player. We intend to provoke these emotions by:
 
-Empowerment: We expect pleayers to feel empowered and improved as they progress through the game, upgrading their cards and mastering their abilities. Choosing which cards to include in their deck and how to utilize them in battles, players will experience the joy of overcoming challenges and outsmarting opponents.
+Empowerment: We expect pleayers to feel empowered and improved as they progress through the game, upgrading their cards and mastering their abilities. Choosing which cards to include in their deck and how to utilize them in epinc battles. Players will experience the joy of overcoming challenges and outsmarting opponents.
 
-Adventure: The game's realms will procoke a sense of adventure, Each player can choose its realm and explore the benefits of each one. Figting against opponents with other realms will make the player question if they chose or not the right realm.
+Adventure: The game's realms will provoke a sense of adventure. Each player can choose its own realm and explore the benefits of it provides. Figting against opponents with other realms will make the player question if they chose or not the right realm.
 
-Strategy: By offering a variety of cards, each one with its own habilities, players will be encouraged to think strategically and plan their decisions carefully. The decision-making process of selecting cards, managing resources, and adapting to different situations will keep players engaged and entertained throughout the game.
-
+Strategy: By offering a variety of cards, each one with its own statystics, players will be encouraged to think strategically and plan their decisions carefully. The decision-making process of selecting cards, managing resources, and adapting to different situations will keep players engaged and entertained throughout the game.
 
 En nuestro juego el objetivo es provocar en el jugador una sensación de aventura, empoderamiento y estrategia. Pretendemos provocar estas emociones de la siguiente manera:
 

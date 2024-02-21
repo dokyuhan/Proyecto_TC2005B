@@ -49,39 +49,43 @@
 
 ### **Summary**
 
-Welcome to _Awekening of the Realms_ in this dynamic Deck Building Game you'll embark on a journey across different opponents and kingdoms. Choose one of four kingdoms, embrace the perks and fight. Harness the power of your cards as you strategically build your deck, with each card possessing unique abilities that you must consider for each of your turns.
+Welcome to _Awakening of the Realms_, a captivating Deck Building Game where you will journey through diverse opponents and enchanting kingdoms. Embark on an adventure by selecting one of four distinct kingdoms, each offering unique benefits and challenges. Embrace the strengths of your chosen kingdom and engage in battle. Skillfully construct your deck, using the individual abilities of each card to strategize and adapt your approach with every turn. Immerse yourself in the game's dark fantasy aesthetic for an experience that promises to be truly unforgettable.
 
 Bienvenido a _Despertar de los Reinos_ en este dinámico juego de construcción de mazos, te embarcarás en un viaje para derrotar a diferentes oponentes. Elige un reino, aprovecha las ventajas y pelea. Aprovecha el poder de tus cartas mientras construyes estratégicamente tu mazo, considera que cada carta, ademas de tus ventajas por reino, posee habilidades únicas que debe.
 
 ### **Gameplay**
 
-When starting the game for the first time the user will be asked to choose between four different realms: Human, Magic, Devil and Monster. This decision will be crucial, keep on reading. Each realm will have between 10-12 cards, each one with three different statystics: attack, defense and healing. Be aware that some cards may have more than one of those stats. The user first starts with three or four basic cards from each realm, these will be used for his first matches.
+Upon launching the game for the first time, players are asked to select one of four distinct realms: Human, Magic, Devil, and Monster. This initial choice is important for gameplay, so read on for details. Each realm features a collection of 10-12 cards, each one with three unique stats: attack, defense, and healing. Note that some cards may provide more than one of these attributes. Players kick off with three or four basic cards from all realms, this will lay the foundation for their initial matches.
 
-Every card has a the possibility to upgrade with XP points (more on that later) up to a maximum of three levels. Every player will go to battle with a deck of 10 cards, you can combine cards from all the different realms! Though you might want to have more cards from your own realm because if the card matches your realm it will be boosted.
+Cards are upgradable using XP points (details to follow) and can achieve up to three levels of enhancement. In battle, players wield a deck of 10 cards that will cycle, drawing from any of the realms. However, aligning your deck predominantly with cards from your chosen realm is a good trick, as such cards receive a stat boost.
 
-Once the players go into battle they will have five cards in front of them from which to choose to play, you can play a maximum of two cards per turn. Every turn you will need to strategically think to either attack, defend, heal or maybe a combination of all three of them. Your objective is to deplete your oponents health bar of 100 hitpoints. That means you will also have 100 hitpoints, but remember you can have healing cards that can get you back up again or even break that 100 threshold when played wisely.
+Battles are structured such that players start with five cards in hand, from which they can play up to two cards each turn. As the match progresses the player will keep on receiving a cycle of the cards on his deck. Tactical thinking is essential, as players must decide whether to attack, defend, heal, or employ a mix of these strategies to deplete their opponent's health bar of 100 hit points. Similarly, players themselves have 100 hit points, with the potential to recover or even exceed this threshold through strategic play of healing cards.
 
-How will a match look like? Evey turn for every player runs at the same time, that means you have a timer to put down two of your amazing cards. Supose you are Player 1 and you play two cards that their added stats sum: 17 attack, 8 defense and 2 healing. Once you have finished putting down your cards the turn is complete and all of these stats will come to action, but don't be so sure everything worked! Player X also played his two cards and their added stats are as follows: attack 10, defense 25 and 0 healing. Now that both players have their cards down and the addes stats have been revelead we will see how we did:
+Matches unfold with each player's turn occurring simultaneously, governed by a timer for selecting two cards to play. For example, imagine you're Player 1 and you deploy two cards combining for 17 attack, 8 defense, and 2 healing. Once cards are played, their stats are activated. However, the outcome is uncertain until both players have played their cards. Suppose Player X plays two cards resulting in 10 attack, 25 defense, and no healing. The resolution is as follows:
 
-Our attack of 18 was completely blocked by Player X 25 defense, the remaing of defense from Player X is lost.
+Your 17 attack is fully absorbed by Player X's 25 defense, with their residual defense dissipating.
 
-Our defense of 8 was pretty effective, we blocked 8 of the 10 of attack our opponent launched, so we only lost 2 hitpoints
+Your 8 defense successfully blocks 8 out of Player X's 10 attack, resulting in a mere 2 hit point loss.
 
-Our healing gave us 5 more health, so we are actually 3 more hitpoints above than what we started.
+Your healing boosts your health by 5, placing you 3 hit points above your starting total.
 
-Players will need to act accordingly and decide if they want to be more agressive or more conservative. Some cards need for a number of cards to be played before they can be used. So suppose the dragon needs 5 cards to be played, so the user must use 5 of his other cards before he can use that one powerfull card.
+Players must adapt their strategies, choosing between aggressive or defensive tactics. Certain cards are conditional, requiring a set number of other cards to be played beforehand. For instance, a dragon card might necessitate playing 5 other cards before activation. A counter tracks the number of cards played, deducting from this total once a conditional card is used.
 
-Once the match is over and the player has won it will recieve XP points to upgrade his cards and will also recieve a random card. That card may be new or not, if the card is not new then it will be turned to more XP points.
+Victory in a match awards the player XP points for card upgrades and a random card reward. This card, if a duplicate, converts into additional XP points, if its a new card then it will be permanently unlocked. Cards can only be upgraded when the full XP cost is met, ensuring upgrades cannot be partially applied.
+
+This gaming mechanism promises to immerse players deeply in the enchanting universe of _Awakening of the Realms_, offering an extraordinary and engaging experience.
 
 ### **Mindset**
 
-In our game the goal is to provoke a sense of adventure, empowerment, and strategy in the player. We intend to provoke these emotions by:
+In our game, the primary aim is to evoke feelings of adventure, empowerment, and strategic thinking within the player. We plan to create these emotions through several key aspects:
 
-Empowerment: We expect pleayers to feel empowered and improved as they progress through the game, upgrading their cards and mastering their abilities. Choosing which cards to include in their deck and how to utilize them in epinc battles. Players will experience the joy of overcoming challenges and outsmarting opponents.
+**Empowerment:** Players are expected to feel a growing sense of empowerment and progression as they advance through the game. This is achieved by upgrading their cards and mastering their skills. The decision-making process involved in improving their deck and deploying cards in epic battles allows players to enjoy the thrill of overcoming obstacles and outsmarting their adversaries.
 
-Adventure: The game's realms will provoke a sense of adventure. Each player can choose its own realm and explore the benefits of it provides. Figting against opponents with other realms will make the player question if they chose or not the right realm.
+**Adventure:** The various realms within the game are designed to provide a spirit of adventure. Players have the autonomy to select their preferred realm and dive into the unique advantages it offers. Encounters with opponents from contrasting realms will prompt players to contemplate their realm choice, adding depth and intrigue to their journey.
 
-Strategy: By offering a variety of cards, each one with its own statystics, players will be encouraged to think strategically and plan their decisions carefully. The decision-making process of selecting cards, managing resources, and adapting to different situations will keep players engaged and entertained throughout the game.
+**Strategy:** The diversity of cards available, each with its own set of statistics, encourages players to engage in strategic thinking and meticulous planning. Selecting the right cards, efficiently managing resources, and adapting to evolving scenarios are crucial elements that keep players absorbed and entertained from start to finish.
+
+By weaving together these elements, our game aims to provide an immersive experience that challenges players intellectually while simultaneously offering them a sense of growth, exploration, and mastery.
 
 En nuestro juego el objetivo es provocar en el jugador una sensación de aventura, empoderamiento y estrategia. Pretendemos provocar estas emociones de la siguiente manera:
 

@@ -1,12 +1,10 @@
 # **Awekening of the Realms**
 
-# **Despertar de los Reinos**
-
 ## _Game Design Document_
 
 ---
 
-##### **Todos los derechos reservados. Alberto Limón Cancino, Do Kyu Han Kim y Gabriel Edid Harari ©2024**
+##### **All Rights Reserved. Alberto Limón Cancino, Do Kyu Han Kim and Gabriel Edid Harari ©2024**
 
 ##
 
@@ -51,8 +49,6 @@
 
 Welcome to _Awakening of the Realms_, a captivating Deck Building Game where you will journey through diverse opponents and enchanting kingdoms. Embark on an adventure by selecting one of four distinct kingdoms, each offering unique benefits and challenges. Embrace the strengths of your chosen kingdom and engage in battle. Skillfully construct your deck, using the individual abilities of each card to strategize and adapt your approach with every turn. Immerse yourself in the game's dark fantasy aesthetic for an experience that promises to be truly unforgettable.
 
-Bienvenido a _Despertar de los Reinos_ en este dinámico juego de construcción de mazos, te embarcarás en un viaje para derrotar a diferentes oponentes. Elige un reino, aprovecha las ventajas y pelea. Aprovecha el poder de tus cartas mientras construyes estratégicamente tu mazo, considera que cada carta, ademas de tus ventajas por reino, posee habilidades únicas que debe.
-
 ### **Gameplay**
 
 Upon launching the game for the first time, players are asked to select one of four distinct realms: Human, Magic, Devil, and Monster. This initial choice is important for gameplay, so read on for details. Each realm features a collection of 10-12 cards, each one with three unique stats: attack, defense, and healing. Note that some cards may provide more than one of these attributes. Players kick off with three or four basic cards from all realms, this will lay the foundation for their initial matches.
@@ -86,14 +82,6 @@ In our game, the primary aim is to evoke feelings of adventure, empowerment, and
 **Strategy:** The diversity of cards available, each with its own set of statistics, encourages players to engage in strategic thinking and meticulous planning. Selecting the right cards, efficiently managing resources, and adapting to evolving scenarios are crucial elements that keep players absorbed and entertained from start to finish.
 
 By weaving together these elements, our game aims to provide an immersive experience that challenges players intellectually while simultaneously offering them a sense of growth, exploration, and mastery.
-
-En nuestro juego el objetivo es provocar en el jugador una sensación de aventura, empoderamiento y estrategia. Pretendemos provocar estas emociones de la siguiente manera:
-
-Empoderamiento: Esperamos que los jugadores se sientan empoderados y progresando a medida que avanzan en el juego, mejorando sus cartas y dominando sus habilidades. Al elegir qué cartas incluir en su mazo y cómo utilizarlas en las batallas, los jugadores experimentarán la emoción de superar desafíos y ganarle a sus oponentes.
-
-Aventura: Los reinos del juego provocarán una sensación de aventura. Cada jugador puede elegir su reino y explorar los beneficios de cada uno. Pelear contra oponentes con otros reinos hará que el jugador se pregunte si eligió o no el reino correcto.
-
-Estrategia: Al ofrecer una variedad de cartas, cada una con sus propias habilidades, animará a los jugadores a pensar estratégicamente y planificar sus decisiones con cuidado. El proceso de toma de decisiones de selección de cartas, gestión de recursos y adaptación a diferentes situaciones mantendrá a los jugadores interesados y entretenidos durante todo el juego.
 
 ## _Technical_
 

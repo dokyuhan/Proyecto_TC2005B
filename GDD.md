@@ -49,6 +49,8 @@
 
 Welcome to (nuestro nombre) in this dynamic Deck Builder Game you'll embark on a journey across different opponents. Choose a kingdom, embrace the perks and fight. Harness the power of your cards as you strategically build your deck, with each card possessing three unique abilities: attack, defense, and heal.
 
+Bienvenido a (nuestro nombre) en este dinámico juego de construcción de mazos, te embarcarás en un viaje para derrotar a diferentes oponentes. Elige un reino, aprovecha las ventajas y pelea. Aprovecha el poder de tus cartas mientras construyes estratégicamente tu mazo, considera que cada carta, ademas de tus ventajas por reino, posee tres habilidades únicas: ataque, defensa y curación.
+
 ### **Gameplay**
 
 What should the gameplay be like? What is the goal of the game, and what kind of obstacles are in the way? What tactics should the player use to overcome them?
@@ -62,6 +64,15 @@ Empowerment: We expect pleayers to feel empowered and improved as they progress 
 Adventure: The game's realms will procoke a sense of adventure, Each player can choose its realm and explore the benefits of each one. Figting against opponents with other realms will make the player question if they chose or not the right realm.
 
 Strategy: By offering a variety of cards, each one with its own habilities, players will be encouraged to think strategically and plan their decisions carefully. The decision-making process of selecting cards, managing resources, and adapting to different situations will keep players engaged and entertained throughout the game.
+
+
+En nuestro juego el objetivo es provocar en el jugador una sensación de aventura, empoderamiento y estrategia. Pretendemos provocar estas emociones de la siguiente manera:
+
+Empoderamiento: Esperamos que los jugadores se sientan empoderados y progresando a medida que avanzan en el juego, mejorando sus cartas y dominando sus habilidades. Al elegir qué cartas incluir en su mazo y cómo utilizarlas en las batallas, los jugadores experimentarán la emoción de superar desafíos y ganarle a sus oponentes.
+
+Aventura: Los reinos del juego provocarán una sensación de aventura. Cada jugador puede elegir su reino y explorar los beneficios de cada uno. Pelear contra oponentes con otros reinos hará que el jugador se pregunte si eligió o no el reino correcto.
+
+Estrategia: Al ofrecer una variedad de cartas, cada una con sus propias habilidades, animará a los jugadores a pensar estratégicamente y planificar sus decisiones con cuidado. El proceso de toma de decisiones de selección de cartas, gestión de recursos y adaptación a diferentes situaciones mantendrá a los jugadores interesados y entretenidos durante todo el juego.
 
 ## _Technical_
 

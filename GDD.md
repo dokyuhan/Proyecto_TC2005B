@@ -65,7 +65,7 @@ Your 8 defense successfully blocks 8 out of Player X's 10 attack, resulting in a
 
 Your healing boosts your health by 5, placing you 3 hit points above your starting total.
 
-Players must adapt their strategies, choosing between aggressive or defensive tactics. Certain cards are conditional, requiring an ammount of power. Power will be obtained by playing cards, each card used will give +1 power, but be aware that some cards abilities give you more power. For instance, a dragon card might necessitate 5 of power to be used. A counter tracks the ammount of power the player has, deducting from this total once a card requiring power is used.
+Players must adapt their strategies, choosing between aggressive or defensive tactics. Certain cards are conditional, requiring an amount of power. Power will be obtained by playing cards, each card used will give +1 power, but be aware that some cards abilities give you more power. For instance, a dragon card might necessitate 5 of power to be used. A counter tracks the amount of power the player has, deducting from this total once a card requiring power is used.
 
 Victory in a match awards the player XP points for card upgrades and a random card reward. This card, if a duplicate, converts into additional XP points, if its a new card then it will be permanently unlocked. Cards can only be upgraded when the full XP cost is met, ensuring upgrades cannot be partially applied.
 

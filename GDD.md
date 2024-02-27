@@ -53,7 +53,7 @@ Welcome to _Awakening of the Realms_, a captivating Deck Building Game where you
 
 Upon launching the game for the first time, players are asked to select one of four distinct realms: Human, Magic, Devil, and Monster. This initial choice is important for gameplay, so read on for details. Each realm features a collection of 10-12 cards, each one with three unique stats: attack, defense, and healing. Note that some cards may provide more than one of these attributes. Players kick off with three or four basic cards from all realms, this will lay the foundation for their initial matches.
 
-Cards are upgradable using XP points (details to follow) and can achieve up to three levels of enhancement. In battle, players wield a deck of 10 cards that will cycle, drawing from any of the realms. However, aligning your deck predominantly with cards from your chosen realm is a good trick, as such cards receive a stat boost.
+Cards are upgradable using XP points (details to follow) and can achieve up to three levels of enhancement. In battle, players wield a deck of 10 cards that will cycle, drawing from any of the realms. However, aligning your deck predominantly with cards from your chosen realm is a good trick, because all cards have a certain ability that only gets activated if such card is from your own realm.
 
 Battles are structured such that players start with five cards in hand, from which they can play up to two cards each turn. As the match progresses the player will keep on receiving a cycle of the cards on his deck. Tactical thinking is essential, as players must decide whether to attack, defend, heal, or employ a mix of these strategies to deplete their opponent's health bar of 100 hit points. Similarly, players themselves have 100 hit points, with the potential to recover or even exceed this threshold through strategic play of healing cards.
 
@@ -65,7 +65,7 @@ Your 8 defense successfully blocks 8 out of Player X's 10 attack, resulting in a
 
 Your healing boosts your health by 5, placing you 3 hit points above your starting total.
 
-Players must adapt their strategies, choosing between aggressive or defensive tactics. Certain cards are conditional, requiring a set number of other cards to be played beforehand. For instance, a dragon card might necessitate playing 5 other cards before activation. A counter tracks the number of cards played, deducting from this total once a conditional card is used.
+Players must adapt their strategies, choosing between aggressive or defensive tactics. Certain cards are conditional, requiring an ammount of power. Power will be obtained by playing cards, each card used will give +1 power, but be aware that some cards abilities give you more power. For instance, a dragon card might necessitate 5 of power to be used. A counter tracks the ammount of power the player has, deducting from this total once a card requiring power is used.
 
 Victory in a match awards the player XP points for card upgrades and a random card reward. This card, if a duplicate, converts into additional XP points, if its a new card then it will be permanently unlocked. Cards can only be upgraded when the full XP cost is met, ensuring upgrades cannot be partially applied.
 

@@ -51,11 +51,9 @@ Welcome to _Awakening of the Realms_, a captivating Deck Building Game where you
 
 ### **Gameplay**
 
-Upon launching the game for the first time, players are asked to select one of four distinct realms: Human, Magic, Devil, and Monster. This initial choice is important for gameplay, so read on for details. Each realm features a collection of 10 cards, each one with three unique stats: attack, defense, and healing. Note that some cards may provide more than one of these attributes, also 2 of those 10 cards would be a legendary card where those cards provide better main stats and a special ability. Also there is a collection of 10 special cards that gives bonus stats or effects to the game. Players kick off with three or four basic cards from all realms, this will lay the foundation for their initial matches. Progressing on the game the player would be able to assemble the deck as the player needs. 
+Upon launching the game for the first time, players are asked to select one of four distinct realms: Human, Magic, Spiritual (Angels and demons), and Monster. This initial choice is important for gameplay. The players kick off with three basic cards from all realms, this will lay the foundation for their initial matches. Progressing on the game the player would be able to assemble the deck as the player needs and would be able to get more and better cards. Before starting the matches the player would have to configure his deck up to 10 cards. Each deck can be configured with 10 commons. This deck configuration can be changed later when the player get more cards like the legendary cards and special cards, where the final deck composition would be 7 common cards 2 special cards and 1 legendary card. The player can configure the deck strategically and depending on the players gamestyle.
 
 Battles are structured such that players start with six cards in hand, from which they can play up to two cards each turn. As the match progresses the player will keep on receiving a random cycle of the cards on his deck, this means that the card used in a round can appear again in the hand deck. Tactical thinking is essential, as players must decide whether to attack, defend, heal, or employ a mix of these strategies to deplete their opponent's health bar of 100 hit points. Similarly, players themselves have 100 hit points, with the potential to recover or even exceed this threshold through strategic play of healing cards. Also in order to use the legendary card the player must used 6 common and special cards, each card will give +1 energy. An energy gage would mark the amount of times you used common and special cards in the game, the energy resets after the player used the legendary card. 
-
-Cards are upgradable using XP points (details to follow) and can achieve up to three levels of enhancement. In battle, players wield a deck of 10 cards that will cycle, where 7 cards would be common, 2 cards would be special and 1 card would be legendary. Chosing the specific realm would benefit the player through out the battle: Human realm gives 30 more health and 10% more attack for every card to the player(meaning that the health threshold would be 130 hit points and the cards from the deck would benefit form an increase of damage), Devil realm for every 3 turns it disables one of the enemy player card, Magic realm for every 2 turns steals one energy of the enemy and the Monster real for every 3 turns can place an extra card. Players must adapt their strategies, choosing between aggressive or defensive tactics. Certain cards are conditional, requiring an amount of energy.
 
 Matches unfold with each player's turn occurring simultaneously, governed by a timer for selecting two cards to play. For example, imagine you're Player 1 and you deploy two cards combining for 17 attack, 8 defense, and 2 healing. Once cards are played, their stats are activated. However, the outcome is uncertain until both players have played their cards. Suppose Player X plays two cards resulting in 10 attack, 25 defense, and no healing. The resolution is as follows:
 
@@ -64,6 +62,8 @@ Your 17 attack is fully absorbed by Player X's 25 defense, with their residual d
 Your 8 defense successfully blocks 8 out of Player X's 10 attack, resulting in a mere 2 hit point loss.
 
 Your healing boosts your health by 5, placing you 3 hit points above your starting total.
+
+In the other turns those player would be able to place different common cards, special cards and legendary cards to get the victory of the game.
 
 Victory in a match awards the player XP points for card upgrades and 10 coins. The coins are able to be used in the game store, where the player can purchase a random card or a token to change the players realm. Further more in the store there can be special packages to buy. Upon purchasing the card, if its duplicate, converts the card into additional XP points, if its a new card then it will be permanently unlocked. Cards can only be upgraded when the full XP cost is met, ensuring upgrades cannot be partially applied.
 
@@ -103,7 +103,81 @@ How will the player interact with the game? Will they be able to choose the cont
 
 ### **Mechanics**
 
-Are there any interesting mechanics? If so, how are you going to accomplish them? Physics, algorithms, etc.
+The game would have 50 cards in total, where for each realm there would be 10 cards. From those cards 8 would be a commom card having different unique stats: Attack, Defense and Healing. Each card has their own unique set of stats:
+
+1. Human Realm:
+   1. Warrior: 10 attack, 10 defense, 0 healing
+   2. Archer: 15 attack, 5 defense, 0 healing
+   3. Cleric: 2 attack, 2 defense, 15 healing
+   4. Knight: 5 attack, 15 defense, 0 healing
+   5. Sorceress: 10 attack, 1 defense, 9 healing
+   6. Royal Guard: 12 attack, 20 defense, 0 healing
+   7. Assasin: 25 attack, 1 defense, 0 healing
+   8. Mercenary: 10 attack, 4 defense, 5 healing
+
+2. Monster Realm:
+   1. Ogre: 7 attack, 10 defense, 2 healing
+   2. Wyrm: 12 attack, 7 defense, 5 healing
+   3. Werewolf: 10 attack, 12 defense, 3 healing
+   4. Goblin: 3 attack, 5 defense, 10 healing
+   5. Harpies: 10 attack, 10 defense, 0 healing
+   6. Troll: 6 attack, 15 defense, 4 healing
+   7. Treants: 2 attack, 6 defense, 15 healing
+   8. Whyvern: 15 attack, 10 defense, 0 healing
+
+3. Magical Realm:
+   1. Giant: 5 attack, 15 defense, 0 healing
+   2. Elfs: 10 attack, 5 defense, 5 healing
+   3. Necromancer: 15 attack, 2 defense, 10 healing
+   4. Golem: 1 attack, 20 defense, 0 healing
+   5. Elemental guardians: 12 attack, 12 defense, 0 healing
+   6. Dwarves: 8 attack, 12 defense, 6 healing
+   7. Wizard: 14 attack, 4 defense, 10 healing
+   8. Summoners: 7 attack, 7 defense, 13 healing
+
+4. Spiritual Realm:
+   1. Hell Hound: 10 attack, 8 defense, 2 healing
+   2. Archangel: 14 attack, 10 defense, 0 healing
+   3. Nephalem: 10 attack, 5 defense, 10 healing
+   4. Succubus: 9 attack, 12 defense, 4 healing
+   5. Voidshade Phantom: 14 attack, 2 defense, 0 healing
+   6. Titans: 1 attack, 15 defense, 5 healing
+   7. Valkyries: 8 attack, 4 defense, 9 healing
+   8. Celestial bug: 0 attack, 2 defense, 20 healing
+
+From the rest of the 10 cards, the other 2 cards would be a legendary card. The legendary cards are different from the common cards, each of the legendary cards give you a special bonus effect and a more powerful main stats than the common cards.
+
+1. Human Realm:
+   1. Princess: 10 attack, 10 deffense, 40 healing - Special ability: Royal Grace - doubles the healing of the healers for 1 round (it doesnt double itself)
+   2. King Arthur: 35 attack, 25 defense, 15 healing - Special ability: Excalibur's fury - ignore the defense of one of the enemy cards placed for 1 round (ex. if the defense is 30 this ability would deal the defense stats as damage)
+
+2. Monster Realm:
+   1. Griffin: 30 attack, 30 defense, 10 healing - Special ability: Soaring Vigilance - Can dodge one of the enemys card attacks and also after the dodge can see the enemys played cards for 2 rounds
+   2. Dragon: 40 attack, 20 defense, 10 healing - Special ability: Inferno Breath - Applies to the enemy a dot damage of 10 attack and the healing is 50% less effective for 3 rounds (if the enemy places a card that heals 20, it just heals 10)
+
+3. Magical Realm:
+   1. Runeforge dwarve: 15 attack, 40 defense, 20 healing - Special ability: Runic ward - creates a barrier for the alies that gives 50 defense for 2 rounds
+   2. Moonshadow Elf: 35 attack, 15 defense, 20 healing - Special ability: Lunar empowerment - debuf the enemy making the attacks 20% weaker for 2 rounds and life steal 30 life points of the enemy
+
+4. Spiritual Realm:
+   1. Archangel Asmir: 35 attack, 25 defense, 20 healing - Special ability: Celestial Resonance - Reflect all damage taken for 1 round and also heals 10 life points for 3 rounds
+   2. Demon King: 35 attack, 15 defense, 30 healing - Special ability: Abyssal Dominion - double the damage of the ally cards for 1 round and curse the enemy causing 10 damage over time and 20% healing reduction for 2 rounds
+
+There are also 10 special cards that will benefit the players deck cards, where each of them will also have a unique bonus effect. 
+
+1. Special cards:
+   1. Special 1:
+   2. Special 1:
+   3. Special 1:
+   4. Special 1:
+   5. Special 1:
+   6. Special 1:
+   7. Special 1:
+   8. Special 1:
+   9. Special 1:
+   10. Special 1:
+
+Cards are upgradable using XP points (details to follow) and can achieve up to three levels of enhancement. Also chosing the specific realm would benefit the player through out the battle: Human realm gives 30 more health and 10% more attack for every card to the player(meaning that the health threshold would be 130 hit points and the cards from the deck would benefit form an increase of damage), Devil realm for every 3 turns it disables one of the enemy player card, Magic realm for every 2 turns steals one energy of the enemy and the Monster real for every 3 turns can place an extra card. Players must adapt their strategies, choosing between aggressive or defensive tactics. Certain cards are conditional, requiring an amount of energy.
 
 ## _Level Design_
 

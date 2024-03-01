@@ -190,48 +190,62 @@ Cards are upgradable using XP points (details to follow) and can achieve up to t
 
 ---
 
-_(Note : These sections can safely be skipped if they&#39;re not relevant, or you&#39;d rather go about it another way. For most games, at least one of them should be useful. But I&#39;ll understand if you don&#39;t want to use them. It&#39;ll only hurt my feelings a little bit.)_
+In order for the user to experience a sense of discovery, mystery and progressión we have decided to implement 4 boards. Each board corresponds to one of the four realms and each realm is intended to have 2 levels. An entry level and the boss challenge. The design of the boards will be as follows. 
 
 ### **Themes**
 
-1. Forest
+1. Magical Realm: The Enchanted Grounds
    1. Mood
-      1. Dark, calm, foreboding
+      1. Mystical, serene, captivating
    2. Objects
-      1. _Ambient_
-         1. Fireflies
-         2. Beams of moonlight
-         3. Tall grass
-      2. _Interactive_
-         1. Wolves
-         2. Goblins
-         3. Rocks
-2. Castle
-   1. Mood
-      1. Dangerous, tense, active
-   2. Objects
-      1. _Ambient_
-         1. Rodents
-         2. Torches
-         3. Suits of armor
-      2. _Interactive_
-         1. Guards
-         2. Giant rats
-         3. Chests
+      1. Ambient
+         1. Floating islands
+         2. Auroras
+         3. Arcane runes
 
-_(example)_
+
+2. Spiritual Realm: The Celestial Fields
+   1. Mood
+      1. Divine, peaceful, radiant
+   2. Objects
+      1. Ambient
+         1. Celestial light beams
+         2. Soft, glowing clouds
+         3. Heavenly things
+
+3. Human Realm: The Kingdom's place
+   1. Mood
+      1. Heroic, bustling, medieval
+   2. Objects
+      1. Ambient
+         1. Flags of the realm
+         2. Castle towers
+         3. Shields and swords
+
+
+4. Monster Realm: The Dark Forest
+   1. Mood
+      1. Untamed, mysterious, dark
+   2. Objects
+      1. Ambient
+         1. Dark forest
+         2. Fog at the edges
+         3. Glowing red eyes in the dark
+
 
 ### **Game Flow**
 
-1. Player starts in forest
-2. Pond to the left, must move right
-3. To the right is a hill, player jumps to traverse it (&quot;jump&quot; taught)
-4. Player encounters castle - door&#39;s shut and locked
-5. There&#39;s a window within jump height, and a rock on the ground
-6. Player picks up rock and throws at glass (&quot;throw&quot; taught)
-7. … etc.
+1. Player enters the level selection screen.
+2. Player chooses a Realm to fight in. 
+3. Player chooses the entry fight or the boss fight. 
+4. Level is selected
+5. Player is redirected to the level screen. 
+6. Player is displayed with a customized board for the Realm in which he chose to fight.
+7. Player fights the opponent.
+8. Player collects his rewards.
+9. Player is redirected to the main screen.
 
-_(example)_
+
 
 ## _Development_
 

@@ -293,42 +293,36 @@ _(example)_
 
 ### **Style Attributes**
 
-What kinds of colors will you be using? Do you have a limited palette to work with? A post-processed HSV map/image? Consistency is key for immersion.
+For Awakening of the Realms we will be having a rich and immersive color palette that reflects the dark fantasy aesthetic of the game. Each Realm (levels) will have its own distinct color scheme to have its unique characteristics present. The Human Realm will have warm and earth-like tones. The Magic Realm will have cold and mystical colors. The Mystical Realm will have gold and white details. The Monster Realm will have dark shadow colors.
 
-What kind of graphic style are you going for? Cartoony? Pixel-y? Cute? How, specifically? Solid, thick outlines with flat hues? Non-black outlines with limited tints/shades? Emphasize smooth curvatures over sharp angles? Describe a set of general rules depicting your style here.
+The artistic style is based on a combination between fantasy and a semi-realistic scenario. Environments and cards will have fantasy characteristics that relate to realistic features. For example; an archer will have realistic features mixed with some fantasy attributes. We intend to give the cards a 3D appearance that can be achieved through the enhanced and photoshop of the cards characters.
 
-Well-designed feedback, both good (e.g. leveling up) and bad (e.g. being hit), are great for teaching the player how to play through trial and error, instead of scripting a lengthy tutorial. What kind of visual feedback are you going to use to let the player know they&#39;re interacting with something? That they \*can\* interact with something?
+Finally, we intend to implement effects to indicate the interactivity in the game. Maybe adding some glow effects or shadows when a card is played or when damage is done or taken.
+
 
 ### **Graphics Needed**
 
-1. Characters
-   1. Human-like
-      1. Goblin (idle, walking, throwing)
-      2. Guard (idle, walking, stabbing)
-      3. Prisoner (walking, running)
-   2. Other
-      1. Wolf (idle, walking, running)
-      2. Giant Rat (idle, scurrying)
-2. Blocks
-   1. Dirt
-   2. Dirt/Grass
-   3. Stone Block
-   4. Stone Bricks
-   5. Tiled Floor
-   6. Weathered Stone Block
-   7. Weathered Stone Bricks
-3. Ambient
-   1. Tall Grass
-   2. Rodent (idle, scurrying)
-   3. Torch
-   4. Armored Suit
-   5. Chains (matching Weathered Stone Bricks)
-   6. Blood stains (matching Weathered Stone Bricks)
-4. Other
-   1. Chest
-   2. Door (matching Stone Bricks)
-   3. Gate
-   4. Button (matching Weathered Stone Bricks)
+1. Realms 
+   1. When a player decides to enter an specific realm level, each level will have its unique environment that aligns with its theme. 
+   2. Realms environment
+      1. Human Realm: medevial theme. (castles, swords, shields, flags)
+      2. Mystical Realm: mystical theme. (high blue colors, fictional things)
+      3. Spiritual Realm: celestial theme. (clouds, heavenly things)
+      4. Monster Realm: dark forest theme. (dark colors, red lights, fog)
+
+2. Cards
+   1. Different and unique traits for each character. Each card should reflect the unique traits and aesthetic of their respective realm.
+
+3. UI elements
+   1. Dark fantasy background
+   2. Logo in font
+   3. Styled buttons
+
+4. Realm Selection
+   1. Representation of the 4 realms to choose. 4 unique images when choosing a Realm.
+
+5. Navigation
+   1. The navigation through the game must be in accordance to the dark fantasy theme.
 
 _(example)_
 

@@ -323,6 +323,8 @@ Finally, we intend to implement effects to indicate the interactivity in the gam
 
 5. Navigation
    1. The navigation through the game must be in accordance to the dark fantasy theme.
+   2. Profile menu should reflect the theme
+   3. Loading screens (if needed)
 
 _(example)_
 

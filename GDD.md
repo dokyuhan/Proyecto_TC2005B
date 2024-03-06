@@ -190,11 +190,12 @@ Cards are upgradable using XP points (details to follow) and can achieve up to t
 
 ---
 
-In order for the user to experience a sense of discovery, mystery and progressi√≥n we have decided to implement 4 boards. Each board corresponds to one of the four realms and each realm is intended to have 2 levels. An entry level and the boss challenge. The design of the boards will be as follows. 
+In order for the user to experience a sense of discovery, mystery and progressi√≥n we have decided to implement 4 boards. Each board corresponds to one of the four realms and each realm is intended to have 2 levels. An entry level and the boss challenge. The design of the boards will be as follows.
 
 ### **Themes**
 
 1. Magical Realm: The Enchanted Grounds
+
    1. Mood
       1. Mystical, serene, captivating
    2. Objects
@@ -203,8 +204,8 @@ In order for the user to experience a sense of discovery, mystery and progressi√
          2. Auroras
          3. Arcane runes
 
-
 2. Spiritual Realm: The Celestial Fields
+
    1. Mood
       1. Divine, peaceful, radiant
    2. Objects
@@ -214,6 +215,7 @@ In order for the user to experience a sense of discovery, mystery and progressi√
          3. Heavenly things
 
 3. Human Realm: The Kingdom's place
+
    1. Mood
       1. Heroic, bustling, medieval
    2. Objects
@@ -221,7 +223,6 @@ In order for the user to experience a sense of discovery, mystery and progressi√
          1. Flags of the realm
          2. Castle towers
          3. Shields and swords
-
 
 4. Monster Realm: The Dark Forest
    1. Mood
@@ -232,20 +233,17 @@ In order for the user to experience a sense of discovery, mystery and progressi√
          2. Fog at the edges
          3. Glowing red eyes in the dark
 
-
 ### **Game Flow**
 
 1. Player enters the level selection screen.
-2. Player chooses a Realm to fight in. 
-3. Player chooses the entry fight or the boss fight. 
+2. Player chooses a Realm to fight in.
+3. Player chooses the entry fight or the boss fight.
 4. Level is selected
-5. Player is redirected to the level screen. 
+5. Player is redirected to the level screen.
 6. Player is displayed with a customized board for the Realm in which he chose to fight.
 7. Player fights the opponent.
 8. Player collects his rewards.
 9. Player is redirected to the main screen.
-
-
 
 ## _Development_
 
@@ -299,11 +297,11 @@ The artistic style is based on a combination between fantasy and a semi-realisti
 
 Finally, we intend to implement effects to indicate the interactivity in the game. Maybe adding some glow effects or shadows when a card is played or when damage is done or taken.
 
-
 ### **Graphics Needed**
 
-1. Realms 
-   1. When a player decides to enter an specific realm level, each level will have its unique environment that aligns with its theme. 
+1. Realms
+
+   1. When a player decides to enter an specific realm level, each level will have its unique environment that aligns with its theme.
    2. Realms environment
       1. Human Realm: medevial theme. (castles, swords, shields, flags)
       2. Mystical Realm: mystical theme. (high blue colors, fictional things)
@@ -311,14 +309,17 @@ Finally, we intend to implement effects to indicate the interactivity in the gam
       4. Monster Realm: dark forest theme. (dark colors, red lights, fog)
 
 2. Cards
+
    1. Different and unique traits for each character. Each card should reflect the unique traits and aesthetic of their respective realm.
 
 3. UI elements
+
    1. Dark fantasy background
    2. Logo in font
    3. Styled buttons
 
 4. Realm Selection
+
    1. Representation of the 4 realms to choose. 4 unique images when choosing a Realm.
 
 5. Navigation
@@ -375,15 +376,17 @@ _(example)_
 _(define the main activities and the expected dates when they should be finished. This is only a reference, and can change as the project is developed)_
 
 1. Phase one
+
    1. Database
       1. Modify the existing Entity-Relation to add changes and corrections
       2. Define user stories
    2. Website
       1. Understand how to create an API and link the cards.
    3. General
-      1. Finish the GDD and add modifications if necessary. 
+      1. Finish the GDD and add modifications if necessary.
 
 2. Phase two
+
    1. Database
       1. Define the database schema for entities.
       2. Implement the database tables with their necessary relations.
@@ -392,6 +395,7 @@ _(define the main activities and the expected dates when they should be finished
       2. Implement all necessary protocols ( authentication and authorization if needed)
 
 3. Phase three
+
    1. Unity
       1. Set up unity project and integrate basic UI elements.
       2. Implement basic backend logic. (minimal viable setup)
@@ -399,6 +403,7 @@ _(define the main activities and the expected dates when they should be finished
       1. Integrate the API with Unity
 
 4. Phase four
+
    1. Visual elements
       1. Design the visual elements for the cards, levels, and screens.
       2. Start implementing game logic with cards in unity.
@@ -410,9 +415,8 @@ _(define the main activities and the expected dates when they should be finished
       1. Develop the advanced game logic and mechanics. (update the minimal viable setup)
       2. Improve the UI/UX elements if needed
       3. Integrate all the visual assets.
-      
 6. Phase six
-   1. Test the game 
+   1. Test the game
    2. Improve the game if necessary.
 
 _(example)_

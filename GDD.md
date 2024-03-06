@@ -374,32 +374,45 @@ _(example)_
 
 _(define the main activities and the expected dates when they should be finished. This is only a reference, and can change as the project is developed)_
 
-1. develop base classes
-   1. base entity
-      1. base player
-      2. base enemy
-      3. base block
-2. base app state
-   1. game world
-   2. menu world
-3. develop player and basic block classes
-   1. physics / collisions
-4. find some smooth controls/physics
-5. develop other derived classes
-   1. blocks
-      1. moving
-      2. falling
-      3. breaking
-      4. cloud
-   2. enemies
-      1. soldier
-      2. rat
-      3. etc.
-6. design levels
-   1. introduce motion/jumping
-   2. introduce throwing
-   3. mind the pacing, let the player play between lessons
-7. design sounds
-8. design music
+1. Phase one
+   1. Database
+      1. Modify the existing Entity-Relation to add changes and corrections
+      2. Define user stories
+   2. Website
+      1. Understand how to create an API and link the cards.
+   3. General
+      1. Finish the GDD and add modifications if necessary. 
+
+2. Phase two
+   1. Database
+      1. Define the database schema for entities.
+      2. Implement the database tables with their necessary relations.
+   2. Website
+      1. Develop the API for operations on the database entities.
+      2. Implement all necessary protocols ( authentication and authorization if needed)
+
+3. Phase three
+   1. Unity
+      1. Set up unity project and integrate basic UI elements.
+      2. Implement basic backend logic. (minimal viable setup)
+   2. Website
+      1. Integrate the API with Unity
+
+4. Phase four
+   1. Visual elements
+      1. Design the visual elements for the cards, levels, and screens.
+      2. Start implementing game logic with cards in unity.
+   2. Website
+      1. Test if the API is working properly with unity and the database.
+
+5. Phase five
+   1. Unity
+      1. Develop the advanced game logic and mechanics. (update the minimal viable setup)
+      2. Improve the UI/UX elements if needed
+      3. Integrate all the visual assets.
+      
+6. Phase six
+   1. Test the game 
+   2. Improve the game if necessary.
 
 _(example)_

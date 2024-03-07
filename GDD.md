@@ -92,11 +92,13 @@ By weaving together these elements, our game aims to provide an immersive experi
       1. Select your realm and name
 2. Inventory
    1. Deck Building
-   2. Battle Selector
-3. Match
+   2. Cards unlocked
+3. Battle Selector
+   1. Select you level
+4. Match
    1. Arena
    2. Assessment / Go Back
-4. End Credits
+5. End Credits
 
 ### **Controls**
 
@@ -139,7 +141,7 @@ The game would have 50 cards in total, where for each realm there would be 10 ca
    7. Wizard: 14 attack, 4 defense, 10 healing
    8. Summoners: 7 attack, 7 defense, 13 healing
 
-4. Spiritual Realm:
+4. Devil Realm:
    1. Hell Hound: 10 attack, 8 defense, 2 healing
    2. Archangel: 14 attack, 10 defense, 0 healing
    3. Nephalem: 10 attack, 5 defense, 10 healing
@@ -184,7 +186,7 @@ There are also 10 special cards that will benefit the players deck cards, where 
    9. Special 9:
    10. Special 10:
 
-Cards are upgradable using XP points (details to follow) and can achieve up to three levels of enhancement. Also chosing the specific realm would benefit the player through out the battle: Human realm gives 30 more health and 10% more attack for every card to the player(meaning that the health threshold would be 130 hit points and the cards from the deck would benefit form an increase of damage), Devil realm for every 3 turns it disables one of the enemy player card, Magic realm for every 2 turns steals one energy of the enemy and the Monster real for every 3 turns can place an extra card. Players must adapt their strategies, choosing between aggressive or defensive tactics. Certain cards are conditional, requiring an amount of energy.
+Cards are upgradable using XP points and can achieve up to three levels of enhancement. Also chosing the specific realm would benefit the player through out the battle: Human realm gives 30 more health and 10% more attack for every card to the player(meaning that the health threshold would be 130 hit points and the cards from the deck would benefit from an increase of damage), Devil realm for every 3 turns it disables one of the enemy player card, Magic realm for every 2 turns steals one energy of the enemy and the Monster realm for every 3 turns can place an extra card. Players must adapt their strategies, choosing between aggressive or defensive tactics. Certain cards are conditional, requiring an amount of energy to be used, once a card that requires energy is played the amount of energy used will be deducted from the total on the match. Every card used gives one energy.
 
 ## _Level Design_
 
@@ -204,15 +206,15 @@ In order for the user to experience a sense of discovery, mystery and progressi√
          2. Auroras
          3. Arcane runes
 
-2. Spiritual Realm: The Celestial Fields
+2. Devil Realm: The Infernal Fields
 
    1. Mood
-      1. Divine, peaceful, radiant
+      1. Cautious, danger, fear
    2. Objects
       1. Ambient
-         1. Celestial light beams
-         2. Soft, glowing clouds
-         3. Heavenly things
+         1. Fire columns
+         2. Flowing lava
+         3. Dark elements
 
 3. Human Realm: The Kingdom's place
 
@@ -229,21 +231,38 @@ In order for the user to experience a sense of discovery, mystery and progressi√
       1. Untamed, mysterious, dark
    2. Objects
       1. Ambient
-         1. Dark forest
+         1. Tall dark trees
          2. Fog at the edges
          3. Glowing red eyes in the dark
 
 ### **Game Flow**
 
-1. Player enters the level selection screen.
-2. Player chooses a Realm to fight in.
-3. Player chooses the entry fight or the boss fight.
-4. Level is selected
-5. Player is redirected to the level screen.
-6. Player is displayed with a customized board for the Realm in which he chose to fight.
-7. Player fights the opponent.
-8. Player collects his rewards.
-9. Player is redirected to the main screen.
+1. (First time opening) Player selects its name and realm.
+2. Player enters his card collection and deck builiding screen.
+3. Player enters the level selection screen.
+4. Player chooses a level to fight in.
+5. Level is selected.
+6. Player is redirected to the level screen.
+7. Player is displayed with a the specific board of the Realm in which he the level is located.
+8. The match starts.
+
+   1. Matches unfold with each player's turn occurring simultaneously, governed by a timer for selecting two cards to play.
+   2. A match would look like this:  
+      Imagine you're Player 1 and you deploy two cards combining for 17 attack, 8 defense, and 2 healing. Once cards are played, their stats are activated. However, the outcome is uncertain until both players have played their cards.
+      Suppose Player X plays two cards resulting in 10 attack, 25 defense, and no healing. The resolution is as follows:
+
+      Your 17 attack is fully absorbed by Player X's 25 defense, with their residual defense dissipating.
+
+      Your 8 defense successfully blocks 8 out of Player X's 10 attack, resulting in a mere 2 hit point loss.
+
+      Your healing boosts your health by 5, placing you 3 hit points above your starting total.
+
+9. Once the match is over the player collects his rewards.
+
+   1. If the player won it will get a random card and XP points, if the player already has that card it will convert to XP.
+   2. If the player lost it will only get some XP points.
+
+10. Player is redirected to the main screen (select level screen).
 
 ## _Development_
 
@@ -291,11 +310,11 @@ _(example)_
 
 ### **Style Attributes**
 
-For Awakening of the Realms we will be having a rich and immersive color palette that reflects the dark fantasy aesthetic of the game. Each Realm (levels) will have its own distinct color scheme to have its unique characteristics present. The Human Realm will have warm and earth-like tones. The Magic Realm will have cold and mystical colors. The Mystical Realm will have gold and white details. The Monster Realm will have dark shadow colors.
+For _Awakening of the Realms_ we will be having a rich and immersive color palette that reflects the dark fantasy aesthetic of the game. Each Realm (levels) will have its own distinct color scheme to have its unique characteristics present. The Human Realm will have warm and earth-like tones. The Magic Realm will have cold and mystical colors. The Devil Realm will have red and dark details. The Monster Realm will have dark shadow colors and green.
 
-The artistic style is based on a combination between fantasy and a semi-realistic scenario. Environments and cards will have fantasy characteristics that relate to realistic features. For example; an archer will have realistic features mixed with some fantasy attributes. We intend to give the cards a 3D appearance that can be achieved through the enhanced and photoshop of the cards characters.
+The artistic style is based on a combination between fantasy and a semi-realistic scenario. Environments and cards will have fantasy characteristics that relate to realistic features. For example; an archer will have realistic features mixed with some fantasy attributes. We intend to generate all cards using the AI _MidJourney_, one of the best in the market for image generation. This AI will ensure all cards have a similar realistic but a paper and grainy look to them.
 
-Finally, we intend to implement effects to indicate the interactivity in the game. Maybe adding some glow effects or shadows when a card is played or when damage is done or taken.
+Finally, we intend to implement effects to indicate the interactivity in the game. Maybe adding some glow effects, shadows when a card is played, when damage is done or taken and shine when the player heals.
 
 ### **Graphics Needed**
 
@@ -304,30 +323,23 @@ Finally, we intend to implement effects to indicate the interactivity in the gam
    1. When a player decides to enter an specific realm level, each level will have its unique environment that aligns with its theme.
    2. Realms environment
       1. Human Realm: medevial theme. (castles, swords, shields, flags)
-      2. Mystical Realm: mystical theme. (high blue colors, fictional things)
-      3. Spiritual Realm: celestial theme. (clouds, heavenly things)
-      4. Monster Realm: dark forest theme. (dark colors, red lights, fog)
+      2. Devil Realm: infernal theme. (high red colors, fictional beings)
+      3. Magical Realm: magical theme. (mist, blue tones, fictional beings)
+      4. Monster Realm: dark forest theme. (dark colors, small red lights, fog)
 
 2. Cards
 
-   1. Different and unique traits for each character. Each card should reflect the unique traits and aesthetic of their respective realm.
+   1. Different and unique traits for each one. Each card should reflect the unique traits and aesthetic of their respective realm.
 
 3. UI elements
 
-   1. Dark fantasy background
-   2. Logo in font
-   3. Styled buttons
+   1. Multiple scenes
+   2. Navigation between scenes
+   3. Loading screens (if needed)
+   4. Styled buttons
 
 4. Realm Selection
-
-   1. Representation of the 4 realms to choose. 4 unique images when choosing a Realm.
-
-5. Navigation
-   1. The navigation through the game must be in accordance to the dark fantasy theme.
-   2. Profile menu should reflect the theme
-   3. Loading screens (if needed)
-
-_(example)_
+   1. Representation of the 4 realms to choose. 4 unique images when choosing a Realm with their description.
 
 ## _Sounds/Music_
 
@@ -344,28 +356,28 @@ Remember, auditory feedback should stand out from the music and other sound effe
 ### **Sounds Needed**
 
 1. Effects
-   1. Soft Footsteps (dirt floor)
-   2. Sharper Footsteps (stone floor)
-   3. Soft Landing (low vertical velocity)
-   4. Hard Landing (high vertical velocity)
-   5. Glass Breaking
-   6. Chest Opening
-   7. Door Opening
+   1. Swords clashing
+   2. Explotions
+   3. Spell forming (whooshing sound)
+   4. Shield breaking (wood or metal break)
+   5. Shiel protecing (something rebounding)
+   6. Healing (angelical sound, chorus)
+   7. Match Win (victorious music)
+   8. Match Loose (sad music)
+   9. Recieve a new card (cheer sound)
 2. Feedback
-   1. Relieved &quot;Ahhhh!&quot; (health)
-   2. Shocked &quot;Ooomph!&quot; (attacked)
-   3. Happy chime (extra life)
-   4. Sad chime (died)
+   1. Button Press (click sound)
+   2. Hold and drop chime
 
 _(example)_
 
 ### **Music Needed**
 
-1. Slow-paced, nerve-racking &quot;forest&quot; track
-2. Exciting &quot;castle&quot; track
-3. Creepy, slow &quot;dungeon&quot; track
-4. Happy ending credits track
-5. Rick Astley&#39;s hit #1 single &quot;Never Gonna Give You Up&quot;
+1. Medieval Epic music
+2. Intense, exciting music and &quot;dangerous&quot; track
+3. Calm, relaxed and happy track
+4. Cheerful and &quot;victorious&quot; track
+5. Sad and &quot;defeated&quot; track
 
 _(example)_
 

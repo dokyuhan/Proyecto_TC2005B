@@ -51,7 +51,7 @@ Welcome to _Awakening of the Realms_, a captivating Deck Building Game where you
 
 ### **Gameplay**
 
-Upon launching the game for the first time, players are asked to select one of four distinct realms: Human, Magic, Spiritual (Angels and demons), and Monster. This initial choice is important for gameplay. The players kick off with three basic cards from all realms, this will lay the foundation for their initial matches. Progressing on the game the player would be able to assemble the deck as the player needs and would be able to get more and better cards. Before starting the matches the player would have to configure his deck up to 10 cards. Each deck can be configured with 10 commons. This deck configuration can be changed later when the player get more cards like the legendary cards and special cards, where the final deck composition would be 7 common cards 2 special cards and 1 legendary card. The player can configure the deck strategically and depending on the players gamestyle.
+Upon launching the game for the first time, players are asked to select one of four distinct realms: Human, Magic, Celestial (Angels and demons), and Monster. This initial choice is important for gameplay. The players kick off with three basic cards from all realms, this will lay the foundation for their initial matches. Progressing on the game the player would be able to assemble the deck as the player needs and would be able to get more and better cards. Before starting the matches the player would have to configure his deck up to 10 cards. Each deck can be configured with 10 commons. This deck configuration can be changed later when the player get more cards like the legendary cards and special cards, where the final deck composition would be 7 common cards 2 special cards and 1 legendary card. The player can configure the deck strategically and depending on the players gamestyle.
 
 Battles are structured such that players start with six cards in hand, from which they can play up to two cards each turn. As the match progresses the player will keep on receiving a random cycle of the cards on his deck, this means that the card used in a round can appear again in the hand deck. Tactical thinking is essential, as players must decide whether to attack, defend, heal, or employ a mix of these strategies to deplete their opponent's health bar of 100 hit points. Similarly, players themselves have 100 hit points, with the potential to recover or even exceed this threshold through strategic play of healing cards. Also in order to use the legendary card the player must used 6 common and special cards, each card will give +1 energy. An energy gage would mark the amount of times you used common and special cards in the game, the energy resets after the player used the legendary card.
 
@@ -137,7 +137,7 @@ The game would have 50 cards in total, where for each realm there would have 10 
    |        Wizard       |   14   |     4   |   10    |
    |       Summoners     |    7   |     7   |   13    |
 
-4. Devil Realm:
+4. Celestial Realm:
 
    |      Character     | Attack | Defense | Healing |
    |--------------------|--------|---------|---------|
@@ -173,7 +173,7 @@ From the rest of the 10 cards, the other 2 cards would be a legendary card. The 
    |  Runeforge dwarve  |   15   |    40   |   20    |    Runic ward     |   Creates a barrier for the alies that gives 50 defense for 2 rounds        | 
    |   Moonshadow Elf   |   35   |    15   |   20    | Lunar empowerment |  Debuf the enemy making the attacks 20% weaker for 2 rounds and life steal 30 life points of the enemy  |
 
-4. Spiritual Realm:
+4. Celestial Realm:
 
    |      Character     | Attack | Defense | Healing |   Special Ability    |                                 Description                                        |
    |--------------------|--------|---------|---------|----------------------|------------------------------------------------------------------------------------|
@@ -191,17 +191,17 @@ There are also 10 special cards that will benefit the players deck cards, where 
    |   Special 3    |   Posion the enemy player for 2 rounds dealing 20 damage   |
    |   Special 4    |   Heals the player 30 health         |
    |   Special 5    |   Cures all debuf applied to the player   |
-   |   Special 6    |                                      |
-   |   Special 7    |                                      |
-   |   Special 8    |                                      |
-   |   Special 9    |                                      |
-   |   Special 10   |                                      |
+   |   Special 6    |   Enhance shields played x2          |
+   |   Special 7    |   Reduces enemy attack to 50%        |
+   |   Special 8    |   Damage taken will be reflected to the enemy     |
+   |   Special 9    |   Disables an enemy card played                 |
+   |   Special 10   |   You can see the opponents cards      |
 
 
 
 Cards are upgradable using XP points and can achieve up to three levels of enhancement. Also chosing the specific realm would benefit the player through out the battle: 
    - Human realm gives 30 more health and 10% more attack for every card to the player(meaning that the health threshold would be 130 hit points and the cards from the deck would benefit from an increase of damage).
-   - Devil realm for every 3 turns it disables one of the enemy player card.
+   - Celestial realm for every 3 turns it disables one of the enemy player card.
    - Magic realm for every 2 turns steals one energy of the enemy.
    - Monster realm for every 3 turns can place an extra card. 
    
@@ -275,15 +275,15 @@ In order for the user to experience a sense of discovery, mystery and progressi√
          2. Auroras
          3. Arcane runes
 
-2. Devil Realm: The Infernal Fields
+2. Celestial Realm: The Celestial Fields
 
    1. Mood
-      1. Cautious, danger, fear
+      1. calm, powerful, peace
    2. Objects
       1. Ambient
-         1. Fire columns
-         2. Flowing lava
-         3. Dark elements
+         1. Gold details
+         2. Clouds
+         3. Angelic promps
 
 3. Human Realm: The Kingdom's place
 
@@ -339,39 +339,53 @@ In order for the user to experience a sense of discovery, mystery and progressi√
 
 ### **Abstract Classes / Components**
 
-1. BasePhysics
-   1. BasePlayer
-   2. BaseEnemy
-   3. BaseObject
-2. BaseObstacle
-3. BaseInteractable
-
-_(example)_
+1. Card
+   1. Attack
+   2. Defense
+   3. Healing
+   4. Special habilities
+   5. Power needed
+   6. Rarity
+   7. Realm
+   8. Level
+2. Realm
+   1. Theme
+   2. Elements
+   3. Bonuses
+3. Player
+   1. Name
+   2. Realms
+   3. Health
+   4. Power
+   5. Current deck
+4. Opponent/NPC/Enemy
+   1. Health
+   2. Realm
+   3. Power
+   4. Current deck
+   5. Attack patterns
+5. Game Manager
+6. UIManager
+7. Battle Controller
+8. Card Database
+9. Player Data
 
 ### **Derived Classes / Component Compositions**
 
-1. BasePlayer
-   1. PlayerMain
-   2. PlayerUnlockable
-2. BaseEnemy
-   1. EnemyWolf
-   2. EnemyGoblin
-   3. EnemyGuard (may drop key)
-   4. EnemyGiantRat
-   5. EnemyPrisoner
-3. BaseObject
-   1. ObjectRock (pick-up-able, throwable)
-   2. ObjectChest (pick-up-able, throwable, spits gold coins with key)
-   3. ObjectGoldCoin (cha-ching!)
-   4. ObjectKey (pick-up-able, throwable)
-4. BaseObstacle
-   1. ObstacleWindow (destroyed with rock)
-   2. ObstacleWall
-   3. ObstacleGate (watches to see if certain buttons are pressed)
-5. BaseInteractable
-   1. InteractableButton
 
-_(example)_
+1. Card Derivatives
+   1. Common
+   2. Realm specials
+   3. Special cards
+2. Realm Derivatives
+   1. Human
+   2. Monster
+   3. Celestial
+   4. Magic
+3. Opponent Derivatives
+   1. BasicEnemy
+   2. BossEnemy
+
 
 ## _Graphics_
 
@@ -379,7 +393,7 @@ _(example)_
 
 ### **Style Attributes**
 
-For _Awakening of the Realms_ we will be having a rich and immersive color palette that reflects the dark fantasy aesthetic of the game. Each Realm (levels) will have its own distinct color scheme to have its unique characteristics present. The Human Realm will have warm and earth-like tones. The Magic Realm will have cold and mystical colors. The Devil Realm will have red and dark details. The Monster Realm will have dark shadow colors and green.
+For _Awakening of the Realms_ we will be having a rich and immersive color palette that reflects the dark fantasy aesthetic of the game. Each Realm (levels) will have its own distinct color scheme to have its unique characteristics present. The Human Realm will have warm and earth-like tones. The Magic Realm will have cold and mystical colors. The celestial Realm will have white and gold details. The Monster Realm will have dark shadow colors and green.
 
 The artistic style is based on a combination between fantasy and a semi-realistic scenario. Environments and cards will have fantasy characteristics that relate to realistic features. For example; an archer will have realistic features mixed with some fantasy attributes. We intend to generate all cards using the AI _MidJourney_, one of the best in the market for image generation. This AI will ensure all cards have a similar realistic but a paper and grainy look to them.
 
@@ -392,7 +406,7 @@ Finally, we intend to implement effects to indicate the interactivity in the gam
    1. When a player decides to enter an specific realm level, each level will have its unique environment that aligns with its theme.
    2. Realms environment
       1. Human Realm: medevial theme. (castles, swords, shields, flags)
-      2. Devil Realm: infernal theme. (high red colors, fictional beings)
+      2. Celestial Realm: celestial theme. (high red colors, fictional beings)
       3. Magical Realm: magical theme. (mist, blue tones, fictional beings)
       4. Monster Realm: dark forest theme. (dark colors, small red lights, fog)
 

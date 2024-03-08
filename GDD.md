@@ -55,17 +55,7 @@ Upon launching the game for the first time, players are asked to select one of f
 
 Battles are structured such that players start with six cards in hand, from which they can play up to two cards each turn. As the match progresses the player will keep on receiving a random cycle of the cards on his deck, this means that the card used in a round can appear again in the hand deck. Tactical thinking is essential, as players must decide whether to attack, defend, heal, or employ a mix of these strategies to deplete their opponent's health bar of 100 hit points. Similarly, players themselves have 100 hit points, with the potential to recover or even exceed this threshold through strategic play of healing cards. Also in order to use the legendary card the player must used 6 common and special cards, each card will give +1 energy. An energy gage would mark the amount of times you used common and special cards in the game, the energy resets after the player used the legendary card.
 
-Matches unfold with each player's turn occurring simultaneously, governed by a timer for selecting two cards to play. For example, imagine you're Player 1 and you deploy two cards combining for 17 attack, 8 defense, and 2 healing. Once cards are played, their stats are activated. However, the outcome is uncertain until both players have played their cards. Suppose Player X plays two cards resulting in 10 attack, 25 defense, and no healing. The resolution is as follows:
-
-Your 17 attack is fully absorbed by Player X's 25 defense, with their residual defense dissipating.
-
-Your 8 defense successfully blocks 8 out of Player X's 10 attack, resulting in a mere 2 hit point loss.
-
-Your healing boosts your health by 5, placing you 3 hit points above your starting total.
-
-In the other turns those player would be able to place different common cards, special cards and legendary cards to get the victory of the game.
-
-Victory in a match awards the player XP points for card upgrades and 10 coins. The coins are able to be used in the game store, where the player can purchase a random card or a token to change the players realm. Further more in the store there can be special packages to buy. Upon purchasing the card, if its duplicate, converts the card into additional XP points, if its a new card then it will be permanently unlocked. Cards can only be upgraded when the full XP cost is met, ensuring upgrades cannot be partially applied.
+Matches unfold with each player's turn occurring simultaneously, governed by a timer for selecting two cards to play. Victory in a match awards the player XP points for card upgrades and 10 coins. The coins are able to be used in the game store, where the player can purchase a random card or a token to change the players realm. Further more in the store there can be special packages to buy. Upon purchasing the card, if its duplicate, converts the card into additional XP points, if its a new card then it will be permanently unlocked. Cards can only be upgraded when the full XP cost is met, ensuring upgrades cannot be partially applied.
 
 This gaming mechanism promises to immerse players deeply in the enchanting universe of _Awakening of the Realms_, offering an extraordinary and engaging experience.
 
@@ -106,87 +96,166 @@ Most of the controls the player will be able to do will be through the trackpad/
 
 ### **Mechanics**
 
-The game would have 50 cards in total, where for each realm there would be 10 cards. From those cards 8 would be a commom card having different unique stats: Attack, Defense and Healing. Each card has their own unique set of stats:
+The game would have 50 cards in total, where for each realm there would have 10 cards. From those cards 8 would be a commom card having different unique stats: Attack, Defense and Healing. Each card has their own unique set of stats:
 
 1. Human Realm:
 
-   1. Warrior: 10 attack, 10 defense, 0 healing
-   2. Archer: 15 attack, 5 defense, 0 healing
-   3. Cleric: 2 attack, 2 defense, 15 healing
-   4. Knight: 5 attack, 15 defense, 0 healing
-   5. Sorceress: 10 attack, 1 defense, 9 healing
-   6. Royal Guard: 12 attack, 20 defense, 0 healing
-   7. Assasin: 25 attack, 1 defense, 0 healing
-   8. Mercenary: 10 attack, 4 defense, 5 healing
+   |  Character  | Attack | Defense | Healing |
+   |-------------|--------|---------|---------|
+   |   Warrior   |   10   |    10   |    0    |
+   |   Archer    |   15   |     5   |    0    |
+   |   Cleric    |    2   |     2   |   15    |
+   |   Knight    |    5   |    15   |    0    |
+   |  Sorceress  |   10   |     1   |    9    |
+   | Royal Guard |   12   |    20   |    0    |
+   |   Assasin   |   25   |     1   |    0    |
+   |  Mercenary  |   10   |     4   |    5    |
 
 2. Monster Realm:
 
-   1. Ogre: 7 attack, 10 defense, 2 healing
-   2. Wyrm: 12 attack, 7 defense, 5 healing
-   3. Werewolf: 10 attack, 12 defense, 3 healing
-   4. Goblin: 3 attack, 5 defense, 10 healing
-   5. Harpies: 10 attack, 10 defense, 0 healing
-   6. Troll: 6 attack, 15 defense, 4 healing
-   7. Treants: 2 attack, 6 defense, 15 healing
-   8. Whyvern: 15 attack, 10 defense, 0 healing
+   |  Character  | Attack | Defense | Healing |
+   |-------------|--------|---------|---------|
+   |    Ogre     |    7   |    10   |    2    |
+   |    Wyrm     |   12   |     7   |    5    |
+   |   Werewolf  |   10   |    12   |    3    |
+   |   Goblin    |    3   |     5   |   10    |
+   |   Harpies   |   10   |    10   |    9    |
+   |   Troll     |    6   |    15   |    4    |
+   |   Treants   |    2   |     6   |   15    |
+   |   Whyvern   |   15   |    10   |    0    |
 
 3. Magical Realm:
 
-   1. Giant: 5 attack, 15 defense, 0 healing
-   2. Elfs: 10 attack, 5 defense, 5 healing
-   3. Necromancer: 15 attack, 2 defense, 10 healing
-   4. Golem: 1 attack, 20 defense, 0 healing
-   5. Elemental guardians: 12 attack, 12 defense, 0 healing
-   6. Dwarves: 8 attack, 12 defense, 6 healing
-   7. Wizard: 14 attack, 4 defense, 10 healing
-   8. Summoners: 7 attack, 7 defense, 13 healing
+   |      Character      | Attack | Defense | Healing |
+   |---------------------|--------|---------|---------|
+   |         Giant       |    5   |    15   |    0    |
+   |         Elfs        |   10   |     5   |    5    |
+   |     Necromancer     |   15   |     2   |   10    |
+   |         Golem       |    1   |    20   |    0    |
+   | Elemental guardians |   12   |    12   |    9    |
+   |        Dwarves      |    8   |    12   |    6    |
+   |        Wizard       |   14   |     4   |   10    |
+   |       Summoners     |    7   |     7   |   13    |
 
 4. Devil Realm:
-   1. Hell Hound: 10 attack, 8 defense, 2 healing
-   2. Archangel: 14 attack, 10 defense, 0 healing
-   3. Nephalem: 10 attack, 5 defense, 10 healing
-   4. Succubus: 9 attack, 12 defense, 4 healing
-   5. Voidshade Phantom: 14 attack, 2 defense, 0 healing
-   6. Titans: 1 attack, 15 defense, 5 healing
-   7. Valkyries: 8 attack, 4 defense, 9 healing
-   8. Celestial bug: 0 attack, 2 defense, 20 healing
+
+   |      Character     | Attack | Defense | Healing |
+   |--------------------|--------|---------|---------|
+   |      Hell Hound    |   10   |     8   |    2    |
+   |      Archangel     |   14   |    10   |    0    |
+   |       Nephalem     |   10   |     5   |   10    |
+   |       Succubus     |    9   |    12   |    4    |
+   |  Voidshade Phantom |   14   |     2   |    0    |
+   |       Titans       |    1   |    15   |    5    |
+   |      Valkyries     |    8   |     4   |    9    |
+   |    celestial bug   |    0   |     2   |   20    |
 
 From the rest of the 10 cards, the other 2 cards would be a legendary card. The legendary cards are different from the common cards, each of the legendary cards give you a special bonus effect and a more powerful main stats than the common cards.
 
 1. Human Realm:
 
-   1. Princess: 10 attack, 10 deffense, 40 healing - Special ability: Royal Grace - doubles the healing of the healers for 1 round (it doesnt double itself)
-   2. King Arthur: 35 attack, 25 defense, 15 healing - Special ability: Excalibur's fury - ignore the defense of one of the enemy cards placed for 1 round (ex. if the defense is 30 this ability would deal the defense stats as damage)
+   |      Character     | Attack | Defense | Healing | Special Ability  |                                 Description                                        |
+   |--------------------|--------|---------|---------|------------------|------------------------------------------------------------------------------------|
+   |       Princess     |   10   |    10   |   40    |   Royal Grace    |   Doubles the healing of the healers for 1 round (it doesnt double itself)         | 
+   |     King Arthur    |   35   |    25   |   15    | Excalibur's fury |  Ignore the defense of one of the enemy cards placed for 1 round (ex. if the defense is 30 this ability would deal the defense stats as damage)  |
 
 2. Monster Realm:
 
-   1. Griffin: 30 attack, 30 defense, 10 healing - Special ability: Soaring Vigilance - Can dodge one of the enemys card attacks and also after the dodge can see the enemys played cards for 2 rounds
-   2. Dragon: 40 attack, 20 defense, 10 healing - Special ability: Inferno Breath - Applies to the enemy a dot damage of 10 attack and the healing is 50% less effective for 3 rounds (if the enemy places a card that heals 20, it just heals 10)
+   |      Character     | Attack | Defense | Healing |     Special Ability   |                                 Description                                        |
+   |--------------------|--------|---------|---------|-----------------------|------------------------------------------------------------------------------------|
+   |       Griffin      |   30   |    30   |   10    |    Soaring Vigilance  |   Can dodge one of the enemys card attacks and also after the dodge can see the enemys played cards for 2 rounds         | 
+   |       Dragon       |   40   |    20   |   10    |     Inferno Breath    |  Applies to the enemy a dot damage of 10 attack and the healing is 50% less effective for 3 rounds (if the enemy places a card that heals 20, it just heals 10)  |
 
 3. Magical Realm:
 
-   1. Runeforge dwarve: 15 attack, 40 defense, 20 healing - Special ability: Runic ward - creates a barrier for the alies that gives 50 defense for 2 rounds
-   2. Moonshadow Elf: 35 attack, 15 defense, 20 healing - Special ability: Lunar empowerment - debuf the enemy making the attacks 20% weaker for 2 rounds and life steal 30 life points of the enemy
+   |      Character     | Attack | Defense | Healing |  Special Ability  |                                 Description                                        |
+   |--------------------|--------|---------|---------|-------------------|------------------------------------------------------------------------------------|
+   |  Runeforge dwarve  |   15   |    40   |   20    |    Runic ward     |   Creates a barrier for the alies that gives 50 defense for 2 rounds        | 
+   |   Moonshadow Elf   |   35   |    15   |   20    | Lunar empowerment |  Debuf the enemy making the attacks 20% weaker for 2 rounds and life steal 30 life points of the enemy  |
 
 4. Spiritual Realm:
-   1. Archangel Asmir: 35 attack, 25 defense, 20 healing - Special ability: Celestial Resonance - Reflect all damage taken for 1 round and also heals 10 life points for 3 rounds
-   2. Demon King: 35 attack, 15 defense, 30 healing - Special ability: Abyssal Dominion - double the damage of the ally cards for 1 round and curse the enemy causing 10 damage over time and 20% healing reduction for 2 rounds
+
+   |      Character     | Attack | Defense | Healing |   Special Ability    |                                 Description                                        |
+   |--------------------|--------|---------|---------|----------------------|------------------------------------------------------------------------------------|
+   |  Archangel Asmir   |   35   |    25   |   20    |  Celestial Resonance |   Reflect all damage taken for 1 round and also heals 10 life points for 3 rounds         | 
+   |     Demon King     |   35   |    15   |   30    |   Abyssal Dominion   |  Double the damage of the ally cards for 1 round and curse the enemy causing 10 damage over time and 20% healing reduction for 2 rounds  |
 
 There are also 10 special cards that will benefit the players deck cards, where each of them will also have a unique bonus effect.
 
 1. Special cards:
-   1. Special 1:
-   2. Special 2:
-   3. Special 3:
-   4. Special 4:
-   5. Special 5:
-   6. Special 6:
-   7. Special 7:
-   8. Special 8:
-   9. Special 9:
-   10. Special 10:
 
-Cards are upgradable using XP points and can achieve up to three levels of enhancement. Also chosing the specific realm would benefit the player through out the battle: Human realm gives 30 more health and 10% more attack for every card to the player(meaning that the health threshold would be 130 hit points and the cards from the deck would benefit from an increase of damage), Devil realm for every 3 turns it disables one of the enemy player card, Magic realm for every 2 turns steals one energy of the enemy and the Monster realm for every 3 turns can place an extra card. Players must adapt their strategies, choosing between aggressive or defensive tactics. Certain cards are conditional, requiring an amount of energy to be used, once a card that requires energy is played the amount of energy used will be deducted from the total on the match. Every card used gives one energy.
+   |   Character    |              Description             |
+   |----------------|--------------------------------------|
+   |   Special 1    |   Gives the player an Extra energy   |
+   |   Special 2    |   The attack of the card placed deals x2 for one turn   |
+   |   Special 3    |   Posion the enemy player for 2 rounds dealing 20 damage   |
+   |   Special 4    |   Heals the player 30 health         |
+   |   Special 5    |   Cures all debuf applied to the player   |
+   |   Special 6    |                                      |
+   |   Special 7    |                                      |
+   |   Special 8    |                                      |
+   |   Special 9    |                                      |
+   |   Special 10   |                                      |
+
+
+
+Cards are upgradable using XP points and can achieve up to three levels of enhancement. Also chosing the specific realm would benefit the player through out the battle: 
+   - Human realm gives 30 more health and 10% more attack for every card to the player(meaning that the health threshold would be 130 hit points and the cards from the deck would benefit from an increase of damage).
+   - Devil realm for every 3 turns it disables one of the enemy player card.
+   - Magic realm for every 2 turns steals one energy of the enemy.
+   - Monster realm for every 3 turns can place an extra card. 
+   
+   Players must adapt their strategies, choosing between aggressive or defensive tactics. Certain cards are conditional, requiring an amount of energy to be used, once a card that requires energy is played the amount of energy used will be deducted from the total on the match. Every card used gives one energy.
+
+**Game Play**
+1. Main Menu:
+
+   Players start on the main screen, offering various options: Play the game, customize the deck, and access the store. During account creation, players choose one of four realms, each providing unique buffs.
+
+2. Deck Customization:
+
+   - In the Inventory, players select and place desired cards in their deck. The inventory displays all unlocked cards. New accounts receive three common cards from each realm. Decks consist of 7 common, 2 special, and 1 legendary card. Common cards are limited to 10, with restrictions on special and legendary cards.
+
+3. Level Selection:
+
+   - Players choose an entry level, featuring three stages, including a boss stage. There are a total of eight levels, with increasing difficulty and rewards for victorious completion.
+
+4. In-Game Interface:
+
+   - Options include:
+      - 4.1. Deck in Hand: Displays five randomly selected cards.
+      - 4.2. Card Placement Section: Players can place two cards per round (There would be exeptions when a legendary card is used).
+      - 4.3. Turn Timer: Each round lasts 60 seconds, ending when both players place cards or when the timer expires.
+      - 4.4 Energy Display: Above the player's health bar, showing energy increase (up to 6) each round when placing a card.
+   
+5. Simultaneous Card Placement:
+
+   - Players and the enemy simultaneously place cards each round. Card stats activate, and outcomes are determined once both players have played their cards.
+
+   - Example:
+
+      - Imagine you're Player 1 and you deploy two cards combining for 17 attack, 8 defense, and 2 healing. Once cards are played, their stats are activated. However, the outcome is uncertain until both players have played their cards. Suppose Player X plays two cards resulting in 10 attack, 25 defense, and no healing. The resolution is as follows:
+         - Your 17 attack is fully absorbed by Player X's 25 defense, with their residual defense dissipating.
+
+         - Your 8 defense successfully blocks 8 out of Player X's 10 attack, resulting in a mere 2 hit point loss.
+
+         - Your healing boosts your health by 5, placing you 3 hit points above your starting total.
+
+         - In the other turns those player would be able to place different common cards, special cards and legendary cards to get the victory of the game.
+
+6. Legendary Card Usage:
+
+   - Players can play a legendary card after playing six cards, with some special cards accelerating energy gain. Both players cant play legendary cards before the energy gage is full.
+
+7. Victory Conditions:
+
+    -To win, players must deplete the enemy player's health bar. Matches have a maximum of 10 rounds to manage game duration.
+
+8. Rewards and Progression:
+
+   - Winning rewards players with experience points and 10 coins. 
+      - Experience points are vital for card upgrades.
+      - Coins can be used in the store. In the store, players can buy random cards, if a duplicate is received, it converts into experience points. with coins the player can also purchase a token allowing to choose a new realm.
 
 ## _Level Design_
 

@@ -484,8 +484,6 @@ Remember, auditory feedback should stand out from the music and other sound effe
    1. Button Press (click sound)
    2. Hold and drop chime
 
-_(example)_
-
 ### **Music Needed**
 
 1. Medieval Epic music
@@ -546,5 +544,3 @@ _(example)_
 
    1. Test the game
    2. Improve the game if necessary.
-
-_(example)_

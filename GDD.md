@@ -211,27 +211,28 @@ Here you can see four examples of cards from **all realms** and even a special c
 
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
 
-  <div style="flex: 0 0 48%; margin-bottom: 20px;">
+  <div style="flex: 0 0 48%; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; text-align: center;">
     <h2 style="font-size: 16px;">Necromancer from the Magic Realm!</h2>
-    <img src="./VideoJuego/Imagenes_Juego/Ejemplo1.png "Ejemplo 1" style="width: 100%; border-radius: 8px;">
+    <img src="./VideoJuego/Imagenes_Juego/Ejemplo1.png" alt="Ejemplo 1" style="width: 50%; border-radius: 8px;">
   </div>
 
-  <div style="flex: 0 0 48%; margin-bottom: 20px;">
+  <div style="flex: 0 0 48%; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; text-align: center;">
     <h2 style="font-size: 16px;">King Arthur from the Human Realm!</h2>
-    <img src="./VideoJuego/Imagenes_Juego/Ejemplo2.png "Ejemplo 2" style="width: 100%; border-radius: 8px;">
+    <img src="./VideoJuego/Imagenes_Juego/Ejemplo2.png" alt="Ejemplo 2" style="width: 50%; border-radius: 8px;">
   </div>
 
-  <div style="flex: 0 0 48%; margin-bottom: 20px;">
+  <div style="flex: 0 0 48%; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; text-align: center;">
     <h2 style="font-size: 16px;">Werewolf from the Monster Realm!</h2>
-    <img src="./VideoJuego/Imagenes_Juego/Ejemplo3.png "Ejemplo 3""  style="width: 100%; border-radius: 8px;">
+    <img src="./VideoJuego/Imagenes_Juego/Ejemplo3.png" alt="Ejemplo 3" style="width: 50%; border-radius: 8px;">
   </div>
 
-  <div style="flex: 0 0 48%; margin-bottom: 20px;">
-    <h2 style="font-size: 16px;">Valkirie from the Celestial Realm!</h2>
-    <img src="./VideoJuego/Imagenes_Juego/Ejemplo4.png "Ejemplo 4"" style="width: 100%; border-radius: 8px;">
+  <div style="flex: 0 0 48%; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+    <h2 style="font-size: 16px;">Valkyrie from the Celestial Realm!</h2>
+    <img src="./VideoJuego/Imagenes_Juego/Ejemplo4.png" alt="Ejemplo 4" style="width: 50%; border-radius: 8px;">
   </div>
 
 </div>
+
 
 These card desings are subject to changes or improvements.
 
@@ -239,15 +240,16 @@ Here are some image concepts (not cards):
 
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
 
-  <div style="flex: 0 0 48%; margin-bottom: 20px;">
-    <img src="./VideoJuego/Imagenes_Juego/Golem.jpg "Golem" style="width: 100%; border-radius: 8px;">
+  <div style="flex: 0 0 48%; margin-bottom: 20px; display: flex; justify-content: center; align-items: center;">
+    <img src="./VideoJuego/Imagenes_Juego/Golem.jpg" style="width: 50%; border-radius: 8px;">
   </div>
 
-  <div style="flex: 0 0 48%; margin-bottom: 20px;">
-    <img src="./VideoJuego/Imagenes_Juego/Succubus.jpg "Succubus" style="width: 100%; border-radius: 8px;">
+  <div style="flex: 0 0 48%; margin-bottom: 20px; display: flex; justify-content: center; align-items: center;">
+    <img src="./VideoJuego/Imagenes_Juego/Succubus.jpg" style="width: 50%; border-radius: 8px;">
   </div>
 
 </div>
+
 
 **Game Play**
 

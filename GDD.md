@@ -210,20 +210,25 @@ Players must adapt their strategies, choosing between aggressive or defensive ta
 
 Here you can see four examples of cards from **all realms** and even a special card from one of the realms.
 ![Example 1](./VideoJuego/Imagenes_Juego/Ejemplo1.png "Ejemplo 1")
+
 **Necromancer from the Magic Realm!**
 
 ![Example 2](./VideoJuego/Imagenes_Juego/Ejemplo2.png "Ejemplo 2")
+
 **King Arthur from the Human Realm!**
 
 ![Example 3](./VideoJuego/Imagenes_Juego/Ejemplo3.png "Ejemplo 3")
+
 **Werewolf from the Monster Realm!**
 
 ![Example 4](./VideoJuego/Imagenes_Juego/Ejemplo4.png "Ejemplo 4")
+
 **Valkirie from the Celestial Realm!**
 
 These card desings are subject to changes or improvements.
 
 Here are some image concepts (not cards):
+
 ![Golem](./VideoJuego/Imagenes_Juego/Golem.jpg "Golem")
 ![Succubus](./VideoJuego/Imagenes_Juego/Succubus.jpg "Succubus")
 

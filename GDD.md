@@ -206,31 +206,48 @@ Cards are upgradable using XP points and can achieve up to three levels of enhan
 
 Players must adapt their strategies, choosing between aggressive or defensive tactics. Certain cards are conditional, requiring an amount of energy to be used, once a card that requires energy is played the amount of energy used will be deducted from the total on the match. Every card used gives one energy.
 
-**Card Examples**
-
+### **Card Examples**
 Here you can see four examples of cards from **all realms** and even a special card from one of the realms.
-![Example 1](./VideoJuego/Imagenes_Juego/Ejemplo1.png "Ejemplo 1")
 
-**Necromancer from the Magic Realm!**
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
 
-![Example 2](./VideoJuego/Imagenes_Juego/Ejemplo2.png "Ejemplo 2")
+  <div style="flex: 0 0 48%; margin-bottom: 20px;">
+    <h2 style="font-size: 16px;">Necromancer from the Magic Realm!</h2>
+    <img src="./VideoJuego/Imagenes_Juego/Ejemplo1.png "Ejemplo 1" style="width: 100%; border-radius: 8px;">
+  </div>
 
-**King Arthur from the Human Realm!**
+  <div style="flex: 0 0 48%; margin-bottom: 20px;">
+    <h2 style="font-size: 16px;">King Arthur from the Human Realm!</h2>
+    <img src="./VideoJuego/Imagenes_Juego/Ejemplo2.png "Ejemplo 2" style="width: 100%; border-radius: 8px;">
+  </div>
 
-![Example 3](./VideoJuego/Imagenes_Juego/Ejemplo3.png "Ejemplo 3")
+  <div style="flex: 0 0 48%; margin-bottom: 20px;">
+    <h2 style="font-size: 16px;">Werewolf from the Monster Realm!</h2>
+    <img src="./VideoJuego/Imagenes_Juego/Ejemplo3.png "Ejemplo 3""  style="width: 100%; border-radius: 8px;">
+  </div>
 
-**Werewolf from the Monster Realm!**
+  <div style="flex: 0 0 48%; margin-bottom: 20px;">
+    <h2 style="font-size: 16px;">Valkirie from the Celestial Realm!</h2>
+    <img src="./VideoJuego/Imagenes_Juego/Ejemplo4.png "Ejemplo 4"" style="width: 100%; border-radius: 8px;">
+  </div>
 
-![Example 4](./VideoJuego/Imagenes_Juego/Ejemplo4.png "Ejemplo 4")
-
-**Valkirie from the Celestial Realm!**
+</div>
 
 These card desings are subject to changes or improvements.
 
 Here are some image concepts (not cards):
 
-![Golem](./VideoJuego/Imagenes_Juego/Golem.jpg "Golem")
-![Succubus](./VideoJuego/Imagenes_Juego/Succubus.jpg "Succubus")
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+
+  <div style="flex: 0 0 48%; margin-bottom: 20px;">
+    <img src="./VideoJuego/Imagenes_Juego/Golem.jpg "Golem" style="width: 100%; border-radius: 8px;">
+  </div>
+
+  <div style="flex: 0 0 48%; margin-bottom: 20px;">
+    <img src="./VideoJuego/Imagenes_Juego/Succubus.jpg "Succubus" style="width: 100%; border-radius: 8px;">
+  </div>
+
+</div>
 
 **Game Play**
 

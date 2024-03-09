@@ -206,9 +206,6 @@ Cards are upgradable using XP points and can achieve up to three levels of enhan
 
 Players must adapt their strategies, choosing between aggressive or defensive tactics. Certain cards are conditional, requiring an amount of energy to be used, once a card that requires energy is played the amount of energy used will be deducted from the total on the match. Every card used gives one energy.
 
-**Card Examples**
-![Example 1]( "My Image Title")
-
 **Game Play**
 
 1. Main Menu:

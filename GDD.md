@@ -122,7 +122,7 @@ The game would have 50 cards in total, where for each realm there would have 10 
    | Harpies   | 10     | 10      | 9       |
    | Troll     | 6      | 15      | 4       |
    | Treants   | 2      | 6       | 15      |
-   | Whyvern   | 15     | 10      | 0       |
+   | Wyvern    | 15     | 10      | 0       |
 
 3. Magical Realm:
 
@@ -207,7 +207,25 @@ Cards are upgradable using XP points and can achieve up to three levels of enhan
 Players must adapt their strategies, choosing between aggressive or defensive tactics. Certain cards are conditional, requiring an amount of energy to be used, once a card that requires energy is played the amount of energy used will be deducted from the total on the match. Every card used gives one energy.
 
 **Card Examples**
-![Example 1]( "My Image Title")
+
+Here you can see four examples of cards from **all realms** and even a special card from one of the realms.
+![Example 1](./VideoJuego/Imagenes_Juego/Ejemplo1.png "Ejemplo 1")
+**Necromancer from the Magic Realm!**
+
+![Example 2](./VideoJuego/Imagenes_Juego/Ejemplo2.png "Ejemplo 2")
+**King Arthur from the Human Realm!**
+
+![Example 3](./VideoJuego/Imagenes_Juego/Ejemplo3.png "Ejemplo 3")
+**Werewolf from the Monster Realm!**
+
+![Example 4](./VideoJuego/Imagenes_Juego/Ejemplo4.png "Ejemplo 4")
+**Valkirie from the Celestial Realm!**
+
+These card desings are subject to changes or improvements.
+
+Here are some image concepts (not cards):
+![Golem](./VideoJuego/Imagenes_Juego/Golem.jpg "Golem")
+![Succubus](./VideoJuego/Imagenes_Juego/Succubus.jpg "Succubus")
 
 **Game Play**
 
@@ -308,6 +326,10 @@ In order for the user to experience a sense of discovery, mystery and progressi√
          2. Fog at the edges
          3. Glowing red eyes in the dark
 
+Here is an example of have the scenario from the **Magic Realm** would look like (subject to changes):
+![Magic Realm Background](./VideoJuego/Imagenes_Juego/Magic_Realm_Background.webp "Magic Realm Background")
+All other realms will have a similar styled background for the matches.
+
 ### **Game Flow**
 
 1. (First time opening) Player selects its name and realm.
@@ -336,6 +358,9 @@ In order for the user to experience a sense of discovery, mystery and progressi√
    2. If the player lost it will only get some XP points.
 
 10. Player is redirected to the main screen (select level screen).
+
+Here is an example of how the main screen will look like when the game opens (subject to changes), we wanted to a sneak peak of all 4 realms:
+![Main Background](./VideoJuego/Imagenes_Juego/Main_Background.webp "Main Background")
 
 ## _Development_
 
@@ -464,25 +489,22 @@ _(example)_
 4. Cheerful and &quot;victorious&quot; track
 5. Sad and &quot;defeated&quot; track
 
-_(example)_
-
 ## _Schedule_
 
 ---
 
-_(define the main activities and the expected dates when they should be finished. This is only a reference, and can change as the project is developed)_
-
-1. Phase one
+1. Phase one (22-03-2024)
 
    1. Database
       1. Modify the existing Entity-Relation to add changes and corrections
       2. Define user stories
+      3. Set up unity project and integrate basic UI elements.
    2. Website
       1. Understand how to create an API and link the cards.
    3. General
       1. Finish the GDD and add modifications if necessary.
 
-2. Phase two
+2. Phase two (29-03-2024)
 
    1. Database
       1. Define the database schema for entities.
@@ -491,15 +513,16 @@ _(define the main activities and the expected dates when they should be finished
       1. Develop the API for operations on the database entities.
       2. Implement all necessary protocols ( authentication and authorization if needed)
 
-3. Phase three
+3. Phase three (05-04-2024)
 
    1. Unity
-      1. Set up unity project and integrate basic UI elements.
-      2. Implement basic backend logic. (minimal viable setup)
+      1. Implement basic backend logic. (minimal viable setup)
    2. Website
       1. Integrate the API with Unity
+   3. Data base
+      1. Fill the data base will all the cards, realations and necessary tables.
 
-4. Phase four
+4. Phase four (12-04-2024)
 
    1. Visual elements
       1. Design the visual elements for the cards, levels, and screens.
@@ -507,12 +530,15 @@ _(define the main activities and the expected dates when they should be finished
    2. Website
       1. Test if the API is working properly with unity and the database.
 
-5. Phase five
+5. Phase five (19-04-2024)
+
    1. Unity
       1. Develop the advanced game logic and mechanics. (update the minimal viable setup)
       2. Improve the UI/UX elements if needed
       3. Integrate all the visual assets.
-6. Phase six
+
+6. Phase six (26-04-2024)
+
    1. Test the game
    2. Improve the game if necessary.
 

@@ -1,3 +1,6 @@
+## _User Stories e Issues_
+
+
 ### **Creación y Gestión de Mazos**
 
 1. Como jugador, quiero jugar un BCG en donde tenga variedad de cartas a elegir, para poder experimentar un juego de peleas, estrategia y cartas.
@@ -56,3 +59,27 @@
 1. Como jugador, quiero que mi progreso, mazos e inventario se guarden de forma segura en una base de datos, para no perder mi avance.
 2. Como jugador, quiero poder jugar desde una página web, para acceder al juego desde cualquier dispositivo con conexión a internet (laptop/computadora).
 3. Como jugador, quiero que el juego cuente con soporte técnico y actualizaciones regulares, para asegurar una experiencia fluida y la incorporación de nuevo contenido.
+
+
+### **Requerimientos funcionales y no funcionales**
+
+**Funcionales**
+
+1. Crear base de datos para el catálogo de cartas con sus respectivas variables.
+2. Implementar la lógica de backend para gestionar las cartas desbloqueadas por el usuario.
+3. Implementar la lógica de backend que permita a los jugadores añadir, quitar o reemplazar las cartas de su mazo.
+4. Implementar la lógica de backend que permita a los jugadores obtener nuevas cartas como recompensa por ganar partidas.
+5. Implementar la lógica de backend que permita a los jugadores ganar experiencia al ganar partidas.
+6. Implementar la lógica de backend que permita a los jugadores mejorar sus cartas utilizando puntos de experiencia.
+7. Implementar la lógica de backend que permita a los jugadores ganar experiencia al ganar partidas.
+
+**No Funcionales**
+
+1. Diseñar las cartas que se usarán en el juego.
+2. Diseñar pantalla para el usuario en donde pueda elegir su reino.
+3. Diseñar pantalla de creación de cuenta para elegir el nombre de usuario.
+4. Diseñar una pantalla en donde el usuario pueda ver el inventario y organizar sus cartas desbloqueadas.
+5. Diseñar una pantalla para el usuario para la construcción y modificación de su mazo de 10 cartas.
+6. Diseñar las cartas especiales y legendarias.
+7. Diseñar la pantalla que permita aplicar las mejoras de las cartas.
+8. Diseñar la interfaz gráfica que se le mostrará al usuario cuando gane partidas.

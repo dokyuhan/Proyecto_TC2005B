@@ -1,36 +1,58 @@
 ### **Creación y Gestión de Mazos**
 
-Como jugador, quiero jugar un BCG en donde tenga variedad de cartas a elegir, para poder experimentar un juego de peleas, estrategia y cartas.
-Como jugador, quiero poder seleccionar un reino inicial y un nombre para mi usuario al iniciar el juego por primera vez, para personalizar mi experiencia.
-Como jugador, quiero tener un inventario donde pueda ver todas mis cartas desbloqueadas, para organizar mi estrategia.
-Como jugador, quiero tener la capacidad de construir y modificar mi mazo de hasta 10 cartas, para prepararme para los combates.
-Como jugador, quiero poder obtener cartas nuevas mediante la jugabilidad del juego, para ampliar mis opciones estratégicas.
-Como jugador, quiero tener cartas especiales y legendarias con habilidades únicas, para poder crear estrategias complejas.
+1. Como jugador, quiero jugar un BCG en donde tenga variedad de cartas a elegir, para poder experimentar un juego de peleas, estrategia y cartas.
+    1. Crear base de datos para el catálogo de cartas con sus respectivas variables.
+    2. Diseñar las cartas que se usarán en el juego.
+2. Como jugador, quiero poder seleccionar un reino inicial y un nombre para mi usuario al iniciar el juego por primera vez, para personalizar mi experiencia.
+    1. Diseñar pantalla para el usuario en donde pueda elegir su reino.
+    2. Diseñar pantalla de creación de cuenta para elegir el nombre de usuario.
+
+3. Como jugador, quiero tener un inventario donde pueda ver todas mis cartas desbloqueadas, para organizar mi estrategia.
+    1. Implementar la lógica de backend para gestionar las cartas desbloqueadas por el usuario.
+    2. Diseñar una pantalla en donde el usuario pueda ver el inventario y organizar sus cartas desbloqueadas.
+
+4. Como jugador, quiero tener la capacidad de construir y modificar mi mazo de hasta 10 cartas, para prepararme para los combates.
+    1. Diseñar una pantalla para el usuario para la construcción y modificación de su mazo de 10 cartas.
+    2. Implementar la lógica de backend que permita a los jugadores añadir, quitar o reemplazar las cartas de su mazo.
+
+5. Como jugador, quiero poder obtener cartas nuevas mediante la jugabilidad del juego, para ampliar mis opciones estratégicas.
+    1. Implementar la lógica de backend que permita a los jugadores obtener nuevas cartas como recompensa por ganar partidas.
+
+6. Como jugador, quiero tener cartas especiales y legendarias con habilidades únicas, para poder crear estrategias complejas.
+    1. Diseñar las cartas especiales y legendarias.
 
 ### **Experiencia de Juego y Estrategia**
 
-Como jugador, quiero enfrentarme a oponentes en partidas donde la selección estratégica de cartas sea crucial, para sentir la importancia de mis decisiones.
-Como jugador, quiero que el juego incluya un sistema de energía para el uso de cartas especiales, para tener capa adicional de estrategia.
-Como jugador, quiero que las partidas ofrezcan una mezcla de ataque, defensa y sanación, para adaptar mi estilo de juego según la situación.
-Como jugador, quiero que cada reino ofrezca beneficios únicos, para influir en mi estrategia de juego según el reino que elija.
-Como jugador, quiero que el juego tenga una variedad de niveles y desafíos, para mantener la experiencia fresca y desafiante.
-Como jugador, quiero que exista un storyline, para que le de contexto al mundo y tema del juego.
+1. Como jugador, quiero enfrentarme a oponentes en partidas donde la selección estratégica de cartas sea crucial, para sentir la importancia de mis decisiones.
+2. Como jugador, quiero que el juego incluya un sistema de energía para el uso de cartas especiales, para tener capa adicional de estrategia.
+3. Como jugador, quiero que las partidas ofrezcan una mezcla de ataque, defensa y sanación, para adaptar mi estilo de juego según la situación.
+4. omo jugador, quiero que cada reino ofrezca beneficios únicos, para influir en mi estrategia de juego según el reino que elija.
+5. Como jugador, quiero que el juego tenga una variedad de niveles y desafíos, para mantener la experiencia fresca y desafiante.
+6. Como jugador, quiero que exista un storyline, para que le de contexto al mundo y tema del juego.
 
 ### **Progresión y Recompensas**
 
-Como jugador, quiero ganar experiencia al ganar partidas, para progresar en el juego.
-Como jugador, quiero poder mejorar mis cartas con puntos de experiencia, para fortalecer mi mazo.
-Como jugador, quiero que el juego ofrezca recompensas por completar niveles, para incentivar mi progreso.
+1. Como jugador, quiero ganar experiencia al ganar partidas, para progresar en el juego.
+    1. Implementar la lógica de backend que permita a los jugadores ganar experiencia al ganar partidas.
+
+2. Como jugador, quiero poder mejorar mis cartas con puntos de experiencia, para fortalecer mi mazo.
+    1. Implementar la lógica de backend que permita a los jugadores mejorar sus cartas utilizando puntos de experiencia.
+    2. Diseñar la pantalla que permita aplicar las mejoras de las cartas.
+
+3. Como jugador, quiero que el juego ofrezca recompensas por completar niveles, para incentivar mi progreso.
+    1. Diseñar la interfaz gráfica que se le mostrará al usuario cuando gane partidas.
+    2. Implementar la lógica de backend que permita a los jugadores ganar experiencia al ganar partidas.
+
 
 ### **Interfaz de Usuario e Interactividad**
 
-Como jugador, quiero una interfaz intuitiva para construir mazos, seleccionar partidas y navegar por el juego, para facilitar mi experiencia de juego.
-Como jugador, quiero que la página web del juego muestre mis estadísticas y progreso, para seguir mi desarrollo.
-Como jugador, quiero controles sencillos e intuitivos, para que interactuar con el juego sea fácil y directo.
-Como jugador, quiero que el juego tenga efectos de sonido y música, para que ambienten el tema del juego.
+1. Como jugador, quiero una interfaz intuitiva para construir mazos, seleccionar partidas y navegar por el juego, para facilitar mi experiencia de juego.
+2. Como jugador, quiero que la página web del juego muestre mis estadísticas y progreso, para seguir mi desarrollo.
+3. Como jugador, quiero controles sencillos e intuitivos, para que interactuar con el juego sea fácil y directo.
+4. Como jugador, quiero que el juego tenga efectos de sonido y música, para que ambienten el tema del juego.
 
 ### **Conectividad y Soporte Técnico**
 
-Como jugador, quiero que mi progreso, mazos e inventario se guarden de forma segura en una base de datos, para no perder mi avance.
-Como jugador, quiero poder jugar desde una página web, para acceder al juego desde cualquier dispositivo con conexión a internet (laptop/computadora).
-Como jugador, quiero que el juego cuente con soporte técnico y actualizaciones regulares, para asegurar una experiencia fluida y la incorporación de nuevo contenido.
+1. Como jugador, quiero que mi progreso, mazos e inventario se guarden de forma segura en una base de datos, para no perder mi avance.
+2. Como jugador, quiero poder jugar desde una página web, para acceder al juego desde cualquier dispositivo con conexión a internet (laptop/computadora).
+3. Como jugador, quiero que el juego cuente con soporte técnico y actualizaciones regulares, para asegurar una experiencia fluida y la incorporación de nuevo contenido.

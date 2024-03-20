@@ -115,7 +115,7 @@ INSERT INTO Player (player_name, player_last_name, player_age, player_email, rea
 ('Chris', 'White', 24, 'chris.white@example.com', 'Magical', 'No', 470, 8, 3, 120, 600),
 ('Olivia', 'Harris', 33, 'olivia.harris@example.com', 'Monster', 'No', 580, 18, 13, 20, 300),
 ('Daniel', 'Martin', 36, 'daniel.martin@example.com', 'Human', 'No', 500, 12, 6, 10, 130),
-('Sophia', 'Lee', 23, 'sophia.lee@example.com', 'Neptune', 'No', 460, 7, 2, 40, 370),
+('Sophia', 'Lee', 23, 'sophia.lee@example.com', 'Monster', 'No', 460, 7, 2, 40, 370),
 ('Kevin', 'Clark', 38, 'kevin.clark@example.com', 'Monster', 'No', 590, 19, 14, 35, 320),
 ('Isabella', 'Lewis', 21, 'isabella.lewis@example.com', 'Human', 'No', 450, 6, 1, 50, 650),
 ('Ethan', 'Walker', 37, 'ethan.walker@example.com', 'Monster', 'No', 550, 16, 10, 35, 650),

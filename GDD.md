@@ -126,16 +126,16 @@ The game would have 50 cards in total, where for each realm there would have 10 
 
 3. Magical Realm:
 
-   | Character           | Attack | Defense | Healing |
-   | ------------------- | ------ | ------- | ------- |
-   | Giant               | 5      | 15      | 0       |
-   | Elfs                | 10     | 5       | 5       |
-   | Necromancer         | 15     | 2       | 10      |
-   | Golem               | 1      | 20      | 0       |
-   | Elemental guardians | 12     | 12      | 9       |
-   | Dwarves             | 8      | 12      | 6       |
-   | Wizard              | 14     | 4       | 10      |
-   | Summoners           | 7      | 7       | 13      |
+   | Character          | Attack | Defense | Healing |
+   | ------------------ | ------ | ------- | ------- |
+   | Giant              | 5      | 15      | 0       |
+   | Elfs               | 10     | 5       | 5       |
+   | Necromancer        | 15     | 2       | 10      |
+   | Golem              | 1      | 20      | 0       |
+   | Elemental guardian | 12     | 12      | 9       |
+   | Dwarves            | 8      | 12      | 6       |
+   | Witch              | 14     | 4       | 10      |
+   | Dark Wizard        | 7      | 7       | 13      |
 
 4. Celestial Realm:
 

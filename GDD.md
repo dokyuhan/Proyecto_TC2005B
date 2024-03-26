@@ -116,7 +116,7 @@ The game would have 50 cards in total, where for each realm there would have 10 
    | Character | Attack | Defense | Healing |
    | --------- | ------ | ------- | ------- |
    | Ogre      | 7      | 10      | 2       |
-   | Wyrm      | 12     | 7       | 5       |
+   | Basilisc  | 12     | 7       | 5       |
    | Werewolf  | 10     | 12      | 3       |
    | Goblin    | 3      | 5       | 10      |
    | Harpies   | 10     | 10      | 9       |
@@ -154,9 +154,9 @@ From the rest of the 10 cards, the other 2 cards would be a legendary card. The 
 
 1. Human Realm:
 
-   | Character   | Attack | Defense | Healing | Special Ability  | Description                                                                                                                                    |
-   | ----------- | ------ | ------- | ------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-   | Princess    | 10     | 10      | 40      | Royal Grace      | Doubles the healing of the healers for 1 round (it doesnt double itself) and reduces two energy gage of the enemy player.                                                                       |
+   | Character   | Attack | Defense | Healing | Special Ability  | Description                                                                                                                                                                              |
+   | ----------- | ------ | ------- | ------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+   | Princess    | 10     | 10      | 40      | Royal Grace      | Doubles the healing of the healers for 1 round (it doesnt double itself) and reduces two energy gage of the enemy player.                                                                |
    | King Arthur | 35     | 25      | 15      | Excalibur's fury | Ignore the defense of one of the enemy cards placed for 1 round (ex. if the defense is 30 this ability would ignore the defense and apply the damage direct to the health of the player) |
 
 2. Monster Realm:
@@ -168,10 +168,10 @@ From the rest of the 10 cards, the other 2 cards would be a legendary card. The 
 
 3. Magical Realm:
 
-   | Character        | Attack | Defense | Healing | Special Ability   | Description                                                                                           |
-   | ---------------- | ------ | ------- | ------- | ----------------- | ----------------------------------------------------------------------------------------------------- |
-   | Runeforge dwarf | 15     | 40      | 20      | Runic ward        | Creates a barrier for the alies that gives 50 defense for 2 rounds                                    |
-   | Moonshadow Elf   | 35     | 15      | 20      | Lunar empowerment | Debuf the enemy making the attacks 20% weaker for 2 rounds and life steal 30 life points of the enemy (The life steal effect passes the amount of life steal from the enemy player to the player, in this case 30 would be decreasing to the enemy player's health and 30 would be increasing to the player) |
+   | Character       | Attack | Defense | Healing | Special Ability   | Description                                                                                                                                                                                                                                                                                                  |
+   | --------------- | ------ | ------- | ------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+   | Runeforge dwarf | 15     | 40      | 20      | Runic ward        | Creates a barrier for the alies that gives 50 defense for 2 rounds                                                                                                                                                                                                                                           |
+   | Moonshadow Elf  | 35     | 15      | 20      | Lunar empowerment | Debuf the enemy making the attacks 20% weaker for 2 rounds and life steal 30 life points of the enemy (The life steal effect passes the amount of life steal from the enemy player to the player, in this case 30 would be decreasing to the enemy player's health and 30 would be increasing to the player) |
 
 4. Celestial Realm:
 
@@ -204,9 +204,10 @@ Cards are upgradable using XP points and can achieve up to three levels of enhan
 - Magic realm for every 2 turns steals one energy of the enemy.
 - Monster realm for every 3 turns can place an extra card.
 
-In order to use the legendary card, the players must collect 6 energy gage. Inside the game, the energy gage would be able to be collected by placing any common cards for a round (this means that each round if the player places the two cards of that round would gain one energy). There are also special effects that gives extra energy gage or reduces energy gage. The common cards wont cost any energy in order to use it. After using the legendary card, the energy gage of the player would reset.  
+In order to use the legendary card, the players must collect 6 energy gage. Inside the game, the energy gage would be able to be collected by placing any common cards for a round (this means that each round if the player places the two cards of that round would gain one energy). There are also special effects that gives extra energy gage or reduces energy gage. The common cards wont cost any energy in order to use it. After using the legendary card, the energy gage of the player would reset.
 
 ### **Card Examples**
+
 Here you can see four examples of cards from **all realms** and even a special card from one of the realms.
 
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
@@ -233,7 +234,6 @@ Here you can see four examples of cards from **all realms** and even a special c
 
 </div>
 
-
 These card desings are subject to changes or improvements.
 
 Here are some image concepts (not cards):
@@ -249,7 +249,6 @@ Here are some image concepts (not cards):
   </div>
 
 </div>
-
 
 **Game Play**
 

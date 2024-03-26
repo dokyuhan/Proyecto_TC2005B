@@ -122,7 +122,7 @@ The game would have 50 cards in total, where for each realm there would have 10 
    | Harpies   | 10     | 10      | 9       |
    | Troll     | 6      | 15      | 4       |
    | Treants   | 2      | 6       | 15      |
-   | Wyvern    | 15     | 10      | 0       |
+   | Ghoul     | 10     | 5       | 5       |
 
 3. Magical Realm:
 

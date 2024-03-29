@@ -51,7 +51,7 @@ Welcome to _Awakening of the Realms_, a captivating Deck Building Game where you
 
 ### **Gameplay**
 
-Upon launching the game for the first time, players are asked to select one of four distinct realms: Human, Magic, Celestial (Angels and demons), and Monster. This initial choice is important for gameplay. The players kick off with three basic cards from all realms, this will lay the foundation for their initial matches. Progressing on the game the player would be able to assemble the deck as the player needs and would be able to get more and better cards. Before starting the matches the player would have to configure his deck up to 10 cards. Each deck can be configured with 10 commons. This deck configuration can be changed later when the player get more cards like the legendary cards and special cards, where the final deck composition would be 7 common cards 2 special cards and 1 legendary card. The player can configure the deck strategically and depending on the players gamestyle.
+Upon launching the game for the first time, players are asked to select one of four distinct realms: Human, Magic, Celestial (Angels and demons), and Monster. This initial choice is important for gameplay. The players kick off with three basic cards from all realms, this will lay the foundation for their initial matches. Progressing on the game the player would be able to assemble the deck as the player needs and would be able to get more and better cards. Before starting the matches the player would have to configure his deck up to 10 cards. Each deck can be configured with 10 commons. This deck configuration can be changed later when the player get more cards like the legendary cards and special cards, where the final deck composition would be 7 common cards 2 special cards and 1 legendary card. The player can configure the deck strategically and depending on the players gamestyle. Also players must adapt their strategies, choosing between aggressive or defensive tactics.
 
 Battles are structured such that players start with six cards in hand, from which they can play up to two cards each turn. As the match progresses the player will keep on receiving a random cycle of the cards on his deck, this means that the card used in a round can appear again in the hand deck. Tactical thinking is essential, as players must decide whether to attack, defend, heal, or employ a mix of these strategies to deplete their opponent's health bar of 100 hit points. Similarly, players themselves have 100 hit points, with the potential to recover or even exceed this threshold through strategic play of healing cards. Also in order to use the legendary card the player must used 6 common and special cards, each card will give +1 energy. An energy gage would mark the amount of times you used common and special cards in the game, the energy resets after the player used the legendary card.
 
@@ -116,26 +116,26 @@ The game would have 50 cards in total, where for each realm there would have 10 
    | Character | Attack | Defense | Healing |
    | --------- | ------ | ------- | ------- |
    | Ogre      | 7      | 10      | 2       |
-   | Wyrm      | 12     | 7       | 5       |
+   | Basilisc  | 12     | 7       | 5       |
    | Werewolf  | 10     | 12      | 3       |
    | Goblin    | 3      | 5       | 10      |
    | Harpies   | 10     | 10      | 9       |
    | Troll     | 6      | 15      | 4       |
    | Treants   | 2      | 6       | 15      |
-   | Whyvern   | 15     | 10      | 0       |
+   | Ghoul     | 10     | 5       | 5       |
 
 3. Magical Realm:
 
-   | Character           | Attack | Defense | Healing |
-   | ------------------- | ------ | ------- | ------- |
-   | Giant               | 5      | 15      | 0       |
-   | Elfs                | 10     | 5       | 5       |
-   | Necromancer         | 15     | 2       | 10      |
-   | Golem               | 1      | 20      | 0       |
-   | Elemental guardians | 12     | 12      | 9       |
-   | Dwarves             | 8      | 12      | 6       |
-   | Wizard              | 14     | 4       | 10      |
-   | Summoners           | 7      | 7       | 13      |
+   | Character          | Attack | Defense | Healing |
+   | ------------------ | ------ | ------- | ------- |
+   | Giant              | 5      | 15      | 0       |
+   | Elfs               | 10     | 5       | 5       |
+   | Necromancer        | 15     | 2       | 10      |
+   | Golem              | 1      | 20      | 0       |
+   | Elemental guardian | 12     | 12      | 9       |
+   | Dwarves            | 8      | 12      | 6       |
+   | Witch              | 14     | 4       | 10      |
+   | Dark Wizard        | 7      | 7       | 13      |
 
 4. Celestial Realm:
 
@@ -154,10 +154,10 @@ From the rest of the 10 cards, the other 2 cards would be a legendary card. The 
 
 1. Human Realm:
 
-   | Character   | Attack | Defense | Healing | Special Ability  | Description                                                                                                                                    |
-   | ----------- | ------ | ------- | ------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-   | Princess    | 10     | 10      | 40      | Royal Grace      | Doubles the healing of the healers for 1 round (it doesnt double itself)                                                                       |
-   | King Arthur | 35     | 25      | 15      | Excalibur's fury | Ignore the defense of one of the enemy cards placed for 1 round (ex. if the defense is 30 this ability would deal the defense stats as damage) |
+   | Character   | Attack | Defense | Healing | Special Ability  | Description                                                                                                                                                                              |
+   | ----------- | ------ | ------- | ------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+   | Princess    | 10     | 10      | 40      | Royal Grace      | Doubles the healing of the healers for 1 round (it doesnt double itself) and reduces two energy gage of the enemy player.                                                                |
+   | King Arthur | 35     | 25      | 15      | Excalibur's fury | Ignore the defense of one of the enemy cards placed for 1 round (ex. if the defense is 30 this ability would ignore the defense and apply the damage direct to the health of the player) |
 
 2. Monster Realm:
 
@@ -168,10 +168,10 @@ From the rest of the 10 cards, the other 2 cards would be a legendary card. The 
 
 3. Magical Realm:
 
-   | Character        | Attack | Defense | Healing | Special Ability   | Description                                                                                           |
-   | ---------------- | ------ | ------- | ------- | ----------------- | ----------------------------------------------------------------------------------------------------- |
-   | Runeforge dwarve | 15     | 40      | 20      | Runic ward        | Creates a barrier for the alies that gives 50 defense for 2 rounds                                    |
-   | Moonshadow Elf   | 35     | 15      | 20      | Lunar empowerment | Debuf the enemy making the attacks 20% weaker for 2 rounds and life steal 30 life points of the enemy |
+   | Character       | Attack | Defense | Healing | Special Ability   | Description                                                                                                                                                                                                                                                                                                  |
+   | --------------- | ------ | ------- | ------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+   | Runeforge dwarf | 15     | 40      | 20      | Runic ward        | Creates a barrier for the alies that gives 50 defense for 2 rounds                                                                                                                                                                                                                                           |
+   | Moonshadow Elf  | 35     | 15      | 20      | Lunar empowerment | Debuf the enemy making the attacks 20% weaker for 2 rounds and life steal 30 life points of the enemy (The life steal effect passes the amount of life steal from the enemy player to the player, in this case 30 would be decreasing to the enemy player's health and 30 would be increasing to the player) |
 
 4. Celestial Realm:
 
@@ -204,7 +204,51 @@ Cards are upgradable using XP points and can achieve up to three levels of enhan
 - Magic realm for every 2 turns steals one energy of the enemy.
 - Monster realm for every 3 turns can place an extra card.
 
-Players must adapt their strategies, choosing between aggressive or defensive tactics. Certain cards are conditional, requiring an amount of energy to be used, once a card that requires energy is played the amount of energy used will be deducted from the total on the match. Every card used gives one energy.
+In order to use the legendary card, the players must collect 6 energy gage. Inside the game, the energy gage would be able to be collected by placing any common cards for a round (this means that each round if the player places the two cards of that round would gain one energy). There are also special effects that gives extra energy gage or reduces energy gage. The common cards wont cost any energy in order to use it. After using the legendary card, the energy gage of the player would reset.
+
+### **Card Examples**
+
+Here you can see four examples of cards from **all realms** and even a special card from one of the realms.
+
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+
+  <div style="flex: 0 0 48%; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+    <h2 style="font-size: 16px;">Necromancer from the Magic Realm!</h2>
+    <img src="./Imagenes_Juego/Ejemplo1.png" alt="Ejemplo 1" style="width: 50%; border-radius: 8px;">
+  </div>
+
+  <div style="flex: 0 0 48%; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+    <h2 style="font-size: 16px;">King Arthur from the Human Realm!</h2>
+    <img src="./Imagenes_Juego/Ejemplo2.png" alt="Ejemplo 2" style="width: 50%; border-radius: 8px;">
+  </div>
+
+  <div style="flex: 0 0 48%; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+    <h2 style="font-size: 16px;">Werewolf from the Monster Realm!</h2>
+    <img src="./Imagenes_Juego/Ejemplo3.png" alt="Ejemplo 3" style="width: 50%; border-radius: 8px;">
+  </div>
+
+  <div style="flex: 0 0 48%; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+    <h2 style="font-size: 16px;">Valkyrie from the Celestial Realm!</h2>
+    <img src="./Imagenes_Juego/Ejemplo4.png" alt="Ejemplo 4" style="width: 50%; border-radius: 8px;">
+  </div>
+
+</div>
+
+These card desings are subject to changes or improvements.
+
+Here are some image concepts (not cards):
+
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+
+  <div style="flex: 0 0 48%; margin-bottom: 20px; display: flex; justify-content: center; align-items: center;">
+    <img src="./Imagenes_Juego/Magic_Realm/Golem.jpg" style="width: 50%; border-radius: 8px;">
+  </div>
+
+  <div style="flex: 0 0 48%; margin-bottom: 20px; display: flex; justify-content: center; align-items: center;">
+    <img src="./Imagenes_Juego/Succubus.jpg" style="width: 50%; border-radius: 8px;">
+  </div>
+
+</div>
 
 **Game Play**
 
@@ -305,6 +349,10 @@ In order for the user to experience a sense of discovery, mystery and progressi√
          2. Fog at the edges
          3. Glowing red eyes in the dark
 
+Here is an example of have the scenario from the **Magic Realm** would look like (subject to changes):
+![Magic Realm Background](./Imagenes_Juego/Magic_Realm/Magic_Realm_Background.webp "Magic Realm Background")
+All other realms will have a similar styled background for the matches.
+
 ### **Game Flow**
 
 1. (First time opening) Player selects its name and realm.
@@ -333,6 +381,9 @@ In order for the user to experience a sense of discovery, mystery and progressi√
    2. If the player lost it will only get some XP points.
 
 10. Player is redirected to the main screen (select level screen).
+
+Here is an example of how the main screen will look like when the game opens (subject to changes), we wanted to a sneak peak of all 4 realms:
+![Main Background](./Imagenes_Juego/Main_Background.webp "Main Background")
 
 ## _Development_
 
@@ -429,11 +480,9 @@ Finally, we intend to implement effects to indicate the interactivity in the gam
 
 ### **Style Attributes**
 
-Again, consistency is key. Define that consistency here. What kind of instruments do you want to use in your music? Any particular tempo, key? Influences, genre? Mood?
+The primary audio experience will revolve around a captivating medieval/fantasy backdrop, enriched with the melodic resonance of fundamental instruments such as the guitar and piano. During tranquil moments in the game, the audio will evoke a sense of serenity, immersing players in a soothing ambiance. However, as players transition into intense gameplay scenarios, the audio dynamically shifts, enveloping them in an immersive battle atmosphere.
 
-Stylistically, what kind of sound effects are you looking for? Do you want to exaggerate actions with lengthy, cartoony sounds (e.g. mario&#39;s jump), or use just enough to let the player know something happened (e.g. mega man&#39;s landing)? Going for realism? You can use the music style as a bit of a reference too.
-
-Remember, auditory feedback should stand out from the music and other sound effects so the player hears it well. Volume, panning, and frequency/pitch are all important aspects to consider in both music _and_ sounds - so plan accordingly!
+The game's audio landscape will be characterized by enchanting sound effects and musical compositions, seamlessly intertwining to evoke a magical and adventurous ambiance. Each note and sound element will contribute to a cohesive and evocative auditory journey, enhancing the overall gaming experience and drawing players deeper into the fantastical realms of the medieval world.
 
 ### **Sounds Needed**
 
@@ -451,8 +500,6 @@ Remember, auditory feedback should stand out from the music and other sound effe
    1. Button Press (click sound)
    2. Hold and drop chime
 
-_(example)_
-
 ### **Music Needed**
 
 1. Medieval Epic music
@@ -461,25 +508,22 @@ _(example)_
 4. Cheerful and &quot;victorious&quot; track
 5. Sad and &quot;defeated&quot; track
 
-_(example)_
-
 ## _Schedule_
 
 ---
 
-_(define the main activities and the expected dates when they should be finished. This is only a reference, and can change as the project is developed)_
-
-1. Phase one
+1. Phase one (22-03-2024)
 
    1. Database
       1. Modify the existing Entity-Relation to add changes and corrections
       2. Define user stories
+      3. Set up unity project and integrate basic UI elements.
    2. Website
       1. Understand how to create an API and link the cards.
    3. General
       1. Finish the GDD and add modifications if necessary.
 
-2. Phase two
+2. Phase two (29-03-2024)
 
    1. Database
       1. Define the database schema for entities.
@@ -488,15 +532,16 @@ _(define the main activities and the expected dates when they should be finished
       1. Develop the API for operations on the database entities.
       2. Implement all necessary protocols ( authentication and authorization if needed)
 
-3. Phase three
+3. Phase three (05-04-2024)
 
    1. Unity
-      1. Set up unity project and integrate basic UI elements.
-      2. Implement basic backend logic. (minimal viable setup)
+      1. Implement basic backend logic. (minimal viable setup)
    2. Website
       1. Integrate the API with Unity
+   3. Data base
+      1. Fill the data base will all the cards, realations and necessary tables.
 
-4. Phase four
+4. Phase four (12-04-2024)
 
    1. Visual elements
       1. Design the visual elements for the cards, levels, and screens.
@@ -504,13 +549,14 @@ _(define the main activities and the expected dates when they should be finished
    2. Website
       1. Test if the API is working properly with unity and the database.
 
-5. Phase five
+5. Phase five (19-04-2024)
+
    1. Unity
       1. Develop the advanced game logic and mechanics. (update the minimal viable setup)
       2. Improve the UI/UX elements if needed
       3. Integrate all the visual assets.
-6. Phase six
+
+6. Phase six (26-04-2024)
+
    1. Test the game
    2. Improve the game if necessary.
-
-_(example)_

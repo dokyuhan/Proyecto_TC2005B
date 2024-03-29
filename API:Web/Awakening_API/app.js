@@ -20,7 +20,7 @@ async function connectToDB() {
     host: "localhost",
     user: "tc2005b",
     password: "asdf05",
-    database: "cards_db",
+    database: "Awakening_realm",
   });
 }
 
@@ -30,7 +30,7 @@ async function connectToDB() {
 // The catch statement allows you to define a block of code to be executed, if an error occurs in the try block.
 // The finally statement lets you execute code, after try and catch, regardless of the result.
 
-app.get("/api/cards", async (request, response) => {
+app.get("/api/awakening/cards", async (request, response) => {
   let connection = null;
 
   try {
@@ -40,7 +40,7 @@ app.get("/api/cards", async (request, response) => {
     connection = await connectToDB();
 
     // The execute method is used to execute a SQL query. It returns a Promise that resolves with an array containing the results of the query (results) and an array containing the metadata of the results (fields).
-    const [results, fields] = await connection.execute("select * from card");
+    const [results, fields] = await connection.execute("select * from Cards");
 
     console.log(`${results.length} rows returned`);
     console.log(results);
@@ -59,7 +59,7 @@ app.get("/api/cards", async (request, response) => {
   }
 });
 
-app.get("/api/cards/:id", async (request, response) => {
+app.get("/api/awakening/cards/:id", async (request, response) => {
   let connection = null;
 
   try {
@@ -67,7 +67,7 @@ app.get("/api/cards/:id", async (request, response) => {
 
     // The ? character is used as a placeholder for the values that will be passed to the query. This is a security measure to avoid SQL injection attacks.
     const [results, fields] = await connection.execute(
-      "select * from card where card_id = ?",
+      "select * from Cards where card_ID = ?",
       [request.params.id]
     );
 
@@ -86,7 +86,7 @@ app.get("/api/cards/:id", async (request, response) => {
   }
 });
 
-app.post("/api/cards", async (request, response) => {
+app.post("/api/awakening/cards", async (request, response) => {
   let connection = null;
 
   try {
@@ -97,14 +97,19 @@ app.post("/api/cards", async (request, response) => {
     for (const card of data) {
       // You can pass several values to the query by using an array of values. The values will be replaced in the query in the same order as they appear in the array.
       const [results, fields] = await connection.execute(
-        "insert into card (card_name, card_description, card_type, card_cost, card_rarity, card_target) values (?, ?, ?, ?, ?, ?)",
+        "insert into Cards (card_name, card_description, attack, defense, healing, card_realm, power_cost, exp_cost, rarity, card_level, Effect_type) values (?, ?, ?, ?, ?, ?)",
         [
           card.card_name,
           card.card_description,
-          card.card_type,
-          card.card_cost,
-          card.card_rarity,
-          card.card_target,
+          card.attack,
+          card.defense,
+          card.healing,
+          card.card_realm,
+          card.power_cost,
+          card.exp_cost,
+          card.rarity,
+          card.card_level,
+          card.Effect_type,
         ]
       );
       console.log(`${results.affectedRows} rows affected`);
@@ -124,7 +129,7 @@ app.post("/api/cards", async (request, response) => {
   }
 });
 
-app.put("/api/cards/:id", async (request, response) => {
+app.put("/api/awakening/cards/:id", async (request, response) => {
   let connection = null;
 
   try {
@@ -133,14 +138,19 @@ app.put("/api/cards/:id", async (request, response) => {
     const data = request.body;
 
     const [results, fields] = await connection.execute(
-      "update card set card_name=?, card_description=?, card_type=?, card_cost=?, card_rarity=?, card_target=? where card_id=?",
+      "update Cards set card_name=?, card_description=?, attack=?, defense=?, healing=?, card_realm=?, power_cost=?, exp_cost=?, rarity=?, card_level=?, Effect_type=? where card=ID=?",
       [
         data.card_name,
         data.card_description,
-        data.card_type,
-        data.card_cost,
-        data.card_rarity,
-        data.card_target,
+        data.attack,
+        data.defense,
+        data.healing,
+        data.card_realm,
+        data.power_cost,
+        data.exp_cost,
+        data.rarity,
+        data.card_level,
+        data.Effect_type,
         request.params.id,
       ]
     );
@@ -160,14 +170,14 @@ app.put("/api/cards/:id", async (request, response) => {
   }
 });
 
-app.delete("/api/cards/:id", async (request, response) => {
+app.delete("/api/awakening/cards/:id", async (request, response) => {
   let connection = null;
 
   try {
     connection = await connectToDB();
 
     const [results, fields] = await connection.execute(
-      "delete from card where card_id = ?",
+      "delete from cards where card_ID = ?",
       [request.params.id]
     );
 

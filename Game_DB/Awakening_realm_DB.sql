@@ -42,12 +42,12 @@ CREATE TABLE Player (
 	player_age INT NOT NULL,
 	player_email VARCHAR(255) NOT NULL,
 	realm VARCHAR(50) NOT NULL,
-	is_npc VARCHAR(50) NOT NULL,
+	is_npc BOOL NOT NULL,
 	player_exp INT NOT NULL,
 	win_record INT NOT NULL,
 	lose_record INT NOT NULL,
     coins INT NOT NULL,
-    exp_points INT NOT NULL,
+	token INT NOT NULL,
 	PRIMARY KEY (player_ID)
     
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;

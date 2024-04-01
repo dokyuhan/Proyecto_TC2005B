@@ -98,29 +98,29 @@ INSERT INTO Cards (card_name, card_description, attack, defense, healing, card_r
 ('Special 10', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 18');
 
 -- player name, last name, age, email, realm, is npc, player exp, win, lost, coins, exp points
-INSERT INTO Player (player_name, player_last_name, player_age, player_email, realm, is_npc, player_exp, win_record, lose_record, coins, exp_points) VALUES
-('John', 'Doe', 25, 'john.doe@example.com', 'Human', 'No', 500, 10, 5, 10, 300),
-('Jane', 'Smith', 30, 'jane.smith@example.com', 'Monster', 'No', 600, 15, 8, 15, 200),
-('John', 'Doe', 25, 'john.doe@example.com', 'Magical', 'No', 500, 10, 5, 5, 400),
-('Jane', 'Smith', 30, 'jane.smith@example.com', 'Magical', 'No', 600, 15, 8, 50, 100),
-('Alice', 'Johnson', 28, 'alice.johnson@example.com', 'Magical', 'No', 450, 12, 6, 20, 150),
-('Bob', 'Williams', 35, 'bob.williams@example.com', 'Celestial', 'No', 520, 14, 9, 24, 230),
-('Emily', 'Brown', 22, 'emily.brown@example.com', 'Human', 'No', 480, 11, 7, 10, 200),
-('David', 'Miller', 27, 'david.miller@example.com', 'Monster', 'No', 530, 13, 10, 30, 440),
-('Sarah', 'Wilson', 32, 'sarah.wilson@example.com', 'Monster', 'No', 570, 16, 12, 26, 130),
-('James', 'Taylor', 29, 'james.taylor@example.com', 'Celestial', 'No', 490, 10, 5, 32, 105),
-('Laura', 'Anderson', 26, 'laura.anderson@example.com', 'Celestial', 'No', 510, 9, 4, 35, 160),
-('Michael', 'Thomas', 34, 'michael.thomas@example.com', 'Celestial', 'No', 560, 17, 11, 100, 700),
-('Emma', 'Jackson', 31, 'emma.jackson@example.com', 'Monster', 'No', 540, 15, 9, 20, 500),
-('Chris', 'White', 24, 'chris.white@example.com', 'Magical', 'No', 470, 8, 3, 120, 600),
-('Olivia', 'Harris', 33, 'olivia.harris@example.com', 'Monster', 'No', 580, 18, 13, 20, 300),
-('Daniel', 'Martin', 36, 'daniel.martin@example.com', 'Human', 'No', 500, 12, 6, 10, 130),
-('Sophia', 'Lee', 23, 'sophia.lee@example.com', 'Monster', 'No', 460, 7, 2, 40, 370),
-('Kevin', 'Clark', 38, 'kevin.clark@example.com', 'Monster', 'No', 590, 19, 14, 35, 320),
-('Isabella', 'Lewis', 21, 'isabella.lewis@example.com', 'Human', 'No', 450, 6, 1, 50, 650),
-('Ethan', 'Walker', 37, 'ethan.walker@example.com', 'Monster', 'No', 550, 16, 10, 35, 650),
-('Natalie', 'Allen', 40, 'natalie.allen@example.com', 'Magical', 'No', 610, 20, 15, 95, 100),
-('Liam', 'Young', 39, 'liam.young@example.com', 'Human', 'No', 530, 14, 8, 10, 100);
+INSERT INTO Player (player_name, player_last_name, player_age, player_email, realm, is_npc, player_exp, win_record, lose_record, coins, tokens) VALUES
+('John', 'Doe', 25, 'john.doe@example.com', 'Human', false, 500, 10, 5, 10, 2),
+('Jane', 'Smith', 30, 'jane.smith@example.com', 'Monster', false, 600, 15, 8, 15, 1),
+('John', 'Doe', 25, 'john.doe@example.com', 'Magical', false, 500, 10, 5, 5, 2),
+('Jane', 'Smith', 30, 'jane.smith@example.com', 'Magical', false, 600, 15, 8, 50, 1),
+('Alice', 'Johnson', 28, 'alice.johnson@example.com', 'Magical', false, 450, 12, 6, 20, 0),
+('Bob', 'Williams', 35, 'bob.williams@example.com', 'Celestial', false, 520, 14, 9, 24, 2),
+('Emily', 'Brown', 22, 'emily.brown@example.com', 'Human', false, 480, 11, 7, 10, 3),
+('David', 'Miller', 27, 'david.miller@example.com', 'Monster', false, 530, 13, 10, 30, 0),
+('Sarah', 'Wilson', 32, 'sarah.wilson@example.com', 'Monster', false, 570, 16, 12, 26, 0),
+('James', 'Taylor', 29, 'james.taylor@example.com', 'Celestial', false, 490, 10, 5, 32, 1),
+('Laura', 'Anderson', 26, 'laura.anderson@example.com', 'Celestial', false, 510, 9, 4, 35, 2),
+('Michael', 'Thomas', 34, 'michael.thomas@example.com', 'Celestial', false, 560, 17, 11, 100, 1),
+('Emma', 'Jackson', 31, 'emma.jackson@example.com', 'Monster', false, 540, 15, 9, 20, 3),
+('Chris', 'White', 24, 'chris.white@example.com', 'Magical', false, 470, 8, 3, 120, 1),
+('Olivia', 'Harris', 33, 'olivia.harris@example.com', 'Monster', false, 580, 18, 13, 20, 1),
+('Daniel', 'Martin', 36, 'daniel.martin@example.com', 'Human', false, 500, 12, 6, 10, 2),
+('Sophia', 'Lee', 23, 'sophia.lee@example.com', 'Monster', false, 460, 7, 2, 40, 0),
+('Kevin', 'Clark', 38, 'kevin.clark@example.com', 'Monster', false, 590, 19, 14, 35, 1),
+('Isabella', 'Lewis', 21, 'isabella.lewis@example.com', 'Human', false, 450, 6, 1, 50, 0),
+('Ethan', 'Walker', 37, 'ethan.walker@example.com', 'Monster', false, 550, 16, 10, 35, 1),
+('Natalie', 'Allen', 40, 'natalie.allen@example.com', 'Magical', false, 610, 20, 15, 95, 0),
+('Liam', 'Young', 39, 'liam.young@example.com', 'Human', false, 530, 14, 8, 10, 1);
 
 -- deck name, description, ammount
 INSERT INTO Deck (deck_name, deck_description, card_ammount) VALUES

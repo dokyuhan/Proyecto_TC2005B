@@ -165,7 +165,7 @@ app.delete("/api/awakening/cards/:id", async (request, response) => {
     connection = await connectToDB();
 
     const [results, fields] = await connection.execute(
-      "delete from cards where card_ID = ?",
+      "delete from Cards where card_ID = ?",
       [request.params.id]
     );
 
@@ -187,7 +187,7 @@ app.delete("/api/awakening/cards/:id", async (request, response) => {
 });
 
 // Endpoint para crear un Jugador
-app.post("/api/awakening/player", async (request, response) => {
+app.post("/api/awakening/players", async (request, response) => {
   let connection = null;
 
   try {
@@ -215,6 +215,63 @@ app.post("/api/awakening/player", async (request, response) => {
     console.log(`${results.affectedRows} rows affected`);
     console.log(results);
     response.status(200).json({ message: "Player added successfully" });
+  } catch (error) {
+    response.status(500);
+    response.json(error);
+    console.log(error);
+  } finally {
+    if (connection !== null) {
+      connection.end();
+      console.log("Connection closed succesfully!");
+    }
+  }
+});
+
+// Endpoint para obtener un jugador en específico por su ID
+app.get("/api/awakening/players/:id", async (request, response) => {
+  let connection = null;
+
+  try {
+    connection = await connectToDB();
+
+    // The ? character is used as a placeholder for the values that will be passed to the query. This is a security measure to avoid SQL injection attacks.
+    const [results, fields] = await connection.execute(
+      "select * from Player where player_ID = ?",
+      [request.params.id]
+    );
+
+    console.log(`${results.length} rows returned`);
+    console.log(results);
+    response.status(200).json(results);
+  } catch (error) {
+    response.status(500);
+    response.json(error);
+    console.log(error);
+  } finally {
+    if (connection !== null) {
+      connection.end();
+      console.log("Connection closed succesfully!");
+    }
+  }
+});
+
+// Endpoint para eliminar un Jugador en específico por su ID
+app.delete("/api/awakening/players/:id", async (request, response) => {
+  let connection = null;
+
+  try {
+    connection = await connectToDB();
+
+    const [results, fields] = await connection.execute(
+      "delete from Players where player_ID = ?",
+      [request.params.id]
+    );
+
+    console.log(`${results.affectedRows} rows affected`);
+    console.log(results);
+    response.status(200).json({
+      message: `Data deleted correctly: ${results.affectedRows} rows deleted.`,
+    });
   } catch (error) {
     response.status(500);
     response.json(error);

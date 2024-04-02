@@ -186,7 +186,6 @@ app.delete("/api/awakening/cards/:id", async (request, response) => {
   }
 });
 
-// Endpoint para crear un Jugador
 app.post("/api/awakening/players", async (request, response) => {
   let connection = null;
 
@@ -195,13 +194,30 @@ app.post("/api/awakening/players", async (request, response) => {
 
     const data = request.body;
 
-    const [results, fields] = await connection.execute(
-      "insert into Player (player_name, player_last_name, player_age, player_email, realm, is_npc, player_exp, win_record, lose_record, coins, tokens) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    // Verificar que el nombre no exista en la base de datos
+    const [userExists] = await connection.execute(
+      "select user_name from Player where user_name = ?",
+      [data.user_name]
+    );
+
+    if (userExists.length > 0) {
+      // Si el usuario ya existe, regresar un error
+      return response
+        .status(400)
+        .json({
+          message: "User name already exists, please choose another one",
+        });
+    }
+
+    // Proceed to insert the new player since user_name does not exist
+    const [results] = await connection.execute(
+      "insert into Player (player_name, player_last_name, player_age, user_name, password, realm, is_npc, player_exp, win_record, lose_record, coins, tokens) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
       [
         data.player_name,
         data.player_last_name,
         data.player_age,
-        data.player_email,
+        data.user_name,
+        data.password,
         data.realm,
         data.is_npc,
         data.player_exp,
@@ -211,18 +227,15 @@ app.post("/api/awakening/players", async (request, response) => {
         data.tokens,
       ]
     );
-
     console.log(`${results.affectedRows} rows affected`);
-    console.log(results);
     response.status(200).json({ message: "Player added successfully" });
   } catch (error) {
-    response.status(500);
-    response.json(error);
     console.log(error);
+    response.status(500).json(error);
   } finally {
     if (connection !== null) {
       connection.end();
-      console.log("Connection closed succesfully!");
+      console.log("Connection closed successfully!");
     }
   }
 });
@@ -272,6 +285,35 @@ app.delete("/api/awakening/players/:id", async (request, response) => {
     response.status(200).json({
       message: `Data deleted correctly: ${results.affectedRows} rows deleted.`,
     });
+  } catch (error) {
+    response.status(500);
+    response.json(error);
+    console.log(error);
+  } finally {
+    if (connection !== null) {
+      connection.end();
+      console.log("Connection closed succesfully!");
+    }
+  }
+});
+
+// Endpoint para iniciar sesión
+app.post("/api/awakening/players/login", async (request, response) => {
+  let connection = null;
+
+  try {
+    connection = await connectToDB();
+
+    const data = request.body;
+
+    const [results, fields] = await connection.execute(
+      "select * from Player where user_name = ? and password = ?",
+      [data.user_name, data.password]
+    );
+
+    console.log(`${results.length} rows returned`);
+    console.log(results);
+    response.status(200).json(results);
   } catch (error) {
     response.status(500);
     response.json(error);

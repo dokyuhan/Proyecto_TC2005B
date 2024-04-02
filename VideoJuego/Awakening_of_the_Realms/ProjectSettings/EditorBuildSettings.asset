@@ -6,6 +6,45 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/MainScreen.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 0b6022b3eedba49d78e256549e4b9c34
+  - enabled: 1
+    path: Assets/Scenes/CelestialLevel1.unity
+    guid: 3d6510b50d1ea40fb84bc5112df5d70c
+  - enabled: 1
+    path: Assets/Scenes/CelestialLevel2.unity
+    guid: dc6589d7ca51e4c2db355f96f66ed4bb
+  - enabled: 1
+    path: Assets/Scenes/DeckBuilding.unity
+    guid: 2d2639c9e861042c2a700832da2005b3
+  - enabled: 1
+    path: Assets/Scenes/HumanLevel1.unity
+    guid: e9bf334cc57814c579b8ea436e326d2c
+  - enabled: 1
+    path: Assets/Scenes/HumanLevel2.unity
+    guid: e8307c4711f69497db719968ede69676
+  - enabled: 1
+    path: Assets/Scenes/MagicLevel1.unity
+    guid: c47652286320d440dad0bf09859cdf29
+  - enabled: 1
+    path: Assets/Scenes/MagicLevel2.unity
+    guid: 146959508c56b4b75a9720fe2967602e
+  - enabled: 1
+    path: Assets/Scenes/MonsterLevel1.unity
+    guid: 27d8c5d1352054470a4b615c391f611c
+  - enabled: 1
+    path: Assets/Scenes/MonsterLevel2.unity
+    guid: c8362f35729b94ab4aceb212b7375884
+  - enabled: 1
+    path: Assets/Scenes/NewUser.unity
+    guid: 3521e5ac105d3464e899516b0f1a8b6e
+  - enabled: 1
+    path: Assets/Scenes/SelectLevel.unity
+    guid: 6c7108efdca74426ab50265a1826c14d
+  - enabled: 1
+    path: Assets/Scenes/RealmInfo.unity
+    guid: 35ea935293be34eeba00431b78feb523
   m_configObjects: {}

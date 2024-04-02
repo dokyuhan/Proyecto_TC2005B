@@ -7,13 +7,19 @@ public class Arrastrar : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 {
     private Vector2 lastMousePosition;
 
-    public void OnBeginDrag(PointerEventData eventData)
-    {
+    public Carta cartaArrastrar;
 
+
+     public void OnBeginDrag(PointerEventData eventData)
+    {
+        if (!cartaArrastrar.desbloqueada) return;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
+
+        if (!cartaArrastrar.desbloqueada) return;
+
         RectTransform canvasRectTransform = transform.root.GetComponent<RectTransform>();
         RectTransform cardRectTransform = GetComponent<RectTransform>();
         Vector2 position;

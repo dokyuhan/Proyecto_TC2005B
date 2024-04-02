@@ -27,6 +27,15 @@ public class Controll : MonoBehaviour
         {
             GameObject objeto = Instantiate(cardPrefab, inv);
 
+            Arrastrar arrastrarScript = objeto.GetComponent<Arrastrar>();
+
+            if (arrastrarScript != null)
+            {
+                arrastrarScript.cartaArrastrar = card; // Asigna la carta actual
+            }
+
+            //Image imagenCarta = objeto.transform.Find("background").GetComponent<Image>(); 
+
             Image imagenCarta = objeto.transform.Find("background").GetComponent<Image>(); 
             Sprite cardSprite = Resources.Load<Sprite>("Cards/" + card.nombre);
             if (cardSprite != null)
@@ -47,7 +56,8 @@ public class Controll : MonoBehaviour
 
             if (!card.desbloqueada)
             {
-                imagenCarta.color = Color.black;
+                imagenCarta.color = new Color(imagenCarta.color.r, imagenCarta.color.g, imagenCarta.color.b, 0.7f); 
+                imagenMarco.color = new Color(imagenMarco.color.r, imagenMarco.color.g, imagenMarco.color.b, 0.7f); 
             }
         }
     }

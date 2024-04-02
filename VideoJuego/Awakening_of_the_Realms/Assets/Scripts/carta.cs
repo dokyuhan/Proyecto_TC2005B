@@ -4,10 +4,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Carta
 {
 
-    /*public int Card_Id;
+    public int Card_Id;
     public string Name;
     public string Description;
     public int Attack;
@@ -21,8 +22,8 @@ public class Carta
     public string Effect;
     
     // Añadido para manejar el estado de desbloqueo
-    public bool IsUnlocked;
-    */
+    //public bool IsUnlocked;
+    
     public string nombre;
     public string imagen; 
     public bool desbloqueada;

@@ -360,6 +360,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33d3445dbf9da445fbe79bc997281370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cartaArrastrar:
+    Card_Id: 0
+    Name: 
+    Description: 
+    Attack: 0
+    Defense: 0
+    Healing: 0
+    Power_Cost: 0
+    XP_Cost: 0
+    Realm: 
+    Rarity: 
+    Level: 
+    Effect: 
+    nombre: 
+    imagen: 
+    desbloqueada: 0
+  espaciosMazo:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &2359514544036863233
 GameObject:
   m_ObjectHideFlags: 0

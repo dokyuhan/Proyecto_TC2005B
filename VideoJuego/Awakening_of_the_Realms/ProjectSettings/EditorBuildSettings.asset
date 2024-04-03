@@ -47,4 +47,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RealmInfo.unity
     guid: 35ea935293be34eeba00431b78feb523
+  - enabled: 1
+    path: Assets/Scenes/LogIn.unity
+    guid: 141e9cad3b9a64ac4b5d586787772f68
   m_configObjects: {}

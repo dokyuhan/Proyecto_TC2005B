@@ -214,22 +214,22 @@ Here you can see four examples of cards from **all realms** and even a special c
 
   <div style="flex: 0 0 48%; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; text-align: center;">
     <h2 style="font-size: 16px;">Necromancer from the Magic Realm!</h2>
-    <img src="./Imagenes_Juego/Ejemplo1.png" alt="Ejemplo 1" style="width: 50%; border-radius: 8px;">
+    <img src="./Imagenes_Juego/Other_Images/Ejemplo1.png" alt="Ejemplo 1" style="width: 50%; border-radius: 8px;">
   </div>
 
   <div style="flex: 0 0 48%; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; text-align: center;">
     <h2 style="font-size: 16px;">King Arthur from the Human Realm!</h2>
-    <img src="./Imagenes_Juego/Ejemplo2.png" alt="Ejemplo 2" style="width: 50%; border-radius: 8px;">
+    <img src="./Imagenes_Juego/Other_Images/Ejemplo2.png" alt="Ejemplo 2" style="width: 50%; border-radius: 8px;">
   </div>
 
   <div style="flex: 0 0 48%; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; text-align: center;">
     <h2 style="font-size: 16px;">Werewolf from the Monster Realm!</h2>
-    <img src="./Imagenes_Juego/Ejemplo3.png" alt="Ejemplo 3" style="width: 50%; border-radius: 8px;">
+    <img src="./Imagenes_Juego/Other_Images/Ejemplo3.png" alt="Ejemplo 3" style="width: 50%; border-radius: 8px;">
   </div>
 
   <div style="flex: 0 0 48%; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; text-align: center;">
     <h2 style="font-size: 16px;">Valkyrie from the Celestial Realm!</h2>
-    <img src="./Imagenes_Juego/Ejemplo4.png" alt="Ejemplo 4" style="width: 50%; border-radius: 8px;">
+    <img src="./Imagenes_Juego/Other_Images/Ejemplo4.png" alt="Ejemplo 4" style="width: 50%; border-radius: 8px;">
   </div>
 
 </div>
@@ -241,11 +241,11 @@ Here are some image concepts (not cards):
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
 
   <div style="flex: 0 0 48%; margin-bottom: 20px; display: flex; justify-content: center; align-items: center;">
-    <img src="./Imagenes_Juego/Magic_Realm/Golem.jpg" style="width: 50%; border-radius: 8px;">
+    <img src="./Imagenes_Juego/Magic_Realm/Golem.png" style="width: 50%; border-radius: 8px;">
   </div>
 
   <div style="flex: 0 0 48%; margin-bottom: 20px; display: flex; justify-content: center; align-items: center;">
-    <img src="./Imagenes_Juego/Succubus.jpg" style="width: 50%; border-radius: 8px;">
+    <img src="./Imagenes_Juego/Celestial_Realm/Succubus.png" style="width: 50%; border-radius: 8px;">
   </div>
 
 </div>
@@ -350,7 +350,7 @@ In order for the user to experience a sense of discovery, mystery and progressi√
          3. Glowing red eyes in the dark
 
 Here is an example of have the scenario from the **Magic Realm** would look like (subject to changes):
-![Magic Realm Background](./Imagenes_Juego/Magic_Realm/Magic_Realm_Background.webp "Magic Realm Background")
+![Magic Realm Background](./Imagenes_Juego/Magic_Realm/Magic_Realm_Background.png "Magic Realm Background")
 All other realms will have a similar styled background for the matches.
 
 ### **Game Flow**
@@ -383,7 +383,7 @@ All other realms will have a similar styled background for the matches.
 10. Player is redirected to the main screen (select level screen).
 
 Here is an example of how the main screen will look like when the game opens (subject to changes), we wanted to a sneak peak of all 4 realms:
-![Main Background](./Imagenes_Juego/Main_Background.webp "Main Background")
+![Main Background](./Imagenes_Juego/Other_Images/Main_Background.webp "Main Background")
 
 ## _Development_
 

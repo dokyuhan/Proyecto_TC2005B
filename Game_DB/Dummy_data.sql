@@ -39,13 +39,13 @@ INSERT INTO Cards (card_name, card_description, attack, defense, healing, card_r
 
 -- Monster
 ('Ogre', 'Description', 7, 10, 2, 'Monster', 0, 100, 'Common', 1, NULL),
-('Wyrm', 'Description', 12, 7, 5, 'Monster', 0, 100, 'Common', 1, NULL),
+('Basilisc', 'Description', 12, 7, 5, 'Monster', 0, 100, 'Common', 1, NULL),
 ('Werewolf', 'Description', 10, 12, 3, 'Monster', 0, 100, 'Common', 1, NULL),
 ('Goblin', 'Description', 3, 5, 10, 'Monster', 0, 100, 'Common', 1, NULL),
 ('Harpies', 'Description', 10, 10, 9, 'Monster', 0, 100, 'Common', 1, NULL),
 ('Troll', 'Description', 6, 15, 4, 'Monster', 0, 100, 'Common', 1, NULL),
 ('Treants', 'Description', 2, 6, 15, 'Monster', 0, 100, 'Common', 1, NULL),
-('Wyvern', 'Description', 15, 10, 0, 'Monster', 0, 100, 'Common', 1, NULL),
+('Ghoul', 'Description', 15, 10, 0, 'Monster', 0, 100, 'Common', 1, NULL),
 
 -- Magical
 ('Giant', 'Description', 5, 15, 0, 'Magical', 0, 100, 'Common', 1, NULL),
@@ -54,8 +54,8 @@ INSERT INTO Cards (card_name, card_description, attack, defense, healing, card_r
 ('Golem', 'Description', 1, 20, 0, 'Magical', 0, 100, 'Common', 1, NULL),
 ('Elemental Guardian', 'Description', 12, 12, 9, 'Magical', 0, 100, 'Common', 1, NULL),
 ('Dwarves', 'Description', 8, 12, 6, 'Magical', 0, 100, 'Common', 1, NULL),
-('Wizard', 'Description', 14, 4, 10, 'Magical', 0, 100, 'Common', 1, NULL),
-('Summoners', 'Description', 7, 7, 13, 'Magical', 0, 100, 'Common', 1, NULL),
+('Witch', 'Description', 14, 4, 10, 'Magical', 0, 100, 'Common', 1, NULL),
+('Dark Wizard', 'Description', 7, 7, 13, 'Magical', 0, 100, 'Common', 1, NULL),
 
 -- Celestial
 ('Hell Hound', 'Description', 10, 8, 2, 'Celestial', 0, 100, 'Common', 1, NULL),

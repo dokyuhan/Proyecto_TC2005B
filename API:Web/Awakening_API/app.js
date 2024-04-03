@@ -6,7 +6,7 @@ import express from "express";
 import mysql from "mysql2/promise";
 
 const app = express();
-const port = 3100;
+const port = 3200;
 
 app.use(express.json());
 
@@ -39,7 +39,7 @@ app.get("/api/awakening/cards", async (request, response) => {
   } finally {
     if (connection !== null) {
       connection.end();
-      console.log("Connection closed succesfully!");
+      console.log("Connection closed successfully!");
     }
   }
 });
@@ -51,7 +51,6 @@ app.get("/api/awakening/cards/:id", async (request, response) => {
   try {
     connection = await connectToDB();
 
-    // The ? character is used as a placeholder for the values that will be passed to the query. This is a security measure to avoid SQL injection attacks.
     const [results, fields] = await connection.execute(
       "select * from Cards where card_ID = ?",
       [request.params.id]
@@ -59,7 +58,12 @@ app.get("/api/awakening/cards/:id", async (request, response) => {
 
     console.log(`${results.length} rows returned`);
     console.log(results);
-    response.status(200).json(results);
+
+    if (results.length === 0) {
+      response.status(404).json({ message: "Card not found" });
+    } else {
+      response.status(200).json(results);
+    }
   } catch (error) {
     response.status(500);
     response.json(error);
@@ -67,7 +71,7 @@ app.get("/api/awakening/cards/:id", async (request, response) => {
   } finally {
     if (connection !== null) {
       connection.end();
-      console.log("Connection closed succesfully!");
+      console.log("Connection closed successfully!");
     }
   }
 });
@@ -81,9 +85,59 @@ app.post("/api/awakening/cards", async (request, response) => {
 
     const data = request.body instanceof Array ? request.body : [request.body];
 
+    const requiredFields = [
+      "card_name",
+      "card_description",
+      "attack",
+      "defense",
+      "healing",
+      "card_realm",
+      "power_cost",
+      "exp_cost",
+      "rarity",
+      "card_level",
+      "Effect_type",
+    ];
+
     for (const card of data) {
-      const [results, fields] = await connection.execute(
-        "insert into Cards (card_name, card_description, attack, defense, healing, card_realm, power_cost, exp_cost, rarity, card_level, Effect_type) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      const missingFields = requiredFields.filter(
+        (field) => card[field] === undefined || card[field] === ""
+      );
+
+      if (missingFields.length > 0) {
+        return response.status(400).json({
+          message:
+            "Missing required card information: " + missingFields.join(", "),
+        });
+      }
+
+      // Verificación de existencia del nombre de la carta
+      const [existingCard] = await connection.execute(
+        "SELECT card_name FROM Cards WHERE card_name = ?",
+        [card.card_name]
+      );
+      if (existingCard.length > 0) {
+        return response.status(409).json({
+          message: `A card with the name "${card.card_name}" already exists. Please choose a different name.`,
+        });
+      }
+
+      // Si Effect_type no es null, verifica que exista en la tabla Effect
+      if (card.Effect_type !== null) {
+        const [existingEffect] = await connection.execute(
+          "SELECT Effect_type FROM Effect WHERE Effect_type = ?",
+          [card.Effect_type]
+        );
+        if (existingEffect.length === 0) {
+          return response.status(400).json({
+            message: `Effect_type '${card.Effect_type}' does not exist.`,
+          });
+        }
+      }
+
+      // Inserción de la carta
+      const [insertResult] = await connection.execute(
+        "INSERT INTO Cards (card_name, card_description, attack, defense, healing, card_realm, power_cost, exp_cost, rarity, card_level, Effect_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
         [
           card.card_name,
           card.card_description,
@@ -98,19 +152,18 @@ app.post("/api/awakening/cards", async (request, response) => {
           card.Effect_type,
         ]
       );
-      console.log(`${results.affectedRows} rows affected`);
-      console.log(results);
+      console.log(`${insertResult.affectedRows} rows affected`);
     }
 
     response.status(200).json({ message: "Cards added successfully" });
   } catch (error) {
-    response.status(500);
-    response.json(error);
     console.log(error);
+    response
+      .status(500)
+      .json({ message: "An error occurred while adding cards.", error });
   } finally {
-    if (connection !== null) {
+    if (connection) {
       connection.end();
-      console.log("Connection closed succesfully!");
     }
   }
 });
@@ -152,7 +205,7 @@ app.put("/api/awakening/cards/:id", async (request, response) => {
   } finally {
     if (connection !== null) {
       connection.end();
-      console.log("Connection closed succesfully!");
+      console.log("Connection closed successfully!");
     }
   }
 });
@@ -171,9 +224,14 @@ app.delete("/api/awakening/cards/:id", async (request, response) => {
 
     console.log(`${results.affectedRows} rows affected`);
     console.log(results);
-    response.status(200).json({
-      message: `Data deleted correctly: ${results.affectedRows} rows deleted.`,
-    });
+
+    if (results.affectedRows === 0) {
+      response.status(404).json({ message: "Card not found" });
+    } else {
+      response.status(200).json({
+        message: `Data deleted correctly: ${results.affectedRows} rows deleted.`,
+      });
+    }
   } catch (error) {
     response.status(500);
     response.json(error);
@@ -181,11 +239,12 @@ app.delete("/api/awakening/cards/:id", async (request, response) => {
   } finally {
     if (connection !== null) {
       connection.end();
-      console.log("Connection closed succesfully!");
+      console.log("Connection closed successfully!");
     }
   }
 });
 
+// Endpoint para crear un jugador nuevo
 app.post("/api/awakening/players", async (request, response) => {
   let connection = null;
 
@@ -193,25 +252,46 @@ app.post("/api/awakening/players", async (request, response) => {
     connection = await connectToDB();
 
     const data = request.body;
+    const requiredFields = [
+      "player_name",
+      "player_last_name",
+      "player_age",
+      "user_name",
+      "password",
+      "realm",
+      "is_npc",
+      "level",
+      "player_exp",
+      "win_record",
+      "lose_record",
+      "coins",
+      "token",
+    ];
 
-    // Verificar que el nombre no exista en la base de datos
+    const missingFields = requiredFields.filter(
+      (field) => data[field] === undefined || data[field] === null
+    );
+
+    if (missingFields.length > 0) {
+      return response.status(400).json({
+        message:
+          "Missing required user information: " + missingFields.join(", "),
+      });
+    }
+
     const [userExists] = await connection.execute(
-      "select user_name from Player where user_name = ?",
+      "select user_name from Players where user_name = ?",
       [data.user_name]
     );
 
     if (userExists.length > 0) {
-      // Si el usuario ya existe, regresar un error
-      return response
-        .status(400)
-        .json({
-          message: "User name already exists, please choose another one",
-        });
+      return response.status(400).json({
+        message: "User name already exists, please choose another one",
+      });
     }
 
-    // Proceed to insert the new player since user_name does not exist
     const [results] = await connection.execute(
-      "insert into Player (player_name, player_last_name, player_age, user_name, password, realm, is_npc, player_exp, win_record, lose_record, coins, tokens) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      "insert into Players (player_name, player_last_name, player_age, user_name, password, realm, is_npc, level, player_exp, win_record, lose_record, coins, token) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
       [
         data.player_name,
         data.player_last_name,
@@ -220,11 +300,12 @@ app.post("/api/awakening/players", async (request, response) => {
         data.password,
         data.realm,
         data.is_npc,
+        data.level,
         data.player_exp,
         data.win_record,
         data.lose_record,
         data.coins,
-        data.tokens,
+        data.token,
       ]
     );
     console.log(`${results.affectedRows} rows affected`);
@@ -232,6 +313,35 @@ app.post("/api/awakening/players", async (request, response) => {
   } catch (error) {
     console.log(error);
     response.status(500).json(error);
+  } finally {
+    if (connection !== null) {
+      connection.end();
+      console.log("Connection closed successfully!");
+    }
+  }
+});
+
+// Endpoint para iniciar sesión
+app.post("/api/awakening/players/login", async (request, response) => {
+  let connection = null;
+
+  try {
+    connection = await connectToDB();
+
+    const data = request.body;
+
+    const [results, fields] = await connection.execute(
+      "select * from Players where user_name = ? and password = ?",
+      [data.user_name, data.password]
+    );
+
+    console.log(`${results.length} rows returned`);
+    console.log(results);
+    response.status(200).json(results);
+  } catch (error) {
+    response.status(500);
+    response.json(error);
+    console.log(error);
   } finally {
     if (connection !== null) {
       connection.end();
@@ -249,13 +359,18 @@ app.get("/api/awakening/players/:id", async (request, response) => {
 
     // The ? character is used as a placeholder for the values that will be passed to the query. This is a security measure to avoid SQL injection attacks.
     const [results, fields] = await connection.execute(
-      "select * from Player where player_ID = ?",
+      "select * from Players where player_ID = ?",
       [request.params.id]
     );
 
     console.log(`${results.length} rows returned`);
     console.log(results);
-    response.status(200).json(results);
+
+    if (results.length === 0) {
+      response.status(404).json({ message: "Player not found" });
+    } else {
+      response.status(200).json(results);
+    }
   } catch (error) {
     response.status(500);
     response.json(error);
@@ -263,7 +378,7 @@ app.get("/api/awakening/players/:id", async (request, response) => {
   } finally {
     if (connection !== null) {
       connection.end();
-      console.log("Connection closed succesfully!");
+      console.log("Connection closed successfully!");
     }
   }
 });
@@ -282,9 +397,14 @@ app.delete("/api/awakening/players/:id", async (request, response) => {
 
     console.log(`${results.affectedRows} rows affected`);
     console.log(results);
-    response.status(200).json({
-      message: `Data deleted correctly: ${results.affectedRows} rows deleted.`,
-    });
+
+    if (results.affectedRows === 0) {
+      response.status(404).json({ message: "Player not found" });
+    } else {
+      response.status(200).json({
+        message: `Player deleted correctly: ${results.affectedRows} rows deleted.`,
+      });
+    }
   } catch (error) {
     response.status(500);
     response.json(error);
@@ -292,28 +412,31 @@ app.delete("/api/awakening/players/:id", async (request, response) => {
   } finally {
     if (connection !== null) {
       connection.end();
-      console.log("Connection closed succesfully!");
+      console.log("Connection closed successfully!");
     }
   }
 });
 
-// Endpoint para iniciar sesión
-app.post("/api/awakening/players/login", async (request, response) => {
+// Endpoint para obtener los stats de un usuario en específico por su ID
+app.get("/api/awakening/players/:id/stats", async (request, response) => {
   let connection = null;
 
   try {
     connection = await connectToDB();
 
-    const data = request.body;
-
     const [results, fields] = await connection.execute(
-      "select * from Player where user_name = ? and password = ?",
-      [data.user_name, data.password]
+      "select win_record, lose_record from Players where player_ID = ?",
+      [request.params.id]
     );
 
     console.log(`${results.length} rows returned`);
     console.log(results);
-    response.status(200).json(results);
+
+    if (results.length === 0) {
+      response.status(404).json({ message: "Player not found" });
+    } else {
+      response.status(200).json(results[0]);
+    }
   } catch (error) {
     response.status(500);
     response.json(error);
@@ -321,9 +444,15 @@ app.post("/api/awakening/players/login", async (request, response) => {
   } finally {
     if (connection !== null) {
       connection.end();
-      console.log("Connection closed succesfully!");
+      console.log("Connection closed successfully!");
     }
   }
+});
+
+// Manejo de errores genérico
+app.use((err, request, response, next) => {
+  console.error(err); // Para propósitos de depuración
+  response.status(500).json({ message: "Something went wrong" });
 });
 
 // Inicialización del servidor

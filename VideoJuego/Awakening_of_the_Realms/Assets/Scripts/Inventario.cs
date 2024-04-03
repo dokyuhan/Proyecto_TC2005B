@@ -7,10 +7,10 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using TMPro;
 
-public class APIConnection : MonoBehaviour
+public class Inventario : MonoBehaviour
 {
-    [SerializeField] string apiURL = "https://p6rq55r7-3200.usw3.devtunnels.ms"; // Updated to match Express.js server
-    [SerializeField] string cardEndpoint = "/api/awakening/cards"; // Endpoint adjusted
+    [SerializeField] string apiURL = " http://127.0.0.1:3100"; // Updated to match Express.js server
+    [SerializeField] string cardEndpoint = "/api/awakening/cards/"; // Endpoint adjusted
     [SerializeField] int cardId = 1;
 
     [SerializeField] TMP_Text id;
@@ -93,6 +93,8 @@ public class APIConnection : MonoBehaviour
             StartCoroutine(GetCard());
 
         }
+        Card hola = new Card(1, "Warrior", "A strong warrior", 10, 5, 0, "Magic", 2, 1, "Common", 1, null, true);
+        cards.Add(hola);
 
         DisplayCards();
     }

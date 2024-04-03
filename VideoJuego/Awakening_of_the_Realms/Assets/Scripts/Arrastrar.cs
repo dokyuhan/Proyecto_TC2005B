@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 public class Arrastrar : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public Carta cartaArrastrar;
+    public Card cartaArrastrar;
     private Vector2 lastMousePosition;
     private Transform padre;
 

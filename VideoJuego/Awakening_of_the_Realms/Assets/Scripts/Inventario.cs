@@ -9,7 +9,7 @@ using TMPro;
 
 public class Inventario : MonoBehaviour
 {
-    [SerializeField] string apiURL = " http://127.0.0.1:3100"; // Updated to match Express.js server
+    [SerializeField] string apiURL = " localhost:3200"; // Updated to match Express.js server
     [SerializeField] string cardEndpoint = "/api/awakening/cards/"; // Endpoint adjusted
     [SerializeField] int cardId = 1;
 
@@ -32,8 +32,6 @@ public class Inventario : MonoBehaviour
     public Transform inv;
 
     private List<Card> cards = new List<Card>();
-
-    //[SerializeField] Image cardImage;
 
     // Assuming Card class is correctly structured to match the JSON response from Express.js
     // Make sure this class matches the server's response structure, especially the naming
@@ -93,8 +91,8 @@ public class Inventario : MonoBehaviour
             StartCoroutine(GetCard());
 
         }
-        Card hola = new Card(1, "Warrior", "A strong warrior", 10, 5, 0, "Magic", 2, 1, "Common", 1, null, true);
-        cards.Add(hola);
+        //Card hola = new Card(1, "Warrior", "A strong warrior", 10, 5, 0, "Magic", 2, 1, "Common", 1, null, true);
+        //cards.Add(hola);
 
         DisplayCards();
     }

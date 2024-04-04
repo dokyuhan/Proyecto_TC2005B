@@ -163,16 +163,3 @@ INSERT INTO Game (game_level, game_scene, game_duration) VALUES
 (6, 'Scene 2', '00:30:00'),
 (7, 'Scene 3', '02:30:00'),
 (8, 'Scene 4', '01:45:00');
-
--- turn duration, turn status
-INSERT INTO Turn (turn_duration, turn_status) VALUES
-('00:01:00', 'Round 1'),
-('00:01:30', 'Round 2'),
-('00:02:00', 'Round 3'),
-('00:02:30', 'Round 4'),
-('00:03:00', 'Round 5'),
-('00:03:30', 'Round 6'),
-('00:04:00', 'Round 7'),
-('00:04:30', 'Round 8'),
-('00:05:00', 'Round 9'),
-('00:05:30', 'Round 10');

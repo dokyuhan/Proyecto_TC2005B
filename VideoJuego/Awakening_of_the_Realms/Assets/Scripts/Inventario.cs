@@ -9,22 +9,9 @@ using TMPro;
 
 public class Inventario : MonoBehaviour
 {
-    [SerializeField] string apiURL = " localhost:3200"; // Updated to match Express.js server
+    [SerializeField] string apiURL = "localhost:3200"; // Updated to match Express.js server
     [SerializeField] string cardEndpoint = "/api/awakening/cards/"; // Endpoint adjusted
-    [SerializeField] int cardId = 1;
-
-    [SerializeField] TMP_Text id;
-    [SerializeField] TMP_Text nombre;
-    [SerializeField] TMP_Text descripcion;
-    [SerializeField] TMP_Text ataque;
-    [SerializeField] TMP_Text defensa;
-    [SerializeField] TMP_Text curacion;
-    [SerializeField] TMP_Text reino;
-    [SerializeField] TMP_Text poderCosto;
-    [SerializeField] TMP_Text expCosto;
-    [SerializeField] TMP_Text rareza;
-    [SerializeField] TMP_Text nivel;
-    [SerializeField] TMP_Text efecto;
+    int cardId = 1;
 
     Card card;
 
@@ -41,6 +28,8 @@ public class Inventario : MonoBehaviour
         // We create a UnityWebRequest object and make a GET request to the API
         // We use the cardEndpoint and cardId to fetch the card data
         UnityWebRequest www = UnityWebRequest.Get(apiURL + cardEndpoint + cardId);
+
+        Debug.Log("URL: " + apiURL + cardEndpoint + cardId);
 
         yield return www.SendWebRequest();
 

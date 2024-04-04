@@ -62,7 +62,7 @@ app.get("/api/awakening/cards/:id", async (request, response) => {
     if (results.length === 0) {
       response.status(404).json({ message: "Card not found" });
     } else {
-      response.status(200).json(results);
+      response.status(200).json(results[0]);
     }
   } catch (error) {
     response.status(500);

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: def5cd64e3b6240dd9ff0eb78ae36cbd
+guid: dc9edf322da7945aaacc8932e0c79aab
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - BlackCastleMF
+  - Cloister Black
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

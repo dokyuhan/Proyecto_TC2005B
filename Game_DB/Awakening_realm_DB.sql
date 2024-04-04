@@ -116,3 +116,5 @@ SELECT c.card_name, c.card_description, c.card_realm, c.power_cost, c.exp_cost, 
 FROM Cards AS c
 LEFT JOIN Effect AS e USING (Effect_type)
 WHERE c.rarity IN ('Special');
+
+SELECT * FROM Inventory;

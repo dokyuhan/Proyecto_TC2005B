@@ -154,12 +154,12 @@ INSERT INTO Deck (deck_name, deck_description, card_ammount) VALUES
 ('Deck 30', 'Description', 10);
 
 -- game level, scene, game duration
-INSERT INTO Game (game_level, game_scene, game_duration) VALUES
-(1, 'Scene 1', '01:00:00'),
-(2, 'Scene 2', '01:30:00'),
-(3, 'Scene 3', '00:45:00'),
-(4, 'Scene 4', '02:00:00'),
-(5, 'Scene 1', '01:15:00'),
-(6, 'Scene 2', '00:30:00'),
-(7, 'Scene 3', '02:30:00'),
-(8, 'Scene 4', '01:45:00');
+INSERT INTO Game (game_level, game_scene, game_duration, game_turns) VALUES
+(1, 'Scene 1', '01:00:00', 6),
+(2, 'Scene 2', '01:30:00', 7),
+(3, 'Scene 3', '00:45:00', 8),
+(4, 'Scene 4', '02:00:00', 10),
+(5, 'Scene 1', '01:15:00', 14),
+(6, 'Scene 2', '00:30:00', 4),
+(7, 'Scene 3', '02:30:00', 9),
+(8, 'Scene 4', '01:45:00', 6);

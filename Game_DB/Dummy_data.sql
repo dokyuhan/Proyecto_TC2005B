@@ -163,3 +163,16 @@ INSERT INTO Game (game_level, game_scene, game_duration, game_turns) VALUES
 (6, 'Scene 2', '00:30:00', 4),
 (7, 'Scene 3', '02:30:00', 9),
 (8, 'Scene 4', '01:45:00', 6);
+
+INSERT INTO Inventory (card_ID, player_ID, deck_ID) VALUES
+(1, 1, 1),
+(3, 1, 1),
+(4, 1, 1),
+(6, 1, 1),
+(1, 2, 3),
+(3, 2, 3),
+(10, 2, 3),
+(2, 3, 2),
+(3, 3, 2),
+(7, 3, 2);
+

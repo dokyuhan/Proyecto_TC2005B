@@ -18,7 +18,7 @@ public class Inventario : MonoBehaviour
     public GameObject cardPrefab; 
     public Transform inv;
 
-    private List<Card> cards = new List<Card>();
+    public List<Card> cards = new List<Card>();
 
     // Assuming Card class is correctly structured to match the JSON response from Express.js
     // Make sure this class matches the server's response structure, especially the naming
@@ -40,6 +40,7 @@ public class Inventario : MonoBehaviour
         }
         else 
         {
+            Debug.Log("se conecto");
             // If the request is successful, we parse the JSON data and store it in the card object
             // The response of the request is stored in the downloadHandler property of the UnityWebRequest object
             string data = www.downloadHandler.text;
@@ -48,8 +49,17 @@ public class Inventario : MonoBehaviour
             // It is important to note that the JSON data must match the structure of the Card class
             card = JsonUtility.FromJson<Card>(data);
 
+            card.desbloqueada = true;
+
+            cards.Add(card);
+
+            cardId++;
+
+
+
+
             // Using the card object we can display the card data in the UI
-            id.text = card.card_ID.ToString();
+            /*id.text = card.card_ID.ToString();
             nombre.text = card.card_name;
             descripcion.text = card.card_description;
             ataque.text = card.attack.ToString();
@@ -60,10 +70,9 @@ public class Inventario : MonoBehaviour
             expCosto.text = card.exp_cost.ToString();
             rareza.text = card.rarity;
             nivel.text = card.card_level.ToString();
-            efecto.text = card.Effect_type;
+            efecto.text = card.Effect_type;*/
 
 
-            cards.Add(card);
             //cardImage.sprite = Resources.Load<Sprite>($"Spells/{card.card_id}");
             
             //Debug.Log($"Name: {card.card_name} Description: {card.card_description} Cost: {card.card_cost}");
@@ -71,18 +80,15 @@ public class Inventario : MonoBehaviour
     }
 
 
-    void Start()
+    IEnumerator Start()
     {
-        for (int i = 1; i <= 40; i++){
-
-            cardId = cardId +1;
-
-            StartCoroutine(GetCard());
-
+        for (int i = 1; i <= 40; i++)
+        {
+            // Espera a que GetCard termine antes de continuar
+            yield return StartCoroutine(GetCard());
         }
-        //Card hola = new Card(1, "Warrior", "A strong warrior", 10, 5, 0, "Magic", 2, 1, "Common", 1, null, true);
-        //cards.Add(hola);
 
+        // Una vez completado todo, muestra las cartas
         DisplayCards();
     }
 
@@ -109,7 +115,7 @@ public class Inventario : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("No se encontro la imagen para: " );
+                Debug.LogWarning("No se encontro la imagen para: " + card.card_name);
             }
             
             Image imagenMarco = objeto.transform.Find("marco").GetComponent<Image>(); 
@@ -118,6 +124,49 @@ public class Inventario : MonoBehaviour
             {
                 imagenMarco.sprite = frameSprite;
             }
+            else
+            {
+                Debug.LogWarning("No se encontro el marco para: " + card.card_realm);
+            }
+
+            TextMeshProUGUI energia = objeto.transform.Find("Energy").GetComponent<TextMeshProUGUI>();
+            if (energia != null)
+            {
+                energia.text = card.power_cost.ToString();
+            }
+
+            TextMeshProUGUI ataque = objeto.transform.Find("Attack").GetComponent<TextMeshProUGUI>();
+            if (ataque != null)
+            {
+                ataque.text = card.attack.ToString();
+            }
+
+            TextMeshProUGUI defensa = objeto.transform.Find("Defense").GetComponent<TextMeshProUGUI>();
+            if (defensa != null)
+            {
+                defensa.text = card.defense.ToString();
+            }
+
+            TextMeshProUGUI heal = objeto.transform.Find("Healing").GetComponent<TextMeshProUGUI>();
+            if (heal != null)
+            {
+                heal.text = card.healing.ToString();
+            }
+
+            TextMeshProUGUI descripcion = objeto.transform.Find("Descript").GetComponent<TextMeshProUGUI>();
+            if (descripcion != null)
+            {
+                descripcion.text = card.card_description.ToString();
+            }
+
+            TextMeshProUGUI nombre = objeto.transform.Find("Nombre").GetComponent<TextMeshProUGUI>();
+            if (nombre != null)
+            {
+                nombre.text = card.card_name.ToString();
+            }
+
+
+            
 
             if (!card.desbloqueada)
             {

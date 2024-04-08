@@ -121,7 +121,7 @@ The game would have 50 cards in total, where for each realm there would have 10 
    | Goblin    | 3      | 5       | 10      |
    | Harpies   | 10     | 10      | 9       |
    | Troll     | 6      | 15      | 4       |
-   | Treants   | 2      | 6       | 15      |
+   | Treant    | 2      | 6       | 15      |
    | Ghoul     | 10     | 5       | 5       |
 
 3. Magical Realm:
@@ -129,26 +129,26 @@ The game would have 50 cards in total, where for each realm there would have 10 
    | Character          | Attack | Defense | Healing |
    | ------------------ | ------ | ------- | ------- |
    | Giant              | 5      | 15      | 0       |
-   | Elfs               | 10     | 5       | 5       |
+   | Elf                | 10     | 5       | 5       |
    | Necromancer        | 15     | 2       | 10      |
    | Golem              | 1      | 20      | 0       |
-   | Elemental guardian | 12     | 12      | 9       |
+   | Elemental Guardian | 12     | 12      | 9       |
    | Dwarves            | 8      | 12      | 6       |
    | Witch              | 14     | 4       | 10      |
    | Dark Wizard        | 7      | 7       | 13      |
 
 4. Celestial Realm:
 
-   | Character         | Attack | Defense | Healing |
-   | ----------------- | ------ | ------- | ------- |
-   | Hell Hound        | 10     | 8       | 2       |
-   | Archangel         | 14     | 10      | 0       |
-   | Nephalem          | 10     | 5       | 10      |
-   | Succubus          | 9      | 12      | 4       |
-   | Voidshade Phantom | 14     | 2       | 0       |
-   | Titans            | 1      | 15      | 5       |
-   | Valkyries         | 8      | 4       | 9       |
-   | celestial bug     | 0      | 2       | 20      |
+   | Character  | Attack | Defense | Healing |
+   | ---------- | ------ | ------- | ------- |
+   | Hell Hound | 10     | 8       | 2       |
+   | Archangel  | 14     | 10      | 0       |
+   | Nephalem   | 10     | 5       | 10      |
+   | Succubus   | 9      | 12      | 4       |
+   | Nymph      | 0      | 2       | 20      |
+   | Titan      | 1      | 15      | 5       |
+   | Valkyrie   | 8      | 4       | 9       |
+   | Pegasus    | 14     | 0       | 2       |
 
 From the rest of the 10 cards, the other 2 cards would be a legendary card. The legendary cards are different from the common cards, each of the legendary cards give you a special bonus effect and a more powerful main stats than the common cards.
 
@@ -175,10 +175,10 @@ From the rest of the 10 cards, the other 2 cards would be a legendary card. The 
 
 4. Celestial Realm:
 
-   | Character       | Attack | Defense | Healing | Special Ability     | Description                                                                                                                            |
-   | --------------- | ------ | ------- | ------- | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-   | Archangel Asmir | 35     | 25      | 20      | Celestial Resonance | Reflect all damage taken for 1 round and also heals 10 life points for 3 rounds                                                        |
-   | Demon King      | 35     | 15      | 30      | Abyssal Dominion    | Double the damage of the ally cards for 1 round and curse the enemy causing 10 damage over time and 20% healing reduction for 2 rounds |
+   | Character  | Attack | Defense | Healing | Special Ability     | Description                                                                                                                            |
+   | ---------- | ------ | ------- | ------- | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+   | Hercules   | 35     | 25      | 20      | Celestial Resonance | Reflect all damage taken for 1 round and also heals 10 life points for 3 rounds                                                        |
+   | Demon King | 35     | 15      | 30      | Abyssal Dominion    | Double the damage of the ally cards for 1 round and curse the enemy causing 10 damage over time and 20% healing reduction for 2 rounds |
 
 There are also 10 special cards that will benefit the players deck cards, where each of them will also have a unique bonus effect.
 

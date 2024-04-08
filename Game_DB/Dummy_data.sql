@@ -44,7 +44,7 @@ INSERT INTO Cards (card_name, card_description, attack, defense, healing, card_r
 ('Goblin', 'Description', 3, 5, 10, 'Monster', 0, 100, 'Common', 1, NULL),
 ('Harpies', 'Description', 10, 10, 9, 'Monster', 0, 100, 'Common', 1, NULL),
 ('Troll', 'Description', 6, 15, 4, 'Monster', 0, 100, 'Common', 1, NULL),
-('Treants', 'Description', 2, 6, 15, 'Monster', 0, 100, 'Common', 1, NULL),
+('Treant', 'Description', 2, 6, 15, 'Monster', 0, 100, 'Common', 1, NULL),
 ('Ghoul', 'Description', 15, 10, 0, 'Monster', 0, 100, 'Common', 1, NULL),
 
 -- Magical
@@ -62,10 +62,10 @@ INSERT INTO Cards (card_name, card_description, attack, defense, healing, card_r
 ('Archangel', 'Description', 14, 10, 0, 'Celestial', 0, 100, 'Common', 1, NULL),
 ('Nephalem', 'Description', 10, 5, 10, 'Celestial', 0, 100, 'Common', 1, NULL),
 ('Succubus', 'Description', 9, 12, 4, 'Celestial', 0, 100, 'Common', 1, NULL),
-('Voidshade Phantom', 'Description', 14, 2, 0, 'Celestial', 0, 100, 'Common', 1, NULL),
-('Titans', 'Description', 1, 15, 5, 'Celestial', 0, 100, 'Common', 1, NULL),
-('Valkyries', 'Description', 8, 4, 9, 'Celestial', 0, 100, 'Common', 1, NULL),
-('Celestial Bug', 'Description', 0, 2, 20, 'Celestial', 0, 100, 'Common', 1, NULL),
+('Nymph', 'Description', 0, 2, 20, 'Celestial', 0, 100, 'Common', 1, NULL),
+('Titan', 'Description', 1, 15, 5, 'Celestial', 0, 100, 'Common', 1, NULL),
+('Valkyrie', 'Description', 8, 4, 9, 'Celestial', 0, 100, 'Common', 1, NULL),
+('Pegasus', 'Description', 14, 0, 2, 'Celestial', 0, 100, 'Common', 1, NULL),
 
 -- Legendary Cards
 
@@ -82,7 +82,7 @@ INSERT INTO Cards (card_name, card_description, attack, defense, healing, card_r
 ('Moonshadow Elf', 'Description', 35, 15, 20, 'Magical', 0, 300, 'Legendary', 1, 'Effect 6'),
 
 -- Celestial
-('Archangel Asmir', 'Description', 35, 25, 20, 'Celestial', 0, 300, 'Legendary', 1, 'Effect 7'),
+('Hercules', 'Description', 35, 25, 20, 'Celestial', 0, 300, 'Legendary', 1, 'Effect 7'),
 ('Demon King', 'Description', 35, 15, 30, 'Celestial', 0, 300, 'Legendary', 1, 'Effect 8'),
 
 -- Special Cards

@@ -1,11 +1,15 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections;
+using System.Collections.Generic;
 
 public class Arrastrar : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public Card cartaArrastrar;
     private Vector2 lastMousePosition;
     private Transform padre;
+    public List<Card> mazo = new List<Card>();
+
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -20,6 +24,7 @@ public class Arrastrar : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         RectTransform cardRectTransform = GetComponent<RectTransform>();
         Vector2 position;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRectTransform, eventData.position, eventData.pressEventCamera, out position);
+
         cardRectTransform.localPosition = position;
     }
 
@@ -31,11 +36,17 @@ public class Arrastrar : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         {
             transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform, false);
             transform.localPosition = Vector3.zero;
+            mazo.Add(cartaArrastrar);
         }
         else
         {
             transform.SetParent(padre, false);
             transform.localPosition = Vector3.zero;
+            if (mazo.Exists(carta => carta.card_ID == cartaArrastrar.card_ID))
+            {
+                mazo.RemoveAll(carta => carta.card_ID == cartaArrastrar.card_ID);
+            }
+            
         }
     }
 

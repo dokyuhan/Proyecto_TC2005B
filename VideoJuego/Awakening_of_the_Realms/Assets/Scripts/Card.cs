@@ -23,39 +23,21 @@ using TMPro;
         public bool desbloqueada;
 
         public Card(int id, string nombre, string desc, int ataque, int defensa, int heal, string realm, int power, int exp, string rareza, int nivel, string efecto, bool desb)
-    {
-        card_ID = id;
-        card_name = nombre;
-        card_description = desc;
-        attack = ataque;
-        defense = defensa;
-        healing = heal;
-        card_realm = realm;
-        power_cost = power;
-        exp_cost = exp;
-        rarity = rareza;
-        card_level = nivel;
-        Effect_type = efecto;
-        desbloqueada = desb;
-    }
-
-
-
-        /*public Card(int ID,string name, string desc, int att, int def, int heal, string rein, int power, int exp, string rarity, int lvl, string effect)
         {
-            id = ID;
-            nombre = name;
-            descripcion = desc;
-            ataque = att;
-            defensa = def;
-            curacion = heal;
-            reino = rein;
-            poderCosto = power;
-            expCosto = exp;
-            rareza = rarity;
-            nivel = lvl;
-            efecto = effect;
-        }*/
+            card_ID = id;
+            card_name = nombre;
+            card_description = desc;
+            attack = ataque;
+            defense = defensa;
+            healing = heal;
+            card_realm = realm;
+            power_cost = power;
+            exp_cost = exp;
+            rarity = rareza;
+            card_level = nivel;
+            Effect_type = efecto;
+            desbloqueada = desb;
+        }
 
 
     }

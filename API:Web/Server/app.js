@@ -15,7 +15,7 @@ async function connectToDB() {
   return await mysql.createConnection({
     host: "localhost",
     user: "tc2005b",
-    password: "asdf05",
+    password: "12345",
     database: "Awakening_realm",
   });
 }

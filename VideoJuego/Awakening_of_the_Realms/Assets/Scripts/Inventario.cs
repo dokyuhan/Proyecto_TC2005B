@@ -1,45 +1,46 @@
-//script para creación de cartas en el inventario
-//script para creación de cartas
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Networking;
-using UnityEngine.UI;
-using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine;
 
 public class Inventario : MonoBehaviour
-{
+{   
+    /* Inventario es declarado como una Instancia que propiedades de un public getter y un private setter
+    Esta instancia es utilizada para implementar un singleton design pattern, que se refiere a que el inventario es unico para todo el juego */
+    public static Inventario Instance { get; private set; }
 
-    public CardDisplayManager cardDisplayManager;
-    public GameObject apiConnectionGameObject;
-    private APIConnection apiConnection;
-    public List<Card> mazo = new List<Card>();
+    public CardDisplayManager cardDisplayManager; 
+    
 
-
-    IEnumerator Start()
+    /* Funcion privada que utiliza Awake (inicializa cualquiera condicion antes de iniciar el juego)
+    Dentro de la funcion se esta inicializando condiciones para verificar si el inventario ya existe o no, si existe lo elimina, si no lo mantiene */
+    private void Awake()
     {
-       // Obtén una referencia al script APIConnection adjunto al GameObject
-        apiConnection = apiConnectionGameObject.GetComponent<APIConnection>();
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
 
-        // Llama al método GetCards y espera a que termine
-        yield return StartCoroutine(apiConnection.GetCards());
+            CardFetch.CardsFetched += DisplayInvCards;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    
+    // Funcion que corre cuando el obejto es destruido
+    private void OnDestroy()
+    {
+        CardFetch.CardsFetched -= DisplayInvCards;
+    }
 
-        // Muestra todas las cartas obtenidas
-        foreach (Card card in apiConnection.cards)
+    public void DisplayInvCards(List<Card> cards)
+    {
+        foreach (Card card in cards)
         {
             cardDisplayManager.DisplayCards(card);
         }
-
-        foreach (Card card in apiConnection.cards)
-        {
-            mazo.Add(card);
-        }
-
-
-
     }
-
 
 
     public void Back()
@@ -49,12 +50,6 @@ public class Inventario : MonoBehaviour
 
     public void Save()
     {
-    
+        //aqui se debe hacer el post de la lista mazo;
     }
-
-
-
-
 }
-
-

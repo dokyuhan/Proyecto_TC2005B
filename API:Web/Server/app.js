@@ -473,6 +473,66 @@ app.get("/api/awakening/players/:id/stats", async (request, response) => {
   }
 });
 
+// Endpoint para obtener un inventario en específico por el id de jugador
+app.get("/api/awakening/inventory/:player_id", async (request, response) => {
+  let connection = null;
+
+  try {
+    connection = await connectToDB();
+
+    const [results, fields] = await connection.execute(
+      "select * from Inventory where player_ID = ?",
+      [request.params.player_id]
+    );
+
+    console.log(`${results.length} rows returned`);
+    console.log(results);
+
+    if (results.length === 0) {
+      response.status(404).json({ message: "Card not found" });
+    } else {
+      response.status(200).json(results[0]);
+    }
+  } catch (error) {
+    response.status(500);
+    response.json(error);
+    console.log(error);
+  } finally {
+    if (connection !== null) {
+      connection.end();
+      console.log("Connection closed successfully!");
+    }
+  }
+});
+
+// Endpoint para mandar los datos del mazo
+app.post("/api/awakening/inventory/deck", async (request, response) => {
+  let connection = null;
+
+  try {
+    connection = await connectToDB();
+
+    const cards = request.body.cards; // Asume que 'cards' es un arreglo de objetos
+    let insertQuery = "INSERT INTO Inventory (card_ID, player_ID, deck_ID) VALUES ?";
+    let values = cards.map(card => [card.card_ID, card.player_ID, card.deck_ID]);
+
+    const [results] = await connection.query(insertQuery, [values]);
+
+    console.log(`${results.affectedRows} rows inserted`);
+    response.status(200).json({ message: `${results.affectedRows} cards added successfully` });
+  } catch (error) {
+    console.error("Error inserting into Inventory:", error);
+    response.status(500).json({ error: "Internal server error" });
+  } finally {
+    if (connection !== null) {
+      connection.end();
+      console.log("Connection closed successfully!");
+    }
+  }
+});
+
+
+
 // Manejo de errores genérico
 app.use((err, request, response, next) => {
   console.error(err); // Para propósitos de depuración

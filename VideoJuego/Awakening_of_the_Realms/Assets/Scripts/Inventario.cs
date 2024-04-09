@@ -9,6 +9,7 @@ public class Inventario : MonoBehaviour
     public static Inventario Instance { get; private set; }
 
     public CardDisplayManager cardDisplayManager; 
+    
 
     /* Funcion privada que utiliza Awake (inicializa cualquiera condicion antes de iniciar el juego)
     Dentro de la funcion se esta inicializando condiciones para verificar si el inventario ya existe o no, si existe lo elimina, si no lo mantiene */
@@ -19,7 +20,7 @@ public class Inventario : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            CardFetch.CardsFetched += DisplayAllCards;
+            CardFetch.CardsFetched += DisplayInvCards;
         }
         else
         {
@@ -30,10 +31,10 @@ public class Inventario : MonoBehaviour
     // Funcion que corre cuando el obejto es destruido
     private void OnDestroy()
     {
-        CardFetch.CardsFetched -= DisplayAllCards;
+        CardFetch.CardsFetched -= DisplayInvCards;
     }
 
-    public void DisplayAllCards(List<Card> cards)
+    public void DisplayInvCards(List<Card> cards)
     {
         foreach (Card card in cards)
         {

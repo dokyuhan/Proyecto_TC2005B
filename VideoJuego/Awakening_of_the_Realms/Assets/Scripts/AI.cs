@@ -75,6 +75,22 @@ public class AI : MonoBehaviour
 
     void PlayHuman2(List<Card> fetchedCards)
     {
+        int [] human2Deck = { 11, 12, 13, 14, 15, 20, 22, 23, 25, 30 };
+
+        foreach (int cardID in human2Deck)
+        {
+            aiCard = deckAI.cards.Find(card => card.card_ID == cardID);
+            
+            // Check if a card with the given ID was found
+            if (aiCard != null)
+            {
+                cardDisplayManager.DisplayCards(aiCard);
+            }
+            else
+            {
+                Debug.Log("Card with ID " + cardID + " not found.");
+            }
+        }
 
     }
 

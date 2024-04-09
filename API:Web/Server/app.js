@@ -13,9 +13,9 @@ app.use(express.json());
 // Funcion para conectarse a la base de datos
 async function connectToDB() {
   return await mysql.createConnection({
-    host: "localhost",
-    user: "tc2005b",
-    password: "12345",
+    host: "127.0.0.1",
+    user: "root",
+    password: "@Dokyu2379",
     database: "Awakening_realm",
   });
 }

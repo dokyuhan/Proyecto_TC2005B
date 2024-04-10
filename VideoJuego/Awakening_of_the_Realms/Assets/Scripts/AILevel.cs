@@ -10,6 +10,7 @@ public class AI : MonoBehaviour
     public CardFetch deckAI;
     public Card aiCard;
     public CardDisplayManager cardDisplayManager;
+    public HandDeck handDeck;
 
     private void OnEnable()
     {
@@ -63,13 +64,14 @@ public class AI : MonoBehaviour
             // Check if a card with the given ID was found
             if (aiCard != null)
             {
-                cardDisplayManager.DisplayCards(aiCard);
+                handDeck.handCards.Add(aiCard); // Add the card to the hand deck
             }
             else
             {
                 Debug.Log("Card with ID " + cardID + " not found.");
             }
         }
+        handDeck.ShuffleAndDisplayHand(); // Shuffle and display the hand deck
 
     }
 
@@ -84,13 +86,14 @@ public class AI : MonoBehaviour
             // Check if a card with the given ID was found
             if (aiCard != null)
             {
-                cardDisplayManager.DisplayCards(aiCard);
+                handDeck.handCards.Add(aiCard); // Add the card to the hand deck
             }
             else
             {
                 Debug.Log("Card with ID " + cardID + " not found.");
             }
         }
+        handDeck.ShuffleAndDisplayHand(); // Shuffle and display the hand deck
 
     }
 

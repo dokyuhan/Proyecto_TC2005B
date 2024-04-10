@@ -24,6 +24,9 @@ public class Card
         public string Effect_type;
         public bool desbloqueada;
 
+        public GameObject cardGameObject; // Reference to the card's GameObject
+
+
     public Card(int id, string nombre, string desc, int ataque, int defensa, int heal, string realm, int power, int exp, string rareza, int nivel, string efecto, bool desb)
     {
             card_ID = id;

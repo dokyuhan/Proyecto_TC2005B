@@ -10,7 +10,6 @@ public class Arrastrar : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     private Vector2 lastMousePosition;
     private Transform padre;
 
-
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (!cartaArrastrar.desbloqueada) return;
@@ -56,6 +55,7 @@ public class Arrastrar : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     void Start()
     {
         padre = transform.parent;
+
     }
 
 }

@@ -16,6 +16,11 @@ public class RealmInfo : MonoBehaviour
         }
     }
 
+    public void GoBack()
+    {
+        SceneManager.LoadScene("NewUser");
+    }
+
     public void Continue()
     {
         if (NewUser.newUser != null)

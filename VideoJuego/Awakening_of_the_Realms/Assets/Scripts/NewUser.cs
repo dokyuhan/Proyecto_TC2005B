@@ -28,4 +28,9 @@ public class NewUser : MonoBehaviour
         // Cambia a la escena 'RealmInfo' para continuar el proceso
         SceneManager.LoadScene("RealmInfo");
     }
+
+    public void GoBack()
+    {
+        SceneManager.LoadScene("Menu");
+    }
 }

@@ -355,17 +355,21 @@ app.post("/api/awakening/players/login", async (request, response) => {
     const data = request.body;
 
     const [results, fields] = await connection.execute(
-      "select * from Players where user_name = ? and password = ?",
+      "SELECT * FROM Players WHERE user_name = ? AND password = ?",
       [data.user_name, data.password]
     );
 
     console.log(`${results.length} rows returned`);
     console.log(results);
-    response.status(200).json(results);
+
+    if (results.length > 0) {
+      response.status(200).json(results[0]);
+    } else {
+      response.status(404).json({ message: "Incorrect username or password" });
+    }
   } catch (error) {
-    response.status(500);
-    response.json(error);
     console.log(error);
+    response.status(500).json(error);
   } finally {
     if (connection !== null) {
       connection.end();
@@ -393,7 +397,7 @@ app.get("/api/awakening/players/:id", async (request, response) => {
     if (results.length === 0) {
       response.status(404).json({ message: "Player not found" });
     } else {
-      response.status(200).json(results);
+      response.status(200).json(results[0]);
     }
   } catch (error) {
     response.status(500);
@@ -474,7 +478,7 @@ app.get("/api/awakening/players/:id/stats", async (request, response) => {
 });
 
 // Endpoint para obtener un inventario en específico por el id de jugador
-app.get("/api/awakening/inventory/:player_id", async (request, response) => {
+app.get("/api/awakening/inventory/:id", async (request, response) => {
   let connection = null;
 
   try {

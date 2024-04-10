@@ -36,15 +36,22 @@ public class Arrastrar : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         {
             transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform, false);
             transform.localPosition = Vector3.zero;
-
+            // Añade la carta al mazo si aún no está en la lista, para evitar duplicados.
+            if (!ControladorDeMazo.cartasEnMazo.Contains(cartaArrastrar))
+            {
+                ControladorDeMazo.cartasEnMazo.Add(cartaArrastrar);
+            }
+            Debug.Log("Total de cartas en el mazo: " + ControladorDeMazo.cartasEnMazo.Count);
         }
         else
         {
             transform.SetParent(padre, false);
             transform.localPosition = Vector3.zero;
-            
+            // Remueve la carta del mazo basándose en su ID.
+            ControladorDeMazo.cartasEnMazo.RemoveAll(carta => carta.card_ID == cartaArrastrar.card_ID);
         }
     }
+
 
     void Start()
     {

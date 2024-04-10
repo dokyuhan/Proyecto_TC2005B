@@ -28,7 +28,6 @@ public class CardFetch : MonoBehaviour
         {
             yield return StartCoroutine(GetCard(i));
         }
-        
         /* CardsFetched proviene del evento OnCardsFetched, que este evento en si contiene argumentos especificos (en este caso seria la List<Card> cards),
         porque se pasan parametros especificos, cuando este evento es llamado en otra parte agrega dentro del evento el metodo que se desea correr o implementar (un ejemplo seria en el script del inventario en donde se programa un codigo 
         utilizando la clase de CardFetch el evento CardsFetched y un operador que suma (+=) la funcion de  DisplayAllCards encontrada en inventario.) Con esos parametros recibidos se ejecuta los metodos del evento (en este caso se estaria ejecutando
@@ -36,6 +35,7 @@ public class CardFetch : MonoBehaviour
         La clase Invoke sirve para encapsular exepciones, esto se refiere a que si cuando un evento no recibe ningun metodo o valor en lugar de mandar el error de un null, no se realize nada y no mande ningun output  */
         CardsFetched?.Invoke(cards);
     }
+        
 
     IEnumerator GetCard(int id)
     {
@@ -59,6 +59,7 @@ public class CardFetch : MonoBehaviour
             card.desbloqueada = true;
 
             cards.Add(card);
+
         }
 
         else

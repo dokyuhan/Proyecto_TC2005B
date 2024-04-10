@@ -6,15 +6,12 @@ public class HandDeck : MonoBehaviour
 {
     public List<Card> handCards = new List<Card>(); // List to hold cards in hand
     public CardDisplayManager cardDisplayManager; // Reference to the CardDisplayManager to display cards
+    public List<Card> displayedCards = new List<Card>(); // List to hold displayed cards
 
-    void Start()
-    {
-        ShuffleAndDisplayHand();
-    }
+
 
     public void ShuffleAndDisplayHand()
     {
-        // Shuffle the handCards list
         for (int i = 0; i < handCards.Count; i++)
         {
             Card temp = handCards[i];
@@ -23,12 +20,16 @@ public class HandDeck : MonoBehaviour
             handCards[randomIndex] = temp;
         }
 
+        // Clear the displayedCards list
+        displayedCards.Clear();
+
         // Display the first 5 cards from the shuffled hand
         for (int i = 0; i < 5; i++)
         {
             if (i < handCards.Count)
             {
                 cardDisplayManager.DisplayCards(handCards[i]);
+                displayedCards.Add(handCards[i]); // Add the card to the displayedCards list
             }
             else
             {

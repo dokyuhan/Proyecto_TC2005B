@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using System.Collections;
 
 public class Inventario : MonoBehaviour
 {   
@@ -9,6 +10,7 @@ public class Inventario : MonoBehaviour
     public static Inventario Instance { get; private set; }
 
     public CardDisplayManager cardDisplayManager; 
+    public APIConnection conexion;
     
 
     /* Funcion privada que utiliza Awake (inicializa cualquiera condicion antes de iniciar el juego)
@@ -45,11 +47,60 @@ public class Inventario : MonoBehaviour
 
     public void Back()
     {
-        SceneManager.LoadScene("MainScreen");
+        //SceneManager.LoadScene("MainScreen");
+
+        StartCoroutine(conexion.GetCardIdsForPlayer(1, ProcessCardIds));
+
+
     }
 
-    public void Save()
+    public void ProcessCardIds(List<int> cardIds)
     {
-        //aqui se debe hacer el post de la lista mazo;
+        // Este código ahora se ejecutará después de que se hayan recibido y procesado los cardIds.
+        foreach (int cardId in cardIds)
+        {
+            Debug.Log(cardId);
+        }
+        
+        // Si quieres cambiar de escena después de procesar los IDs, coloca la llamada aquí.
+        // SceneManager.LoadScene("MainScreen");
     }
+
+    public void IniciarSave()
+    {
+        StartCoroutine(Save());
+    }
+
+
+
+    public IEnumerator Save()
+    {
+        CardsContainer cardsContainer = new CardsContainer();
+
+        foreach (Card carta in ControladorDeMazo.cartasEnMazo)
+        {
+            cardsContainer.cards.Add(new CardData(carta.card_ID, 1, 1));
+        }
+
+        string jsonData = JsonUtility.ToJson(cardsContainer);
+
+        // Asume que conexion es una instancia de la clase que tiene AddCardsToDeck y que esta clase hereda de MonoBehaviour.
+        yield return StartCoroutine(conexion.AddCardsToDeck("/api/awakening/inventory/deck", jsonData, CallbackDeResultado));
+    }
+
+    private void CallbackDeResultado(bool exito, string respuesta)
+    {
+        if (exito)
+        {
+            Debug.Log("Las cartas se agregaron correctamente: " + respuesta);
+        }
+        else
+        {
+            Debug.LogError("Error al agregar cartas: " + respuesta);
+        }
+    }
+
+
+        
+
 }

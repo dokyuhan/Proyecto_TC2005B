@@ -14,8 +14,8 @@ app.use(express.json());
 async function connectToDB() {
   return await mysql.createConnection({
     host: "localhost",
-    user: "tc2005b",
-    password: "12345",
+    user: "Awakening",
+    password: "qwer1234",
     database: "Awakening_realm",
   });
 }
@@ -491,7 +491,7 @@ app.get("/api/awakening/inventory/:player_id", async (request, response) => {
     if (results.length === 0) {
       response.status(404).json({ message: "Card not found" });
     } else {
-      const cardIds = results.map(row => row.card_ID);
+      const cardIds = results.map((row) => row.card_ID);
 
       response.status(200).json({ cardIds });
     }
@@ -507,7 +507,6 @@ app.get("/api/awakening/inventory/:player_id", async (request, response) => {
   }
 });
 
-
 // Endpoint para mandar los datos del mazo
 app.post("/api/awakening/inventory/deck", async (request, response) => {
   let connection = null;
@@ -516,13 +515,20 @@ app.post("/api/awakening/inventory/deck", async (request, response) => {
     connection = await connectToDB();
 
     const cards = request.body.cards; // Asume que 'cards' es un arreglo de objetos
-    let insertQuery = "INSERT INTO Inventory (card_ID, player_ID, deck_ID) VALUES ?";
-    let values = cards.map(card => [card.card_ID, card.player_ID, card.deck_ID]);
+    let insertQuery =
+      "INSERT INTO Inventory (card_ID, player_ID, deck_ID) VALUES ?";
+    let values = cards.map((card) => [
+      card.card_ID,
+      card.player_ID,
+      card.deck_ID,
+    ]);
 
     const [results] = await connection.query(insertQuery, [values]);
 
     console.log(`${results.affectedRows} rows inserted`);
-    response.status(200).json({ message: `${results.affectedRows} cards added successfully` });
+    response
+      .status(200)
+      .json({ message: `${results.affectedRows} cards added successfully` });
   } catch (error) {
     console.error("Error inserting into Inventory:", error);
     response.status(500).json({ error: "Internal server error" });
@@ -533,8 +539,6 @@ app.post("/api/awakening/inventory/deck", async (request, response) => {
     }
   }
 });
-
-
 
 // Manejo de errores genérico
 app.use((err, request, response, next) => {

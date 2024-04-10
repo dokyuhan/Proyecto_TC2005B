@@ -272,8 +272,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Every 3 turns can place an extra card
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f87904f79fc4749cb91143ca970f0818, type: 2}
-  m_sharedMaterial: {fileID: 3677183362396026705, guid: f87904f79fc4749cb91143ca970f0818, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
+  m_sharedMaterial: {fileID: -4296501476212617008, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -297,8 +297,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -406,8 +406,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Every 3 turns  disables one of the enemy players cards
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f87904f79fc4749cb91143ca970f0818, type: 2}
-  m_sharedMaterial: {fileID: 3677183362396026705, guid: f87904f79fc4749cb91143ca970f0818, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
+  m_sharedMaterial: {fileID: -4296501476212617008, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -431,8 +431,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -683,7 +683,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 99.52398, y: 50.00001}
+  m_AnchoredPosition: {x: 99.52398, y: 42}
   m_SizeDelta: {x: 202.5261, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &251167770
@@ -708,8 +708,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Monster:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f87904f79fc4749cb91143ca970f0818, type: 2}
-  m_sharedMaterial: {fileID: 3677183362396026705, guid: f87904f79fc4749cb91143ca970f0818, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
+  m_sharedMaterial: {fileID: -4296501476212617008, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -733,8 +733,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1026,6 +1026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   apiURL: http://localhost:3200
+  cardIds: 
 --- !u!4 &471553702
 Transform:
   m_ObjectHideFlags: 0
@@ -1115,8 +1116,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.3406, y: -139.8085}
-  m_SizeDelta: {x: 163, y: 29.617}
+  m_AnchoredPosition: {x: 0.42031, y: -137.2575}
+  m_SizeDelta: {x: 164.84, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &515140604
 MonoBehaviour:
@@ -1257,7 +1258,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -180}
-  m_SizeDelta: {x: 164, y: 30}
+  m_SizeDelta: {x: 164, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &523114223
 MonoBehaviour:
@@ -1589,8 +1590,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Every 2 turns steals one energy of the enemy
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f87904f79fc4749cb91143ca970f0818, type: 2}
-  m_sharedMaterial: {fileID: 3677183362396026705, guid: f87904f79fc4749cb91143ca970f0818, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
+  m_sharedMaterial: {fileID: -4296501476212617008, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1614,8 +1615,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1919,8 +1920,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '30 more health and 10% bonus attack for every card '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f87904f79fc4749cb91143ca970f0818, type: 2}
-  m_sharedMaterial: {fileID: 3677183362396026705, guid: f87904f79fc4749cb91143ca970f0818, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
+  m_sharedMaterial: {fileID: -4296501476212617008, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1944,8 +1945,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2029,7 +2030,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -103, y: 50}
+  m_AnchoredPosition: {x: -103, y: 41.999992}
   m_SizeDelta: {x: 202.5261, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1026691286
@@ -2056,8 +2057,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f87904f79fc4749cb91143ca970f0818, type: 2}
-  m_sharedMaterial: {fileID: 3677183362396026705, guid: f87904f79fc4749cb91143ca970f0818, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
+  m_sharedMaterial: {fileID: -4296501476212617008, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2081,8 +2082,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2166,7 +2167,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -305.526, y: 50.00001}
+  m_AnchoredPosition: {x: -305.526, y: 42}
   m_SizeDelta: {x: 202.52612, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1096681275
@@ -2191,8 +2192,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Human:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f87904f79fc4749cb91143ca970f0818, type: 2}
-  m_sharedMaterial: {fileID: 3677183362396026705, guid: f87904f79fc4749cb91143ca970f0818, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
+  m_sharedMaterial: {fileID: -4296501476212617008, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2216,8 +2217,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2442,7 +2443,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 104.93036}
+  m_AnchoredPosition: {x: 0, y: 91.97403}
   m_SizeDelta: {x: 777.7714, y: 33.948}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1375609303
@@ -2467,8 +2468,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Each realm provides a unique perk, choose wisely...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f87904f79fc4749cb91143ca970f0818, type: 2}
-  m_sharedMaterial: {fileID: 3677183362396026705, guid: f87904f79fc4749cb91143ca970f0818, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
+  m_sharedMaterial: {fileID: -4296501476212617008, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2735,8 +2736,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Continue
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f87904f79fc4749cb91143ca970f0818, type: 2}
-  m_sharedMaterial: {fileID: 3677183362396026705, guid: f87904f79fc4749cb91143ca970f0818, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
+  m_sharedMaterial: {fileID: -4296501476212617008, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2845,7 +2846,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 291.95398, y: 50.00001}
+  m_AnchoredPosition: {x: 291.95398, y: 42}
   m_SizeDelta: {x: 202.5261, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1636725334
@@ -2870,8 +2871,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Celestial:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f87904f79fc4749cb91143ca970f0818, type: 2}
-  m_sharedMaterial: {fileID: 3677183362396026705, guid: f87904f79fc4749cb91143ca970f0818, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
+  m_sharedMaterial: {fileID: -4296501476212617008, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2895,8 +2896,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3162,7 +3163,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 163}
+  m_AnchoredPosition: {x: 0, y: 152.92}
   m_SizeDelta: {x: 1000, y: 110.6269}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1816595320
@@ -3187,8 +3188,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Select Your Realm
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f87904f79fc4749cb91143ca970f0818, type: 2}
-  m_sharedMaterial: {fileID: 3677183362396026705, guid: f87904f79fc4749cb91143ca970f0818, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
+  m_sharedMaterial: {fileID: -4296501476212617008, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3321,8 +3322,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Select Realm
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f87904f79fc4749cb91143ca970f0818, type: 2}
-  m_sharedMaterial: {fileID: 3677183362396026705, guid: f87904f79fc4749cb91143ca970f0818, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
+  m_sharedMaterial: {fileID: -4296501476212617008, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

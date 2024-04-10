@@ -10,6 +10,6 @@ public class Menu : MonoBehaviour
 
     public void NewUser()
     {
-        SceneManager.LoadScene("RealmInfo");
+        SceneManager.LoadScene("NewUser");
     }
 }

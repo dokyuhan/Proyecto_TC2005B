@@ -5,6 +5,7 @@ using UnityEngine.Networking;
 [System.Serializable]
 public class User
 {
+    public string player_ID;
     public string player_name;
     public string player_last_name;
     public int player_age;

@@ -880,7 +880,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1845727388}
         m_TargetAssemblyTypeName: LogIN, Assembly-CSharp
-        m_MethodName: botonPresionado
+        m_MethodName: OnLoginButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1356,7 +1356,7 @@ GameObject:
   - component: {fileID: 1338258167}
   - component: {fileID: 1338258166}
   m_Layer: 5
-  m_Name: InputField (TMP) (1)
+  m_Name: Password field
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1665,7 +1665,7 @@ GameObject:
   - component: {fileID: 1400693853}
   - component: {fileID: 1400693852}
   m_Layer: 5
-  m_Name: InputField (TMP)
+  m_Name: Username field
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2211,6 +2211,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1845727389}
   - component: {fileID: 1845727388}
+  - component: {fileID: 1845727390}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -2230,8 +2231,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea378e98eec564a93bdc0ecc50373726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  username: {fileID: 0}
-  password: {fileID: 0}
+  player_name: {fileID: 1400693852}
+  password: {fileID: 1338258166}
+  conexion: {fileID: 1845727390}
 --- !u!4 &1845727389
 Transform:
   m_ObjectHideFlags: 0
@@ -2247,6 +2249,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1845727390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845727387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8074d21df5894848b33dd034a136b49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apiURL: http://localhost:3200
+  cardIds: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

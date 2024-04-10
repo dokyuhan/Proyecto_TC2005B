@@ -455,8 +455,8 @@ Finally, we intend to implement effects to indicate the interactivity in the gam
 
    1. When a player decides to enter an specific realm level, each level will have its unique environment that aligns with its theme.
    2. Realms environment
-      1. Human Realm: medevial theme. (castles, swords, shields, flags)
-      2. Celestial Realm: celestial theme. (high red colors, fictional beings)
+      1. Human Realm: medieval theme. (castles, swords, shields, flags)
+      2. Celestial Realm: celestial theme. (gold colors, fictional beings)
       3. Magical Realm: magical theme. (mist, blue tones, fictional beings)
       4. Monster Realm: dark forest theme. (dark colors, small red lights, fog)
 

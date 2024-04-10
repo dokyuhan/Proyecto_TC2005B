@@ -311,6 +311,7 @@ GameObject:
   - component: {fileID: 446232763}
   - component: {fileID: 446232765}
   - component: {fileID: 446232764}
+  - component: {fileID: 446232766}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -362,6 +363,7 @@ MonoBehaviour:
   personality: 0
   deckAI: {fileID: 446232765}
   cardDisplayManager: {fileID: 446232764}
+  handDeck: {fileID: 446232766}
 --- !u!114 &446232764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,6 +392,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   apiURL: localhost:3200
   cardEndpoint: /api/awakening/cards/
+--- !u!114 &446232766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446232760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8977685125b24272a3d0c59e9e97836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardDisplayManager: {fileID: 446232764}
 --- !u!1 &452829870
 GameObject:
   m_ObjectHideFlags: 0

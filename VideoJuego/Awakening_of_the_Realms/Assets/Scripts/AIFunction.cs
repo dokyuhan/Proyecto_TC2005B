@@ -9,11 +9,12 @@ public class AIFunction : MonoBehaviour
     public Transform cardPlacementUI2; // Reference to the second UI element where placed cards will be displayed
     public float cardDisplayDuration; // Duration in seconds for which the card is displayed in the UI
 
+    public Card currentCard;
     private Coroutine cardPlacementCoroutine;
 
     private void Start()
     {
-        StartCardPlacementRoutine();
+        //StartCardPlacementRoutine();
     }
 
     private void OnDestroy()
@@ -42,39 +43,48 @@ public class AIFunction : MonoBehaviour
     {
         while (true)
         {
-            PlaceRandomCard();
             yield return new WaitForSeconds(cardPlacementInterval);
+            PlaceRandomCard();
         }
     }
 
-    private void PlaceRandomCard()
+    public void PlaceRandomCard()
     {
-        if (aiScript.deckAI.cards.Count > 0)
+        if (aiScript.handDeck.displayedCards.Count > 0)
         {
-            int randomIndex = Random.Range(0, aiScript.deckAI.cards.Count);
-            Card randomCard = aiScript.deckAI.cards[randomIndex];
+            int randomIndex = Random.Range(0, aiScript.handDeck.displayedCards.Count);
+            Card randomCard = aiScript.handDeck.displayedCards[randomIndex];
 
-            // Determine which UI space to place the card in
-            Transform targetUI = (Random.Range(0, 2) == 0) ? cardPlacementUI1 : cardPlacementUI2;
-
-            // Place the card in the target UI space
-            PlaceCardInUI(randomCard, targetUI);
+            // Place the card in both UI spaces
+            PlaceCardInUI(randomCard, cardPlacementUI1);
+            PlaceCardInUI(randomCard, cardPlacementUI2);
 
             // Start a coroutine to retrieve the card after a certain duration
             StartCoroutine(RetrieveCardAfterDuration(randomCard, cardDisplayDuration));
 
-            // Optionally, add the card back to the deck at a different position to rotate the cards
+            // Remove the card from the displayedCards list
+            aiScript.handDeck.displayedCards.RemoveAt(randomIndex);
+
+            // Add the card back to the main deck at a random position
             int newIndex = Random.Range(0, aiScript.deckAI.cards.Count);
             aiScript.deckAI.cards.Insert(newIndex, randomCard);
         }
         else
         {
-            Debug.Log("No cards left in the deck.");
+            Debug.Log("No displayed cards to place.");
         }
     }
 
+
+
     private void PlaceCardInUI(Card card, Transform targetUI)
     {
+        if (card.cardGameObject == null)
+        {
+            Debug.LogError("Card GameObject is null for card: " + card.card_name);
+            return; // Exit the method to avoid the NullReferenceException
+        }
+        currentCard = card;
         RectTransform cardRectTransform = card.cardGameObject.GetComponent<RectTransform>();
         cardRectTransform.SetParent(targetUI, false);
         cardRectTransform.localPosition = Vector3.zero; // Center the card in the target UI
@@ -94,6 +104,14 @@ public class AIFunction : MonoBehaviour
         // Insert the card back into the deck at the new position
         aiScript.deckAI.cards.Insert(newIndex, card);
 
+        // Display a new card if there are still cards left to display
+        if (aiScript.handDeck.displayedCards.Count < aiScript.handDeck.handCards.Count)
+        {
+            Card newCard = aiScript.handDeck.handCards[aiScript.handDeck.displayedCards.Count];
+            aiScript.handDeck.cardDisplayManager.DisplayCards(newCard);
+            aiScript.handDeck.displayedCards.Add(newCard);
+        }
     }
+
 
 }

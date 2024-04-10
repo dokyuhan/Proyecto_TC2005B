@@ -8,6 +8,7 @@ using TMPro;
 
 
 //clase de la carta
+[System.Serializable]
 public class Card
 {
         public int card_ID;

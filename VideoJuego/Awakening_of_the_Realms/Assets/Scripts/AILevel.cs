@@ -6,10 +6,10 @@ public enum AILevel { Human1, Human2, Monster1, Monster2, Magical1, Magical2, Ce
 
 public class AI : MonoBehaviour
 {
+    public AIFunction aiFunction;
     public AILevel personality;
     public CardFetch deckAI;
     public Card aiCard;
-    public CardDisplayManager cardDisplayManager;
     public HandDeck handDeck;
 
     private void OnEnable()
@@ -72,6 +72,7 @@ public class AI : MonoBehaviour
             }
         }
         handDeck.ShuffleAndDisplayHand(); // Shuffle and display the hand deck
+        aiFunction.PlaceRandomCard();
 
     }
 

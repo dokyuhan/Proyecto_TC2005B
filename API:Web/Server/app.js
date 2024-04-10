@@ -14,8 +14,8 @@ app.use(express.json());
 async function connectToDB() {
   return await mysql.createConnection({
     host: "localhost",
-    user: "tc2005b",
-    password: "12345",
+    user: "Awakening",
+    password: "qwer1234",
     database: "Awakening_realm",
   });
 }

@@ -13,9 +13,9 @@ app.use(express.json());
 // Funcion para conectarse a la base de datos
 async function connectToDB() {
   return await mysql.createConnection({
-    host: "127.0.0.1",
-    user: "root",
-    password: "@Dokyu2379",
+    host: "localhost",
+    user: "tc2005b",
+    password: "12345",
     database: "Awakening_realm",
   });
 }
@@ -481,7 +481,7 @@ app.get("/api/awakening/inventory/:player_id", async (request, response) => {
     connection = await connectToDB();
 
     const [results, fields] = await connection.execute(
-      "select * from Inventory where player_ID = ?",
+      "SELECT card_ID FROM Inventory WHERE player_ID = ?",
       [request.params.player_id]
     );
 
@@ -491,7 +491,9 @@ app.get("/api/awakening/inventory/:player_id", async (request, response) => {
     if (results.length === 0) {
       response.status(404).json({ message: "Card not found" });
     } else {
-      response.status(200).json(results[0]);
+      const cardIds = results.map(row => row.card_ID);
+
+      response.status(200).json({ cardIds });
     }
   } catch (error) {
     response.status(500);
@@ -504,6 +506,7 @@ app.get("/api/awakening/inventory/:player_id", async (request, response) => {
     }
   }
 });
+
 
 // Endpoint para mandar los datos del mazo
 app.post("/api/awakening/inventory/deck", async (request, response) => {

@@ -6,8 +6,10 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using TMPro;
 
-    public class Card
-    {
+
+//clase de la carta
+public class Card
+{
         public int card_ID;
         public string card_name;
         public string card_description;
@@ -25,8 +27,8 @@ using TMPro;
         public GameObject cardGameObject; // Reference to the card's GameObject
 
 
-        public Card(int id, string nombre, string desc, int ataque, int defensa, int heal, string realm, int power, int exp, string rareza, int nivel, string efecto, bool desb)
-        {
+    public Card(int id, string nombre, string desc, int ataque, int defensa, int heal, string realm, int power, int exp, string rareza, int nivel, string efecto, bool desb)
+    {
             card_ID = id;
             card_name = nombre;
             card_description = desc;
@@ -40,7 +42,37 @@ using TMPro;
             card_level = nivel;
             Effect_type = efecto;
             desbloqueada = desb;
-        }
+    }
 
 
     }
+
+// clase para post del mazo
+[System.Serializable]
+public class CardData
+{
+    public int card_ID;
+    public int player_ID;
+    public int deck_ID;
+
+    public CardData(int cardID, int playerID, int deckID)
+    {
+        card_ID = cardID;
+        player_ID = playerID;
+        deck_ID = deckID;
+    }
+}
+
+[System.Serializable]
+public class CardsContainer
+{
+    public List<CardData> cards = new List<CardData>();
+}
+
+
+// Clase auxiliar para deserializar la respuesta
+[System.Serializable]
+public class CardIdListResponse
+{
+    public int[] cardIds;
+}

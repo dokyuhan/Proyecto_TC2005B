@@ -419,6 +419,7 @@ GameObject:
   - component: {fileID: 602332392}
   - component: {fileID: 602332395}
   - component: {fileID: 602332394}
+  - component: {fileID: 602332396}
   m_Layer: 0
   m_Name: Controll
   m_TagString: Untagged
@@ -439,6 +440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardDisplayManager: {fileID: 602332395}
+  conexion: {fileID: 602332396}
 --- !u!4 &602332393
 Transform:
   m_ObjectHideFlags: 0
@@ -482,6 +484,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 1314568882345004036, guid: 807ac2ecdcf774b28acc98b766069eb9, type: 3}
   inv: {fileID: 1726854356}
+--- !u!114 &602332396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602332391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8074d21df5894848b33dd034a136b49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apiURL: localhost:3200
+  cardIds: 
 --- !u!1 &648141914
 GameObject:
   m_ObjectHideFlags: 0
@@ -748,7 +764,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 602332392}
         m_TargetAssemblyTypeName: Inventario, Assembly-CSharp
-        m_MethodName: Save
+        m_MethodName: IniciarSave
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

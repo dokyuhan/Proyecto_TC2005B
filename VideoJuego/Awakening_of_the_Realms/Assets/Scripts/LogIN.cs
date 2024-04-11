@@ -10,8 +10,6 @@ public class LogIN : MonoBehaviour
 
     public APIConnection conexion;
 
-    public static User Usuario;
-
     public void OnLoginButtonClick()
     {
         string userName = player_name.text;
@@ -24,12 +22,13 @@ public class LogIN : MonoBehaviour
             if (success)
             {
                 Debug.Log("Login successful!");
-                /* Parse JSON response and create User object
                 User loggedInUser = JsonUtility.FromJson<User>(response);
-                // Assign loggedInUser to static variable
-                Usuario = loggedInUser;
-                // Load next scene or do other actions
-                SceneManager.LoadScene("NextScene");*/
+                Usuario.usuario = loggedInUser;
+                Debug.LogError(Usuario.usuario.player_ID);
+
+                SceneManager.LoadScene("MainScreen");
+
+
             }
             else
             {

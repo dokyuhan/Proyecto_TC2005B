@@ -41,14 +41,17 @@ public class AIFunction : MonoBehaviour
 
     private IEnumerator PlaceCardAtIntervals()
     {
+        bool useFirstUI = true; // Toggle between the two UI elements
         while (true)
         {
             yield return new WaitForSeconds(cardPlacementInterval);
-            PlaceRandomCard();
+            Transform targetUI = useFirstUI ? cardPlacementUI1 : cardPlacementUI2;
+            PlaceRandomCard(targetUI);
+            useFirstUI = !useFirstUI; // Switch to the other UI element for the next card
         }
     }
 
-    public void PlaceRandomCard()
+    public void PlaceRandomCard(Transform targetUI)
     {
         if (aiScript.handDeck.displayedCards.Count > 0)
         {
@@ -56,8 +59,7 @@ public class AIFunction : MonoBehaviour
             Card randomCard = aiScript.handDeck.displayedCards[randomIndex];
 
             // Place the card in both UI spaces
-            PlaceCardInUI(randomCard, cardPlacementUI1);
-            PlaceCardInUI(randomCard, cardPlacementUI2);
+            PlaceCardInUI(randomCard, targetUI);
 
             // Start a coroutine to retrieve the card after a certain duration
             StartCoroutine(RetrieveCardAfterDuration(randomCard, cardDisplayDuration));

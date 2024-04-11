@@ -11,6 +11,7 @@ public class AI : MonoBehaviour
     public CardFetch deckAI;
     public Card aiCard;
     public HandDeck handDeck;
+    Transform targetUI;
 
     private void OnEnable()
     {
@@ -27,37 +28,44 @@ public class AI : MonoBehaviour
         switch (personality)
         {
             case AILevel.Human1:
-                PlayHuman1(fetchedCards);
+                int [] human1 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+                AiPlay(fetchedCards, human1, targetUI);
                 break;
             case AILevel.Human2:
-                PlayHuman2(fetchedCards);
+                int [] human2 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+                AiPlay(fetchedCards, human2, targetUI);
                 break;
             case AILevel.Monster1:
-                PlayMonster1(fetchedCards);
+                int [] monster1 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+                AiPlay(fetchedCards, monster1, targetUI);
                 break;
             case AILevel.Monster2:
-                PlayMonster2(fetchedCards);
+                int [] monster2 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+                AiPlay(fetchedCards, monster2, targetUI);
                 break;
             case AILevel.Magical1:
-                PlayMagical1(fetchedCards);
+                int [] magical1 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+                AiPlay(fetchedCards, magical1, targetUI);
                 break;
             case AILevel.Magical2:
-                PlayMagical2(fetchedCards);
+                int [] magical2 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+                AiPlay(fetchedCards, magical2, targetUI);
                 break;
             case AILevel.Celestial1:
-                PlayCelestial1(fetchedCards);
+                int [] celestial1 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+                AiPlay(fetchedCards, celestial1, targetUI);
                 break;
             case AILevel.Celestial2:
-                PlayCelestial2(fetchedCards);
+                int [] celestial2 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+                AiPlay(fetchedCards, celestial2, targetUI);
                 break;
         }
     }
 
-    void PlayHuman1(List<Card> fetchedCards)
+    void AiPlay(List<Card> fetchedCards, int[] deck, Transform targetUI)
     {
-        int [] human1Deck = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-        foreach (int cardID in human1Deck)
+        foreach (int cardID in deck)
         {
             aiCard = deckAI.cards.Find(card => card.card_ID == cardID);
             
@@ -72,59 +80,8 @@ public class AI : MonoBehaviour
             }
         }
         handDeck.ShuffleAndDisplayHand(); // Shuffle and display the hand deck
-        aiFunction.PlaceRandomCard();
+        aiFunction.PlaceRandomCard(targetUI);
 
     }
 
-    void PlayHuman2(List<Card> fetchedCards)
-    {
-        int [] human2Deck = { 11, 12, 13, 14, 15, 20, 22, 23, 25, 30 };
-
-        foreach (int cardID in human2Deck)
-        {
-            aiCard = deckAI.cards.Find(card => card.card_ID == cardID);
-            
-            // Check if a card with the given ID was found
-            if (aiCard != null)
-            {
-                handDeck.handCards.Add(aiCard); // Add the card to the hand deck
-            }
-            else
-            {
-                Debug.Log("Card with ID " + cardID + " not found.");
-            }
-        }
-        handDeck.ShuffleAndDisplayHand(); // Shuffle and display the hand deck
-
-    }
-
-    void PlayMonster1(List<Card> fetchedCards)
-    {
-
-    }
-
-    void PlayMonster2(List<Card> fetchedCards)
-    {
-
-    }
-
-    void PlayMagical1(List<Card> fetchedCards)
-    {
-
-    }
-
-    void PlayMagical2(List<Card> fetchedCards)
-    {
-
-    }
-
-    void PlayCelestial1(List<Card> fetchedCards)
-    {
-
-    }
-
-    void PlayCelestial2(List<Card> fetchedCards)
-    {
-
-    }
 }

@@ -53,10 +53,10 @@ public class Card
 public class CardData
 {
     public int card_ID;
-    public int player_ID;
+    public string player_ID;
     public int deck_ID;
 
-    public CardData(int cardID, int playerID, int deckID)
+    public CardData(int cardID, string playerID, int deckID)
     {
         card_ID = cardID;
         player_ID = playerID;

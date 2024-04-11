@@ -176,5 +176,5 @@ INSERT INTO Inventory (card_ID, player_ID, deck_ID) VALUES
 (3, 3, 2),
 (7, 3, 2);
 
-SELECT * FROM Inventory where player_ID = 2;
+SELECT * FROM Inventory where player_ID = 23;
 

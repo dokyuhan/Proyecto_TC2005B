@@ -79,7 +79,7 @@ public class Inventario : MonoBehaviour
 
         foreach (Card carta in ControladorDeMazo.cartasEnMazo)
         {
-            cardsContainer.cards.Add(new CardData(carta.card_ID, 1, 1));
+            cardsContainer.cards.Add(new CardData(carta.card_ID, Usuario.usuario.player_ID, 1));
         }
 
         string jsonData = JsonUtility.ToJson(cardsContainer);

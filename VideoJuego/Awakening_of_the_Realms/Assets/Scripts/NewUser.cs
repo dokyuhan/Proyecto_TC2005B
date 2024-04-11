@@ -10,20 +10,19 @@ public class NewUser : MonoBehaviour
     public TMP_InputField user_name;
     public TMP_InputField password;
 
-    public static User newUser; // Objeto User estático para ser accesible globalmente
 
     public void botonPresionado()
     {
-        // Asigna los valores recogidos del formulario al objeto User
-        newUser = new User()
+        if (Usuario.usuario == null)
         {
-            player_name = player_name.text,
-            player_last_name = player_last_name.text,
-            player_age = int.Parse(player_age.text),
-            user_name = user_name.text,
-            password = password.text,
-            // Nota: 'realm' se asignará en RealmInfo
-        };
+            Usuario.usuario = new User();
+        }
+        
+        Usuario.usuario.player_name = player_name.text;
+        Usuario.usuario.player_last_name = player_last_name.text;
+        Usuario.usuario.player_age = int.Parse(player_age.text); // Asegúrate de manejar posibles excepciones aquí
+        Usuario.usuario.user_name = user_name.text;
+        Usuario.usuario.password = password.text;
 
         // Cambia a la escena 'RealmInfo' para continuar el proceso
         SceneManager.LoadScene("RealmInfo");

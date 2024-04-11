@@ -23,11 +23,11 @@ public class RealmInfo : MonoBehaviour
 
     public void Continue()
     {
-        if (NewUser.newUser != null)
+        if (Usuario.usuario != null)
         {
-            NewUser.newUser.realm = realmDropdown.options[realmDropdown.value].text;
+            Usuario.usuario.realm = realmDropdown.options[realmDropdown.value].text;
 
-            StartCoroutine(apiConnection.AddUser("/api/awakening/players", JsonUtility.ToJson(NewUser.newUser), HandleAPIResponse));
+            StartCoroutine(apiConnection.AddUser("/api/awakening/players", JsonUtility.ToJson(Usuario.usuario), HandleAPIResponse));
         }
         else
         {

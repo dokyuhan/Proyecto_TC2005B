@@ -15,7 +15,7 @@ async function connectToDB() {
   return await mysql.createConnection({
     host: "localhost",
     user: "Awakening",
-    password: "@qwer1234",
+    password: "qwer1234",
     database: "Awakening_realm",
   });
 }
@@ -488,7 +488,7 @@ app.get("/api/awakening/players/:id/stats", async (request, response) => {
 });
 
 // Endpoint para obtener un inventario en específico por el id de jugador
-app.get("/api/awakening/inventory/:id", async (request, response) => {
+app.get("/api/awakening/inventory/:player_id", async (request, response) => {
   let connection = null;
 
   try {

@@ -10,17 +10,17 @@ INSERT INTO Effect (Effect_type, effect_description) VALUES
 ('Effect 5', 'Creates a barrier for the alies that gives 50 defense for 2 rounds'),
 ('Effect 6', 'Debuf the enemy making the attacks 20% weaker for 2 rounds and life steal 30 life points of the enemy (The life steal effect passes the amount of life steal from the enemy player to the player, in this case 30 would be decreasing to the enemy players health and 30 would be increasing to the player)'),
 ('Effect 7', 'Reflect all damage taken for 1 round and also heals 10 life points for 3 rounds'),
-('Effect 8', 'Double the damage of the ally cards for 1 round and curse the enemy causing 10 damage over time and 20% healing reduction for 2 rounds'),
-('Effect 9', 'Gives the player an Extra energy'),
-('Effect 10', 'The attack of the card placed deals x2 for one turn'),
-('Effect 11', 'Posion the enemy player for 2 rounds dealing 20 damage'),
-('Effect 12', 'Heals the player 30 health'),
-('Effect 13', 'Cures all debuf applied to the player'),
-('Effect 14', 'Enhance shields played x2'),
-('Effect 15', 'Reduces enemy attack to 50%'),
-('Effect 16', 'Damage taken will be reflected to the enemy'),
-('Effect 17', 'Disables an enemy card played'),
-('Effect 18', 'You can see the opponents cards');
+('Effect 8', 'Double the damage of the ally cards for 1 round and curse the enemy causing 10 damage over time and 20% healing reduction for 2 rounds');
+-- ('Effect 9', 'Gives the player an Extra energy'),
+-- ('Effect 10', 'The attack of the card placed deals x2 for one turn'),
+-- ('Effect 11', 'Posion the enemy player for 2 rounds dealing 20 damage'),
+-- ('Effect 12', 'Heals the player 30 health'),
+-- ('Effect 13', 'Cures all debuf applied to the player'),
+-- ('Effect 14', 'Enhance shields played x2'),
+-- ('Effect 15', 'Reduces enemy attack to 50%'),
+-- ('Effect 16', 'Damage taken will be reflected to the enemy'),
+-- ('Effect 17', 'Disables an enemy card played'),
+-- ('Effect 18', 'You can see the opponents cards');
 
 -- card name, card description, attack, defense, healing, card realm, power cost, exp cost, rarity, card level, effect
 INSERT INTO Cards (card_name, card_description, attack, defense, healing, card_realm, power_cost, exp_cost, rarity, card_level, Effect_type) VALUES
@@ -83,19 +83,19 @@ INSERT INTO Cards (card_name, card_description, attack, defense, healing, card_r
 
 -- Celestial
 ('Hercules', 'Description', 35, 25, 20, 'Celestial', 0, 300, 'Legendary', 1, 'Effect 7'),
-('Demon King', 'Description', 35, 15, 30, 'Celestial', 0, 300, 'Legendary', 1, 'Effect 8'),
+('Demon King', 'Description', 35, 15, 30, 'Celestial', 0, 300, 'Legendary', 1, 'Effect 8');
 
 -- Special Cards
-('Special 1', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 9'),
-('Special 2', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 10'),
-('Special 3', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 11'),
-('Special 4', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 12'),
-('Special 5', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 13'),
-('Special 6', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 14'),
-('Special 7', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 15'),
-('Special 8', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 16'),
-('Special 9', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 17'),
-('Special 10', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 18');
+-- ('Special 1', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 9'),
+-- ('Special 2', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 10'),
+-- ('Special 3', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 11'),
+-- ('Special 4', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 12'),
+-- ('Special 5', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 13'),
+-- ('Special 6', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 14'),
+-- ('Special 7', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 15'),
+-- ('Special 8', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 16'),
+-- ('Special 9', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 17'),
+-- ('Special 10', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 18');
 
 -- player name, last name, age, email, realm, is npc, player exp, win, lost, coins, exp points
 INSERT INTO Players (player_name, player_last_name, player_age, user_name, password, realm, is_npc, level, player_exp, win_record, lose_record, coins, token) VALUES
@@ -177,4 +177,6 @@ INSERT INTO Inventory (card_ID, player_ID, deck_ID) VALUES
 (7, 3, 2);
 
 SELECT * FROM Inventory where player_ID = 23;
+
+SELECT * FROM Game where game_ID = 9;
 

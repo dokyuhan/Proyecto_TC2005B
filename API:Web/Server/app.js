@@ -487,8 +487,72 @@ app.get("/api/awakening/players/:id/stats", async (request, response) => {
   }
 });
 
+// Endpoint para crear un inventario y/o añadir cartas al inventario de un jugador
+app.post("/api/awakening/players/inventory", async (request, response) => {
+  let connection = null;
+
+  try {
+    connection = await connectToDB();
+    const { card_IDs, player_ID, deck_ID } = request.body;
+
+    if (!card_IDs || !player_ID || !deck_ID) {
+      return response.status(400).json({
+        message:
+          "Missing required fields. Ensure card_IDs, player_ID, and deck_ID are provided.",
+      });
+    }
+
+    if (!Array.isArray(card_IDs) || card_IDs.length === 0) {
+      return response.status(400).json({
+        message: "card_IDs must be a non-empty array.",
+      });
+    }
+
+    let existingIDs = [];
+    for (const card_ID of card_IDs) {
+      const [results] = await connection.execute(
+        "SELECT card_ID FROM Inventory WHERE card_ID = ? AND player_ID = ?",
+        [card_ID, player_ID]
+      );
+      if (results.length > 0) {
+        existingIDs.push(card_ID);
+      }
+    }
+
+    if (existingIDs.length > 0) {
+      return response.status(400).json({
+        message:
+          "Some card IDs are already in the inventory for the given player.",
+        existingIDs: existingIDs,
+      });
+    }
+
+    let insertedRows = 0;
+    for (const card_ID of card_IDs) {
+      const [result] = await connection.execute(
+        "INSERT INTO Inventory (card_ID, player_ID, deck_ID) VALUES (?, ?, ?)",
+        [card_ID, player_ID, deck_ID]
+      );
+      insertedRows += result.affectedRows;
+    }
+
+    console.log(`${insertedRows} rows affected`);
+    response.status(200).json({ message: "Inventory added successfully" });
+  } catch (error) {
+    console.error(error);
+    response
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
+  } finally {
+    if (connection) {
+      connection.end();
+      console.log("Connection closed successfully!");
+    }
+  }
+});
+
 // Endpoint para obtener un inventario en específico por el id de jugador
-app.get("/api/awakening/inventory/:player_id", async (request, response) => {
+app.get("/api/awakening/players/:id/inventory", async (request, response) => {
   let connection = null;
 
   try {
@@ -496,7 +560,7 @@ app.get("/api/awakening/inventory/:player_id", async (request, response) => {
 
     const [results, fields] = await connection.execute(
       "SELECT card_ID FROM Inventory WHERE player_ID = ?",
-      [request.params.player_id]
+      [request.params.id]
     );
 
     console.log(`${results.length} rows returned`);
@@ -522,7 +586,7 @@ app.get("/api/awakening/inventory/:player_id", async (request, response) => {
 });
 
 // Endpoint para mandar los datos del mazo
-app.post("/api/awakening/inventory/deck", async (request, response) => {
+app.post("/api/awakening/players/inventory/deck", async (request, response) => {
   let connection = null;
 
   try {
@@ -545,6 +609,64 @@ app.post("/api/awakening/inventory/deck", async (request, response) => {
       .json({ message: `${results.affectedRows} cards added successfully` });
   } catch (error) {
     console.error("Error inserting into Inventory:", error);
+    response.status(500).json({ error: "Internal server error" });
+  } finally {
+    if (connection !== null) {
+      connection.end();
+      console.log("Connection closed successfully!");
+    }
+  }
+});
+
+// Endpoint para crear una partida
+app.post("/api/awakening/match/create", async (request, response) => {
+  let connection = null;
+
+  try {
+    connection = await connectToDB();
+
+    const data = request.body.game;
+
+    const requiredFields = [
+      "player_ID_1",
+      "player_ID_2",
+      "winner_ID",
+      "game_level",
+      "game_scene",
+      "game_duration",
+      "game_turns",
+    ];
+
+    const missingFields = requiredFields.filter(
+      (field) => data[field] === undefined
+    );
+
+    if (missingFields.length > 0) {
+      return response.status(400).json({
+        error: "Missing required information",
+        missingFields,
+      });
+    }
+
+    const [results] = await connection.execute(
+      "INSERT INTO Game (player_ID_1, player_ID_2, winner_ID, game_level, game_scene, game_duration, game_turns) VALUES (?, ?, ?, ?, ?, ?, ?)",
+      [
+        data.player_ID_1,
+        data.player_ID_2,
+        data.winner_ID,
+        data.game_level,
+        data.game_scene,
+        data.game_duration,
+        data.game_turns,
+      ]
+    );
+
+    console.log(`${results.affectedRows} rows inserted`);
+    response
+      .status(200)
+      .json({ message: `${results.affectedRows} game added successfully` });
+  } catch (error) {
+    console.error("Error inserting into Game:", error);
     response.status(500).json({ error: "Internal server error" });
   } finally {
     if (connection !== null) {

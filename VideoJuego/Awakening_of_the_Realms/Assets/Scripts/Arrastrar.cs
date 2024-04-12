@@ -10,6 +10,10 @@ public class Arrastrar : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     private Vector2 lastMousePosition;
     private Transform padre;
 
+    public delegate void CardEventHandler(Card card);
+    public static event CardEventHandler OnCardPlacedInPlayZone;
+    public static event CardEventHandler OnCardPlacedInOpponentZone;
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (!cartaArrastrar.desbloqueada) return;
@@ -48,6 +52,26 @@ public class Arrastrar : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             transform.localPosition = Vector3.zero;
             // Remueve la carta del mazo basándose en su ID.
             ControladorDeMazo.cartasEnMazo.RemoveAll(carta => carta.card_ID == cartaArrastrar.card_ID);
+        }
+
+        Transform newParent = eventData.pointerCurrentRaycast.gameObject?.transform;
+
+        if (newParent != null && newParent.CompareTag("play"))
+        {
+            transform.SetParent(newParent, false);
+            transform.localPosition = Vector3.zero;
+            OnCardPlacedInPlayZone?.Invoke(cartaArrastrar);
+        }
+        else if (newParent != null && newParent.CompareTag("opponent"))
+        {
+            transform.SetParent(newParent, false);
+            transform.localPosition = Vector3.zero;
+            OnCardPlacedInOpponentZone?.Invoke(cartaArrastrar);
+        }
+        else
+        {
+            transform.SetParent(padre, false);
+            transform.localPosition = Vector3.zero;
         }
     }
 

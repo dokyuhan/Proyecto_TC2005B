@@ -10,6 +10,7 @@ public class APIConnection : MonoBehaviour
     [SerializeField] private string apiURL = "http://localhost:3200";
 
     public List<int> cardIds = new List<int>();
+    Card card;
 
 
 
@@ -56,7 +57,7 @@ public class APIConnection : MonoBehaviour
         }
     }
 
-    public IEnumerator GetCardIdsForPlayer(int playerId, Action<List<int>> callback)
+    public IEnumerator GetCardIdsForPlayer(string playerId, Action<List<int>> callback)
     {
         UnityWebRequest www = UnityWebRequest.Get(apiURL + "/api/awakening/inventory/" + playerId);
         yield return www.SendWebRequest();
@@ -101,6 +102,25 @@ public class APIConnection : MonoBehaviour
         }
     }
 
+    public IEnumerator GetCards(int id, List<Card> lista)
+    {
+
+            UnityWebRequest www = UnityWebRequest.Get(apiURL + "/api/awakening/cards/" + id);
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError($"Failed to fetch card {id}: {www.error}");
+            }
+            else
+            {
+                string data = www.downloadHandler.text;
+                card = JsonUtility.FromJson<Card>(data);
+                card.desbloqueada = true;
+                lista.Add(card);
+            }
+
+    }
 
 
 

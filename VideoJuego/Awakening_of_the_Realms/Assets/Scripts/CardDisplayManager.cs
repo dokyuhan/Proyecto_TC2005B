@@ -17,6 +17,13 @@ public class CardDisplayManager : MonoBehaviour
         card.cardGameObject = objeto;
         SetupCardDisplay(objeto, card);
     }
+    public void ClearCardsUI()
+    {
+        foreach (Transform child in inv)
+        {
+            Destroy(child.gameObject);
+        }
+    }
 
     public void SetupCardDisplay(GameObject objeto, Card card)
     {

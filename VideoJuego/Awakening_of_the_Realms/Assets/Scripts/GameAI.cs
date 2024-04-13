@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
+using System;
 
 public class GameAI : MonoBehaviour
 {
@@ -25,7 +27,9 @@ public class GameAI : MonoBehaviour
     public APIConnection conexion;
     public CardManager cardManager;
     public TimerPrueba timer;
-    public HealthAndShield healthAndShield;
+    public HealthBar playerHealthBar;
+    public HealthBar aiHealthBar;
+
 
     public List<int> lista = new List<int>();
     public List<Card> cartasJugadorEnJuego = new List<Card>();
@@ -49,6 +53,8 @@ public class GameAI : MonoBehaviour
 
     void Start()
     {
+        playerHealthBar.SetMaxHealth(100);  // Assuming 100 is max health for both
+        aiHealthBar.SetMaxHealth(100);
         StartCoroutine(conexion.GetCardIdsForPlayer("2", ProcessCardIds));
         timer.OnCountdownFinished += CheckForCombat;
         timer.StartCountdown();
@@ -123,10 +129,64 @@ public class GameAI : MonoBehaviour
         }
     }
 
-    void RealizarCombate()
+    public void RealizarCombate()
     {
-        // Implement combat logic as previously defined
+        int attackTotalPlayer = 0, defenseTotalPlayer = 0, healingTotalPlayer = 0;
+        int attackTotalAI = 0, defenseTotalAI = 0, healingTotalAI = 0;
+
+        // Aggregate stats from cards
+        foreach (var card in cartasJugadorEnJuego)
+        {
+            attackTotalPlayer += card.attack;
+            defenseTotalPlayer += card.defense;
+            healingTotalPlayer += card.healing;
+        }
+
+        foreach (var card in cartasOponenteEnJuego)
+        {
+            attackTotalAI += card.attack;
+            defenseTotalAI += card.defense;
+            healingTotalAI += card.healing;
+        }
+
+        // Combat calculations
+        int damageToPlayer = Math.Max(0, attackTotalAI - defenseTotalPlayer);
+        int damageToAI = Math.Max(0, attackTotalPlayer - defenseTotalAI);
+
+        // Apply damage and healing
+        playerHealthBar.TakeDamage(damageToPlayer);
+        playerHealthBar.Heal(healingTotalPlayer);
+
+        aiHealthBar.TakeDamage(damageToAI);
+        aiHealthBar.Heal(healingTotalAI);
+
+        // Debug info
+        Debug.LogError("Damage to Player: " + damageToPlayer);
+        Debug.LogError("Damage to AI: " + damageToAI);
+
+        // Reset game state
+        ResetGameState();
     }
+
+    private void ResetGameState()
+    {
+        // Clear all cards from play to prepare for the next round
+        cartasJugadorEnJuego.Clear();
+        cartasOponenteEnJuego.Clear();
+
+        // Reset turn counters and prepare the game for the next phase
+        turnos++;
+        if (turnos == 2)
+        {
+            // Any specific logic to reset after every two turns
+            turnos = 0;
+        }
+
+        // Reset the timer to start countdown for the next turn
+        timer.StartCountdown();
+    }
+
+
 
     void EndTurn()
     {

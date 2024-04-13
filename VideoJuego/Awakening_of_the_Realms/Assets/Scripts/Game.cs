@@ -29,6 +29,9 @@ public class Game : MonoBehaviour
 
     public HealthAndShield healthAndShield;
 
+    public HealthBar playerHealthBar;
+    public HealthBar aiHealthBar;
+
 
 
     public void Start()

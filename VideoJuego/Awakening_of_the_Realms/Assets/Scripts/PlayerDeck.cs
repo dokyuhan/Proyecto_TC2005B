@@ -18,7 +18,7 @@ public class PlayerDeck : MonoBehaviour
     {
         CardFetch.CardsFetched -= PlayerCards;
     }
-    void PlayerCards(List<Card> fetchedCards)
+    public void PlayerCards(List<Card> fetchedCards)
     {
         int [] deck = {11, 12, 13, 14, 15, 16, 17, 18, 19, 20}; // Example player deck
         PlayerCardDeck(fetchedCards, deck);

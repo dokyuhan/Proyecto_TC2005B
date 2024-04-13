@@ -1630,7 +1630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aiFunction: {fileID: 1587240204}
-  personality: 0
+  personality: 5
   deckAI: {fileID: 1587240208}
   aiCard:
     card_ID: 0

@@ -36,27 +36,27 @@ public class AI : MonoBehaviour
                 AiPlay(fetchedCards, human2);
                 break;
             case AILevel.Monster1:
-                int [] monster1 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+                int [] monster1 = { 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
                 AiPlay(fetchedCards, monster1);
                 break;
             case AILevel.Monster2:
-                int [] monster2 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+                int [] monster2 = { 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
                 AiPlay(fetchedCards, monster2);
                 break;
             case AILevel.Magical1:
-                int [] magical1 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+                int [] magical1 = { 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 };
                 AiPlay(fetchedCards, magical1);
                 break;
             case AILevel.Magical2:
-                int [] magical2 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+                int [] magical2 = { 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 };
                 AiPlay(fetchedCards, magical2);
                 break;
             case AILevel.Celestial1:
-                int [] celestial1 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+                int [] celestial1 = { 31, 32, 33, 34, 35, 36, 37, 38, 39, 40 };
                 AiPlay(fetchedCards, celestial1);
                 break;
             case AILevel.Celestial2:
-                int [] celestial2 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+                int [] celestial2 = { 31, 32, 33, 34, 35, 36, 37, 38, 39, 40 };
                 AiPlay(fetchedCards, celestial2);
                 break;
         }

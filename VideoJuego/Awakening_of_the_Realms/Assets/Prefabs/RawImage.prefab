@@ -311,7 +311,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -432, y: -46.364}
+  m_AnchoredPosition: {x: 597.5, y: 62.239594}
   m_SizeDelta: {x: 1.4, y: 1.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5831785628196194516
@@ -361,6 +361,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33d3445dbf9da445fbe79bc997281370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cartaArrastrar:
+    card_ID: 0
+    card_name: 
+    card_description: 
+    attack: 0
+    defense: 0
+    healing: 0
+    card_realm: 
+    power_cost: 0
+    exp_cost: 0
+    rarity: 
+    card_level: 0
+    Effect_type: 
+    desbloqueada: 0
+    cardGameObject: {fileID: 0}
 --- !u!1 &2359514544036863233
 GameObject:
   m_ObjectHideFlags: 0

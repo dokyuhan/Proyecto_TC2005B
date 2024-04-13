@@ -552,7 +552,7 @@ app.post("/api/awakening/players/inventory", async (request, response) => {
 });
 
 // Endpoint para obtener un inventario en específico por el id de jugador
-app.get("/api/awakening/players/:id/inventory", async (request, response) => {
+app.get("/api/awakening/inventory/:id", async (request, response) => {
   let connection = null;
 
   try {

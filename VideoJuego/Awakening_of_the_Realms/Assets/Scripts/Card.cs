@@ -46,7 +46,7 @@ public class Card
     }
 
 
-    }
+}
 
 // clase para post del mazo
 [System.Serializable]

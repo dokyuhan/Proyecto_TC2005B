@@ -24,10 +24,8 @@ public class CardDisplayManager : MonoBehaviour
 
         if (arrastrarScript != null)
         {
-            arrastrarScript.cartaArrastrar = card; // Asigna la carta actual
+            arrastrarScript.cartaArrastrar = card;
         }
-
-        //Image imagenCarta = objeto.transform.Find("background").GetComponent<Image>(); 
 
         Image imagenCarta = objeto.transform.Find("background").GetComponent<Image>(); 
         Sprite cardSprite = Resources.Load<Sprite>("Cards/" + card.card_name);

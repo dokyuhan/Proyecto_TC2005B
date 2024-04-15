@@ -27,7 +27,7 @@ public class Inventario : MonoBehaviour
 
     public void Back()
     {
-        //SceneManager.LoadScene("MainScreen");
+        SceneManager.LoadScene("MainScreen");
 
         StartCoroutine(conexion.GetCardIdsForPlayer(Usuario.usuario.player_ID, ProcessCardIds));
         Debug.Log("hola");

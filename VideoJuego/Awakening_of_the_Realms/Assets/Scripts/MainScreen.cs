@@ -12,4 +12,9 @@ public class MainScreen : MonoBehaviour
     {
         SceneManager.LoadScene("DeckBuilding");
     }
+
+    public void Shop()
+    {
+        SceneManager.LoadScene("Shop");
+    }
 }

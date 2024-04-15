@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class CardDisplayManager : MonoBehaviour
 {
@@ -15,8 +16,27 @@ public class CardDisplayManager : MonoBehaviour
         Debug.Log("Displaying card: " + card.card_name);
         GameObject objeto = Instantiate(cardPrefab, inv);
         card.cardGameObject = objeto;
+        
+        if (SceneManager.GetActiveScene().name == "Shop")
+        {
+            RectTransform rectTransform = objeto.GetComponent<RectTransform>();
+            rectTransform.anchoredPosition = new Vector2(0, 0);
+            
+            // Set the size of the card for the Shop scene
+            float cardWidth = 400; // Set the desired width for the card
+            float cardHeight = 480; // Set the desired height for the card
+            rectTransform.sizeDelta = new Vector2(cardWidth, cardHeight);
+        }
+
         SetupCardDisplay(objeto, card);
     }
+
+
+    private void AdjustCardPosition(GameObject cardObject)
+    {
+        cardObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
+    }
+
     public void ClearCardsUI()
     {
         foreach (Transform child in inv)
@@ -91,9 +111,6 @@ public class CardDisplayManager : MonoBehaviour
         {
             nombre.text = card.card_name.ToString();
         }
-
-
-        
 
         if (!card.desbloqueada)
         {

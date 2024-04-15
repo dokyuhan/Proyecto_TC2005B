@@ -105,25 +105,54 @@ public class APIConnection : MonoBehaviour
     public IEnumerator GetCards(int id, List<Card> lista)
     {
 
-            UnityWebRequest www = UnityWebRequest.Get(apiURL + "/api/awakening/cards/" + id);
+        UnityWebRequest www = UnityWebRequest.Get(apiURL + "/api/awakening/cards/" + id);
+        yield return www.SendWebRequest();
+
+        if (www.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError($"Failed to fetch card {id}: {www.error}");
+        }
+        else
+        {
+            string data = www.downloadHandler.text;
+            card = JsonUtility.FromJson<Card>(data);
+            card.desbloqueada = true;
+            lista.Add(card);
+        }
+    }
+
+    public IEnumerator BuyCard(int userId, Action<Card, string> onCardReceived)
+    {
+        string endpoint = "/api/awakening/players/" + userId + "/inventory/buyCard";
+        using (UnityWebRequest www = UnityWebRequest.Put(apiURL + endpoint, ""))
+        {
+            www.method = "POST";
+            www.SetRequestHeader("Content-Type", "application/json");
+
             yield return www.SendWebRequest();
 
             if (www.result != UnityWebRequest.Result.Success)
             {
-                Debug.LogError($"Failed to fetch card {id}: {www.error}");
+                Debug.LogError($"Failed to buy card for user {userId}: {www.error}");
+                onCardReceived?.Invoke(null, www.error); // Invoke with null card and error message
             }
             else
             {
-                string data = www.downloadHandler.text;
-                card = JsonUtility.FromJson<Card>(data);
-                card.desbloqueada = true;
-                lista.Add(card);
+                Debug.Log("Card bought successfully for user " + userId);
+                CardResponse response = JsonUtility.FromJson<CardResponse>(www.downloadHandler.text);
+                if (response.card != null)
+                {
+                    response.card.desbloqueada = true; 
+                    onCardReceived?.Invoke(response.card, response.message); 
+                }
+                else
+                {
+                    Debug.LogError("No card data found in the response.");
+                    onCardReceived?.Invoke(null, "No card data found in the response."); // Invoke with null card and error message
+                }
             }
-
+        }
     }
-
-
-
 
 }
 

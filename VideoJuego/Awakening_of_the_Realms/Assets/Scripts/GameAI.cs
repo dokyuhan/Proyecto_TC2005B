@@ -17,9 +17,11 @@ public class GameAI : MonoBehaviour
     public TimerPrueba timer;
     public HealthBar playerHealthBar;
     public HealthBar aiHealthBar;
+    //private int retrievalCount = 0;
+    public CardManager cardManager;
     public List<Card> cartasJugadorEnJuego = new List<Card>();
     public List<Card> cartasOponenteEnJuego = new List<Card>();
-    [SerializeField] private CardDisplayManager cardDisplayManager;
+    //[SerializeField] private CardDisplayManager cardDisplayManager;
     void Awake()
     {
         if (Instance == null)
@@ -139,7 +141,6 @@ public class GameAI : MonoBehaviour
             attackTotalPlayer += card.attack;
             defenseTotalPlayer += card.defense;
             healingTotalPlayer += card.healing;
-            Debug.Log($"[GameAI] Player card - {card.card_name}: Attack={card.attack}, Defense={card.defense}, Healing={card.healing}");
         }
 
         // Aggregate stats from AI cards
@@ -148,7 +149,6 @@ public class GameAI : MonoBehaviour
             attackTotalAI += card.attack;
             defenseTotalAI += card.defense;
             healingTotalAI += card.healing;
-            Debug.Log($"[GameAI] AI card - {card.card_name}: Attack={card.attack}, Defense={card.defense}, Healing={card.healing}");
         }
     
         int damageToAI = Math.Max(0, attackTotalPlayer - defenseTotalAI);
@@ -164,9 +164,9 @@ public class GameAI : MonoBehaviour
     }
 
     // Reset game state modification
-    private int retrievalCount = 0;
-    private void ResetGameState()
+    public void ResetGameState()
     {
+        /*
         retrievalCount = 0;
         Action onCardsRetrieved = () =>
         {
@@ -180,13 +180,46 @@ public class GameAI : MonoBehaviour
         };
 
         RetrieveCardsFromPlay(onCardsRetrieved);
+        */
+
+        
+        MoveAllCardsToTag("usedJugador", cartasJugadorEnJuego);
+        MoveAllCardsToTag("usedAI", cartasOponenteEnJuego);
+        cartasJugadorEnJuego.Clear();
+        cartasOponenteEnJuego.Clear();
+                
+        timer.StartCountdown();
+        SetGameState(GameState.PlayerTurn); // Loop back to player turn
+        
     }
 
+    public void MoveAllCardsToTag(string tag, List<Card> lista)
+    {
+        foreach (Card card in lista)
+        {
+            if (card.cardGameObject != null) // Verifica que el GameObject esté asignado
+            {
+                cardManager.MoveCard(card.cardGameObject, tag);
+            }
+            else
+            {
+                Debug.LogError("El GameObject de la carta no está asignado.");
+            }
+        }
+    }
 
+    /*
     public void RetrieveCardsFromPlay(Action onComplete)
     {
-        if (cardDisplayManager != null)
-            cardDisplayManager.ClearCardsUI();
+        CardDisplayManager displayManager = FindObjectOfType<CardDisplayManager>();
+        if (displayManager != null)
+        {
+            displayManager.ClearCardsUI();
+        }
+        else
+        {
+            Debug.LogError("Failed to find the CardDisplayManager.");
+        }
 
         StartCoroutine(RetrieveCards(cartasJugadorEnJuego, playerDeck.handDeck, 2.0f, () => CheckAllRetrievals(onComplete))); // Player's cards
         StartCoroutine(RetrieveCards(cartasOponenteEnJuego, aiFunction.aiScript.handDeck, 2.0f, () => CheckAllRetrievals(onComplete))); // AI's cards
@@ -237,4 +270,7 @@ public class GameAI : MonoBehaviour
         onComplete();
         
     }
+    */
+    
+    
 }

@@ -11,7 +11,6 @@ const port = 3200;
 app.use(express.json());
 
 // Funcion para conectarse a la base de datos
-/*
 async function connectToDB() {
   return await mysql.createConnection({
     host: "localhost",
@@ -20,8 +19,7 @@ async function connectToDB() {
     database: "Awakening_realm",
   });
 }
-*/
-
+/*
 async function connectToDB() {
   return await mysql.createConnection({
     host: "127.0.0.1",
@@ -30,7 +28,7 @@ async function connectToDB() {
     database: "Awakening_realm",
   });
 }
-
+*/
 
 // Endpoint para obtener todas las Cartas
 app.get("/api/awakening/cards", async (request, response) => {
@@ -554,7 +552,7 @@ app.post("/api/awakening/players/inventory", async (request, response) => {
 });
 
 // Endpoint para obtener un inventario en específico por el id de jugador
-app.get("/api/awakening/inventory/:id", async (request, response) => {
+app.get("/api/awakening/players/:id/inventory", async (request, response) => {
   let connection = null;
 
   try {

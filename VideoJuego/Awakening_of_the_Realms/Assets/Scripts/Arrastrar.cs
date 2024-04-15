@@ -68,11 +68,6 @@ public class Arrastrar : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             transform.localPosition = Vector3.zero;
             OnCardPlacedInOpponentZone?.Invoke(cartaArrastrar);
         }
-        else
-        {
-            transform.SetParent(padre, false);
-            transform.localPosition = Vector3.zero;
-        }
     }
 
     public void InvokeOnCardPlacedInOpponentZone(Card card)

@@ -1100,7 +1100,6 @@ MonoBehaviour:
   timer: {fileID: 446232764}
   playerHealthBar: {fileID: 554678172}
   aiHealthBar: {fileID: 459676327}
-  turnos: 0
   cardManager: {fileID: 446232767}
   cartasJugadorEnJuego: []
   cartasOponenteEnJuego: []
@@ -4305,7 +4304,7 @@ GameObject:
   - component: {fileID: 2133765026}
   m_Layer: 5
   m_Name: Content
-  m_TagString: usedJugador
+  m_TagString: usedAI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -12,6 +12,7 @@ TagManager:
   - opponent
   - usedAI
   - usedJugador
+  - playZone
   layers:
   - Default
   - TransparentFX

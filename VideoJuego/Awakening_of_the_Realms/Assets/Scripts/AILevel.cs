@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public enum AILevel { Human1, Human2, Monster1, Monster2, Magical1, Magical2, Celestial1, Celestial2 }
 
 public class AI : MonoBehaviour
 {
-    public AIFunction aiFunction;
     public AILevel personality;
     public CardFetch deckAI;
     public Card aiCard;
     public HandDeck handDeck;
+    public Action OnAIDeckReady;
 
     private void OnEnable()
     {
@@ -79,8 +80,10 @@ public class AI : MonoBehaviour
                 Debug.Log("Card with ID " + cardID + " not found.");
             }
         }
+        Debug.Log("AI deck loaded.");
         handDeck.ShuffleAndDisplayHand(); // Shuffle and display the hand deck
-        aiFunction.InitializeAIActions();
+        Debug.Log("AI hand shuffled and displayed.");
+        OnAIDeckReady?.Invoke();  // Notify that AI deck is ready
 
     }
     

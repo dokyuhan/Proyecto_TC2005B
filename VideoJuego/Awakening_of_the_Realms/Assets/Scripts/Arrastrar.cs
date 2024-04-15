@@ -75,6 +75,16 @@ public class Arrastrar : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         }
     }
 
+    public void InvokeOnCardPlacedInOpponentZone(Card card)
+    {
+        Debug.Log("Invoking card placement event for: " + card.card_name);
+        OnCardPlacedInOpponentZone?.Invoke(card);
+        if (card == null) {
+            Debug.Log("Card object is null");
+            return;
+        }
+    }
+
 
     void Start()
     {

@@ -41,13 +41,13 @@ public class CardFetch : MonoBehaviour
     {
         UnityWebRequest www = UnityWebRequest.Get($"{apiURL}{cardEndpoint}{id}");
 
-        Debug.Log("URL: " + apiURL + cardEndpoint + cardId);
+        //Debug.Log("URL: " + apiURL + cardEndpoint + cardId);
 
         yield return www.SendWebRequest();
 
         if (www.result == UnityWebRequest.Result.Success)
         {
-            Debug.Log("se conecto");
+           // Debug.Log("se conecto");
             // If the request is successful, we parse the JSON data and store it in the card object
             // The response of the request is stored in the downloadHandler property of the UnityWebRequest object
             string data = www.downloadHandler.text;

@@ -77,3 +77,11 @@ public class CardIdListResponse
 {
     public int[] cardIds;
 }
+
+// Clase auxiliar para deserializar la respuesta
+[System.Serializable]
+public class CardResponse
+{
+    public string message;
+    public Card card;
+}

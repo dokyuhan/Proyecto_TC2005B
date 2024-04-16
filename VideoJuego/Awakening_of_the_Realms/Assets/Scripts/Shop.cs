@@ -10,13 +10,15 @@ public class Shop : MonoBehaviour
     public Button buyButton;
     public TMP_Text response;
     public TMP_Text coinsText;
-    public int currentUserId;
+    //public int currentUserId; //Unicamente para pruebas dentro de la escena
+    private int userId = int.Parse(Usuario.usuario.player_ID); 
+
 
     void Start()
     {
         if (apiConnection != null && coinsText != null)
         {
-            StartCoroutine(apiConnection.GetCoins(currentUserId, coinsAmount =>
+            StartCoroutine(apiConnection.GetCoins(userId, coinsAmount =>
             {
                 coinsText.text = coinsAmount.ToString();
             }));
@@ -43,7 +45,6 @@ public class Shop : MonoBehaviour
             buyButton.interactable = false;  
             cardDisplayManager.ClearCardsUI();
 
-            int userId = currentUserId; 
             StartCoroutine(apiConnection.BuyCard(userId, (card, message, coinsString) =>
         {
             if (card != null)

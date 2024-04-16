@@ -80,8 +80,15 @@ public class CardIdListResponse
 
 // Clase auxiliar para deserializar la respuesta
 [System.Serializable]
+public class CoinResponse
+{
+    public int coins;
+}
+
+[System.Serializable]
 public class CardResponse
 {
     public string message;
+    public CoinResponse coins; 
     public Card card;
 }

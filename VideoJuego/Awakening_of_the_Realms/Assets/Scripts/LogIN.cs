@@ -36,4 +36,9 @@ public class LogIN : MonoBehaviour
             }
         }));
     }
+
+    public void Back()
+    {
+        SceneManager.LoadScene("Menu");
+    }
 }

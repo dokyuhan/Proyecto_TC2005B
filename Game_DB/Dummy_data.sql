@@ -70,20 +70,20 @@ INSERT INTO Cards (card_name, card_description, attack, defense, healing, card_r
 -- Legendary Cards
 
 -- Human
-('Princess', 'Description', 10, 10, 40, 'Human', 0, 300, 'Legendary', 1, 'Effect 1'),
-('King Arthur', 'Description', 35, 25, 15, 'Human', 0, 300, 'Legendary', 1, 'Effect 2'),
+('Princess', 'Description', 10, 10, 40, 'Human', 2, 300, 'Legendary', 1, 'Effect 1'),
+('King Arthur', 'Description', 35, 25, 15, 'Human', 3, 300, 'Legendary', 1, 'Effect 2'),
 
 -- Monster
-('Griffin', 'Description', 30, 30, 10, 'Monster', 0, 300, 'Legendary', 1, 'Effect 3'),
-('Dragon', 'Description', 40, 20, 10, 'Monster', 0, 300, 'Legendary', 1, 'Effect 4'),
+('Griffin', 'Description', 30, 30, 10, 'Monster', 2, 300, 'Legendary', 1, 'Effect 3'),
+('Dragon', 'Description', 40, 20, 10, 'Monster', 3, 300, 'Legendary', 1, 'Effect 4'),
 
 -- Magical
-('Runeforge Dwarf', 'Description', 15, 40, 20, 'Magical', 0, 300, 'Legendary', 1, 'Effect 5'),
-('Moonshadow Elf', 'Description', 35, 15, 20, 'Magical', 0, 300, 'Legendary', 1, 'Effect 6'),
+('Runeforge Dwarf', 'Description', 15, 40, 20, 'Magical', 2, 300, 'Legendary', 1, 'Effect 5'),
+('Moonshadow Elf', 'Description', 35, 15, 20, 'Magical', 3, 300, 'Legendary', 1, 'Effect 6'),
 
 -- Celestial
-('Hercules', 'Description', 35, 25, 20, 'Celestial', 0, 300, 'Legendary', 1, 'Effect 7'),
-('Demon King', 'Description', 35, 15, 30, 'Celestial', 0, 300, 'Legendary', 1, 'Effect 8');
+('Hercules', 'Description', 35, 25, 20, 'Celestial', 2, 300, 'Legendary', 1, 'Effect 7'),
+('Demon King', 'Description', 35, 15, 30, 'Celestial', 3, 300, 'Legendary', 1, 'Effect 8');
 
 -- Special Cards
 -- ('Special 1', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 9'),
@@ -99,7 +99,9 @@ INSERT INTO Cards (card_name, card_description, attack, defense, healing, card_r
 
 -- player name, last name, age, email, realm, is npc, player exp, win, lost, coins, exp points
 INSERT INTO Players (player_name, player_last_name, player_age, user_name, password, realm, is_npc, level, player_exp, win_record, lose_record, coins, token) VALUES
-('John', 'Doe', 25, 'john.doe', 'password123', 'Human', false, 1, 500, 10, 5, 10, 2),
+('Gabriel', 'Edid', 20, 'Atrium20', 'prueba.edid', 'Magic', false, 1, 500, 10, 5, 10000, 1),
+('Alberto', 'Limon', 21, 'beto', 'lemon', 'Celestial', false, 1, 500, 0, 0, 5000, 1),
+('Do Kyu', 'Han Kim', 21, 'han123', 'prueba.han', 'Monster', false, 1, 500, 10, 5, 5000, 1),
 ('Jane', 'Smith', 30, 'jane.smith', 'password123', 'Monster', false, 2, 600, 15, 8, 15, 1),
 ('Alice', 'Johnson', 28, 'alice.johnson', 'password123', 'Magical', false, 2, 450, 12, 6, 20, 0),
 ('Bob', 'Williams', 35, 'bob.williams', 'password123', 'Celestial', false, 3, 520, 14, 9, 24, 2),

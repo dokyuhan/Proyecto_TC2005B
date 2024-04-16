@@ -21,8 +21,11 @@ public class GameAI : MonoBehaviour
     public CardManager cardManager;
     public List<Card> cartasJugadorEnJuego = new List<Card>();
     public List<Card> cartasOponenteEnJuego = new List<Card>();
-    public CardDisplayManager playerCardDisplayManager;
-    public CardDisplayManager aiCardDisplayManager;
+    public Transform playerCardArea1;
+    public Transform playerCardArea2;
+    public Transform aiCardArea1;
+    public Transform aiCardArea2;  // Assign these in the Unity Inspector
+
     void Awake()
     {
         if (Instance == null)
@@ -78,6 +81,16 @@ public class GameAI : MonoBehaviour
         }
     }
 
+    public void ClearCardsUI(Transform cardArea)
+    {
+        foreach (Transform child in cardArea)
+        {
+            Destroy(child.gameObject);
+        }
+        Debug.Log("Cleared all card UI elements from " + cardArea.name);
+    }
+
+
     private void SetGameState(GameState newState)
     {
         currentState = newState;
@@ -116,7 +129,6 @@ public class GameAI : MonoBehaviour
 
     void CheckActionsCompleted()
     {
-        aiFunction.InitializeAIActions();
         if (cartasJugadorEnJuego.Count >= 2 && cartasOponenteEnJuego.Count >= 2)
         {
             SetGameState(GameState.EndTurn);
@@ -171,17 +183,15 @@ public class GameAI : MonoBehaviour
         retrievalCount = 0;
         Action onCardsRetrieved = () =>
         {
+
+            ClearCardsUI(playerCardArea1);
+            ClearCardsUI(playerCardArea2);
+            ClearCardsUI(aiCardArea1);
+            ClearCardsUI(aiCardArea2);
             // Actions to take after cards are successfully retrieved
             cartasJugadorEnJuego.Clear();
             cartasOponenteEnJuego.Clear();
-
-            // Clear UI for both Player and AI
-            if (playerCardDisplayManager != null)
-                playerCardDisplayManager.ClearCardsUI();
-
-            if (aiCardDisplayManager != null)
-                aiCardDisplayManager.ClearCardsUI();
-                
+            
             timer.StartCountdown(); // Restart the timer
             SetGameState(GameState.PlayerTurn); // Loop back to player turn
             Debug.Log("[GameAI] Game state reset completed.");
@@ -190,35 +200,7 @@ public class GameAI : MonoBehaviour
 
         RetrieveCardsFromPlay(onCardsRetrieved);
         
-
-        /*
-        MoveAllCardsToTag("usedJugador", cartasJugadorEnJuego);
-        MoveAllCardsToTag("usedAI", cartasOponenteEnJuego);
-        cartasJugadorEnJuego.Clear();
-        cartasOponenteEnJuego.Clear();
-                
-        timer.StartCountdown();
-        SetGameState(GameState.PlayerTurn); // Loop back to player turn
-        */
-        
     }
-
-    /*
-    public void MoveAllCardsToTag(string tag, List<Card> lista)
-    {
-        foreach (Card card in lista)
-        {
-            if (card.cardGameObject != null) // Verifica que el GameObject esté asignado
-            {
-                cardManager.MoveCard(card.cardGameObject, tag);
-            }
-            else
-            {
-                Debug.LogError("El GameObject de la carta no está asignado.");
-            }
-        }
-    }
-    */
 
     
     public void RetrieveCardsFromPlay(Action onComplete)
@@ -241,11 +223,8 @@ public class GameAI : MonoBehaviour
     {
         Debug.Log($"[GameAI] Starting retrieval of cards. Delay: {delay} seconds");
         yield return new WaitForSeconds(delay);
-        Debug.Log($"[GameAI] Player cards in play: {cartasJugadorEnJuego.Count}");
-        Debug.Log($"[GameAI] AI cards in play: {cartasOponenteEnJuego.Count}");
 
-
-        foreach (Card card in new List<Card>(cards)) // Create a copy to modify the original list
+        foreach (Card card in cards) // Create a copy to modify the original list
         {
             Debug.Log($"[GameAI] Processing card: {card.card_name}");
             if (deck.displayedCards.Contains(card))

@@ -14,11 +14,7 @@ public class AIFunction : MonoBehaviour
 
     public void InitializeAIActions()
     {
-        
-        Debug.Log("Finding Arrastrar script in the scene.");
         arrastrarScript = FindObjectOfType<Arrastrar>();
-        Debug.Log(arrastrarScript == null ? "Arrastrar script not found." : "Arrastrar script found.");
-        Debug.Log("Starting AI card placement routine.");
         StartCoroutine(PlaceCardsRoutine());
     }
 

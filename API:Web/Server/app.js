@@ -20,6 +20,7 @@ async function connectToDB() {
     database: "Awakening_realm",
   });
 }
+
 /*
 async function connectToDB() {
   return await mysql.createConnection({
@@ -30,6 +31,7 @@ async function connectToDB() {
   });
 }
 */
+
 
 // Endpoint para obtener todas las Cartas
 app.get("/api/awakening/cards", async (request, response) => {

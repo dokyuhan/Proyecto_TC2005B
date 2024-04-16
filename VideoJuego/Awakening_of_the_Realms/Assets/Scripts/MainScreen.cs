@@ -17,4 +17,9 @@ public class MainScreen : MonoBehaviour
     {
         SceneManager.LoadScene("Shop");
     }
+
+    public void LogOut()
+    {
+        SceneManager.LoadScene("Menu");
+    }
 }

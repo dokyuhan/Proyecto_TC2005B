@@ -1,102 +1,84 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class AIFunction : MonoBehaviour
 {
     public AI aiScript;
-    public float cardPlacementInterval; // Interval in seconds between card placements
     public Transform cardPlacementUI1, cardPlacementUI2;
-    public float cardDisplayDuration; // Duration in seconds for which the card is displayed in the UI
-
     private bool isTurnComplete = false;
-    public bool IsTurnComplete {
-        get { return isTurnComplete; }
-    }
+    public bool IsTurnComplete => isTurnComplete;
+
+    private Arrastrar arrastrarScript;  // Reference to the Arrastrar script
 
     public void InitializeAIActions()
     {
+        arrastrarScript = FindObjectOfType<Arrastrar>();
         StartCoroutine(PlaceCardsRoutine());
     }
 
     private IEnumerator PlaceCardsRoutine()
     {
-        while (aiScript.handDeck.displayedCards.Count > 1) // Ensure there are at least two cards to place
+        Debug.Log("Coroutine started");
+        isTurnComplete = false;
+        Debug.Log($"Initial card count: {aiScript.handDeck.displayedCards.Count}"); // Check the initial count of cards
+        if (aiScript.handDeck.displayedCards.Count < 1)
         {
             yield return new WaitForSeconds(2f);
-            PlaceRandomCard();
-            yield return new WaitForSeconds(cardPlacementInterval);
+            Debug.Log("No hay cartas en el mazo");
         }
-        isTurnComplete = true; // Mark the end of AI's turn actions
+        else {
+            Debug.Log("Inicializando el funcionamiento de la IA");
+            PlaceRandomCard();
+        }
+        isTurnComplete = true;
+        Debug.Log("All cards placed, routine complete.");
     }
-
-    public bool AITurnComplete()
-    {
-        return isTurnComplete;
-    }
-
     public void PlaceRandomCard()
     {
-        if (aiScript.handDeck.displayedCards.Count > 1) // Ensure there are at least two cards to place
+        Debug.Log($"Current hand count before placement: {aiScript.handDeck.displayedCards.Count}");
+        if (aiScript.handDeck.displayedCards.Count >= 2) // Ensure there are at least two cards
         {
+            Debug.Log("Attempting to place two cards.");
             int randomIndex1 = Random.Range(0, aiScript.handDeck.displayedCards.Count);
             Card card1 = aiScript.handDeck.displayedCards[randomIndex1];
-            aiScript.handDeck.displayedCards.RemoveAt(randomIndex1); // Remove the first card from the hand
+            aiScript.handDeck.displayedCards.RemoveAt(randomIndex1);
+            Debug.Log($"Placing card1: {card1.card_name} at index {randomIndex1}");
 
+            // Recalculate randomIndex2 safely after removal of the first card
             int randomIndex2 = Random.Range(0, aiScript.handDeck.displayedCards.Count);
             Card card2 = aiScript.handDeck.displayedCards[randomIndex2];
-            aiScript.handDeck.displayedCards.RemoveAt(randomIndex2); // Remove the second card from the hand
+            aiScript.handDeck.displayedCards.RemoveAt(randomIndex2);
+            Debug.Log($"Placing card2: {card2.card_name} at index {randomIndex2}");
 
-            // Place the cards in both UI spaces
             PlaceCardInUI(card1, cardPlacementUI1);
             PlaceCardInUI(card2, cardPlacementUI2);
 
-            // Start a coroutine to retrieve the cards after a certain duration
-            StartCoroutine(RetrieveCardAfterDuration(card1, cardDisplayDuration));
-            StartCoroutine(RetrieveCardAfterDuration(card2, cardDisplayDuration));
+            if (arrastrarScript != null)
+            {
+                Debug.Log("Invoking placement events.");
+                arrastrarScript.InvokeOnCardPlacedInOpponentZone(card1);
+                arrastrarScript.InvokeOnCardPlacedInOpponentZone(card2);
+            }
+            else
+            {
+                Debug.LogError("Arrastrar script not found.");
+            }
         }
         else
         {
-            Debug.Log("Not enough cards in hand to place.");
+            Debug.Log("Not enough cards in hand to place two cards.");
         }
     }
+
+
 
     private void PlaceCardInUI(Card card, Transform targetUI)
     {
-        if (card.cardGameObject == null)
-        {
-            Debug.LogError("Card GameObject is null for card: " + card.card_name);
-            return; // Exit the method to avoid a NullReferenceException
-        }
-
         RectTransform cardRectTransform = card.cardGameObject.GetComponent<RectTransform>();
         cardRectTransform.SetParent(targetUI, false);
-        cardRectTransform.localPosition = Vector3.zero; // Center the card in the target UI
+        cardRectTransform.localPosition = Vector3.zero;
+        Debug.Log("Placed card at UI: " + targetUI.name);
     }
-
-    private IEnumerator RetrieveCardAfterDuration(Card card, float duration)
-    {
-        yield return new WaitForSeconds(duration);
-
-        // Check if the card is still in the displayedCards list
-        if (aiScript.handDeck.displayedCards.Contains(card))
-        {
-            // Nullify the GameObject reference before removing the card
-            int index = aiScript.handDeck.displayedCards.IndexOf(card);
-            if (index != -1)  // Make sure the index is valid
-            {
-                aiScript.handDeck.displayedCards[index].cardGameObject = null;
-                aiScript.handDeck.displayedCards.RemoveAt(index);
-            }
-        }
-
-        // Safely destroy the GameObject
-        Destroy(card.cardGameObject);
-
-        // Check if we need to refill the displayed cards to maintain a minimum count
-        if (aiScript.handDeck.displayedCards.Count < 5)
-        {
-            aiScript.handDeck.RefillDisplayedCards();  // Refill if necessary
-        }
-    }
-
 }

@@ -10,10 +10,10 @@ public class CardDisplayManager : MonoBehaviour
 
     [SerializeField] private GameObject cardPrefab; 
     [SerializeField] private Transform inv;
+    
 
     public void DisplayCards(Card card)
     {
-        Debug.Log("Displaying card: " + card.card_name);
         GameObject objeto = Instantiate(cardPrefab, inv);
         card.cardGameObject = objeto;
         

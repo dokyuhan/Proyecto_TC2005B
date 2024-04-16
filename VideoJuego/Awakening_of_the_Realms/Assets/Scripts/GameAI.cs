@@ -8,35 +8,23 @@ using System;
 
 public class GameAI : MonoBehaviour
 {
-    public enum GameState
-    {
-        PlayerTurn,
-        AITurn,
-        CheckCombat,
-        EndTurn
-    }
-
     public static GameAI Instance { get; private set; }
+    enum GameState { Start, PlayerTurn, AITurn, CheckWinConditions, EndTurn }
+    GameState currentState;
 
-    public GameState currentState;
     public PlayerDeck playerDeck;
-    public AI aiScript;
-    public AIFunction aiFunctionScript;
-    public CardDisplayManager cardDisplayManagerJugador; 
-    public CardDisplayManager cardDisplayManagerAI; 
-    public APIConnection conexion;
-    public CardManager cardManager;
+    public AIFunction aiFunction;
     public TimerPrueba timer;
     public HealthBar playerHealthBar;
     public HealthBar aiHealthBar;
-
-
-    public List<int> lista = new List<int>();
+    private int retrievalCount = 0;
+    public CardManager cardManager;
     public List<Card> cartasJugadorEnJuego = new List<Card>();
     public List<Card> cartasOponenteEnJuego = new List<Card>();
-
-    private bool playerTurnEnded = false;
-    private int turnos = 0;
+    public Transform playerCardArea1;
+    public Transform playerCardArea2;
+    public Transform aiCardArea1;
+    public Transform aiCardArea2;  // Assign these in the Unity Inspector
 
     void Awake()
     {
@@ -44,6 +32,9 @@ public class GameAI : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            Arrastrar.OnCardPlacedInOpponentZone += HandleAICardPlacement;
+            Arrastrar.OnCardPlacedInPlayZone += HandlePlayerCardPlacement;
+
         }
         else
         {
@@ -53,43 +44,70 @@ public class GameAI : MonoBehaviour
 
     void Start()
     {
-        playerHealthBar.SetMaxHealth(100);  // Assuming 100 is max health for both
+        playerHealthBar.SetMaxHealth(100);
         aiHealthBar.SetMaxHealth(100);
-        StartCoroutine(conexion.GetCardIdsForPlayer("2", ProcessCardIds));
-        timer.OnCountdownFinished += CheckForCombat;
-        timer.StartCountdown();
-        InitializeGame();
+        SetGameState(GameState.PlayerTurn);
+        //aiFunction.aiScript.OnAIDeckReady += StartAIActions;
     }
 
-    void ProcessCardIds(List<int> cardIds)
+    /*
+    void StartAIActions() 
     {
-        foreach (int cardId in cardIds)
-        {
-            lista.Add(cardId);
+        aiFunction.InitializeAIActions();
+        StartGame();
+    }
+    */
+
+    void OnDestroy()
+    {
+        Arrastrar.OnCardPlacedInOpponentZone -= HandleAICardPlacement;
+        Arrastrar.OnCardPlacedInPlayZone -= HandlePlayerCardPlacement;
+        //aiFunction.aiScript.OnAIDeckReady -= StartAIActions;  // Clean up
+    }
+
+    void HandlePlayerCardPlacement(Card card)
+    {
+        if (!cartasJugadorEnJuego.Contains(card)) {
+            cartasJugadorEnJuego.Add(card);
+            Debug.Log("Carta agregada a la zona de juego del jugador");
         }
     }
 
-    void InitializeGame()
+    void HandleAICardPlacement(Card card)
     {
-        currentState = GameState.PlayerTurn;
-        ProcessTurn();
+        if (!cartasOponenteEnJuego.Contains(card)) {
+            cartasOponenteEnJuego.Add(card);
+            Debug.Log("Carta agregada a la zona de juego del oponente");
+        }
     }
 
-    void ProcessTurn()
+    public void ClearCardsUI(Transform cardArea)
     {
+        foreach (Transform child in cardArea)
+        {
+            Destroy(child.gameObject);
+        }
+        Debug.Log("Cleared all card UI elements from " + cardArea.name);
+    }
+
+
+    private void SetGameState(GameState newState)
+    {
+        currentState = newState;
         switch (currentState)
         {
+            case GameState.Start:
+                StartGame();
+                break;
             case GameState.PlayerTurn:
-                StartCoroutine(PlayerTurn());
+                // Player's turn to play cards
                 break;
             case GameState.AITurn:
-                if (playerTurnEnded)  // Only start AI turn if player turn has ended
-                {
-                    StartCoroutine(AITurn());
-                }
+                aiFunction.InitializeAIActions();
+                SetGameState(GameState.CheckWinConditions);
                 break;
-            case GameState.CheckCombat:
-                CheckForCombat();
+            case GameState.CheckWinConditions:
+                CheckActionsCompleted();
                 break;
             case GameState.EndTurn:
                 EndTurn();
@@ -97,44 +115,40 @@ public class GameAI : MonoBehaviour
         }
     }
 
-    IEnumerator PlayerTurn()
+    void StartGame()
     {
-        Debug.Log("Player's turn.");
-        playerTurnEnded = false;
-        yield return new WaitUntil(() => playerTurnEnded); // Wait until player ends the turn
-        currentState = GameState.AITurn;
-        ProcessTurn();
+        Debug.Log("Game started.");
+        SetGameState(GameState.PlayerTurn);
     }
 
-    IEnumerator AITurn()
+    public void OnEndTurnButtonPressed()
     {
-        Debug.Log("AI's turn.");
-        aiFunctionScript.InitializeAIActions();
-        yield return new WaitUntil(() => aiFunctionScript.AITurnComplete());
-        currentState = GameState.CheckCombat;
-        ProcessTurn();
+        Debug.Log("Player has ended their turn.");
+        SetGameState(GameState.AITurn); // Transition to AI turn
     }
 
-    void CheckForCombat()
+    void CheckActionsCompleted()
     {
-        Debug.Log("Checking combat...");
         if (cartasJugadorEnJuego.Count >= 2 && cartasOponenteEnJuego.Count >= 2)
         {
-            RealizarCombate();
-        }
-        else
-        {
-            currentState = GameState.EndTurn;
-            ProcessTurn();
+            SetGameState(GameState.EndTurn);
         }
     }
+
+    void EndTurn()
+    {
+        Debug.Log("[GameAI] Ending turn, starting combat and resetting game state.");
+        RealizarCombate();
+        ResetGameState();
+    }
+
 
     public void RealizarCombate()
     {
         int attackTotalPlayer = 0, defenseTotalPlayer = 0, healingTotalPlayer = 0;
         int attackTotalAI = 0, defenseTotalAI = 0, healingTotalAI = 0;
 
-        // Aggregate stats from cards
+        // Aggregate stats from player cards
         foreach (var card in cartasJugadorEnJuego)
         {
             attackTotalPlayer += card.attack;
@@ -142,69 +156,102 @@ public class GameAI : MonoBehaviour
             healingTotalPlayer += card.healing;
         }
 
+        // Aggregate stats from AI cards
         foreach (var card in cartasOponenteEnJuego)
         {
             attackTotalAI += card.attack;
             defenseTotalAI += card.defense;
             healingTotalAI += card.healing;
         }
-
-        // Combat calculations
-        int damageToPlayer = Math.Max(0, attackTotalAI - defenseTotalPlayer);
+    
         int damageToAI = Math.Max(0, attackTotalPlayer - defenseTotalAI);
-
-        // Apply damage and healing
-        playerHealthBar.TakeDamage(damageToPlayer);
-        playerHealthBar.Heal(healingTotalPlayer);
+        int damageToPlayer = Math.Max(0, attackTotalAI - defenseTotalPlayer);
 
         aiHealthBar.TakeDamage(damageToAI);
-        aiHealthBar.Heal(healingTotalAI);
-
-        // Debug info
+        aiHealthBar.Heal(healingTotalPlayer); // Assuming player can heal AI as a strategy (?)
+    
+        playerHealthBar.TakeDamage(damageToPlayer);
+        playerHealthBar.Heal(healingTotalAI); // Assuming AI can heal player as a strategy (?)
         Debug.LogError("Damage to Player: " + damageToPlayer);
         Debug.LogError("Damage to AI: " + damageToAI);
-
-        // Reset game state
-        ResetGameState();
     }
 
-    private void ResetGameState()
+    // Reset game state modification
+    public void ResetGameState()
     {
-        // Clear all cards from play to prepare for the next round
-        cartasJugadorEnJuego.Clear();
-        cartasOponenteEnJuego.Clear();
-
-        // Reset turn counters and prepare the game for the next phase
-        turnos++;
-        if (turnos == 2)
+        
+        retrievalCount = 0;
+        Action onCardsRetrieved = () =>
         {
-            // Any specific logic to reset after every two turns
-            turnos = 0;
+
+            ClearCardsUI(playerCardArea1);
+            ClearCardsUI(playerCardArea2);
+            ClearCardsUI(aiCardArea1);
+            ClearCardsUI(aiCardArea2);
+            // Actions to take after cards are successfully retrieved
+            cartasJugadorEnJuego.Clear();
+            cartasOponenteEnJuego.Clear();
+            
+            timer.StartCountdown(); // Restart the timer
+            SetGameState(GameState.PlayerTurn); // Loop back to player turn
+            Debug.Log("[GameAI] Game state reset completed.");
+            retrievalCount = 0;
+        };
+
+        RetrieveCardsFromPlay(onCardsRetrieved);
+        
+    }
+
+    
+    public void RetrieveCardsFromPlay(Action onComplete)
+    {
+        StartCoroutine(RetrieveCards(cartasJugadorEnJuego, playerDeck.handDeck, 2.0f, () => CheckAllRetrievals(onComplete))); // Player's cards
+        StartCoroutine(RetrieveCards(cartasOponenteEnJuego, aiFunction.aiScript.handDeck, 2.0f, () => CheckAllRetrievals(onComplete))); // AI's cards
+    }
+
+    private void CheckAllRetrievals(Action onComplete)
+    {
+        retrievalCount++;
+        if (retrievalCount >= 2) // Ensure this function completes twice before calling onComplete
+        {
+            onComplete?.Invoke();
+        }
+    }
+
+    // Generalized coroutine to handle card retrieval
+    private IEnumerator RetrieveCards(List<Card> cards, HandDeck deck, float delay, Action onComplete)
+    {
+        Debug.Log($"[GameAI] Starting retrieval of cards. Delay: {delay} seconds");
+        yield return new WaitForSeconds(delay);
+
+        foreach (Card card in cards) // Create a copy to modify the original list
+        {
+            Debug.Log($"[GameAI] Processing card: {card.card_name}");
+            if (deck.displayedCards.Contains(card))
+            {
+                deck.displayedCards.Remove(card);
+                Debug.Log($"[GameAI] Removed card: {card.card_name} from display.");
+                Destroy(card.cardGameObject); // Safely destroy the GameObject
+                Debug.Log($"[GameAI] Destroyed card GameObject for: {card.card_name}");
+            }
+            else
+            {
+                Debug.LogWarning($"[GameAI] Card not found in display: {card.card_name}");
+            }
         }
 
-        // Reset the timer to start countdown for the next turn
-        timer.StartCountdown();
-    }
-
-
-
-    void EndTurn()
-    {
-        Debug.Log("Ending turn and resetting...");
-        turnos++;
-        if (turnos == 2)
+        if (deck.displayedCards.Count < 5)
         {
-            // Implement logic to manage the reset or transition of cards
-            turnos = 0;
+            deck.RefillDisplayedCards(); // Refill if necessary
+            Debug.Log("[GameAI] Refilled displayed cards as count was below 5.");
         }
-        currentState = GameState.PlayerTurn;
-        ProcessTurn();
-    }
 
-    public void PlayerEndsTurn()
-    {
-        Debug.Log("Player ends turn.");
-        playerTurnEnded = true;
-        ProcessTurn();  // Ensure turn processing continues after ending player turn
+        cards.Clear(); // Clear the list after moving them back to the deck
+        Debug.Log("[GameAI] Cleared the list of cards in play.");
+        onComplete();
+        
     }
+    
+    
+    
 }

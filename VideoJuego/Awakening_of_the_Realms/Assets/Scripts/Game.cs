@@ -1,3 +1,4 @@
+
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
@@ -28,9 +29,6 @@ public class Game : MonoBehaviour
     public int turnos = 0;
 
     public HealthAndShield healthAndShield;
-
-    public HealthBar playerHealthBar;
-    public HealthBar aiHealthBar;
 
 
 
@@ -208,3 +206,4 @@ public class Game : MonoBehaviour
 
 
 }
+

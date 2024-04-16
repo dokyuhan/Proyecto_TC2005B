@@ -21,11 +21,6 @@ public class CardDisplayManager : MonoBehaviour
         {
             RectTransform rectTransform = objeto.GetComponent<RectTransform>();
             rectTransform.anchoredPosition = new Vector2(0, 0);
-            
-            // Set the size of the card for the Shop scene
-            float cardWidth = 400; // Set the desired width for the card
-            float cardHeight = 480; // Set the desired height for the card
-            rectTransform.sizeDelta = new Vector2(cardWidth, cardHeight);
         }
 
         SetupCardDisplay(objeto, card);

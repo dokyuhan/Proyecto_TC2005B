@@ -118,3 +118,6 @@ LEFT JOIN Effect AS e USING (Effect_type)
 WHERE c.rarity IN ('Special');
 
 SELECT * FROM Inventory;
+
+SELECT coins FROM Players WHERE player_ID = 11;
+

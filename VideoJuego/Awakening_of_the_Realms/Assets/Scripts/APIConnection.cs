@@ -121,7 +121,7 @@ public class APIConnection : MonoBehaviour
         }
     }
 
-    public IEnumerator BuyCard(int userId, Action<Card, string> onCardReceived)
+   public IEnumerator BuyCard(int userId, Action<Card, string, int> onCardReceived)
     {
         string endpoint = "/api/awakening/players/" + userId + "/inventory/buyCard";
         using (UnityWebRequest www = UnityWebRequest.Put(apiURL + endpoint, ""))
@@ -133,26 +133,48 @@ public class APIConnection : MonoBehaviour
 
             if (www.result != UnityWebRequest.Result.Success)
             {
-                Debug.LogError($"Failed to buy card for user {userId}: {www.error}");
-                onCardReceived?.Invoke(null, www.error); // Invoke with null card and error message
+                CardResponse response = JsonUtility.FromJson<CardResponse>(www.downloadHandler.text);
+                Debug.LogError($"Failed to buy card for user {userId}: {response.message}");
+                onCardReceived?.Invoke(null, response.message, 0); // Assuming error is a string and coins default to 0
             }
             else
             {
-                Debug.Log("Card bought successfully for user " + userId);
+                Debug.Log("Response received successfully for user " + userId);
                 CardResponse response = JsonUtility.FromJson<CardResponse>(www.downloadHandler.text);
                 if (response.card != null)
                 {
-                    response.card.desbloqueada = true; 
-                    onCardReceived?.Invoke(response.card, response.message); 
+                    response.card.desbloqueada = true;
+                    onCardReceived?.Invoke(response.card, response.message, response.coins.coins);
                 }
                 else
                 {
                     Debug.LogError("No card data found in the response.");
-                    onCardReceived?.Invoke(null, "No card data found in the response."); // Invoke with null card and error message
+                    int coinsAmount = (response.coins != null) ? response.coins.coins : 0;
+                    onCardReceived?.Invoke(null, response.message, coinsAmount);
                 }
             }
         }
     }
+
+    public IEnumerator GetCoins(int playerId, Action<int> callback)
+    {
+        UnityWebRequest www = UnityWebRequest.Get(apiURL + "/api/awakening/players/" + playerId + "/inventory/coins");
+        yield return www.SendWebRequest();
+
+        if (www.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError($"Failed to fetch coins for player {playerId}: {www.error}");
+            callback(0); // Or any other default value or error handling.
+        }
+        else
+        {
+            string data = www.downloadHandler.text;
+            CoinResponse coins = JsonUtility.FromJson<CoinResponse>(data);
+            Debug.Log("Coins: " + coins.coins);
+            callback(coins.coins); // Use the callback to return the fetched coins.
+        }
+    }
+
 
 }
 

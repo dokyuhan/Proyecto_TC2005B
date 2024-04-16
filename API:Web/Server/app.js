@@ -676,6 +676,155 @@ app.post("/api/awakening/match/create", async (request, response) => {
   }
 });
 
+// Endpoint para comprar una carta con monedas (hace todas las verificaciones necesarias)
+app.post(
+  "/api/awakening/players/:id/inventory/buyCard",
+  async (request, response) => {
+    let connection = null;
+
+    try {
+      connection = await connectToDB();
+
+      if (!request.params.id) {
+        return response.status(400).json({
+          message: "Missing required field. Ensure player_ID is provided.",
+        });
+      }
+
+      const playerID = request.params.id;
+      const cardPrice = 150;
+
+      const [player] = await connection.execute(
+        "SELECT coins FROM Players WHERE player_ID = ?",
+        [playerID]
+      );
+
+      if (player.length === 0) {
+        return response.status(404).json({ message: "Player not found" });
+      }
+
+      if (player[0].coins < cardPrice) {
+        return response
+          .status(400)
+          .json({ message: "Not enough coins to buy the card." });
+      }
+
+      let attempts = 0;
+      let cardFetched;
+      let allCardsOwned = true;
+
+      do {
+        const randomNumber = Math.floor(Math.random() * 40) + 1;
+
+        [cardFetched] = await connection.execute(
+          "SELECT * FROM Cards WHERE card_ID = ?",
+          [randomNumber]
+        );
+
+        const [existingCard] = await connection.execute(
+          "SELECT card_ID FROM Inventory WHERE card_ID = ? AND player_ID = ?",
+          [randomNumber, playerID]
+        );
+
+        attempts++;
+
+        if (existingCard.length === 0 && cardFetched.length > 0) {
+          allCardsOwned = false;
+          break;
+        }
+
+        if (attempts >= 40) {
+          break;
+        }
+      } while (true);
+
+      if (allCardsOwned) {
+        return response
+          .status(409)
+          .json({ message: "All cards have already been purchased!" });
+      }
+
+      await connection.beginTransaction();
+
+      const [insertResult] = await connection.execute(
+        "INSERT INTO Inventory (card_ID, player_ID) VALUES (?, ?)",
+        [cardFetched[0].card_ID, playerID]
+      );
+      if (insertResult.affectedRows === 0) {
+        await connection.rollback();
+        return response
+          .status(500)
+          .json({ message: "Failed to insert card into inventory." });
+      }
+
+      const [updateResult] = await connection.execute(
+        "UPDATE Players SET coins = coins - ? WHERE player_ID = ?",
+        [cardPrice, playerID]
+      );
+      const [remainingCoins] = await connection.execute(
+        "SELECT coins FROM Players WHERE player_ID = ?",
+        [playerID]
+      );
+      if (updateResult.affectedRows === 0) {
+        await connection.rollback();
+        return response
+          .status(500)
+          .json({ message: "Failed to update player coins." });
+      }
+
+      await connection.commit();
+      response.status(200).json({
+        message: "Card purchased!",
+        card: cardFetched[0],
+        coins: remainingCoins[0],
+      });
+    } catch (error) {
+      console.error("Error in buying card:", error);
+      await connection.rollback();
+      response.status(500).json({ message: "Internal server error", error });
+    } finally {
+      if (connection !== null) {
+        connection.end();
+      }
+    }
+  }
+);
+
+// Endpoint para obtener las monedas de un jugador en específico por su ID
+app.get(
+  "/api/awakening/players/:id/inventory/coins",
+  async (request, response) => {
+    let connection = null;
+
+    try {
+      connection = await connectToDB();
+
+      const [results, fields] = await connection.execute(
+        "SELECT coins FROM Players WHERE player_ID = ?",
+        [request.params.id]
+      );
+
+      console.log(`${results.length} rows returned`);
+      console.log(results);
+
+      if (results.length === 0) {
+        response.status(404).json({ message: "Player not found" });
+      } else {
+        response.status(200).json(results[0]);
+      }
+    } catch (error) {
+      response.status(500);
+      response.json(error);
+      console.log(error);
+    } finally {
+      if (connection !== null) {
+        connection.end();
+        console.log("Connection closed successfully!");
+      }
+    }
+  }
+);
+
 // Manejo de errores genérico
 app.use((err, request, response, next) => {
   console.error(err); // Para propósitos de depuración

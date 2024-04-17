@@ -32,7 +32,6 @@ async function connectToDB() {
 }
 */
 
-
 // Endpoint para obtener todas las Cartas
 app.get("/api/awakening/cards", async (request, response) => {
   let connection = null;
@@ -281,13 +280,12 @@ app.delete("/api/awakening/cards/:id", async (request, response) => {
   }
 });
 
-// Endpoint para crear un jugador nuevo
+// Endpoint para crear un jugador nuevo, se le asignan 16 cartas aleatorias
 app.post("/api/awakening/players", async (request, response) => {
   let connection = null;
 
   try {
     connection = await connectToDB();
-
     const data = request.body;
     const requiredFields = [
       "player_name",
@@ -308,7 +306,6 @@ app.post("/api/awakening/players", async (request, response) => {
     const missingFields = requiredFields.filter(
       (field) => data[field] === undefined || data[field] === null
     );
-
     if (missingFields.length > 0) {
       return response.status(400).json({
         message:
@@ -317,18 +314,18 @@ app.post("/api/awakening/players", async (request, response) => {
     }
 
     const [userExists] = await connection.execute(
-      "select user_name from Players where user_name = ?",
+      "SELECT user_name FROM Players WHERE user_name = ?",
       [data.user_name]
     );
-
     if (userExists.length > 0) {
       return response.status(400).json({
         message: "User name already exists, please choose another one",
       });
     }
 
+    // Insert the new player
     const [results] = await connection.execute(
-      "insert into Players (player_name, player_last_name, player_age, user_name, password, realm, is_npc, level, player_exp, win_record, lose_record, coins, token) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      "INSERT INTO Players (player_name, player_last_name, player_age, user_name, password, realm, is_npc, level, player_exp, win_record, lose_record, coins, token) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
       [
         data.player_name,
         data.player_last_name,
@@ -345,15 +342,31 @@ app.post("/api/awakening/players", async (request, response) => {
         data.token,
       ]
     );
-    console.log(`${results.affectedRows} rows affected`);
-    response.status(200).json({ message: "Player added successfully" });
+
+    // Generate 16 unique random card IDs
+    const cardIDs = new Set();
+    while (cardIDs.size < 16) {
+      cardIDs.add(Math.floor(Math.random() * 40) + 1);
+    }
+
+    // Insert generated cards into the player's inventory
+    for (const cardID of cardIDs) {
+      await connection.execute(
+        "INSERT INTO Inventory (card_ID, player_ID) VALUES (?, ?)",
+        [cardID, results.insertId] // results.insertId should be the newly created player's ID
+      );
+    }
+
+    response.status(200).json({
+      message: "Player added successfully with 16 random cards",
+      playerID: results.insertId,
+    });
   } catch (error) {
-    console.log(error);
-    response.status(500).json(error);
+    console.error("Error adding new player:", error);
+    response.status(500).json({ message: "Internal server error", error });
   } finally {
     if (connection !== null) {
       connection.end();
-      console.log("Connection closed successfully!");
     }
   }
 });
@@ -622,7 +635,6 @@ app.get("/api/awakening/players/:id/inventory", async (request, response) => {
   }
 });
 
-
 // Endpoint para eliminar el inventario de un jugador específico por el id de jugador
 app.delete("/api/awakening/players/:id/deck", async (request, response) => {
   let connection = null;
@@ -640,7 +652,9 @@ app.delete("/api/awakening/players/:id/deck", async (request, response) => {
 
     // Comprobamos si se ha eliminado alguna fila
     if (results.affectedRows === 0) {
-      response.status(404).json({ message: "No inventory found for this player ID, nothing to delete." });
+      response.status(404).json({
+        message: "No inventory found for this player ID, nothing to delete.",
+      });
     } else {
       response.status(200).json({ message: "Inventory deleted successfully." });
     }
@@ -655,7 +669,6 @@ app.delete("/api/awakening/players/:id/deck", async (request, response) => {
   }
 });
 
-
 // Endpoint para mandar los datos del mazo
 app.post("/api/awakening/players/deck", async (request, response) => {
   let connection = null;
@@ -664,12 +677,8 @@ app.post("/api/awakening/players/deck", async (request, response) => {
     connection = await connectToDB();
 
     const cards = request.body.cards; // Asume que 'cards' es un arreglo de objetos
-    let insertQuery =
-      "INSERT INTO Deck (card_ID, player_ID) VALUES ?";
-    let values = cards.map((card) => [
-      card.card_ID,
-      card.player_ID,
-    ]);
+    let insertQuery = "INSERT INTO Deck (card_ID, player_ID) VALUES ?";
+    let values = cards.map((card) => [card.card_ID, card.player_ID]);
 
     const [results] = await connection.query(insertQuery, [values]);
 

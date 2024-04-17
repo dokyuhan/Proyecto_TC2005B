@@ -496,9 +496,9 @@ app.post("/api/awakening/players/inventory", async (request, response) => {
 
   try {
     connection = await connectToDB();
-    const { card_IDs, player_ID, deck_ID } = request.body;
+    const { card_IDs, player_ID } = request.body;
 
-    if (!card_IDs || !player_ID || !deck_ID) {
+    if (!card_IDs || !player_ID) {
       return response.status(400).json({
         message:
           "Missing required fields. Ensure card_IDs, player_ID, and deck_ID are provided.",
@@ -533,8 +533,8 @@ app.post("/api/awakening/players/inventory", async (request, response) => {
     let insertedRows = 0;
     for (const card_ID of card_IDs) {
       const [result] = await connection.execute(
-        "INSERT INTO Inventory (card_ID, player_ID, deck_ID) VALUES (?, ?, ?)",
-        [card_ID, player_ID, deck_ID]
+        "INSERT INTO Inventory (card_ID, player_ID) VALUES (?, ?)",
+        [card_ID, player_ID]
       );
       insertedRows += result.affectedRows;
     }
@@ -548,6 +548,40 @@ app.post("/api/awakening/players/inventory", async (request, response) => {
       .json({ message: "Internal server error", error: error.message });
   } finally {
     if (connection) {
+      connection.end();
+      console.log("Connection closed successfully!");
+    }
+  }
+});
+
+// Endpoint para obtener un deck en específico por el id de jugador
+app.get("/api/awakening/players/:id/deck", async (request, response) => {
+  let connection = null;
+
+  try {
+    connection = await connectToDB();
+
+    const [results, fields] = await connection.execute(
+      "SELECT card_ID FROM Deck WHERE player_ID = ?",
+      [request.params.id]
+    );
+
+    console.log(`${results.length} rows returned`);
+    console.log(results);
+
+    if (results.length === 0) {
+      response.status(404).json({ message: "Card not found" });
+    } else {
+      const cardIds = results.map((row) => row.card_ID);
+
+      response.status(200).json({ cardIds });
+    }
+  } catch (error) {
+    response.status(500);
+    response.json(error);
+    console.log(error);
+  } finally {
+    if (connection !== null) {
       connection.end();
       console.log("Connection closed successfully!");
     }
@@ -588,8 +622,42 @@ app.get("/api/awakening/players/:id/inventory", async (request, response) => {
   }
 });
 
+
+// Endpoint para eliminar el inventario de un jugador específico por el id de jugador
+app.delete("/api/awakening/players/:id/deck", async (request, response) => {
+  let connection = null;
+
+  try {
+    connection = await connectToDB();
+
+    // Ejecutamos la sentencia DELETE para eliminar todas las filas con el player_ID especificado
+    const [results] = await connection.execute(
+      "DELETE FROM Deck WHERE player_ID = ?",
+      [request.params.id]
+    );
+
+    console.log(`${results.affectedRows} rows deleted`);
+
+    // Comprobamos si se ha eliminado alguna fila
+    if (results.affectedRows === 0) {
+      response.status(404).json({ message: "No inventory found for this player ID, nothing to delete." });
+    } else {
+      response.status(200).json({ message: "Inventory deleted successfully." });
+    }
+  } catch (error) {
+    response.status(500).json({ error: error.message });
+    console.log(error);
+  } finally {
+    if (connection !== null) {
+      connection.end();
+      console.log("Connection closed successfully!");
+    }
+  }
+});
+
+
 // Endpoint para mandar los datos del mazo
-app.post("/api/awakening/players/inventory/deck", async (request, response) => {
+app.post("/api/awakening/players/deck", async (request, response) => {
   let connection = null;
 
   try {
@@ -597,11 +665,10 @@ app.post("/api/awakening/players/inventory/deck", async (request, response) => {
 
     const cards = request.body.cards; // Asume que 'cards' es un arreglo de objetos
     let insertQuery =
-      "INSERT INTO Inventory (card_ID, player_ID, deck_ID) VALUES ?";
+      "INSERT INTO Deck (card_ID, player_ID) VALUES ?";
     let values = cards.map((card) => [
       card.card_ID,
       card.player_ID,
-      card.deck_ID,
     ]);
 
     const [results] = await connection.query(insertQuery, [values]);

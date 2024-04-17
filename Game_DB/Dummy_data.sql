@@ -70,20 +70,20 @@ INSERT INTO Cards (card_name, card_description, attack, defense, healing, card_r
 -- Legendary Cards
 
 -- Human
-('Princess', 'Description', 10, 10, 40, 'Human', 2, 300, 'Legendary', 1, 'Effect 1'),
-('King Arthur', 'Description', 35, 25, 15, 'Human', 3, 300, 'Legendary', 1, 'Effect 2'),
+('Princess', 'Description', 10, 10, 40, 'Human', 0, 300, 'Legendary', 1, 'Effect 1'),
+('King Arthur', 'Description', 35, 25, 15, 'Human', 0, 300, 'Legendary', 1, 'Effect 2'),
 
 -- Monster
-('Griffin', 'Description', 30, 30, 10, 'Monster', 2, 300, 'Legendary', 1, 'Effect 3'),
-('Dragon', 'Description', 40, 20, 10, 'Monster', 3, 300, 'Legendary', 1, 'Effect 4'),
+('Griffin', 'Description', 30, 30, 10, 'Monster', 0, 300, 'Legendary', 1, 'Effect 3'),
+('Dragon', 'Description', 40, 20, 10, 'Monster', 0, 300, 'Legendary', 1, 'Effect 4'),
 
 -- Magical
-('Runeforge Dwarf', 'Description', 15, 40, 20, 'Magical', 2, 300, 'Legendary', 1, 'Effect 5'),
-('Moonshadow Elf', 'Description', 35, 15, 20, 'Magical', 3, 300, 'Legendary', 1, 'Effect 6'),
+('Runeforge Dwarf', 'Description', 15, 40, 20, 'Magical', 0, 300, 'Legendary', 1, 'Effect 5'),
+('Moonshadow Elf', 'Description', 35, 15, 20, 'Magical', 0, 300, 'Legendary', 1, 'Effect 6'),
 
 -- Celestial
-('Hercules', 'Description', 35, 25, 20, 'Celestial', 2, 300, 'Legendary', 1, 'Effect 7'),
-('Demon King', 'Description', 35, 15, 30, 'Celestial', 3, 300, 'Legendary', 1, 'Effect 8');
+('Hercules', 'Description', 35, 25, 20, 'Celestial', 0, 300, 'Legendary', 1, 'Effect 7'),
+('Demon King', 'Description', 35, 15, 30, 'Celestial', 0, 300, 'Legendary', 1, 'Effect 8');
 
 -- Special Cards
 -- ('Special 1', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 9'),
@@ -99,9 +99,7 @@ INSERT INTO Cards (card_name, card_description, attack, defense, healing, card_r
 
 -- player name, last name, age, email, realm, is npc, player exp, win, lost, coins, exp points
 INSERT INTO Players (player_name, player_last_name, player_age, user_name, password, realm, is_npc, level, player_exp, win_record, lose_record, coins, token) VALUES
-('Gabriel', 'Edid', 20, 'Atrium20', 'prueba.edid', 'Magic', false, 1, 500, 10, 5, 10000, 1),
-('Alberto', 'Limon', 21, 'beto', 'lemon', 'Celestial', false, 1, 500, 0, 0, 5000, 1),
-('Do Kyu', 'Han Kim', 21, 'han123', 'prueba.han', 'Monster', false, 1, 500, 10, 5, 5000, 1),
+('John', 'Doe', 25, 'john.doe', 'password123', 'Human', false, 1, 500, 10, 5, 10, 2),
 ('Jane', 'Smith', 30, 'jane.smith', 'password123', 'Monster', false, 2, 600, 15, 8, 15, 1),
 ('Alice', 'Johnson', 28, 'alice.johnson', 'password123', 'Magical', false, 2, 450, 12, 6, 20, 0),
 ('Bob', 'Williams', 35, 'bob.williams', 'password123', 'Celestial', false, 3, 520, 14, 9, 24, 2),
@@ -123,37 +121,16 @@ INSERT INTO Players (player_name, player_last_name, player_age, user_name, passw
 ('Liam', 'Young', 39, 'liam.young', 'password123', 'Human', false, 4, 530, 14, 8, 10, 1);
 
 -- deck name, description, ammount
-INSERT INTO Deck (deck_name, deck_description, card_ammount) VALUES
-('Deck 1', 'Description', 10),
-('Deck 2', 'Description', 10),
-('Deck 3', 'Description', 10),
-('Deck 4', 'Description', 10),
-('Deck 5', 'Description', 10),
-('Deck 6', 'Description', 10),
-('Deck 7', 'Description', 10),
-('Deck 8', 'Description', 10),
-('Deck 9', 'Description', 10),
-('Deck 10', 'Description', 10),
-('Deck 11', 'Description', 10),
-('Deck 12', 'Description', 10),
-('Deck 13', 'Description', 10),
-('Deck 14', 'Description', 10),
-('Deck 15', 'Description', 10),
-('Deck 16', 'Description', 10),
-('Deck 17', 'Description', 10),
-('Deck 18', 'Description', 10),
-('Deck 19', 'Description', 10),
-('Deck 20', 'Description', 10),
-('Deck 21', 'Description', 10),
-('Deck 22', 'Description', 10),
-('Deck 23', 'Description', 10),
-('Deck 24', 'Description', 10),
-('Deck 25', 'Description', 10),
-('Deck 26', 'Description', 10),
-('Deck 27', 'Description', 10),
-('Deck 28', 'Description', 10),
-('Deck 29', 'Description', 10),
-('Deck 30', 'Description', 10);
+INSERT INTO Deck (cardID, playerID) VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 1),
+(3, 2),
+(6, 2),
+(7, 2),
+(8, 2),
+(23, 3);
 
 -- game level, scene, game duration
 INSERT INTO Game (game_level, game_scene, game_duration, game_turns) VALUES
@@ -166,19 +143,21 @@ INSERT INTO Game (game_level, game_scene, game_duration, game_turns) VALUES
 (7, 'Scene 3', '02:30:00', 9),
 (8, 'Scene 4', '01:45:00', 6);
 
-INSERT INTO Inventory (card_ID, player_ID, deck_ID) VALUES
-(1, 1, 1),
-(3, 1, 1),
-(4, 1, 1),
-(6, 1, 1),
-(1, 2, 3),
-(3, 2, 3),
-(10, 2, 3),
-(2, 3, 2),
-(3, 3, 2),
-(7, 3, 2);
+INSERT INTO Inventory (card_ID, player_ID) VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 1),
+(6, 1),
+(1, 2),
+(3, 2),
+(10, 2),
+(2, 3),
+(3, 3),
+(7, 3);
 
-SELECT * FROM Inventory where player_ID = 23;
+DELETE FROM Inventory WHERE player_ID = 21;
+SELECT * FROM Inventory where player_ID = 1;
 
 SELECT * FROM Game where game_ID = 9;
 

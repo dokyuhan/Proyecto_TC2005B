@@ -1,4 +1,4 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -58,4 +58,4 @@ public class SceneController : MonoBehaviour
 
         Debug.Log("Level " + level.name + " loaded with AI setting " + level.aiLevel);
     }
-}*/
+}

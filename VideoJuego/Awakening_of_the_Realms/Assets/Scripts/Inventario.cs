@@ -18,6 +18,10 @@ public class Inventario : MonoBehaviour
     IEnumerator Start()
     {
 
+        Cards.cards.Clear();
+        available.Clear();
+        playerInv.Clear();
+
         yield return StartCoroutine(conexion.getPlayerInvnetory(Usuario.usuario.player_ID, ProcessCardIds));
         // Obtener todas las cartas
         for (int i = 1; i <= 40; i++)

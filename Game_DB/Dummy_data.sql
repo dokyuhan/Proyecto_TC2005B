@@ -156,8 +156,12 @@ INSERT INTO Inventory (card_ID, player_ID) VALUES
 (3, 3),
 (7, 3);
 
-DELETE FROM Inventory WHERE player_ID = 21;
-SELECT * FROM Inventory where player_ID = 1;
+DELETE FROM Inventory WHERE player_ID = 2;
+SELECT * FROM Inventory where player_ID = 21;
+
+UPDATE Players
+SET coins = coins + 5000
+WHERE player_ID = 21;
 
 SELECT * FROM Game where game_ID = 9;
 

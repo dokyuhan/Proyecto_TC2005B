@@ -29,21 +29,20 @@ public class Inventario : MonoBehaviour
             yield return StartCoroutine(conexion.GetCards(i, Cards.cards));
         }
 
-        for (int f = 1; f <= playerInv.Count; f++)
+        for (int f = 0; f < playerInv.Count; f++)
         {        
-            yield return StartCoroutine(conexion.GetCards(f, available));
+            yield return conexion.GetCards(playerInv[f], available);
         }
         // Actualizar el estado de desbloqueo de cada carta
         foreach (Card card in Cards.cards)
         {
-            card.desbloqueada = available.Any(a => a.card_ID == card.card_ID);  // Comprobar si la carta está en 'available'
+            card.desbloqueada = available.Any(a => a.card_ID == card.card_ID);
             cardDisplayManager.DisplayCards(card);
         }
 
         // Limpiar el mazo actual
         ControladorDeMazo.cartasEnMazo.Clear();
     }
-
 
 
 

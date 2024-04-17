@@ -110,7 +110,7 @@ public class CardDisplayManager : MonoBehaviour
         if (!card.desbloqueada)
         {
             imagenCarta.color = new Color(imagenCarta.color.r, imagenCarta.color.g, imagenCarta.color.b, 0.7f); 
-            imagenMarco.color = new Color(imagenMarco.color.r, imagenMarco.color.g, imagenMarco.color.b, 0.7f); 
+            imagenMarco.color = new Color(1f, 0f, 0f, 0.7f); // Rojo con transparencia de 70%
         }
 
     }

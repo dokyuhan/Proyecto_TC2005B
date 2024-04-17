@@ -6,7 +6,6 @@ public class SceneController : MonoBehaviour
 {
     public static SceneController Instance { get; private set; } // Singleton instance
     public LevelsConfig levelsConfig; // Assign this in the inspector
-    public int currentLevelIndex = 0;
     public AI aiComponent;  // Reference to the AI component on the appropriate GameObject
     public MeshRenderer backgroundRenderer; // Reference to the MeshRenderer that displays the background
 
@@ -30,6 +29,8 @@ public class SceneController : MonoBehaviour
 
         if (backgroundRenderer == null)
             Debug.LogError("Background renderer is not set in SceneController.");
+
+        int currentLevelIndex = PlayerPrefs.GetInt("SelectedLevel", 0);
 
         LoadLevel(currentLevelIndex);
     }

@@ -14,7 +14,7 @@ public class GameAI : MonoBehaviour
 
     public PlayerDeck playerDeck;
     public AIFunction aiFunction;
-    public TimerPrueba timer;
+    public Timer timer;
     public HealthBar playerHealthBar;
     public HealthBar aiHealthBar;
     private int retrievalCount = 0;
@@ -39,6 +39,7 @@ public class GameAI : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
     }
 
@@ -47,22 +48,12 @@ public class GameAI : MonoBehaviour
         playerHealthBar.SetMaxHealth(100);
         aiHealthBar.SetMaxHealth(100);
         SetGameState(GameState.PlayerTurn);
-        //aiFunction.aiScript.OnAIDeckReady += StartAIActions;
     }
-
-    /*
-    void StartAIActions() 
-    {
-        aiFunction.InitializeAIActions();
-        StartGame();
-    }
-    */
 
     void OnDestroy()
     {
         Arrastrar.OnCardPlacedInOpponentZone -= HandleAICardPlacement;
         Arrastrar.OnCardPlacedInPlayZone -= HandlePlayerCardPlacement;
-        //aiFunction.aiScript.OnAIDeckReady -= StartAIActions;  // Clean up
     }
 
     void HandlePlayerCardPlacement(Card card)
@@ -172,8 +163,8 @@ public class GameAI : MonoBehaviour
     
         playerHealthBar.TakeDamage(damageToPlayer);
         playerHealthBar.Heal(healingTotalAI); // Assuming AI can heal player as a strategy (?)
-        Debug.LogError("Damage to Player: " + damageToPlayer);
-        Debug.LogError("Damage to AI: " + damageToAI);
+        Debug.Log("Damage to Player: " + damageToPlayer);
+        Debug.Log("Damage to AI: " + damageToAI);
     }
 
     // Reset game state modification

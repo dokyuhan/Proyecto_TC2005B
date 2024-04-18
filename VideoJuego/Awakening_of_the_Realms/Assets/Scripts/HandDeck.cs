@@ -4,55 +4,67 @@ using UnityEngine;
 
 public class HandDeck : MonoBehaviour
 {
-    
-    public List<Card> handCards = new List<Card>(); // List to hold cards in hand
-    public CardDisplayManager cardDisplayManager; // Reference to the CardDisplayManager to display cards
-    public List<Card> displayedCards = new List<Card>(); // List to hold displayed cards
-    public int displayCount = 5; // Default to 5, can be adjusted in the Inspector
-
+    public List<Card> handCards = new List<Card>();
+    public CardDisplayManager cardDisplayManager;
+    public List<Card> displayedCards = new List<Card>();
+    public int displayCount = 5;
 
     public void ShuffleAndDisplayHand()
     {
-        // Shuffle the hand
-        for (int i = 0; i < handCards.Count; i++)
+        Debug.Log("Shuffling Hand");
+        int n = handCards.Count;
+        for (int i = 0; i < n; i++)
         {
-            Card temp = handCards[i];
-            int randomIndex = Random.Range(i, handCards.Count);
-            handCards[i] = handCards[randomIndex];
-            handCards[randomIndex] = temp;
+            int r = i + Random.Range(0, n - i);
+            Card temp = handCards[r];
+            handCards[r] = handCards[i];
+            handCards[i] = temp;
         }
-
-        // Display the shuffled hand
         DisplayHand();
     }
 
     public void DisplayHand()
     {
+        Debug.Log("Displaying Hand");
         displayedCards.Clear();
+        cardDisplayManager.ClearCardsUI();
+        HashSet<Card> alreadyDisplayed = new HashSet<Card>();
+
         int countToDisplay = Mathf.Min(displayCount, handCards.Count);
-        for (int i = 0; i < countToDisplay; i++)
+        for (int i = 0, j = 0; i < countToDisplay && j < handCards.Count; j++)
         {
-            cardDisplayManager.DisplayCards(handCards[i]);
-            displayedCards.Add(handCards[i]);
+            if (!alreadyDisplayed.Contains(handCards[j]))
+            {
+                cardDisplayManager.DisplayCards(handCards[j]);
+                displayedCards.Add(handCards[j]);
+                alreadyDisplayed.Add(handCards[j]);
+                i++;
+            }
         }
+        Debug.Log($"Displayed Cards Count: {displayedCards.Count}");
     }
 
     public void RefillDisplayedCards()
     {
-        int cardsNeeded = displayCount - displayedCards.Count;
-        for (int i = 0; i < cardsNeeded && handCards.Count > displayedCards.Count; i++)
+        Debug.Log("Refilling Displayed Cards");
+        if (displayedCards.Count < displayCount)
         {
-            Card newCard = handCards[displayedCards.Count];
-            displayedCards.Add(newCard);
-            cardDisplayManager.DisplayCards(newCard);
+            List<Card> availableCards = new List<Card>(handCards);
+            availableCards.RemoveAll(card => displayedCards.Contains(card));
+
+            while (displayedCards.Count < displayCount && availableCards.Count > 0)
+            {
+                int randomIndex = Random.Range(0, availableCards.Count);
+                Card newCard = availableCards[randomIndex];
+                cardDisplayManager.DisplayCards(newCard);
+                displayedCards.Add(newCard);
+                availableCards.RemoveAt(randomIndex);
+            }
         }
-        UpdateHandUI();
-    }
 
-
-    public void UpdateHandUI()
-    {
-        cardDisplayManager.ClearCardsUI();  // Clear current UI elements
-        DisplayHand();
+        if (displayedCards.Count < displayCount)
+        {
+            ShuffleAndDisplayHand();
+        }
     }
 }

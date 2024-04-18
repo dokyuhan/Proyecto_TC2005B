@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 public class PlayerDeck : MonoBehaviour
 {
-    public CardDisplayManager cardDisplayManager; 
     //public APIConnection conexion;
     public Card playerCard;
     public CardFetch playerDeck;
@@ -23,28 +22,8 @@ public class PlayerDeck : MonoBehaviour
         int [] deck = {11, 12, 13, 14, 15, 16, 17, 18, 19, 20}; // Example player deck
         PlayerCardDeck(fetchedCards, deck);
     }
+
     
-    /*
-    // Call this method with the player ID to load and display the player's deck
-    public void LoadAndDisplayPlayerDeck(int playerId)
-    {
-        StartCoroutine(conexion.GetDeckForPlayer(playerId, deck =>
-        {
-            if (deck != null)
-            {
-                // Display each card in the deck
-                foreach (Card card in deck)
-                {
-                    cardDisplayManager.DisplayCards(card);
-                }
-            }
-            else
-            {
-                Debug.LogError("Failed to load player deck.");
-            }
-        }));
-    }
-    */
     public void PlayerCardDeck(List<Card> fetchedCards, int[] deck)
     {
 
@@ -62,7 +41,9 @@ public class PlayerDeck : MonoBehaviour
                 Debug.Log("Card with ID " + cardID + " not found.");
             }
         }
+        Debug.Log("Player deck loaded.");
         handDeck.ShuffleAndDisplayHand(); // Shuffle and display the hand deck
+        Debug.Log("Player deck shuffled and displayed.");
     }
     
 }

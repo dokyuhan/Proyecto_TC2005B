@@ -34,4 +34,10 @@ public class EnergyBar : MonoBehaviour
         currentEnergy = 0;
         SetEnergy(currentEnergy);  // Reset the energy to 0
     }
+
+    public void DecrementEnergy(int amount)
+    {
+        currentEnergy = Mathf.Max(currentEnergy - amount, (int)slider.maxValue);
+        SetEnergy(currentEnergy);
+    }
 }

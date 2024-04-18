@@ -11,7 +11,6 @@ public class HandDeck : MonoBehaviour
 
     public void ShuffleAndDisplayHand()
     {
-        Debug.Log("Shuffling Hand");
         int n = handCards.Count;
         for (int i = 0; i < n; i++)
         {
@@ -25,7 +24,6 @@ public class HandDeck : MonoBehaviour
 
     public void DisplayHand()
     {
-        Debug.Log("Displaying Hand");
         displayedCards.Clear();
         cardDisplayManager.ClearCardsUI();
         HashSet<Card> alreadyDisplayed = new HashSet<Card>();
@@ -41,12 +39,10 @@ public class HandDeck : MonoBehaviour
                 i++;
             }
         }
-        Debug.Log($"Displayed Cards Count: {displayedCards.Count}");
     }
 
     public void RefillDisplayedCards()
     {
-        Debug.Log("Refilling Displayed Cards");
         if (displayedCards.Count < displayCount)
         {
             List<Card> availableCards = new List<Card>(handCards);

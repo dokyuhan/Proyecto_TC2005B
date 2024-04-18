@@ -58,7 +58,6 @@ public class AI : MonoBehaviour
 
     void AiPlay(List<Card> fetchedCards, int[] deck)
     {
-        Debug.Log("AI deck loading...");
         foreach (int cardID in deck)
         {
             aiCard = deckAI.cards.Find(card => card.card_ID == cardID);
@@ -66,17 +65,13 @@ public class AI : MonoBehaviour
             // Check if a card with the given ID was found
             if (aiCard != null)
             {
-                Debug.Log("Card with ID " + cardID + " found.");
                 handDeck.handCards.Add(aiCard); // Add the card to the hand deck
             }
             else
             {
-                Debug.Log("Card with ID " + cardID + " not found.");
             }
         }
-        Debug.Log("AI deck loaded.");
         handDeck.ShuffleAndDisplayHand(); // Shuffle and display the hand deck
-        Debug.Log("AI hand shuffled and displayed.");
 
     }
     

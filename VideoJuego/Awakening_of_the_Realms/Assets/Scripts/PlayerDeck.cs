@@ -34,6 +34,7 @@ public class PlayerDeck : MonoBehaviour
             // Check if a card with the given ID was found
             if (playerCard != null)
             {
+                Debug.Log("Card with ID " + cardID + " found.");
                 handDeck.handCards.Add(playerCard); // Add the card to the hand deck
             }
             else

@@ -19,11 +19,13 @@ public class CardFetch : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("Starting card fetch...");
         StartCoroutine(FetchCards());
     }
 
     IEnumerator FetchCards()
     {
+        Debug.Log("Fetching cards...");
         for (int i = 1; i <= 40; i++)
         {
             yield return StartCoroutine(GetCard(i));
@@ -41,7 +43,7 @@ public class CardFetch : MonoBehaviour
     {
         UnityWebRequest www = UnityWebRequest.Get($"{apiURL}{cardEndpoint}{id}");
 
-        //Debug.Log("URL: " + apiURL + cardEndpoint + cardId);
+        Debug.Log("URL: " + apiURL + cardEndpoint + cardId);
 
         yield return www.SendWebRequest();
 

@@ -66,6 +66,7 @@ public class AI : MonoBehaviour
             // Check if a card with the given ID was found
             if (aiCard != null)
             {
+                Debug.Log("Card with ID " + cardID + " found.");
                 handDeck.handCards.Add(aiCard); // Add the card to the hand deck
             }
             else

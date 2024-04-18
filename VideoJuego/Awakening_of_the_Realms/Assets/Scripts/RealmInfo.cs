@@ -40,7 +40,7 @@ public class RealmInfo : MonoBehaviour
         if (success)
         {
             Debug.Log("Usuario añadido con éxito");
-            SceneManager.LoadScene("MainScreen");
+            SceneManager.LoadScene("LogIn");
         }
         else
         {

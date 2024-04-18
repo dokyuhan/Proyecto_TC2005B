@@ -1779,6 +1779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34458977e878f48dcb0f3f4516a17aeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  conexion: {fileID: 634685330}
   playerCard:
     card_ID: 0
     card_name: 
@@ -1796,6 +1797,7 @@ MonoBehaviour:
     cardGameObject: {fileID: 0}
   playerDeck: {fileID: 446232769}
   handDeck: {fileID: 634685327}
+  deck: 
 --- !u!114 &634685327
 MonoBehaviour:
   m_ObjectHideFlags: 0

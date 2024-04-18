@@ -483,38 +483,6 @@ app.delete("/api/awakening/players/:id", async (request, response) => {
   }
 });
 
-// Endpoint para obtener los stats de un usuario en específico por su ID
-app.get("/api/awakening/players/:id/stats", async (request, response) => {
-  let connection = null;
-
-  try {
-    connection = await connectToDB();
-
-    const [results, fields] = await connection.execute(
-      "select win_record, lose_record from Players where player_ID = ?",
-      [request.params.id]
-    );
-
-    console.log(`${results.length} rows returned`);
-    console.log(results);
-
-    if (results.length === 0) {
-      response.status(404).json({ message: "Player not found" });
-    } else {
-      response.status(200).json(results[0]);
-    }
-  } catch (error) {
-    response.status(500);
-    response.json(error);
-    console.log(error);
-  } finally {
-    if (connection !== null) {
-      connection.end();
-      console.log("Connection closed successfully!");
-    }
-  }
-});
-
 // Endpoint para crear un inventario y/o añadir cartas al inventario de un jugador
 app.post("/api/awakening/players/inventory", async (request, response) => {
   let connection = null;
@@ -654,7 +622,6 @@ app.delete("/api/awakening/players/:id/deck", async (request, response) => {
   try {
     connection = await connectToDB();
 
-    // Ejecutamos la sentencia DELETE para eliminar todas las filas con el player_ID especificado
     const [results] = await connection.execute(
       "DELETE FROM Deck WHERE player_ID = ?",
       [request.params.id]
@@ -662,7 +629,6 @@ app.delete("/api/awakening/players/:id/deck", async (request, response) => {
 
     console.log(`${results.affectedRows} rows deleted`);
 
-    // Comprobamos si se ha eliminado alguna fila
     if (results.affectedRows === 0) {
       response.status(404).json({
         message: "No inventory found for this player ID, nothing to delete.",
@@ -916,6 +882,103 @@ app.get(
   }
 );
 
+// Endpoint para obtener el win & lose record de un usuario en específico por su ID
+app.get(
+  "/api/awakening/players/:id/stats/win_lose",
+  async (request, response) => {
+    let connection = null;
+
+    try {
+      connection = await connectToDB();
+
+      const [results, fields] = await connection.execute(
+        "select win_record, lose_record from Players where player_ID = ?",
+        [request.params.id]
+      );
+
+      console.log(`${results.length} rows returned`);
+      console.log(results);
+
+      if (results.length === 0) {
+        response.status(404).json({ message: "Player not found" });
+      } else {
+        response.status(200).json(results[0]);
+      }
+    } catch (error) {
+      response.status(500);
+      response.json(error);
+      console.log(error);
+    } finally {
+      if (connection !== null) {
+        connection.end();
+        console.log("Connection closed successfully!");
+      }
+    }
+  }
+);
+
+// Endpoint to obtain the count of players by their ages
+app.get("/api/awakening/players/stats/ages", async (request, response) => {
+  let connection = null;
+
+  try {
+    connection = await connectToDB();
+
+    const [results, fields] = await connection.execute(
+      "SELECT player_age, COUNT(*) AS count_of_people FROM players GROUP BY player_age ORDER BY player_age"
+    );
+
+    console.log(`${results.length} rows returned`);
+    console.log(results);
+
+    if (results.length === 0) {
+      response.status(404).json({ message: "Data not found" });
+    } else {
+      response.status(200).json(results);
+    }
+  } catch (error) {
+    console.log(error);
+    response.status(500);
+    response.json(error);
+  } finally {
+    if (connection !== null) {
+      connection.end();
+      console.log("Connection closed successfully!");
+    }
+  }
+});
+
+// Endpoint to obtain the levels where players are
+app.get("/api/awakening/players/stats/levels", async (request, response) => {
+  let connection = null;
+
+  try {
+    connection = await connectToDB();
+
+    const [results, fields] = await connection.execute(
+      "SELECT level, COUNT(*) AS count_of_people FROM players GROUP BY level ORDER BY level"
+    );
+
+    console.log(`${results.length} rows returned`);
+    console.log(results);
+
+    if (results.length === 0) {
+      response.status(404).json({ message: "Data not found" });
+    } else {
+      response.status(200).json(results);
+    }
+  } catch (error) {
+    console.log(error);
+    response.status(500);
+    response.json(error);
+  } finally {
+    if (connection !== null) {
+      connection.end();
+      console.log("Connection closed successfully!");
+    }
+  }
+});
+
 // Manejo de errores genérico
 app.use((err, request, response, next) => {
   console.error(err); // Para propósitos de depuración
@@ -924,5 +987,5 @@ app.use((err, request, response, next) => {
 
 // Inicialización del servidor
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`App listening at http://localhost:${port}`);
 });

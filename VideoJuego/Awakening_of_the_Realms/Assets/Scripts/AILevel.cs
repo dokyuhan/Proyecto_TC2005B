@@ -11,7 +11,6 @@ public class AI : MonoBehaviour
     public CardFetch deckAI;
     public Card aiCard;
     public HandDeck handDeck;
-    public Action OnAIDeckReady;
 
     private void OnEnable()
     {
@@ -29,7 +28,7 @@ public class AI : MonoBehaviour
         int[] deck = new int[10];
         switch (personality)
         {
-            case AILevel.Human1:
+            case AILevel.Human1:  
                 deck = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
                 break;
             case AILevel.Human2:
@@ -59,7 +58,7 @@ public class AI : MonoBehaviour
 
     void AiPlay(List<Card> fetchedCards, int[] deck)
     {
-
+        Debug.Log("AI deck loading...");
         foreach (int cardID in deck)
         {
             aiCard = deckAI.cards.Find(card => card.card_ID == cardID);
@@ -67,6 +66,7 @@ public class AI : MonoBehaviour
             // Check if a card with the given ID was found
             if (aiCard != null)
             {
+                Debug.Log("Card with ID " + cardID + " found.");
                 handDeck.handCards.Add(aiCard); // Add the card to the hand deck
             }
             else
@@ -77,7 +77,6 @@ public class AI : MonoBehaviour
         Debug.Log("AI deck loaded.");
         handDeck.ShuffleAndDisplayHand(); // Shuffle and display the hand deck
         Debug.Log("AI hand shuffled and displayed.");
-        OnAIDeckReady?.Invoke();  // Notify that AI deck is ready
 
     }
     

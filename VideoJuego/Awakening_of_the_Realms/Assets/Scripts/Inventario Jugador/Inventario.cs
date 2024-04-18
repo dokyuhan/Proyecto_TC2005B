@@ -64,7 +64,24 @@ public class Inventario : MonoBehaviour
 
     public void IniciarSave()
     {
-        StartCoroutine(Save());
+
+        int sum = 0;
+
+        foreach (Card carta in ControladorDeMazo.cartasEnMazo)
+        {
+            if(carta.rarity == "Legendary"){
+                sum = sum +1;
+            }
+        }
+
+        if ((ControladorDeMazo.cartasEnMazo.Count == 10) && (sum <= 2)){
+            StartCoroutine(Save());
+        }else if(ControladorDeMazo.cartasEnMazo.Count != 10){
+            Debug.LogError("Tu mazo debe contener 10 cartas");
+        }else if(sum > 2){
+            Debug.LogError("Tu mazo no puede tener mas de 2 cartas legendarias");
+        }
+        
     }
 
 

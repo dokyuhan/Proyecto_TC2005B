@@ -8,6 +8,9 @@ public class SceneController : MonoBehaviour
     public LevelsConfig levelsConfig; // Assign this in the inspector
     public AI aiComponent;  // Reference to the AI component on the appropriate GameObject
     public MeshRenderer backgroundRenderer; // Reference to the MeshRenderer that displays the background
+    public EnergyBar playerEnergyBar;
+    public EnergyBar aiEnergyBar;
+    
 
     void Awake()
     {
@@ -54,6 +57,11 @@ public class SceneController : MonoBehaviour
         else
         {
             Debug.LogError("Background renderer or material is not properly set up.");
+        }
+
+        if (Game.Instance != null) {
+            Game.Instance.playerEnergyBar.SetMaxEnergy(level.maxPlayerEnergy);
+            Game.Instance.aiEnergyBar.SetMaxEnergy(level.maxAIEnergy);
         }
 
         Debug.Log("Level " + level.name + " loaded with AI setting " + level.aiLevel);

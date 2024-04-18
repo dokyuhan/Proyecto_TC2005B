@@ -32,6 +32,7 @@ async function connectToDB() {
 }
 */
 
+
 app.get("/", (request, response) => {
   fs.readFile(
     "../SitioWeb/public/html/AwakeningWebPage.html",

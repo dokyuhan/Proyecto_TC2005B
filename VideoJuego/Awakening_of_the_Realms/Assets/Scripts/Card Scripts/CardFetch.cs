@@ -7,7 +7,7 @@ public class CardFetch : MonoBehaviour
 {
     [SerializeField] private string apiURL = "localhost:3200";
     [SerializeField] private string cardEndpoint = "/api/awakening/cards/";
-    private int cardId = 1;
+
     Card card;
 
     public List<Card> cards = new List<Card>(); 
@@ -17,15 +17,14 @@ public class CardFetch : MonoBehaviour
     public delegate void OnCardsFetched(List<Card> cards);
     public static event OnCardsFetched CardsFetched;
 
+
     private void Start()
     {
-        Debug.Log("Starting card fetch...");
         StartCoroutine(FetchCards());
     }
 
     IEnumerator FetchCards()
     {
-        Debug.Log("Fetching cards...");
         for (int i = 1; i <= 40; i++)
         {
             yield return StartCoroutine(GetCard(i));
@@ -42,8 +41,6 @@ public class CardFetch : MonoBehaviour
     IEnumerator GetCard(int id)
     {
         UnityWebRequest www = UnityWebRequest.Get($"{apiURL}{cardEndpoint}{id}");
-
-        Debug.Log("URL: " + apiURL + cardEndpoint + cardId);
 
         yield return www.SendWebRequest();
 

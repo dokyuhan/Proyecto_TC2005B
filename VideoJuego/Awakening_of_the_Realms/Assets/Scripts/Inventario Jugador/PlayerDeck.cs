@@ -26,7 +26,6 @@ public class PlayerDeck : MonoBehaviour
     
     public void PlayerCardDeck(List<Card> fetchedCards, int[] deck)
     {
-
         foreach (int cardID in deck)
         {
             playerCard = playerDeck.cards.Find(card => card.card_ID == cardID);
@@ -34,7 +33,6 @@ public class PlayerDeck : MonoBehaviour
             // Check if a card with the given ID was found
             if (playerCard != null)
             {
-                Debug.Log("Card with ID " + cardID + " found.");
                 handDeck.handCards.Add(playerCard); // Add the card to the hand deck
             }
             else
@@ -42,9 +40,7 @@ public class PlayerDeck : MonoBehaviour
                 Debug.Log("Card with ID " + cardID + " not found.");
             }
         }
-        Debug.Log("Player deck loaded.");
         handDeck.ShuffleAndDisplayHand(); // Shuffle and display the hand deck
-        Debug.Log("Player deck shuffled and displayed.");
     }
     
 }

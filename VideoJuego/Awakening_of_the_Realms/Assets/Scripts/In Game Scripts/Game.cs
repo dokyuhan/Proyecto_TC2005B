@@ -6,28 +6,30 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 
-public class GameAI : MonoBehaviour
+public class Game : MonoBehaviour
 {
-    public static GameAI Instance { get; private set; }
+    public static Game Instance { get; private set; }
     enum GameState { Start, PlayerTurn, AITurn, CheckWinConditions, EndTurn }
     GameState currentState;
-
     public PlayerDeck playerDeck;
     public AIFunction aiFunction;
     public Timer timer;
-    public HealthBar playerHealthBar;
-    public HealthBar aiHealthBar;
+    public HealthBar playerHealthBar, aiHealthBar;
+    public EnergyBar playerEnergyBar, aiEnergyBar;
     private int retrievalCount = 0;
     public CardManager cardManager;
     public List<Card> cartasJugadorEnJuego = new List<Card>();
     public List<Card> cartasOponenteEnJuego = new List<Card>();
-    public Transform playerCardArea1;
-    public Transform playerCardArea2;
-    public Transform aiCardArea1;
-    public Transform aiCardArea2;  // Assign these in the Unity Inspector
+    public Transform playerCardArea1, playerCardArea2, aiCardArea1, aiCardArea2;
+    bool playerCardsRetrieved = false;
+    bool aiCardsRetrieved = false;
+    public int turnCount;
+    public TextMeshProUGUI turnCounterText;
+
 
     void Awake()
     {
+        Debug.Log($"Awake called on GameAI with instance ID: {GetInstanceID()} in scene: {SceneManager.GetActiveScene().name}");
         if (Instance == null)
         {
             Instance = this;
@@ -38,6 +40,7 @@ public class GameAI : MonoBehaviour
         }
         else
         {
+            Debug.Log($"Awake called on GameAI with instance ID: {GetInstanceID()} in scene: {SceneManager.GetActiveScene().name}");
             Destroy(gameObject);
             return;
         }
@@ -47,6 +50,11 @@ public class GameAI : MonoBehaviour
     {
         playerHealthBar.SetMaxHealth(100);
         aiHealthBar.SetMaxHealth(100);
+        playerEnergyBar.ResetEnergy();
+        aiEnergyBar.ResetEnergy();
+        turnCount = 0;
+        turnCounterText.text = $"Turn: {turnCount}";
+        
         SetGameState(GameState.PlayerTurn);
     }
 
@@ -129,6 +137,8 @@ public class GameAI : MonoBehaviour
     void EndTurn()
     {
         Debug.Log("[GameAI] Ending turn, starting combat and resetting game state.");
+        playerEnergyBar.IncrementEnergy(1); 
+        aiEnergyBar.IncrementEnergy(1);
         RealizarCombate();
         ResetGameState();
     }
@@ -165,6 +175,8 @@ public class GameAI : MonoBehaviour
         playerHealthBar.Heal(healingTotalAI); // Assuming AI can heal player as a strategy (?)
         Debug.Log("Damage to Player: " + damageToPlayer);
         Debug.Log("Damage to AI: " + damageToAI);
+        Debug.Log("Player Healing: " + healingTotalAI);
+        Debug.Log("AI Healing: " + healingTotalPlayer);
     }
 
     // Reset game state modification
@@ -187,6 +199,10 @@ public class GameAI : MonoBehaviour
             SetGameState(GameState.PlayerTurn); // Loop back to player turn
             Debug.Log("[GameAI] Game state reset completed.");
             retrievalCount = 0;
+            turnCount++;
+
+            if (turnCounterText != null)
+                turnCounterText.text = $"Turn: {turnCount}";
         };
 
         RetrieveCardsFromPlay(onCardsRetrieved);
@@ -203,46 +219,51 @@ public class GameAI : MonoBehaviour
     private void CheckAllRetrievals(Action onComplete)
     {
         retrievalCount++;
-        if (retrievalCount >= 2) // Ensure this function completes twice before calling onComplete
+        if (retrievalCount == 1) {
+            playerCardsRetrieved = true;
+        } else if (retrievalCount == 2) {
+            aiCardsRetrieved = true;
+        }
+
+        if (playerCardsRetrieved && aiCardsRetrieved)
         {
             onComplete?.Invoke();
+            // Reset flags for next time
+            playerCardsRetrieved = false;
+            aiCardsRetrieved = false;
+            retrievalCount = 0; 
         }
     }
 
     // Generalized coroutine to handle card retrieval
     private IEnumerator RetrieveCards(List<Card> cards, HandDeck deck, float delay, Action onComplete)
     {
-        Debug.Log($"[GameAI] Starting retrieval of cards. Delay: {delay} seconds");
         yield return new WaitForSeconds(delay);
 
-        foreach (Card card in cards) // Create a copy to modify the original list
+        foreach (Card card in cards)
         {
-            Debug.Log($"[GameAI] Processing card: {card.card_name}");
             if (deck.displayedCards.Contains(card))
             {
                 deck.displayedCards.Remove(card);
-                Debug.Log($"[GameAI] Removed card: {card.card_name} from display.");
-                Destroy(card.cardGameObject); // Safely destroy the GameObject
-                Debug.Log($"[GameAI] Destroyed card GameObject for: {card.card_name}");
+                Destroy(card.cardGameObject);
             }
             else
             {
-                Debug.LogWarning($"[GameAI] Card not found in display: {card.card_name}");
+                Debug.LogWarning($"[GameAI] Card {card.card_name} NOT found in display. Current displayed cards:");
+                foreach (Card displayedCard in deck.displayedCards)
+                {
+                    Debug.Log($"Displayed Card: {displayedCard.card_name}");
+                }
             }
         }
 
         if (deck.displayedCards.Count < 5)
         {
-            deck.RefillDisplayedCards(); // Refill if necessary
-            Debug.Log("[GameAI] Refilled displayed cards as count was below 5.");
+            deck.RefillDisplayedCards();
         }
 
-        cards.Clear(); // Clear the list after moving them back to the deck
-        Debug.Log("[GameAI] Cleared the list of cards in play.");
-        onComplete();
-        
+        cards.Clear(); // Clear the original list
+        onComplete?.Invoke();
     }
-    
-    
-    
+
 }

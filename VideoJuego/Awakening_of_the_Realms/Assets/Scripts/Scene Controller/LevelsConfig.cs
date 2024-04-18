@@ -12,4 +12,6 @@ public class Level {
     public string name;
     public AILevel aiLevel;
     public Material background; // Reference to the background Material
+    public int maxPlayerEnergy;
+    public int maxAIEnergy;
 }

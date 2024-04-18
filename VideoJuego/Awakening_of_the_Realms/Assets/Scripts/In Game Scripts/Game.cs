@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using System.Linq;
 
 public class Game : MonoBehaviour
 {
@@ -25,6 +26,13 @@ public class Game : MonoBehaviour
     bool aiCardsRetrieved = false;
     public int turnCount;
     public TextMeshProUGUI turnCounterText;
+
+    int attackTotalPlayer = 0, defenseTotalPlayer = 0, healingTotalPlayer = 0;
+    int attackTotalAI = 0, defenseTotalAI = 0, healingTotalAI = 0;
+
+    bool ignorePlayerDefense = false;
+    bool ignoreAIDefense = false;
+
 
 
     void Awake()
@@ -99,7 +107,6 @@ public class Game : MonoBehaviour
                 StartGame();
                 break;
             case GameState.PlayerTurn:
-                // Player's turn to play cards
                 break;
             case GameState.AITurn:
                 aiFunction.InitializeAIActions();
@@ -146,37 +153,248 @@ public class Game : MonoBehaviour
 
     public void RealizarCombate()
     {
-        int attackTotalPlayer = 0, defenseTotalPlayer = 0, healingTotalPlayer = 0;
-        int attackTotalAI = 0, defenseTotalAI = 0, healingTotalAI = 0;
 
-        // Aggregate stats from player cards
+        // Effects management for player and AI
+        Dictionary<string, int> playerEffects = new Dictionary<string, int>();
+        Dictionary<string, int> aiEffects = new Dictionary<string, int>();
+
+        // Process player cards
         foreach (var card in cartasJugadorEnJuego)
         {
             attackTotalPlayer += card.attack;
             defenseTotalPlayer += card.defense;
             healingTotalPlayer += card.healing;
+            Debug.Log($"Player card processed: {card.card_name}, Attack: {card.attack}, Defense: {card.defense}, Healing: {card.healing}");
+
+            if (card.rarity == "Legendary")
+            {
+                Debug.Log($"Applying Legendary player card effect: {card.Effect_type}");
+                ApplyCardEffect(card.Effect_type, aiEffects, playerEffects, true);
+            }
         }
 
-        // Aggregate stats from AI cards
+        // Process AI cards
         foreach (var card in cartasOponenteEnJuego)
         {
             attackTotalAI += card.attack;
             defenseTotalAI += card.defense;
             healingTotalAI += card.healing;
+            Debug.Log($"AI card processed: {card.card_name}, Attack: {card.attack}, Defense: {card.defense}, Healing: {card.healing}");
+
+            if (card.rarity == "Legendary")
+            {
+                Debug.Log($"Applying Legendary AI card effect: {card.Effect_type}");
+                ApplyCardEffect(card.Effect_type, playerEffects, aiEffects, false);
+            }
         }
-    
-        int damageToAI = Math.Max(0, attackTotalPlayer - defenseTotalAI);
-        int damageToPlayer = Math.Max(0, attackTotalAI - defenseTotalPlayer);
+
+        // Initialize effect application (assuming some effects are pre-existing)
+        Debug.Log("Effects being applied...");
+        ApplyEffects(playerEffects, aiEffects);
+
+        // Calculate and apply damages
+        int damageToAI = ignoreAIDefense ? attackTotalPlayer : Math.Max(0, attackTotalPlayer - defenseTotalAI);
+        int damageToPlayer = ignorePlayerDefense ? attackTotalAI : Math.Max(0, attackTotalAI - defenseTotalPlayer);
 
         aiHealthBar.TakeDamage(damageToAI);
-        aiHealthBar.Heal(healingTotalPlayer); // Assuming player can heal AI as a strategy (?)
-    
+        aiHealthBar.Heal(healingTotalPlayer);
+        
         playerHealthBar.TakeDamage(damageToPlayer);
-        playerHealthBar.Heal(healingTotalAI); // Assuming AI can heal player as a strategy (?)
-        Debug.Log("Damage to Player: " + damageToPlayer);
-        Debug.Log("Damage to AI: " + damageToAI);
-        Debug.Log("Player Healing: " + healingTotalAI);
-        Debug.Log("AI Healing: " + healingTotalPlayer);
+        playerHealthBar.Heal(healingTotalAI);
+
+        Debug.Log($"Combat results - Damage to Player: {damageToPlayer}, Damage to AI: {damageToAI}, Player Healing: {healingTotalAI}, AI Healing: {healingTotalPlayer}");
+
+    }
+
+    private void ApplyCardEffect(string effectType, Dictionary<string, int> targetEffects, Dictionary<string, int> selfEffects, bool isPlayer)
+    {
+        Debug.Log($"Applying card effect: {effectType} (IsPlayer: {isPlayer})");
+        switch (effectType)
+        {
+            case "Effect 1":
+                selfEffects["HealingDoubling"] = 1; // Doubles healing for 1 round
+                targetEffects["EnergyReduction"] = 1; // Reduces two energy levels immediately
+                break;
+            case "Effect 2":
+                targetEffects["IgnoreDefense"] = 1; // Ignores defense for 1 round
+                break;
+            case "Effect 3":
+                selfEffects["DodgeAttack"] = 1; // Can dodge one attack
+                break;
+            case "Effect 4":
+                targetEffects["DotDamage"] = 3; // Applies dot damage of 10
+                targetEffects["HealingReduction"] = 3; // Reduces healing by 50%
+                break;
+            case "Effect 5":
+                selfEffects["DefenseBarrier"] = 2; // Creates a barrier adding 50 defense for 2 rounds
+                break;
+            case "Effect 6":
+                targetEffects["AttackWeakening"] = 2; // Makes attacks 20% weaker for 2 rounds
+                selfEffects["LifeSteal"] = 1; // Life steal effect of 30 points
+                break;
+            case "Effect 7":
+                selfEffects["ReflectDamage"] = 1; // Reflects all damage taken for 1 round
+                selfEffects["HealOverTime"] = 3; // Heals 10 life points for 3 rounds
+                break;
+            case "Effect 8":
+                selfEffects["DoubleDamage"] = 1; // Doubles the damage for 1 round
+                targetEffects["CurseDamage"] = 2; // 10 damage over time
+                targetEffects["HealingReduction"] = 2; // 20% healing reduction
+                break;
+        }
+    }
+
+    private void ApplyEffects(Dictionary<string, int> playerEffects, Dictionary<string, int> aiEffects)
+    {
+        // Process player effects
+        foreach (var effect in new List<string>(playerEffects.Keys))
+        {
+            Debug.Log("Processing player effect: " + effect);
+            ApplyPlayerEffect(effect, playerEffects);  // Apply each effect
+
+            // Decrement and check the effect's duration after application
+            if (--playerEffects[effect] <= 0)
+            {
+                Debug.Log("Removing expired player effect: " + effect);
+                playerEffects.Remove(effect);  // Remove expired effects
+            }
+        }
+
+        // Process AI effects similarly
+        foreach (var effect in new List<string>(aiEffects.Keys))
+        {
+            Debug.Log("Processing AI effect: " + effect);
+            ApplyAIEffect(effect, aiEffects);  // Apply each effect
+
+            // Decrement and check the effect's duration after application
+            if (--aiEffects[effect] <= 0)
+            {
+                Debug.Log("Removing expired AI effect: " + effect);
+                aiEffects.Remove(effect);  // Remove expired effects
+            }
+        }
+    }
+
+    private void ApplyPlayerEffect(string effect, Dictionary<string, int> effects)
+    {
+        Debug.Log("Applying effect: " + effect);
+        switch (effect)
+        {
+            case "HealingDoubling":
+                healingTotalPlayer *= 2;
+                Debug.Log("Player healing doubled.");
+                break;
+            case "EnergyReduction":
+                playerEnergyBar.DecrementEnergy(2);
+                Debug.Log("Player energy reduced by 2.");
+                break;
+            case "IgnoreDefense":
+                ignorePlayerDefense = true;
+                Debug.Log("Player defense ignored.");
+                break;
+            case "DodgeAttack":
+                attackTotalAI = 0;
+                Debug.Log("Player dodged attack.");
+                break;
+            case "DotDamage":
+                playerHealthBar.TakeDamage(10);
+                Debug.Log("Player took 10 damage over time.");
+                break;
+            case "HealingReduction":
+                healingTotalPlayer = healingTotalPlayer * (100 - 50) / 100;
+                Debug.Log("Player healing reduced by 50%.");
+                break;
+            case "DefenseBarrier":
+                defenseTotalPlayer += 50;
+                break;
+            case "AttackWeakening":
+                attackTotalAI = (int)(attackTotalAI * (100 - 20) / 100f);
+                Debug.Log("Player attack weakened by 20%.");
+                break;
+            case "LifeSteal":
+                playerHealthBar.Heal(30);
+                aiHealthBar.TakeDamage(30);
+                Debug.Log("Player life steal effect applied.");
+                break;
+            case "ReflectDamage":
+                aiHealthBar.TakeDamage(attackTotalAI);  // Reflects the attack value back to AI
+                Debug.Log("Player reflected damage back to AI.");
+                break;
+            case "HealOverTime":
+                playerHealthBar.Heal(10);
+                Debug.Log("Player healed 10 points over time.");
+                break;
+            case "DoubleDamage":
+                attackTotalPlayer *= 2;
+                Debug.Log("Player damage doubled.");
+                break;
+            case "Curse":
+                playerHealthBar.TakeDamage(10);
+                Debug.Log("Player cursed and took 10 damage.");
+                break;
+        }
+    }
+
+    private void ApplyAIEffect(string effect, Dictionary<string, int> effects)
+    {
+        Debug.Log("Applying effect: " + effect);
+        switch (effect)
+        {
+            case "HealingDoubling":
+                healingTotalAI *= 2;
+                Debug.Log("AI healing doubled.");
+                break;
+            case "EnergyReduction":
+                aiEnergyBar.DecrementEnergy(2);
+                Debug.Log("AI energy reduced by 2.");
+                break;
+            case "IgnoreDefense":
+                ignoreAIDefense = true;
+                Debug.Log("AI defense ignored.");
+                break;
+            case "DodgeAttack":
+                attackTotalPlayer = 0;
+                Debug.Log("AI dodged attack.");
+                break;
+            case "DotDamage":
+                aiHealthBar.TakeDamage(10);
+                Debug.Log("AI took 10 damage over time.");
+                break;
+            case "HealingReduction":
+                healingTotalAI = healingTotalAI * (100 - 50) / 100;
+                Debug.Log("AI healing reduced by 50%.");
+                break;
+            case "DefenseBarrier":
+                defenseTotalAI += 50;
+                Debug.Log("AI defense barrier added.");
+                break;
+            case "AttackWeakening":
+                attackTotalPlayer = (int)(attackTotalPlayer * (100 - 20) / 100f);
+                Debug.Log("AI attack weakened by 20%.");
+                break;
+            case "LifeSteal":
+                aiHealthBar.Heal(30);
+                playerHealthBar.TakeDamage(30);
+                Debug.Log("AI life steal effect applied.");
+                break;
+            case "ReflectDamage":
+                playerHealthBar.TakeDamage(attackTotalPlayer);
+                Debug.Log("AI reflected damage back to player.");
+                break;
+            case "HealOverTime":
+                aiHealthBar.Heal(10);
+                Debug.Log("AI healed 10 points over time.");
+                break;
+            case "DoubleDamage":
+                attackTotalAI *= 2;
+                Debug.Log("AI damage doubled.");
+                break;
+            case "Curse":
+                aiHealthBar.TakeDamage(10);
+                Debug.Log("AI cursed and took 10 damage.");
+                break;
+
+        }
     }
 
     // Reset game state modification

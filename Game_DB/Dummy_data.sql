@@ -2,10 +2,10 @@ USE Awakening_realm;
 
 -- Effect type, effect description
 INSERT INTO Effect (Effect_type, effect_description) VALUES
-('Effect 1', 'Doubles the healing of the healers for 1 round (it doesnt double itself) and reduces two energy gage of the enemy player.'),
+('Effect 1', 'Doubles the healing of the healers for 1 round and reduces two energy gage of the enemy player.'),
 ('Effect 2', 'Ignore the defense of one of the enemy cards placed for 1 round 
 (ex. if the defense is 30 this ability would ignore the defense and apply the damage direct to the health of the player)'),
-('Effect 3', 'Can dodge one of the enemys card attacks and also after the dodge can see the enemys played cards for 2 rounds'),
+('Effect 3', 'Can dodge one of the enemys card attacks'),
 ('Effect 4', 'Applies to the enemy a dot damage of 10 attack and the healing is 50% less effective for 3 rounds (if the enemy places a card that heals 20, it just heals 10)'),
 ('Effect 5', 'Creates a barrier for the alies that gives 50 defense for 2 rounds'),
 ('Effect 6', 'Debuf the enemy making the attacks 20% weaker for 2 rounds and life steal 30 life points of the enemy (The life steal effect passes the amount of life steal from the enemy player to the player, in this case 30 would be decreasing to the enemy players health and 30 would be increasing to the player)'),

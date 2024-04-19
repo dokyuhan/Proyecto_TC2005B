@@ -33,6 +33,11 @@ public class Game : MonoBehaviour
     bool ignorePlayerDefense = false;
     bool ignoreAIDefense = false;
 
+    public TextMeshProUGUI nombre;
+
+    public enum GameOutcome { Win, Lose }
+    public static GameOutcome gameOutcome;
+
 
 
     void Awake()
@@ -56,6 +61,7 @@ public class Game : MonoBehaviour
 
     void Start()
     {
+        nombre.text = Usuario.usuario.user_name;
         playerHealthBar.SetMaxHealth(100);
         aiHealthBar.SetMaxHealth(100);
         playerEnergyBar.ResetEnergy();
@@ -196,22 +202,32 @@ public class Game : MonoBehaviour
         int damageToAI = ignoreAIDefense ? attackTotalPlayer : Math.Max(0, attackTotalPlayer - defenseTotalAI);
         int damageToPlayer = ignorePlayerDefense ? attackTotalAI : Math.Max(0, attackTotalAI - defenseTotalPlayer);
 
+        // Update game statistics
+        GameStats.TotalDamageDealt += damageToAI + damageToPlayer;
+        GameStats.TotalHealthCured += healingTotalPlayer + healingTotalAI;
+        GameStats.TotalDefenseMitigated += defenseTotalPlayer + defenseTotalAI;
+
         aiHealthBar.TakeDamage(damageToAI);
         aiHealthBar.Heal(healingTotalPlayer);
         
         playerHealthBar.TakeDamage(damageToPlayer);
         playerHealthBar.Heal(healingTotalAI);
 
-         Debug.Log($"Combat results - Damage to Player: {damageToPlayer}, Damage to AI: {damageToAI}, Player Healing: {healingTotalPlayer}, AI Healing: {healingTotalAI}");
+        Debug.Log($"Combat results - Damage to Player: {damageToPlayer}, Damage to AI: {damageToAI}, Player Healing: {healingTotalAI}, AI Healing: {healingTotalPlayer}");
 
-        attackTotalPlayer = 0;
-        defenseTotalPlayer = 0;
-        healingTotalPlayer = 0;
-        attackTotalAI = 0;
-        defenseTotalAI = 0;
-        healingTotalAI = 0;
-        ignorePlayerDefense = false;
-        ignoreAIDefense = false;
+        if (playerHealthBar.currentHealth <= 0 || aiHealthBar.currentHealth <= 0)
+        {
+            if (playerHealthBar.currentHealth <= 0) {
+                Debug.Log("AI Wins!");
+                gameOutcome = GameOutcome.Lose;
+            } else {
+                Debug.Log("Player Wins!");
+                gameOutcome = GameOutcome.Win;
+            }
+
+            SceneManager.LoadScene("GameOver");
+        }
+
     }
 
     private void ApplyCardEffect(string effectType, Dictionary<string, int> targetEffects, Dictionary<string, int> selfEffects, bool isPlayer)
@@ -488,8 +504,15 @@ public class Game : MonoBehaviour
             deck.RefillDisplayedCards();
         }
 
-        cards.Clear(); // Clear the original list
+        cards.Clear();
         onComplete?.Invoke();
+    }
+
+    public void Surrender() {
+
+        Debug.Log("AI Wins!");
+        gameOutcome = GameOutcome.Lose;
+        SceneManager.LoadScene("GameOver");
     }
 
 }

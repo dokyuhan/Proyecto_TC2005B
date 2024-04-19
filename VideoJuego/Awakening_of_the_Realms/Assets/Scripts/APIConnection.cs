@@ -35,6 +35,35 @@ public class APIConnection : MonoBehaviour
     }
 
 
+    public IEnumerator AddCoins(string playerID, System.Action<bool, string> callback)
+    {
+        string url = apiURL + "/api/awakening/players/" + playerID + "/coins/add";
+
+        WWWForm form = new WWWForm();
+
+        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success)
+            {
+                callback(true, "");
+            }
+            else
+            {
+                if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
+                {
+                    callback(false, www.error);
+                }
+                else
+                {
+                    callback(false, www.error);
+                }
+            }
+        }
+    }
+
+
 
     public IEnumerator AddCardsToDeck(string endpoint, string jsonData, System.Action<bool, string> callback)
     {

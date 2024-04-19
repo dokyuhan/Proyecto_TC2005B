@@ -726,6 +726,37 @@ app.post("/api/awakening/match/create", async (request, response) => {
   }
 });
 
+//Endpoint para añadir monedas a cuenta con base en su id
+app.post("/api/awakening/players/:id/coins/add", async (request, response) => {
+  let connection = null;
+
+  try {
+    connection = await connectToDB();
+
+    const [results] = await connection.execute(
+      "UPDATE Players SET coins = coins + 150 WHERE player_ID = ?",
+      [request.params.id]
+    );
+
+    console.log(`${results.affectedRows} rows affected`);
+
+    if (results.affectedRows === 0) {
+      response.status(404).json({ message: "Player not found or no update necessary" });
+    } else {
+      response.status(200).json({ message: "Coins updated successfully" });
+    }
+  } catch (error) {
+    response.status(500).json(error);
+    console.log(error);
+  } finally {
+    if (connection !== null) {
+      connection.end();
+      console.log("Connection closed successfully!");
+    }
+  }
+});
+
+
 // Endpoint para comprar una carta con monedas (hace todas las verificaciones necesarias)
 app.post(
   "/api/awakening/players/:id/inventory/buyCard",

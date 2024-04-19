@@ -10,6 +10,7 @@ const port = 3200;
 
 app.use(express.json());
 
+app.use(express.static("../SitioWeb/public"));
 // Funcion para conectarse a la base de datos
 
 async function connectToDB() {
@@ -31,7 +32,6 @@ async function connectToDB() {
   });
 }
 */
-
 
 app.get("/", (request, response) => {
   fs.readFile(
@@ -885,7 +885,7 @@ app.get(
 
 // Endpoint para obtener el win & lose record de un usuario en específico por su ID
 app.get(
-  "/api/awakening/players/:id/stats/win_lose",
+  "/api/awakening/players/:user_name/stats/win_lose",
   async (request, response) => {
     let connection = null;
 
@@ -893,8 +893,8 @@ app.get(
       connection = await connectToDB();
 
       const [results, fields] = await connection.execute(
-        "select win_record, lose_record from Players where player_ID = ?",
-        [request.params.id]
+        "select win_record, lose_record from Players where user_name = ?",
+        [request.params.user_name]
       );
 
       console.log(`${results.length} rows returned`);
@@ -979,6 +979,40 @@ app.get("/api/awakening/players/stats/levels", async (request, response) => {
     }
   }
 });
+
+// Endpoint to obtain the most used cards
+app.get(
+  "/api/awakening/players/stats/used_cards",
+  async (request, response) => {
+    let connection = null;
+
+    try {
+      connection = await connectToDB();
+
+      const [results, fields] = await connection.execute(
+        "SELECT c.card_name, COUNT(d.card_ID) AS usage_count FROM Deck d JOIN Cards c ON d.card_ID = c.card_ID GROUP BY c.card_name ORDER BY usage_count DESC;"
+      );
+
+      console.log(`${results.length} rows returned`);
+      console.log(results);
+
+      if (results.length === 0) {
+        response.status(404).json({ message: "Data not found" });
+      } else {
+        response.status(200).json(results);
+      }
+    } catch (error) {
+      console.log(error);
+      response.status(500);
+      response.json(error);
+    } finally {
+      if (connection !== null) {
+        connection.end();
+        console.log("Connection closed successfully!");
+      }
+    }
+  }
+);
 
 // Manejo de errores genérico
 app.use((err, request, response, next) => {

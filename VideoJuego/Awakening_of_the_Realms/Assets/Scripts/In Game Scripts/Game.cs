@@ -18,7 +18,7 @@ public class Game : MonoBehaviour
     public HealthBar playerHealthBar, aiHealthBar;
     public EnergyBar playerEnergyBar, aiEnergyBar;
     private int retrievalCount = 0;
-    public CardManager cardManager;
+    //public CardManager cardManager;
     public List<Card> cartasJugadorEnJuego = new List<Card>();
     public List<Card> cartasOponenteEnJuego = new List<Card>();
     public Transform playerCardArea1, playerCardArea2, aiCardArea1, aiCardArea2;
@@ -215,6 +215,15 @@ public class Game : MonoBehaviour
 
         Debug.Log($"Combat results - Damage to Player: {damageToPlayer}, Damage to AI: {damageToAI}, Player Healing: {healingTotalAI}, AI Healing: {healingTotalPlayer}");
 
+        attackTotalPlayer = 0;
+        defenseTotalPlayer = 0;
+        healingTotalPlayer = 0;
+        attackTotalAI = 0;
+        defenseTotalAI = 0;
+        healingTotalAI = 0;
+        ignorePlayerDefense = false;
+        ignoreAIDefense = false;
+
         if (playerHealthBar.currentHealth <= 0 || aiHealthBar.currentHealth <= 0)
         {
             if (playerHealthBar.currentHealth <= 0) {
@@ -352,7 +361,7 @@ public class Game : MonoBehaviour
                 attackTotalPlayer *= 2;
                 Debug.Log("Player damage doubled.");
                 break;
-            case "Curse":
+            case "CurseDamage":
                 playerHealthBar.TakeDamage(10);
                 Debug.Log("Player cursed and took 10 damage.");
                 break;
@@ -413,7 +422,7 @@ public class Game : MonoBehaviour
                 attackTotalAI *= 2;
                 Debug.Log("AI damage doubled.");
                 break;
-            case "Curse":
+            case "CurseDamage":
                 aiHealthBar.TakeDamage(10);
                 Debug.Log("AI cursed and took 10 damage.");
                 break;

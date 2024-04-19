@@ -969,10 +969,7 @@ GameObject:
   - component: {fileID: 446232762}
   - component: {fileID: 446232761}
   - component: {fileID: 446232766}
-  - component: {fileID: 446232765}
-  - component: {fileID: 446232767}
   - component: {fileID: 446232768}
-  - component: {fileID: 446232769}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -1009,18 +1006,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &446232765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 446232760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dcfe8ccd75d84abc825c82344620f39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &446232766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1040,7 +1025,6 @@ MonoBehaviour:
   aiHealthBar: {fileID: 459676327}
   playerEnergyBar: {fileID: 2109908646}
   aiEnergyBar: {fileID: 590674907}
-  cardManager: {fileID: 446232767}
   cartasJugadorEnJuego: []
   cartasOponenteEnJuego: []
   playerCardArea1: {fileID: 756665756}
@@ -1049,18 +1033,6 @@ MonoBehaviour:
   aiCardArea2: {fileID: 678362843}
   turnCount: 0
   turnCounterText: {fileID: 336229108}
---- !u!114 &446232767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 446232760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dcfe8ccd75d84abc825c82344620f39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &446232768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1075,21 +1047,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   countdownText: {fileID: 1006016015}
   countdownTime: 60
---- !u!114 &446232769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 446232760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83dd6584413c04980a77051649916382, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  apiURL: localhost:3200
-  cardEndpoint: /api/awakening/cards/
-  cards: []
 --- !u!1 &452829870
 GameObject:
   m_ObjectHideFlags: 0
@@ -1760,6 +1717,7 @@ GameObject:
   - component: {fileID: 634685327}
   - component: {fileID: 634685326}
   - component: {fileID: 634685332}
+  - component: {fileID: 634685333}
   m_Layer: 0
   m_Name: Player Deck
   m_TagString: Untagged
@@ -1789,13 +1747,11 @@ MonoBehaviour:
     healing: 0
     card_realm: 
     power_cost: 0
-    exp_cost: 0
     rarity: 
-    card_level: 0
     Effect_type: 
     desbloqueada: 0
     cardGameObject: {fileID: 0}
-  playerDeck: {fileID: 446232769}
+  playerDeck: {fileID: 634685333}
   handDeck: {fileID: 634685327}
   deck: 
 --- !u!114 &634685327
@@ -1857,6 +1813,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 1314568882345004036, guid: 807ac2ecdcf774b28acc98b766069eb9, type: 3}
   inv: {fileID: 452829871}
+--- !u!114 &634685333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634685325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83dd6584413c04980a77051649916382, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apiURL: localhost:3200
+  cardEndpoint: /api/awakening/cards/
+  cards: []
 --- !u!1 &639453600
 GameObject:
   m_ObjectHideFlags: 0
@@ -2770,6 +2741,7 @@ GameObject:
   - component: {fileID: 1587240205}
   - component: {fileID: 1587240204}
   - component: {fileID: 1587240210}
+  - component: {fileID: 1587240211}
   m_Layer: 0
   m_Name: AI Deck
   m_TagString: Untagged
@@ -2805,7 +2777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   personality: 0
-  deckAI: {fileID: 446232769}
+  deckAI: {fileID: 1587240211}
   aiCard:
     card_ID: 0
     card_name: 
@@ -2815,9 +2787,7 @@ MonoBehaviour:
     healing: 0
     card_realm: 
     power_cost: 0
-    exp_cost: 0
     rarity: 
-    card_level: 0
     Effect_type: 
     desbloqueada: 0
     cardGameObject: {fileID: 0}
@@ -2888,12 +2858,25 @@ MonoBehaviour:
     healing: 0
     card_realm: 
     power_cost: 0
-    exp_cost: 0
     rarity: 
-    card_level: 0
     Effect_type: 
     desbloqueada: 0
     cardGameObject: {fileID: 0}
+--- !u!114 &1587240211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587240203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83dd6584413c04980a77051649916382, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apiURL: localhost:3200
+  cardEndpoint: /api/awakening/cards/
+  cards: []
 --- !u!1 &1596934379
 GameObject:
   m_ObjectHideFlags: 0

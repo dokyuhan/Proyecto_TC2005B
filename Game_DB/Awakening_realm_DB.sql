@@ -23,9 +23,7 @@ CREATE TABLE Cards (
 	healing INT NOT NULL,
     card_realm VARCHAR(50) NOT NULL,
 	power_cost INT NOT NULL,
-	exp_cost INT NOT NULL,
 	rarity VARCHAR(20) NOT NULL,
-	card_level INT NOT NULL,
     Effect_type VARCHAR(255),
 	PRIMARY KEY (card_ID),
     
@@ -45,7 +43,6 @@ CREATE TABLE Players (
 	realm VARCHAR(50) NOT NULL,
 	is_npc BOOL NOT NULL,
 	level INT NOT NULL,
-	player_exp INT NOT NULL,
 	win_record INT NOT NULL,
 	lose_record INT NOT NULL,
     coins INT NOT NULL,
@@ -59,11 +56,10 @@ CREATE TABLE Deck (
 	deck_ID INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	creation_date DATETIME DEFAULT CURRENT_TIMESTAMP,
 	last_modified DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	deck_name VARCHAR(255) NOT NULL,
-	deck_description VARCHAR(255) NOT NULL,
-	card_ammount INT NOT NULL,
-	PRIMARY KEY (deck_ID)
-    
+	card_ID INT UNSIGNED,
+	player_ID INT UNSIGNED,
+	PRIMARY KEY (deck_ID),
+	FOREIGN KEY (player_ID) REFERENCES Players (player_ID) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
 -- Tabla inventario
@@ -105,14 +101,14 @@ CREATE TABLE Game (
 
 -- View de tablas de las cartas legendarias
 CREATE VIEW Cartas_legendarias AS
-SELECT c.card_name, c.card_description, c.attack, c.defense, c.healing, c.card_realm, c.power_cost, c.exp_cost, c.rarity, c.card_level, e.Effect_type, e.effect_description
+SELECT c.card_name, c.card_description, c.attack, c.defense, c.healing, c.card_realm, c.power_cost, c.rarity, e.Effect_type, e.effect_description
 FROM Cards AS c
 LEFT JOIN Effect AS e USING (Effect_type)
 WHERE c.rarity IN ('Legendary');
 
 -- View de tablas de las cartas especiales
 CREATE VIEW Cartas_especiales AS
-SELECT c.card_name, c.card_description, c.card_realm, c.power_cost, c.exp_cost, c.rarity, c.card_level, e.Effect_type, e.effect_description
+SELECT c.card_name, c.card_description, c.card_realm, c.power_cost, c.rarity, e.Effect_type, e.effect_description
 FROM Cards AS c
 LEFT JOIN Effect AS e USING (Effect_type)
 WHERE c.rarity IN ('Special');

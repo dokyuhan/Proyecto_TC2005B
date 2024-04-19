@@ -215,6 +215,15 @@ public class Game : MonoBehaviour
 
         Debug.Log($"Combat results - Damage to Player: {damageToPlayer}, Damage to AI: {damageToAI}, Player Healing: {healingTotalAI}, AI Healing: {healingTotalPlayer}");
 
+        attackTotalPlayer = 0;
+        defenseTotalPlayer = 0;
+        healingTotalPlayer = 0;
+        attackTotalAI = 0;
+        defenseTotalAI = 0;
+        healingTotalAI = 0;
+        ignorePlayerDefense = false;
+        ignoreAIDefense = false;
+
         if (playerHealthBar.currentHealth <= 0 || aiHealthBar.currentHealth <= 0)
         {
             if (playerHealthBar.currentHealth <= 0) {

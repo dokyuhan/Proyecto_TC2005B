@@ -41,15 +41,17 @@ public class AIFunction : MonoBehaviour
         if (aiScript.handDeck.displayedCards.Count >= 2) // Ensure there are at least two cards
         {
             Debug.Log("Attempting to place two cards.");
-            int randomIndex1 = Random.Range(0, aiScript.handDeck.displayedCards.Count);
+            int totalCards = aiScript.handDeck.displayedCards.Count;
+            int randomIndex1 = Random.Range(0, totalCards);
             Card card1 = aiScript.handDeck.displayedCards[randomIndex1];
-            //aiScript.handDeck.displayedCards.RemoveAt(randomIndex1);
             Debug.Log($"Placing card1: {card1.card_name} at index {randomIndex1}");
 
-            // Recalculate randomIndex2 safely after removal of the first card
-            int randomIndex2 = Random.Range(0, aiScript.handDeck.displayedCards.Count);
+            // Calculate randomIndex2 ensuring it's different from randomIndex1
+            int randomIndex2 = Random.Range(0, totalCards - 1); // Adjust range to exclude one card
+            if (randomIndex2 >= randomIndex1) {
+                randomIndex2++; // Adjust index to skip the first selected card
+            }
             Card card2 = aiScript.handDeck.displayedCards[randomIndex2];
-            //aiScript.handDeck.displayedCards.RemoveAt(randomIndex2);
             Debug.Log($"Placing card2: {card2.card_name} at index {randomIndex2}");
 
             PlaceCardInUI(card1, cardPlacementUI1);

@@ -101,7 +101,7 @@ INSERT INTO Cards (card_name, card_description, attack, defense, healing, card_r
 INSERT INTO Players (player_name, player_last_name, player_age, user_name, password, realm, is_npc, level, win_record, lose_record, coins, token) VALUES
 ('John', 'Doe', 21, 'john.doe', 'password123', 'Human', false, 1, 10, 5, 10000, 2),
 ('Alberto', 'Limón', 21, 'lemon', 'lemoncito', 'Monster', false, 7, 14, 7, 1000, 2),
-('Do Kyu', 'Han Kim', 21, 'DoKyu', 'hanKim', 'Celestial', false, 8, 9, 8, 1000, 2),
+('Do Kyu', 'Han Kim', 21, 'DoKyu', 'hanKim', 'Celestial', false, 8, 9, 8, 10000, 2),
 ('Gabriel', 'Edid', 21, 'Atrium20', 'gaboMagic', 'Magical', false, 7, 21, 7, 1000, 2),
 ('Jane', 'Smith', 21, 'jane.smith', 'password123', 'Monster', false, 2, 5, 5, 15, 1),
 ('Alice', 'Johnson', 21, 'alice.johnson', 'password123', 'Magical', false, 2, 12, 6, 20, 0),

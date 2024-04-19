@@ -19,16 +19,14 @@ public class Card
         public int healing;
         public string card_realm;
         public int power_cost;
-        public int exp_cost;
         public string rarity;
-        public int card_level;
         public string Effect_type;
         public bool desbloqueada;
 
         public GameObject cardGameObject; // Reference to the card's GameObject
 
 
-    public Card(int id, string nombre, string desc, int ataque, int defensa, int heal, string realm, int power, int exp, string rareza, int nivel, string efecto, bool desb)
+    public Card(int id, string nombre, string desc, int ataque, int defensa, int heal, string realm, int power, string rareza, string efecto, bool desb)
     {
             card_ID = id;
             card_name = nombre;
@@ -38,9 +36,7 @@ public class Card
             healing = heal;
             card_realm = realm;
             power_cost = power;
-            exp_cost = exp;
             rarity = rareza;
-            card_level = nivel;
             Effect_type = efecto;
             desbloqueada = desb;
     }

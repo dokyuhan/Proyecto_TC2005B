@@ -22,68 +22,68 @@ INSERT INTO Effect (Effect_type, effect_description) VALUES
 -- ('Effect 17', 'Disables an enemy card played'),
 -- ('Effect 18', 'You can see the opponents cards');
 
--- card name, card description, attack, defense, healing, card realm, power cost, exp cost, rarity, card level, effect
-INSERT INTO Cards (card_name, card_description, attack, defense, healing, card_realm, power_cost, exp_cost, rarity, card_level, Effect_type) VALUES
+-- card name, card description, attack, defense, healing, card realm, power cost, exp cost, rarity, effect
+INSERT INTO Cards (card_name, card_description, attack, defense, healing, card_realm, power_cost, rarity, Effect_type) VALUES
 
 -- Common Cards
 
 -- Human
-('Warrior', 'Description', 10, 10, 0, 'Human', 0, 100, 'Common', 1, NULL),
-('Archer', 'Description', 15, 5, 0, 'Human', 0, 100, 'Common', 1, NULL),
-('Cleric', 'Description', 2, 2, 15, 'Human', 0, 100, 'Common', 1, NULL),
-('Knight', 'Description', 5, 15, 0, 'Human', 0, 100, 'Common', 1, NULL),
-('Sorceress', 'Description', 10, 1, 0, 'Human', 0, 100, 'Common', 1, NULL),
-('Royal Guard', 'Description', 12, 20, 0, 'Human', 0, 100, 'Common', 1, NULL),
-('Assasin', 'Description', 25, 1, 0, 'Human', 0, 100, 'Common', 1, NULL),
-('Mercenary', 'Description', 10, 4, 5, 'Human', 0, 100, 'Common', 1, NULL),
+('Warrior', 'Description', 10, 10, 0, 'Human', 0, 'Common', NULL),
+('Archer', 'Description', 15, 5, 0, 'Human', 0, 'Common', NULL),
+('Cleric', 'Description', 2, 2, 15, 'Human', 0, 'Common', NULL),
+('Knight', 'Description', 5, 15, 0, 'Human', 0,  'Common', NULL),
+('Sorceress', 'Description', 10, 1, 0, 'Human', 0,  'Common', NULL),
+('Royal Guard', 'Description', 12, 20, 0, 'Human', 0, 'Common', NULL),
+('Assasin', 'Description', 25, 1, 0, 'Human', 0, 'Common', NULL),
+('Mercenary', 'Description', 10, 4, 5, 'Human', 0, 'Common', NULL),
 
 -- Monster
-('Ogre', 'Description', 7, 10, 2, 'Monster', 0, 100, 'Common', 1, NULL),
-('Basilisc', 'Description', 12, 7, 5, 'Monster', 0, 100, 'Common', 1, NULL),
-('Werewolf', 'Description', 10, 12, 3, 'Monster', 0, 100, 'Common', 1, NULL),
-('Goblin', 'Description', 3, 5, 10, 'Monster', 0, 100, 'Common', 1, NULL),
-('Harpies', 'Description', 10, 10, 9, 'Monster', 0, 100, 'Common', 1, NULL),
-('Troll', 'Description', 6, 15, 4, 'Monster', 0, 100, 'Common', 1, NULL),
-('Treant', 'Description', 2, 6, 15, 'Monster', 0, 100, 'Common', 1, NULL),
-('Ghoul', 'Description', 15, 10, 0, 'Monster', 0, 100, 'Common', 1, NULL),
+('Ogre', 'Description', 7, 10, 2, 'Monster', 0, 'Common', NULL),
+('Basilisc', 'Description', 12, 7, 5, 'Monster', 0, 'Common', NULL),
+('Werewolf', 'Description', 10, 12, 3, 'Monster', 0, 'Common', NULL),
+('Goblin', 'Description', 3, 5, 10, 'Monster', 0, 'Common', NULL),
+('Harpies', 'Description', 10, 10, 9, 'Monster', 0, 'Common', NULL),
+('Troll', 'Description', 6, 15, 4, 'Monster', 0, 'Common', NULL),
+('Treant', 'Description', 2, 6, 15, 'Monster', 0, 'Common', NULL),
+('Ghoul', 'Description', 15, 10, 0, 'Monster', 0, 'Common', NULL),
 
 -- Magical
-('Giant', 'Description', 5, 15, 0, 'Magical', 0, 100, 'Common', 1, NULL),
-('Elf', 'Description', 10, 5, 0, 'Magical', 0, 100, 'Common', 1, NULL),
-('Necromancer', 'Description', 15, 2, 10, 'Magical', 0, 100, 'Common', 1, NULL),
-('Golem', 'Description', 1, 20, 0, 'Magical', 0, 100, 'Common', 1, NULL),
-('Elemental Guardian', 'Description', 12, 12, 9, 'Magical', 0, 100, 'Common', 1, NULL),
-('Dwarves', 'Description', 8, 12, 6, 'Magical', 0, 100, 'Common', 1, NULL),
-('Witch', 'Description', 14, 4, 10, 'Magical', 0, 100, 'Common', 1, NULL),
-('Dark Wizard', 'Description', 7, 7, 13, 'Magical', 0, 100, 'Common', 1, NULL),
+('Giant', 'Description', 5, 15, 0, 'Magical', 0, 'Common', NULL),
+('Elf', 'Description', 10, 5, 0, 'Magical', 0, 'Common', NULL),
+('Necromancer', 'Description', 15, 2, 10, 'Magical', 0, 'Common', NULL),
+('Golem', 'Description', 1, 20, 0, 'Magical', 0, 'Common', NULL),
+('Elemental Guardian', 'Description', 12, 12, 9, 'Magical', 0, 'Common', NULL),
+('Dwarves', 'Description', 8, 12, 6, 'Magical', 0, 'Common', NULL),
+('Witch', 'Description', 14, 4, 10, 'Magical', 0, 'Common', NULL),
+('Dark Wizard', 'Description', 7, 7, 13, 'Magical', 0, 'Common', NULL),
 
 -- Celestial
-('Hell Hound', 'Description', 10, 8, 2, 'Celestial', 0, 100, 'Common', 1, NULL),
-('Archangel', 'Description', 14, 10, 0, 'Celestial', 0, 100, 'Common', 1, NULL),
-('Nephalem', 'Description', 10, 5, 10, 'Celestial', 0, 100, 'Common', 1, NULL),
-('Succubus', 'Description', 9, 12, 4, 'Celestial', 0, 100, 'Common', 1, NULL),
-('Nymph', 'Description', 0, 2, 20, 'Celestial', 0, 100, 'Common', 1, NULL),
-('Titan', 'Description', 1, 15, 5, 'Celestial', 0, 100, 'Common', 1, NULL),
-('Valkyrie', 'Description', 8, 4, 9, 'Celestial', 0, 100, 'Common', 1, NULL),
-('Pegasus', 'Description', 14, 0, 2, 'Celestial', 0, 100, 'Common', 1, NULL),
+('Hell Hound', 'Description', 10, 8, 2, 'Celestial', 0, 'Common', NULL),
+('Archangel', 'Description', 14, 10, 0, 'Celestial', 0, 'Common', NULL),
+('Nephalem', 'Description', 10, 5, 10, 'Celestial', 0, 'Common', NULL),
+('Succubus', 'Description', 9, 12, 4, 'Celestial', 0, 'Common', NULL),
+('Nymph', 'Description', 0, 2, 20, 'Celestial', 0, 'Common', NULL),
+('Titan', 'Description', 1, 15, 5, 'Celestial', 0, 'Common', NULL),
+('Valkyrie', 'Description', 8, 4, 9, 'Celestial', 0, 'Common', NULL),
+('Pegasus', 'Description', 14, 0, 2, 'Celestial', 0, 'Common', NULL),
 
 -- Legendary Cards
 
 -- Human
-('Princess', 'Description', 10, 10, 40, 'Human', 0, 300, 'Legendary', 1, 'Effect 1'),
-('King Arthur', 'Description', 35, 25, 15, 'Human', 0, 300, 'Legendary', 1, 'Effect 2'),
+('Princess', 'Description', 10, 10, 40, 'Human', 2, 'Legendary', 'Effect 1'),
+('King Arthur', 'Description', 35, 25, 15, 'Human', 3, 'Legendary', 'Effect 2'),
 
 -- Monster
-('Griffin', 'Description', 30, 30, 10, 'Monster', 0, 300, 'Legendary', 1, 'Effect 3'),
-('Dragon', 'Description', 40, 20, 10, 'Monster', 0, 300, 'Legendary', 1, 'Effect 4'),
+('Griffin', 'Description', 30, 30, 10, 'Monster', 2, 'Legendary', 'Effect 3'),
+('Dragon', 'Description', 40, 20, 10, 'Monster', 3, 'Legendary', 'Effect 4'),
 
 -- Magical
-('Runeforge Dwarf', 'Description', 15, 40, 20, 'Magical', 0, 300, 'Legendary', 1, 'Effect 5'),
-('Moonshadow Elf', 'Description', 35, 15, 20, 'Magical', 0, 300, 'Legendary', 1, 'Effect 6'),
+('Runeforge Dwarf', 'Description', 15, 40, 20, 'Magical', 2, 'Legendary', 'Effect 5'),
+('Moonshadow Elf', 'Description', 35, 15, 20, 'Magical', 3, 'Legendary', 'Effect 6'),
 
 -- Celestial
-('Hercules', 'Description', 35, 25, 20, 'Celestial', 0, 300, 'Legendary', 1, 'Effect 7'),
-('Demon King', 'Description', 35, 15, 30, 'Celestial', 0, 300, 'Legendary', 1, 'Effect 8');
+('Hercules', 'Description', 35, 25, 20, 'Celestial', 2, 'Legendary', 'Effect 7'),
+('Demon King', 'Description', 35, 15, 30, 'Celestial', 3, 'Legendary', 'Effect 8');
 
 -- Special Cards
 -- ('Special 1', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 9'),
@@ -98,30 +98,33 @@ INSERT INTO Cards (card_name, card_description, attack, defense, healing, card_r
 -- ('Special 10', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 18');
 
 -- player name, last name, age, email, realm, is npc, player exp, win, lost, coins, exp points
-INSERT INTO Players (player_name, player_last_name, player_age, user_name, password, realm, is_npc, level, player_exp, win_record, lose_record, coins, token) VALUES
-('John', 'Doe', 25, 'john.doe', 'password123', 'Human', false, 1, 500, 10, 5, 10, 2),
-('Jane', 'Smith', 30, 'jane.smith', 'password123', 'Monster', false, 2, 600, 15, 8, 15, 1),
-('Alice', 'Johnson', 28, 'alice.johnson', 'password123', 'Magical', false, 2, 450, 12, 6, 20, 0),
-('Bob', 'Williams', 35, 'bob.williams', 'password123', 'Celestial', false, 3, 520, 14, 9, 24, 2),
-('Emily', 'Brown', 22, 'emily.brown', 'password123', 'Human', false, 4, 480, 11, 7, 10, 3),
-('David', 'Miller', 27, 'david.miller', 'password123', 'Monster', false, 5, 530, 13, 10, 30, 0),
-('Sarah', 'Wilson', 32, 'sarah.wilson', 'password123', 'Monster', false, 3, 570, 16, 12, 26, 0),
-('James', 'Taylor', 29, 'james.taylor', 'password123', 'Celestial', false, 1, 490, 10, 5, 32, 1),
-('Laura', 'Anderson', 26, 'laura.anderson', 'password123', 'Celestial', false, 1, 510, 9, 4, 35, 2),
-('Michael', 'Thomas', 34, 'michael.thomas', 'password123', 'Celestial', false, 1, 560, 17, 11, 100, 1),
-('Emma', 'Jackson', 31, 'emma.jackson', 'password123', 'Monster', false, 2, 540, 15, 9, 20, 3),
-('Chris', 'White', 24, 'chris.white', 'password123', 'Magical', false, 6, 470, 8, 3, 120, 1),
-('Olivia', 'Harris', 33, 'olivia.harris', 'password123', 'Monster', false, 5, 580, 18, 13, 20, 1),
-('Daniel', 'Martin', 36, 'daniel.martin', 'password123', 'Human', false, 3, 500, 12, 6, 10, 2),
-('Sophia', 'Lee', 23, 'sophia.lee', 'password123', 'Monster', false, 2, 460, 7, 2, 40, 0),
-('Kevin', 'Clark', 38, 'kevin.clark', 'password123', 'Monster', false, 2, 590, 19, 14, 35, 1),
-('Isabella', 'Lewis', 21, 'isabella.lewis', 'password123', 'Human', false, 1, 450, 6, 1, 50, 0),
-('Ethan', 'Walker', 37, 'ethan.walker', 'password123', 'Monster', false, 6, 550, 16, 10, 35, 1),
-('Natalie', 'Allen', 40, 'natalie.allen', 'password123', 'Magical', false, 1, 610, 20, 15, 95, 0),
-('Liam', 'Young', 39, 'liam.young', 'password123', 'Human', false, 4, 530, 14, 8, 10, 1);
+INSERT INTO Players (player_name, player_last_name, player_age, user_name, password, realm, is_npc, level, win_record, lose_record, coins, token) VALUES
+('John', 'Doe', 21, 'john.doe', 'password123', 'Human', false, 1, 10, 5, 10000, 2),
+('Alberto', 'Limón', 21, 'lemon', 'lemoncito', 'Monster', false, 7, 14, 7, 1000, 2),
+('Do Kyu', 'Han Kim', 21, 'DoKyu', 'hanKim', 'Celestial', false, 8, 9, 8, 1000, 2),
+('Gabriel', 'Edid', 21, 'Atrium20', 'gaboMagic', 'Magical', false, 7, 21, 7, 1000, 2),
+('Jane', 'Smith', 21, 'jane.smith', 'password123', 'Monster', false, 2, 5, 5, 15, 1),
+('Alice', 'Johnson', 21, 'alice.johnson', 'password123', 'Magical', false, 2, 12, 6, 20, 0),
+('Bob', 'Williams', 18, 'bob.williams', 'password123', 'Celestial', false, 3, 14, 9, 24, 2),
+('Emily', 'Brown', 22, 'emily.brown', 'password123', 'Human', false, 4, 11, 7, 10, 3),
+('David', 'Miller', 22, 'david.miller', 'password123', 'Monster', false, 5, 13, 10, 30, 0),
+('Sarah', 'Wilson', 22, 'sarah.wilson', 'password123', 'Monster', false, 3, 16, 12, 26, 0),
+('James', 'Taylor', 23, 'james.taylor', 'password123', 'Celestial', false, 1, 10, 5, 32, 1),
+('Laura', 'Anderson', 23, 'laura.anderson', 'password123', 'Celestial', false, 1, 9, 4, 35, 2),
+('Michael', 'Thomas', 24, 'michael.thomas', 'password123', 'Celestial', false, 1, 17, 11, 100, 1),
+('Emma', 'Jackson', 25, 'emma.jackson', 'password123', 'Monster', false, 2, 15, 9, 20, 3),
+('Chris', 'White', 26, 'chris.white', 'password123', 'Magical', false, 6, 8, 3, 120, 1),
+('Olivia', 'Harris', 26, 'olivia.harris', 'password123', 'Monster', false, 5, 18, 13, 20, 1),
+('Daniel', 'Martin', 19, 'daniel.martin', 'password123', 'Human', false, 3, 12, 6, 10, 2),
+('Sophia', 'Lee', 19, 'sophia.lee', 'password123', 'Monster', false, 2, 7, 2, 40, 0),
+('Kevin', 'Clark', 19, 'kevin.clark', 'password123', 'Monster', false, 2, 19, 14, 35, 1),
+('Isabella', 'Lewis', 19, 'isabella.lewis', 'password123', 'Human', false, 1, 6, 1, 50, 0),
+('Ethan', 'Walker', 30, 'ethan.walker', 'password123', 'Monster', false, 6, 16, 10, 35, 1),
+('Natalie', 'Allen', 28, 'natalie.allen', 'password123', 'Magical', false, 1, 20, 15, 95, 0),
+('Liam', 'Young', 28, 'liam.young', 'password123', 'Human', false, 4, 14, 8, 10, 1);
 
 -- deck name, description, ammount
-INSERT INTO Deck (cardID, playerID) VALUES
+INSERT INTO Deck (card_ID, player_ID) VALUES
 (1, 1),
 (2, 1),
 (3, 1),
@@ -165,3 +168,14 @@ WHERE player_ID = 21;
 
 SELECT * FROM Game where game_ID = 9;
 
+SELECT 
+    c.card_name, 
+    COUNT(d.card_ID) AS usage_count
+FROM 
+    Deck d
+JOIN 
+    Cards c ON d.card_ID = c.card_ID
+GROUP BY 
+    c.card_name
+ORDER BY 
+    usage_count DESC LIMIT 5;

@@ -118,9 +118,7 @@ app.post("/api/awakening/cards", async (request, response) => {
       "healing",
       "card_realm",
       "power_cost",
-      "exp_cost",
       "rarity",
-      "card_level",
       "Effect_type",
     ];
 
@@ -162,7 +160,7 @@ app.post("/api/awakening/cards", async (request, response) => {
 
       // Inserción de la carta
       const [insertResult] = await connection.execute(
-        "INSERT INTO Cards (card_name, card_description, attack, defense, healing, card_realm, power_cost, exp_cost, rarity, card_level, Effect_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        "INSERT INTO Cards (card_name, card_description, attack, defense, healing, card_realm, power_cost, rarity, Effect_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
         [
           card.card_name,
           card.card_description,
@@ -171,9 +169,7 @@ app.post("/api/awakening/cards", async (request, response) => {
           card.healing,
           card.card_realm,
           card.power_cost,
-          card.exp_cost,
           card.rarity,
-          card.card_level,
           card.Effect_type,
         ]
       );
@@ -211,9 +207,7 @@ app.put("/api/awakening/cards/:id", async (request, response) => {
       "healing",
       "card_realm",
       "power_cost",
-      "exp_cost",
       "rarity",
-      "card_level",
       "Effect_type",
     ];
 
@@ -309,7 +303,6 @@ app.post("/api/awakening/players", async (request, response) => {
       "realm",
       "is_npc",
       "level",
-      "player_exp",
       "win_record",
       "lose_record",
       "coins",
@@ -338,7 +331,7 @@ app.post("/api/awakening/players", async (request, response) => {
 
     // Insert the new player
     const [results] = await connection.execute(
-      "INSERT INTO Players (player_name, player_last_name, player_age, user_name, password, realm, is_npc, level, player_exp, win_record, lose_record, coins, token) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      "INSERT INTO Players (player_name, player_last_name, player_age, user_name, password, realm, is_npc, level, win_record, lose_record, coins, token) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
       [
         data.player_name,
         data.player_last_name,
@@ -348,7 +341,6 @@ app.post("/api/awakening/players", async (request, response) => {
         data.realm,
         data.is_npc,
         data.level,
-        data.player_exp,
         data.win_record,
         data.lose_record,
         data.coins,

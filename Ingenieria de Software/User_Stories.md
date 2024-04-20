@@ -1,5 +1,4 @@
-## _User Stories e Issues_
-
+## _User Stories_
 
 ### **Creación y Gestión de Mazos**
 
@@ -22,15 +21,16 @@
 ### **Progresión y Recompensas**
 
 1. Como jugador, quiero ganar experiencia al ganar partidas, para progresar en el juego.
-2. Como jugador, quiero poder mejorar mis cartas con puntos de experiencia, para fortalecer mi mazo.
+2. Como jugador, quiero poder obtener nuevas cartas para para fortalecer mi mazo.
 3. Como jugador, quiero que el juego ofrezca recompensas por completar niveles, para incentivar mi progreso.
 
 ### **Interfaz de Usuario e Interactividad**
 
 1. Como jugador, quiero una interfaz intuitiva para construir mazos, seleccionar partidas y navegar por el juego, para facilitar mi experiencia de juego.
-2. Como jugador, quiero que la página web del juego muestre mis estadísticas y progreso, para seguir mi desarrollo.
-3. Como jugador, quiero controles sencillos e intuitivos, para que interactuar con el juego sea fácil y directo.
-4. Como jugador, quiero que el juego tenga efectos de sonido y música, para que ambienten el tema del juego.
+2. Como jugador, quiero poder accesar al juego desde una página web.
+3. Como jugador, quiero que la página web del juego muestre mis estadísticas y progreso, para seguir mi desarrollo.
+4. Como jugador, quiero controles sencillos e intuitivos, para que interactuar con el juego sea fácil y directo.
+5. Como jugador, quiero que el juego tenga efectos de sonido y música, para que ambienten el tema del juego.
 
 ### **Conectividad y Soporte Técnico**
 

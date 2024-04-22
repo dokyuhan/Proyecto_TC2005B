@@ -13,6 +13,7 @@ TagManager:
   - usedAI
   - usedJugador
   - playZone
+  - GameMusic
   layers:
   - Default
   - TransparentFX

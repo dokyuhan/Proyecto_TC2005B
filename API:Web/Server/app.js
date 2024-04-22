@@ -22,7 +22,7 @@ async function connectToDB() {
   });
 }
 */
-
+/*
 async function connectToDB() {
   return await mysql.createConnection({
     host: "127.0.0.1",
@@ -31,6 +31,7 @@ async function connectToDB() {
     database: "Awakening_realm",
   });
 }
+*/
 
 
 app.get("/", (request, response) => {

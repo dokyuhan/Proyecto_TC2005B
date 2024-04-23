@@ -1,12 +1,15 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
 using TMPro;
 
 public class RealmInfo : MonoBehaviour
 {
     public TMP_Dropdown realmDropdown;
     public APIConnection apiConnection;
+
+    public TextMeshProUGUI mensajes;
 
     private void Start()
     {
@@ -19,6 +22,15 @@ public class RealmInfo : MonoBehaviour
     public void GoBack()
     {
         SceneManager.LoadScene("NewUser");
+    }
+
+    IEnumerator ShowMessageForSeconds(string message, float seconds)
+    {
+        mensajes.text = message;
+        yield return new WaitForSeconds(seconds);
+        mensajes.text = "";
+        SceneManager.LoadScene("LogIn");
+
     }
 
     public void Continue()
@@ -39,8 +51,7 @@ public class RealmInfo : MonoBehaviour
     {
         if (success)
         {
-            Debug.Log("Usuario añadido con éxito");
-            SceneManager.LoadScene("LogIn");
+            StartCoroutine(ShowMessageForSeconds("Tu cuenta ha sido creada con exito.", 2));
         }
         else
         {

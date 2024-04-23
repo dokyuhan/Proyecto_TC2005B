@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.Collections;
 using System.Linq;
+using TMPro;
 
 public class Inventario : MonoBehaviour
 {   
@@ -13,6 +14,9 @@ public class Inventario : MonoBehaviour
 
     public List<Card> available = new List<Card>();
     public List<int> playerInv = new List<int>();
+
+    public TextMeshProUGUI mensajes;
+
 
 
     IEnumerator Start()
@@ -86,6 +90,13 @@ public class Inventario : MonoBehaviour
         
     }
 
+    IEnumerator ShowMessageForSeconds(string message, float seconds)
+    {
+        mensajes.text = message;
+        yield return new WaitForSeconds(seconds);
+        mensajes.text = "";
+    }
+
     public void IniciarSave()
     {
 
@@ -101,11 +112,10 @@ public class Inventario : MonoBehaviour
         if ((ControladorDeMazo.cartasEnMazo.Count == 10) && (sum <= 2)){
             StartCoroutine(Save());
         }else if(ControladorDeMazo.cartasEnMazo.Count != 10){
-            Debug.LogError("Tu mazo debe contener 10 cartas");
+            StartCoroutine(ShowMessageForSeconds("Tu mazo debe contener 10 cartas.", 4));
         }else if(sum > 2){
-            Debug.LogError("Tu mazo no puede tener mas de 2 cartas legendarias");
+            StartCoroutine(ShowMessageForSeconds("Tu mazo no puede tener mas de 2 cartas legendarias.", 4));
         }
-        
     }
 
 
@@ -155,6 +165,7 @@ public class Inventario : MonoBehaviour
             AddCards();
 
         }
+
     }
 
 

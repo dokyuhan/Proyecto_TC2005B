@@ -370,9 +370,7 @@ MonoBehaviour:
     healing: 0
     card_realm: 
     power_cost: 0
-    exp_cost: 0
     rarity: 
-    card_level: 0
     Effect_type: 
     desbloqueada: 0
     cardGameObject: {fileID: 0}

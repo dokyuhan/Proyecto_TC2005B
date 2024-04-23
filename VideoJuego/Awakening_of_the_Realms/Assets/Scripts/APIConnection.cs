@@ -86,6 +86,46 @@ public class APIConnection : MonoBehaviour
         }
     }
 
+    public IEnumerator CreateGameMatch(string endpoint, string jsonData, System.Action<bool, string> callback)
+    {
+        using (UnityWebRequest www = UnityWebRequest.Put(apiURL + endpoint, jsonData))
+        {
+            www.method = "POST";
+            www.SetRequestHeader("Content-Type", "application/json");
+
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success)
+            {
+                callback(true, www.downloadHandler.text);
+            }
+            else
+            {
+                callback(false, www.error);
+            }
+        }
+    }
+
+    public IEnumerator UpdatePlayerRecord(string endpoint, string jsonData, System.Action<bool, string> callback)
+    {
+        using (UnityWebRequest www = UnityWebRequest.Put(apiURL + endpoint, jsonData))
+        {
+            www.method = "POST";
+            www.SetRequestHeader("Content-Type", "application/json");
+
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success)
+            {
+                callback(true, www.downloadHandler.text);
+            }
+            else
+            {
+                callback(false, www.error);
+            }
+        }
+    }
+
     public IEnumerator DeletePlayerInventory(string playerId, System.Action<bool, string> callback)
     {
         string endpoint = playerId + "/deck";

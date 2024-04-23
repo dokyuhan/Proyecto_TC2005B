@@ -99,9 +99,10 @@ INSERT INTO Cards (card_name, card_description, attack, defense, healing, card_r
 
 -- player name, last name, age, email, realm, is npc, player exp, win, lost, coins, exp points
 INSERT INTO Players (player_name, player_last_name, player_age, user_name, password, realm, is_npc, level, win_record, lose_record, coins, token) VALUES
+('AI', 'AI', 30, 'AI', 'AI', 'Human', true, 100 , 100, 0, 10000, 1),
 ('John', 'Doe', 21, 'john.doe', 'password123', 'Human', false, 1, 10, 5, 10000, 2),
 ('Alberto', 'Limón', 21, 'lemon', 'lemoncito', 'Monster', false, 7, 14, 7, 1000, 2),
-('Do Kyu', 'Han Kim', 21, 'DoKyu', 'hanKim', 'Celestial', false, 8, 9, 8, 10000, 2),
+('Do Kyu', 'Han Kim', 21, 'DoKyu', 'hanKim', 'Celestial', false, 8, 9, 8, 1000, 2),
 ('Gabriel', 'Edid', 21, 'Atrium20', 'gaboMagic', 'Magical', false, 7, 21, 7, 1000, 2),
 ('Jane', 'Smith', 21, 'jane.smith', 'password123', 'Monster', false, 2, 5, 5, 15, 1),
 ('Alice', 'Johnson', 21, 'alice.johnson', 'password123', 'Magical', false, 2, 12, 6, 20, 0),
@@ -122,6 +123,7 @@ INSERT INTO Players (player_name, player_last_name, player_age, user_name, passw
 ('Ethan', 'Walker', 30, 'ethan.walker', 'password123', 'Monster', false, 6, 16, 10, 35, 1),
 ('Natalie', 'Allen', 28, 'natalie.allen', 'password123', 'Magical', false, 1, 20, 15, 95, 0),
 ('Liam', 'Young', 28, 'liam.young', 'password123', 'Human', false, 4, 14, 8, 10, 1);
+
 
 -- deck name, description, ammount
 INSERT INTO Deck (card_ID, player_ID) VALUES
@@ -159,14 +161,17 @@ INSERT INTO Inventory (card_ID, player_ID) VALUES
 (3, 3),
 (7, 3);
 
-DELETE FROM Inventory WHERE player_ID = 2;
-SELECT * FROM Inventory where player_ID = 21;
+-- DELETE FROM Inventory WHERE player_ID = 2;
+SELECT * FROM Players where player_ID = 2;
+SELECT coins FROM Players where Player_ID = 2;
+
+SELECT * FROM Game;
 
 UPDATE Players
 SET coins = coins + 5000
 WHERE player_ID = 21;
 
-SELECT * FROM Game where game_ID = 9;
+SELECT * FROM Players where player_ID = 2;
 
 SELECT 
     c.card_name, 

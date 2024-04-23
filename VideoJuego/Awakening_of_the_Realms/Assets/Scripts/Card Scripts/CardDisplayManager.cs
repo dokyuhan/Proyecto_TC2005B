@@ -113,6 +113,17 @@ public class CardDisplayManager : MonoBehaviour
             imagenMarco.color = new Color(1f, 0f, 0f, 0.7f); // Rojo con transparencia de 70%
         }
 
+        Image fondo = objeto.transform.Find("rarity").GetComponent<Image>(); 
+
+        if (card.rarity == "Legendary" && card.desbloqueada)
+        {
+            fondo.color = new Color(1f, 0.84f, 0f, 0.5f);
+        }
+        else if (card.rarity != "Legendary" && card.desbloqueada)
+        {
+            fondo.color = new Color(0f, 0f, 1f, 0.5f);
+        }
+
     }
 
     

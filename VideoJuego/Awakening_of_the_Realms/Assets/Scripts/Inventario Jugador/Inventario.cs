@@ -33,11 +33,35 @@ public class Inventario : MonoBehaviour
         {        
             yield return conexion.GetCards(playerInv[f], available);
         }
+
+        List<Card> unlockedCards = new List<Card>();
+        List<Card> lockedCards = new List<Card>();
+
         // Actualizar el estado de desbloqueo de cada carta
         foreach (Card card in Cards.cards)
         {
-            card.desbloqueada = available.Any(a => a.card_ID == card.card_ID);
-            cardDisplayManager.DisplayCards(card);
+            if (available.Any(a => a.card_ID == card.card_ID))
+            {
+                card.desbloqueada = true;
+                unlockedCards.Add(card); // Add to unlocked list if it's available
+            }
+            else
+            {
+                card.desbloqueada = false;
+                lockedCards.Add(card); // Otherwise, add to locked list
+            }
+        }
+
+        // Display all unlocked cards first
+        foreach (Card unlocked in unlockedCards)
+        {
+            cardDisplayManager.DisplayCards(unlocked);
+        }
+
+        // Followed by all locked cards
+        foreach (Card locked in lockedCards)
+        {
+            cardDisplayManager.DisplayCards(locked);
         }
 
         // Limpiar el mazo actual

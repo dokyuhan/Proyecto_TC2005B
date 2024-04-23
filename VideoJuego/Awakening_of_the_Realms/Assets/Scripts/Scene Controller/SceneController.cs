@@ -10,6 +10,9 @@ public class SceneController : MonoBehaviour
     public MeshRenderer backgroundRenderer; // Reference to the MeshRenderer that displays the background
     public EnergyBar playerEnergyBar;
     public EnergyBar aiEnergyBar;
+
+    public static int CurrentLevelIndex { get; private set; } // Static variable for level index
+
     
 
     void Awake()
@@ -23,6 +26,9 @@ public class SceneController : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
+        CurrentLevelIndex = PlayerPrefs.GetInt("SelectedLevel", 0);
+
     }
 
     void Start()
@@ -33,9 +39,7 @@ public class SceneController : MonoBehaviour
         if (backgroundRenderer == null)
             Debug.LogError("Background renderer is not set in SceneController.");
 
-        int currentLevelIndex = PlayerPrefs.GetInt("SelectedLevel", 0);
-
-        LoadLevel(currentLevelIndex);
+        LoadLevel(CurrentLevelIndex);
     }
 
     public void LoadLevel(int index)

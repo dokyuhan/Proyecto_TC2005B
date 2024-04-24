@@ -3,6 +3,8 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class Arrastrar : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -13,6 +15,10 @@ public class Arrastrar : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public delegate void CardEventHandler(Card card);
     public static event CardEventHandler OnCardPlacedInPlayZone;
     public static event CardEventHandler OnCardPlacedInOpponentZone;
+
+    private bool isCardModified = false;
+    private Sprite originalSprite; 
+
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -85,6 +91,56 @@ public class Arrastrar : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     {
         padre = transform.parent;
 
+        Transform backgroundTransform = transform.Find("background");
+        if (backgroundTransform != null)
+        {
+            Image imagenCarta = backgroundTransform.GetComponent<Image>();
+            originalSprite = imagenCarta.sprite;
+        }
+
+    }
+
+
+    public void ToggleCardState()
+    {
+        Transform backgroundTransform = transform.Find("background");
+        if (backgroundTransform != null)
+        {
+            Image imagenCarta = backgroundTransform.GetComponent<Image>();
+            TextMeshProUGUI descripcion = transform.Find("Descript").GetComponent<TextMeshProUGUI>();
+
+            if (imagenCarta == null)
+            {
+                return;
+            }
+
+            if (!isCardModified)
+            {
+                if (descripcion != null)
+                {
+                    descripcion.text = cartaArrastrar.card_description.ToString();
+                }
+                imagenCarta.color = new Color(0, 0, 0, 0.9f);
+            }
+            else
+            {
+                descripcion.text = "";
+                imagenCarta.sprite = originalSprite;
+                imagenCarta.color = new Color(1, 1, 1, 1);
+
+
+                if (!cartaArrastrar.desbloqueada)
+                {
+                    imagenCarta.color = new Color(imagenCarta.color.r, imagenCarta.color.g, imagenCarta.color.b, 0.7f); 
+                }
+            }
+
+            isCardModified = !isCardModified;
+        }
+        else
+        {
+            Debug.LogError("No se encontró un objeto hijo llamado 'background'");
+        }
     }
 
 }

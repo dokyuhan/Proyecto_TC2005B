@@ -21,7 +21,7 @@ public class Game : MonoBehaviour
     //public CardManager cardManager;
     public List<Card> cartasJugadorEnJuego = new List<Card>();
     public List<Card> cartasOponenteEnJuego = new List<Card>();
-    public Transform playerCardArea1, playerCardArea2, aiCardArea1, aiCardArea2;
+    //public Transform playerCardArea1, playerCardArea2, aiCardArea1, aiCardArea2;
     bool playerCardsRetrieved = false;
     bool aiCardsRetrieved = false;
     public int turnCount;
@@ -37,6 +37,7 @@ public class Game : MonoBehaviour
 
     public enum GameOutcome { Win, Lose }
     public static GameOutcome gameOutcome;
+    public CardRetrievalManager cardRetrievalManager;
 
 
 
@@ -94,6 +95,7 @@ public class Game : MonoBehaviour
         }
     }
 
+    /*
     public void ClearCardsUI(Transform cardArea)
     {
         foreach (Transform child in cardArea)
@@ -102,6 +104,7 @@ public class Game : MonoBehaviour
         }
         Debug.Log("Cleared all card UI elements from " + cardArea.name);
     }
+    */
 
 
     private void SetGameState(GameState newState)
@@ -430,6 +433,56 @@ public class Game : MonoBehaviour
         }
     }
 
+    private void ResetGameState()
+    {
+        retrievalCount = 0;
+        System.Action onCardsRetrieved = () =>
+        {
+            cardRetrievalManager.ClearAllCardsUI();
+
+            cartasJugadorEnJuego.Clear();
+            cartasOponenteEnJuego.Clear();
+            
+            timer.StartCountdown(); // Restart the timer
+            SetGameState(GameState.PlayerTurn); // Loop back to player turn
+            Debug.Log("[GameAI] Game state reset completed.");
+            retrievalCount = 0;
+            turnCount++;
+
+            if (turnCounterText != null)
+                turnCounterText.text = $"Turn: {turnCount}";
+        };
+
+        RetrieveCardsFromPlay(onCardsRetrieved);
+    }
+
+    public void RetrieveCardsFromPlay(System.Action onComplete)
+    {
+        Debug.Log("Retrieving cards from play...");
+        StartCoroutine(cardRetrievalManager.RetrieveCards(cartasJugadorEnJuego, playerDeck.handDeck, 2.0f, () => CheckAllRetrievals(onComplete))); // Player's cards
+        StartCoroutine(cardRetrievalManager.RetrieveCards(cartasOponenteEnJuego, aiFunction.aiScript.handDeck, 2.0f, () => CheckAllRetrievals(onComplete))); // AI's cards
+    }
+
+    private void CheckAllRetrievals(System.Action onComplete)
+    {
+        retrievalCount++;
+        if (retrievalCount == 1) {
+            playerCardsRetrieved = true;
+        } else if (retrievalCount == 2) {
+            aiCardsRetrieved = true;
+        }
+
+        if (playerCardsRetrieved && aiCardsRetrieved)
+        {
+            onComplete();
+            // Reset flags for next time
+            playerCardsRetrieved = false;
+            aiCardsRetrieved = false;
+            retrievalCount = 0; 
+        }
+    }
+
+    /*
     // Reset game state modification
     public void ResetGameState()
     {
@@ -459,14 +512,19 @@ public class Game : MonoBehaviour
         RetrieveCardsFromPlay(onCardsRetrieved);
         
     }
+    */
 
-    
+    /*
     public void RetrieveCardsFromPlay(Action onComplete)
     {
+        Debug.Log("Retrieving cards from play...");
         StartCoroutine(RetrieveCards(cartasJugadorEnJuego, playerDeck.handDeck, 2.0f, () => CheckAllRetrievals(onComplete))); // Player's cards
+        Debug.Log("Retrieving AI cards from play...");
         StartCoroutine(RetrieveCards(cartasOponenteEnJuego, aiFunction.aiScript.handDeck, 2.0f, () => CheckAllRetrievals(onComplete))); // AI's cards
     }
+    */
 
+    /*
     private void CheckAllRetrievals(Action onComplete)
     {
         retrievalCount++;
@@ -489,18 +547,24 @@ public class Game : MonoBehaviour
     // Generalized coroutine to handle card retrieval
     private IEnumerator RetrieveCards(List<Card> cards, HandDeck deck, float delay, Action onComplete)
     {
+        Debug.Log($"Waiting {delay} seconds to retrieve cards...");
         yield return new WaitForSeconds(delay);
 
+        Debug.Log($"Retrieving cards for deck. Total cards to check: {cards.Count}");
         foreach (Card card in cards)
         {
             if (deck.displayedCards.Contains(card))
             {
+                Debug.Log($"Removing card {card.card_name} from display.");
                 deck.displayedCards.Remove(card);
-                Destroy(card.cardGameObject);
+                Debug.Log($"Destroying GameObject for card {card.card_name}");
+                if (card.cardGameObject != null && card.cardGameObject.activeInHierarchy) {
+                    Destroy(card.cardGameObject);
+                }
             }
             else
             {
-                Debug.LogWarning($"[GameAI] Card {card.card_name} NOT found in display. Current displayed cards:");
+                Debug.LogWarning($"[GameAI] Card {card.card_name} NOT found in display. Current displayed cards count: {deck.displayedCards.Count}");
                 foreach (Card displayedCard in deck.displayedCards)
                 {
                     Debug.Log($"Displayed Card: {displayedCard.card_name}");
@@ -510,12 +574,15 @@ public class Game : MonoBehaviour
 
         if (deck.displayedCards.Count < 5)
         {
+            Debug.Log("Refilling displayed cards due to insufficient count.");
             deck.RefillDisplayedCards();
         }
 
         cards.Clear();
         onComplete?.Invoke();
     }
+    */
+
 
     public void Surrender() {
 

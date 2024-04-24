@@ -54,6 +54,8 @@ public class CardDisplayManager : MonoBehaviour
         if (cardSprite != null)
         {
             imagenCarta.sprite = cardSprite;
+            imagenCarta.color = new Color(1, 1, 1, 1);
+
         }
         else
         {
@@ -93,12 +95,6 @@ public class CardDisplayManager : MonoBehaviour
         if (heal != null)
         {
             heal.text = card.healing.ToString();
-        }
-
-        TextMeshProUGUI descripcion = objeto.transform.Find("Descript").GetComponent<TextMeshProUGUI>();
-        if (descripcion != null)
-        {
-            descripcion.text = card.card_description.ToString();
         }
 
         TextMeshProUGUI nombre = objeto.transform.Find("Nombre").GetComponent<TextMeshProUGUI>();

@@ -22,68 +22,60 @@ INSERT INTO Effect (Effect_type, effect_description) VALUES
 -- ('Effect 17', 'Disables an enemy card played'),
 -- ('Effect 18', 'You can see the opponents cards');
 
--- card name, card description, attack, defense, healing, card realm, power cost, exp cost, rarity, effect
+-- Insertion of common cards across realms
+
+-- Human Realm
 INSERT INTO Cards (card_name, card_description, attack, defense, healing, card_realm, power_cost, rarity, Effect_type) VALUES
+('Warrior', 'A sturdy soldier with balanced attack and defense.', 10, 10, 0, 'Human', 1, 'Common', NULL),
+('Archer', 'Quick and precise, excellent at dealing damage from a distance.', 15, 5, 0, 'Human', 1, 'Common', NULL),
+('Cleric', 'A dedicated healer, vital for sustaining the team.', 2, 2, 7, 'Human', 1, 'Common', NULL),
+('Knight', 'Clad in armor, great at absorbing attacks.', 5, 15, 0, 'Human', 1, 'Common', NULL),
+('Sorceress', 'Wields magical attacks, but fragile.', 10, 1, 0, 'Human', 1, 'Common', NULL),
+('Royal Guard', 'Elite defender with high defense.', 12, 20, 0, 'Human', 1, 'Common', NULL),
+('Assasin', 'Deadly in attack with a focus on quick, lethal strikes.', 25, 1, 0, 'Human', 1, 'Common', NULL),
+('Mercenary', 'Versatile fighter with moderate attack and healing capabilities.', 10, 4, 2, 'Human', 1, 'Common', NULL),
 
--- Common Cards
+-- Monster Realm
+('Ogre', 'Brutish and strong, good in both offense and defense.', 7, 10, 1, 'Monster', 1, 'Common', NULL),
+('Basilisc', 'Mystical creature that can petrify enemies, balanced skills.', 12, 7, 2, 'Monster', 1, 'Common', NULL),
+('Werewolf', 'Fierce and resilient, a threat in close combat.', 10, 12, 1, 'Monster', 1, 'Common', NULL),
+('Goblin', 'Tricky and elusive, surprisingly effective at healing.', 3, 5, 5, 'Monster', 1, 'Common', NULL),
+('Harpies', 'Agile and dangerous, balanced attributes with a touch of healing.', 10, 10, 4, 'Monster', 1, 'Common', NULL),
+('Troll', 'Tough and hardy, capable of withstanding considerable damage.', 6, 15, 2, 'Monster', 1, 'Common', NULL),
+('Treant', 'Ancient and wise, focuses on healing and protection.', 2, 6, 7, 'Monster', 1, 'Common', NULL),
+('Ghoul', 'Menacing and aggressive, excellent at dealing damage.', 15, 10, 0, 'Monster', 1, 'Common', NULL),
 
--- Human
-('Warrior', 'Description', 10, 10, 0, 'Human', 0, 'Common', NULL),
-('Archer', 'Description', 15, 5, 0, 'Human', 0, 'Common', NULL),
-('Cleric', 'Description', 2, 2, 15, 'Human', 0, 'Common', NULL),
-('Knight', 'Description', 5, 15, 0, 'Human', 0,  'Common', NULL),
-('Sorceress', 'Description', 10, 1, 0, 'Human', 0,  'Common', NULL),
-('Royal Guard', 'Description', 12, 20, 0, 'Human', 0, 'Common', NULL),
-('Assasin', 'Description', 25, 1, 0, 'Human', 0, 'Common', NULL),
-('Mercenary', 'Description', 10, 4, 5, 'Human', 0, 'Common', NULL),
+-- Magical Realm
+('Giant', 'Imposing force, extremely tough.', 5, 15, 0, 'Magical', 1, 'Common', NULL),
+('Elf', 'Graceful and quick, adept at both attack and defense.', 10, 5, 0, 'Magical', 1, 'Common', NULL),
+('Necromancer', 'Masters of the dark arts, can both harm and heal.', 15, 2, 5, 'Magical', 1, 'Common', NULL),
+('Golem', 'Constructed titan, almost impervious to damage.', 1, 20, 0, 'Magical', 1, 'Common', NULL),
+('Elemental Guardian', 'Powerful protector, balanced in attack and defense with healing.', 12, 12, 4, 'Magical', 1, 'Common', NULL),
+('Dwarves', 'Stout and sturdy, good at defending and healing.', 8, 12, 3, 'Magical', 1, 'Common', NULL),
+('Witch', 'Skilled in curses and healing, a formidable foe.', 14, 4, 5, 'Magical', 1, 'Common', NULL),
+('Dark Wizard', 'Deals in forbidden spells, good at damage and healing.', 7, 7, 6, 'Magical', 1, 'Common', NULL),
 
--- Monster
-('Ogre', 'Description', 7, 10, 2, 'Monster', 0, 'Common', NULL),
-('Basilisc', 'Description', 12, 7, 5, 'Monster', 0, 'Common', NULL),
-('Werewolf', 'Description', 10, 12, 3, 'Monster', 0, 'Common', NULL),
-('Goblin', 'Description', 3, 5, 10, 'Monster', 0, 'Common', NULL),
-('Harpies', 'Description', 10, 10, 9, 'Monster', 0, 'Common', NULL),
-('Troll', 'Description', 6, 15, 4, 'Monster', 0, 'Common', NULL),
-('Treant', 'Description', 2, 6, 15, 'Monster', 0, 'Common', NULL),
-('Ghoul', 'Description', 15, 10, 0, 'Monster', 0, 'Common', NULL),
+-- Celestial Realm
+('Hell Hound', 'Ferocious and relentless in attack.', 10, 8, 1, 'Celestial', 1, 'Common', NULL),
+('Archangel', 'Mighty and majestic, strong in combat.', 14, 10, 0, 'Celestial', 1, 'Common', NULL),
+('Nephalem', 'Offspring of angels and demons, versatile in battle.', 10, 5, 5, 'Celestial', 1, 'Common', NULL),
+('Succubus', 'Seduces and deceives, moderate in defense and healing.', 9, 12, 2, 'Celestial', 1, 'Common', NULL),
+('Nymph', 'Gentle and healing, crucial support role.', 0, 2, 10, 'Celestial', 1, 'Common', NULL),
+('Titan', 'Giant warriors, formidable in defense and healing.', 1, 15, 2, 'Celestial', 1, 'Common', NULL),
+('Valkyrie', 'Warrior maidens from the skies, balanced attack and moderate healing.', 8, 4, 4, 'Celestial', 1, 'Common', NULL),
+('Pegasus', 'Swift and agile, great for quick strikes.', 14, 0, 1, 'Celestial', 1, 'Common', NULL);
 
--- Magical
-('Giant', 'Description', 5, 15, 0, 'Magical', 0, 'Common', NULL),
-('Elf', 'Description', 10, 5, 0, 'Magical', 0, 'Common', NULL),
-('Necromancer', 'Description', 15, 2, 10, 'Magical', 0, 'Common', NULL),
-('Golem', 'Description', 1, 20, 0, 'Magical', 0, 'Common', NULL),
-('Elemental Guardian', 'Description', 12, 12, 9, 'Magical', 0, 'Common', NULL),
-('Dwarves', 'Description', 8, 12, 6, 'Magical', 0, 'Common', NULL),
-('Witch', 'Description', 14, 4, 10, 'Magical', 0, 'Common', NULL),
-('Dark Wizard', 'Description', 7, 7, 13, 'Magical', 0, 'Common', NULL),
+-- Insertion of legendary cards with specific effects
+INSERT INTO Cards (card_name, card_description, attack, defense, healing, card_realm, power_cost, rarity, Effect_type) VALUES
+('Princess', 'A royal healer with unparalleled powers of restoration.', 10, 10, 20, 'Human', 3, 'Legendary', 'Effect 1'),
+('King Arthur', 'The legendary king with a mighty sword and armor.', 35, 25, 7, 'Human', 4, 'Legendary', 'Effect 2'),
+('Griffin', 'Majestic creature that commands the skies, dodges attacks effortlessly.', 30, 30, 5, 'Monster', 3, 'Legendary', 'Effect 3'),
+('Dragon', 'Fearsome and fiery, deals devastating damage over time.', 40, 20, 5, 'Monster', 4, 'Legendary', 'Effect 4'),
+('Runeforge Dwarf', 'Master craftsman, provides formidable defenses and repairs.', 15, 40, 10, 'Magical', 3, 'Legendary', 'Effect 5'),
+('Moonshadow Elf', 'Elusive and deadly, weakens enemies while stealing their life force.', 35, 15, 10, 'Magical', 4, 'Legendary', 'Effect 6'),
+('Hercules', 'The hero of myths, reflects damage and heals over time.', 35, 25, 10, 'Celestial', 3, 'Legendary', 'Effect 7'),
+('Demon King', 'Ruler of the underworld, enhances damage and curses enemies.', 35, 15, 15, 'Celestial', 4, 'Legendary', 'Effect 8');
 
--- Celestial
-('Hell Hound', 'Description', 10, 8, 2, 'Celestial', 0, 'Common', NULL),
-('Archangel', 'Description', 14, 10, 0, 'Celestial', 0, 'Common', NULL),
-('Nephalem', 'Description', 10, 5, 10, 'Celestial', 0, 'Common', NULL),
-('Succubus', 'Description', 9, 12, 4, 'Celestial', 0, 'Common', NULL),
-('Nymph', 'Description', 0, 2, 20, 'Celestial', 0, 'Common', NULL),
-('Titan', 'Description', 1, 15, 5, 'Celestial', 0, 'Common', NULL),
-('Valkyrie', 'Description', 8, 4, 9, 'Celestial', 0, 'Common', NULL),
-('Pegasus', 'Description', 14, 0, 2, 'Celestial', 0, 'Common', NULL),
-
--- Legendary Cards
-
--- Human
-('Princess', 'Description', 10, 10, 40, 'Human', 2, 'Legendary', 'Effect 1'),
-('King Arthur', 'Description', 35, 25, 15, 'Human', 3, 'Legendary', 'Effect 2'),
-
--- Monster
-('Griffin', 'Description', 30, 30, 10, 'Monster', 2, 'Legendary', 'Effect 3'),
-('Dragon', 'Description', 40, 20, 10, 'Monster', 3, 'Legendary', 'Effect 4'),
-
--- Magical
-('Runeforge Dwarf', 'Description', 15, 40, 20, 'Magical', 2, 'Legendary', 'Effect 5'),
-('Moonshadow Elf', 'Description', 35, 15, 20, 'Magical', 3, 'Legendary', 'Effect 6'),
-
--- Celestial
-('Hercules', 'Description', 35, 25, 20, 'Celestial', 2, 'Legendary', 'Effect 7'),
-('Demon King', 'Description', 35, 15, 30, 'Celestial', 3, 'Legendary', 'Effect 8');
 
 -- Special Cards
 -- ('Special 1', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 9'),
@@ -104,7 +96,7 @@ INSERT INTO Players (player_name, player_last_name, player_age, user_name, passw
 ('Alberto', 'Limón', 21, 'lemon', 'lemoncito', 'Monster', false, 7, 14, 7, 1000, 2),
 ('Do Kyu', 'Han Kim', 21, 'DoKyu', 'hanKim', 'Celestial', false, 8, 9, 8, 1000, 2),
 ('Gabriel', 'Edid', 21, 'Atrium20', 'gaboMagic', 'Magical', false, 7, 21, 7, 1000, 2),
-('Jane', 'Smith', 21, 'jane.smith', 'password123', 'Monster', false, 2, 5, 5, 9999, 1),
+('Jane', 'Smith', 21, 'jane.smith', 'password123', 'Monster', false, 2, 5, 5, 15, 1),
 ('Alice', 'Johnson', 21, 'alice.johnson', 'password123', 'Magical', false, 2, 12, 6, 20, 0),
 ('Bob', 'Williams', 18, 'bob.williams', 'password123', 'Celestial', false, 3, 14, 9, 24, 2),
 ('Emily', 'Brown', 22, 'emily.brown', 'password123', 'Human', false, 4, 11, 7, 10, 3),
@@ -162,25 +154,18 @@ INSERT INTO Inventory (card_ID, player_ID) VALUES
 (7, 3);
 
 -- DELETE FROM Inventory WHERE player_ID = 2;
-SELECT * FROM Players where player_ID = 2;
-SELECT coins FROM Players where Player_ID = 2;
+SELECT * FROM Players where player_ID = 3;
+SELECT * FROM Players where Player_ID <> 2 LIMIT 5;
 
-SELECT * FROM Game;
+DESC Awakening_realm.Players;
+
+SELECT * FROM Players;
 
 UPDATE Players
-SET coins = coins + 5000
-WHERE player_ID = 21;
+SET coins = coins + 1500
+WHERE player_ID = 25;
 
-SELECT * FROM Players where player_ID = 2;
+SELECT * FROM Players;
 
-SELECT 
-    c.card_name, 
-    COUNT(d.card_ID) AS usage_count
-FROM 
-    Deck d
-JOIN 
-    Cards c ON d.card_ID = c.card_ID
-GROUP BY 
-    c.card_name
-ORDER BY 
-    usage_count DESC LIMIT 5;
+    
+

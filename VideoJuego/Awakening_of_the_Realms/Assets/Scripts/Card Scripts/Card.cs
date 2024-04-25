@@ -22,6 +22,7 @@ public class Card
         public string rarity;
         public string Effect_type;
         public bool desbloqueada;
+        public int uniqueID;
 
         public GameObject cardGameObject; // Reference to the card's GameObject
 

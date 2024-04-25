@@ -95,18 +95,6 @@ public class Game : MonoBehaviour
         }
     }
 
-    /*
-    public void ClearCardsUI(Transform cardArea)
-    {
-        foreach (Transform child in cardArea)
-        {
-            Destroy(child.gameObject);
-        }
-        Debug.Log("Cleared all card UI elements from " + cardArea.name);
-    }
-    */
-
-
     private void SetGameState(GameState newState)
     {
         currentState = newState;
@@ -230,14 +218,12 @@ public class Game : MonoBehaviour
         if (playerHealthBar.currentHealth <= 0 || aiHealthBar.currentHealth <= 0)
         {
             if (playerHealthBar.currentHealth <= 0) {
-                Debug.Log("AI Wins!");
                 gameOutcome = GameOutcome.Lose;
             } else {
-                Debug.Log("Player Wins!");
                 gameOutcome = GameOutcome.Win;
             }
 
-            SceneManager.LoadScene("GameOver");
+            GameOver(gameOutcome);
         }
 
     }
@@ -482,113 +468,32 @@ public class Game : MonoBehaviour
         }
     }
 
-    /*
-    // Reset game state modification
-    public void ResetGameState()
-    {
-        
-        retrievalCount = 0;
-        Action onCardsRetrieved = () =>
-        {
-
-            ClearCardsUI(playerCardArea1);
-            ClearCardsUI(playerCardArea2);
-            ClearCardsUI(aiCardArea1);
-            ClearCardsUI(aiCardArea2);
-            // Actions to take after cards are successfully retrieved
-            cartasJugadorEnJuego.Clear();
-            cartasOponenteEnJuego.Clear();
-            
-            timer.StartCountdown(); // Restart the timer
-            SetGameState(GameState.PlayerTurn); // Loop back to player turn
-            Debug.Log("[GameAI] Game state reset completed.");
-            retrievalCount = 0;
-            turnCount++;
-
-            if (turnCounterText != null)
-                turnCounterText.text = $"Turn: {turnCount}";
-        };
-
-        RetrieveCardsFromPlay(onCardsRetrieved);
-        
-    }
-    */
-
-    /*
-    public void RetrieveCardsFromPlay(Action onComplete)
-    {
-        Debug.Log("Retrieving cards from play...");
-        StartCoroutine(RetrieveCards(cartasJugadorEnJuego, playerDeck.handDeck, 2.0f, () => CheckAllRetrievals(onComplete))); // Player's cards
-        Debug.Log("Retrieving AI cards from play...");
-        StartCoroutine(RetrieveCards(cartasOponenteEnJuego, aiFunction.aiScript.handDeck, 2.0f, () => CheckAllRetrievals(onComplete))); // AI's cards
-    }
-    */
-
-    /*
-    private void CheckAllRetrievals(Action onComplete)
-    {
-        retrievalCount++;
-        if (retrievalCount == 1) {
-            playerCardsRetrieved = true;
-        } else if (retrievalCount == 2) {
-            aiCardsRetrieved = true;
-        }
-
-        if (playerCardsRetrieved && aiCardsRetrieved)
-        {
-            onComplete?.Invoke();
-            // Reset flags for next time
-            playerCardsRetrieved = false;
-            aiCardsRetrieved = false;
-            retrievalCount = 0; 
-        }
-    }
-
-    // Generalized coroutine to handle card retrieval
-    private IEnumerator RetrieveCards(List<Card> cards, HandDeck deck, float delay, Action onComplete)
-    {
-        Debug.Log($"Waiting {delay} seconds to retrieve cards...");
-        yield return new WaitForSeconds(delay);
-
-        Debug.Log($"Retrieving cards for deck. Total cards to check: {cards.Count}");
-        foreach (Card card in cards)
-        {
-            if (deck.displayedCards.Contains(card))
-            {
-                Debug.Log($"Removing card {card.card_name} from display.");
-                deck.displayedCards.Remove(card);
-                Debug.Log($"Destroying GameObject for card {card.card_name}");
-                if (card.cardGameObject != null && card.cardGameObject.activeInHierarchy) {
-                    Destroy(card.cardGameObject);
-                }
-            }
-            else
-            {
-                Debug.LogWarning($"[GameAI] Card {card.card_name} NOT found in display. Current displayed cards count: {deck.displayedCards.Count}");
-                foreach (Card displayedCard in deck.displayedCards)
-                {
-                    Debug.Log($"Displayed Card: {displayedCard.card_name}");
-                }
-            }
-        }
-
-        if (deck.displayedCards.Count < 5)
-        {
-            Debug.Log("Refilling displayed cards due to insufficient count.");
-            deck.RefillDisplayedCards();
-        }
-
-        cards.Clear();
-        onComplete?.Invoke();
-    }
-    */
-
-
     public void Surrender() {
 
-        Debug.Log("AI Wins!");
         gameOutcome = GameOutcome.Lose;
-        SceneManager.LoadScene("GameOver");
+        GameOver(gameOutcome);
+    }
+    void GameOver(GameOutcome outcome)
+    {
+        gameOutcome = outcome;
+        Debug.Log(outcome == GameOutcome.Lose ? "AI Wins!" : "Player Wins!");
+        CleanupGame(); // Handle cleanup
+        SceneManager.LoadScene("GameOver"); // Transition to GameOver scene
     }
 
+    // Method to handle the cleanup process
+    private void CleanupGame()
+    {
+        // Clear lists and destroy game objects if necessary
+        //cartasJugadorEnJuego.ForEach(card => Destroy(card.gameObject));
+        cartasJugadorEnJuego.Clear();
+
+        //cartasOponenteEnJuego.ForEach(card => Destroy(card.gameObject));
+        cartasOponenteEnJuego.Clear();
+
+        attackTotalPlayer = defenseTotalPlayer = healingTotalPlayer = 0;
+        attackTotalAI = defenseTotalAI = healingTotalAI = 0;
+        ignorePlayerDefense = ignoreAIDefense = false;
+
+    }
 }

@@ -58,9 +58,5 @@ public class HandDeck : MonoBehaviour
             }
         }
 
-        if (displayedCards.Count < displayCount)
-        {
-            ShuffleAndDisplayHand();
-        }
     }
 }

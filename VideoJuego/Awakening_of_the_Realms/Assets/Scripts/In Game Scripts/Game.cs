@@ -38,6 +38,9 @@ public class Game : MonoBehaviour
     public enum GameOutcome { Win, Lose }
     public static GameOutcome gameOutcome;
     public CardRetrievalManager cardRetrievalManager;
+     // Effects management for player and AI
+    public Dictionary<string, int> playerEffects = new Dictionary<string, int>();
+    public Dictionary<string, int> aiEffects = new Dictionary<string, int>();
 
 
 
@@ -151,10 +154,6 @@ public class Game : MonoBehaviour
     public void RealizarCombate()
     {
 
-        // Effects management for player and AI
-        Dictionary<string, int> playerEffects = new Dictionary<string, int>();
-        Dictionary<string, int> aiEffects = new Dictionary<string, int>();
-
         // Process player cards
         foreach (var card in cartasJugadorEnJuego)
         {
@@ -187,6 +186,8 @@ public class Game : MonoBehaviour
 
         // Initialize effect application (assuming some effects are pre-existing)
         Debug.Log("Effects being applied...");
+        Debug.Log("Player effects: " + string.Join(", ", playerEffects.Keys));
+        Debug.Log("AI effects: " + string.Join(", ", aiEffects.Keys));
         ApplyEffects(playerEffects, aiEffects);
 
         // Calculate and apply damages
@@ -236,32 +237,40 @@ public class Game : MonoBehaviour
             case "Effect 1":
                 selfEffects["HealingDoubling"] = 1; // Doubles healing for 1 round
                 targetEffects["EnergyReduction"] = 1; // Reduces two energy levels immediately
+                Debug.Log($"Healing doubling applied to self for 1 turn. Energy reduction by 2 applied to opponent.");
                 break;
             case "Effect 2":
                 targetEffects["IgnoreDefense"] = 1; // Ignores defense for 1 round
+                Debug.Log("Defense ignored for 1 round.");
                 break;
             case "Effect 3":
                 selfEffects["DodgeAttack"] = 1; // Can dodge one attack
+                Debug.Log("Dodge attack effect applied for 1 round.");
                 break;
             case "Effect 4":
                 targetEffects["DotDamage"] = 3; // Applies dot damage of 10
                 targetEffects["HealingReduction"] = 3; // Reduces healing by 50%
+                Debug.Log("Dot damage of 10 applied for 3 rounds. Healing reduction by 50% for 3 rounds.");
                 break;
             case "Effect 5":
                 selfEffects["DefenseBarrier"] = 2; // Creates a barrier adding 50 defense for 2 rounds
+                Debug.Log("Defense barrier added for 2 rounds.");
                 break;
             case "Effect 6":
                 targetEffects["AttackWeakening"] = 2; // Makes attacks 20% weaker for 2 rounds
                 selfEffects["LifeSteal"] = 1; // Life steal effect of 30 points
+                Debug.Log("Attack weakened by 20% for 2 rounds. Life steal effect of 30 points applied.");
                 break;
             case "Effect 7":
                 selfEffects["ReflectDamage"] = 1; // Reflects all damage taken for 1 round
                 selfEffects["HealOverTime"] = 3; // Heals 10 life points for 3 rounds
+                Debug.Log("Reflect damage effect applied for 1 round. Heal over time effect of 10 points for 3 rounds.");
                 break;
             case "Effect 8":
                 selfEffects["DoubleDamage"] = 1; // Doubles the damage for 1 round
                 targetEffects["CurseDamage"] = 2; // 10 damage over time
                 targetEffects["HealingReduction"] = 2; // 20% healing reduction
+                Debug.Log("Damage doubled for 1 round. Curse damage of 10 for 2 rounds. Healing reduction by 20% for 2 rounds.");
                 break;
         }
     }

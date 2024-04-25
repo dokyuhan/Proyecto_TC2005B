@@ -31,16 +31,26 @@ async function connectToDB() {
 //   });
 // }
 
-app.get("/", (request, response) => {
-  fs.readFile(
-    "../SitioWeb/public/html/AwakeningWebPage.html",
-    "utf8",
-    (err, html) => {
-      if (err) response.status(500).send("There was an error: " + err);
-      console.log("Loading page...");
-      response.send(html);
+// Serve index.html for the root route
+app.get("/play", (request, response) => {
+  fs.readFile("../SitioWeb/public/html/index.html", "utf8", (err, html) => {
+    if (err) {
+      console.error("Error loading index.html:", err);
+      return response.status(500).send("There was an error loading the page.");
     }
-  );
+    response.send(html);
+  });
+});
+
+// Serve stats.html for the /stats route
+app.get("/stats", (request, response) => {
+  fs.readFile("../SitioWeb/public/html/stats.html", "utf8", (err, html) => {
+    if (err) {
+      console.error("Error loading stats.html:", err);
+      return response.status(500).send("There was an error loading the page.");
+    }
+    response.send(html);
+  });
 });
 
 // Endpoint para obtener todas las Cartas
@@ -725,46 +735,54 @@ app.post("/api/awakening/match/create", async (request, response) => {
 });
 
 //Endpoint para update del record del jugador
-app.post("/api/players/updateRecord/:userId/:recordType", async (request, response) => {
-  let connection = null;
+app.post(
+  "/api/players/updateRecord/:userId/:recordType",
+  async (request, response) => {
+    let connection = null;
 
-  try {
+    try {
       connection = await connectToDB();
       const userId = parseInt(request.params.userId, 10);
       const recordType = parseInt(request.params.recordType, 10);
 
       if (![1, 2].includes(recordType)) {
-          return response.status(400).json({
-              error: "Invalid record type",
-              description: "Record type must be 1 (win) or 2 (loss)."
-          });
+        return response.status(400).json({
+          error: "Invalid record type",
+          description: "Record type must be 1 (win) or 2 (loss).",
+        });
       }
 
-      const fieldToUpdate = recordType === 1 ? 'win_record' : 'lose_record';
+      const fieldToUpdate = recordType === 1 ? "win_record" : "lose_record";
       const sql = `UPDATE Players SET ${fieldToUpdate} = ${fieldToUpdate} + 1 WHERE player_ID = ?`;
 
       const [results] = await connection.execute(sql, [userId]);
 
       if (results.affectedRows === 0) {
-          return response.status(404).json({ error: "Player not found", description: "No player with the given ID was found in the database." });
+        return response.status(404).json({
+          error: "Player not found",
+          description: "No player with the given ID was found in the database.",
+        });
       }
 
-      console.log(`Successfully updated ${fieldToUpdate} for user ID: ${userId}.`);
+      console.log(
+        `Successfully updated ${fieldToUpdate} for user ID: ${userId}.`
+      );
       response.status(200).json({
-          message: `Successfully incremented the ${fieldToUpdate} for player ID ${userId}.`
+        message: `Successfully incremented the ${fieldToUpdate} for player ID ${userId}.`,
       });
-
-  } catch (error) {
+    } catch (error) {
       console.error("Error updating player record:", error);
-      response.status(500).json({ error: "Internal server error", details: error.message });
-  } finally {
+      response
+        .status(500)
+        .json({ error: "Internal server error", details: error.message });
+    } finally {
       if (connection !== null) {
-          connection.end();
-          console.log("Database connection closed.");
+        connection.end();
+        console.log("Database connection closed.");
       }
+    }
   }
-});
-
+);
 
 //Endpoint para añadir monedas a cuenta con base en su id
 app.post("/api/awakening/players/:id/coins/add", async (request, response) => {
@@ -1054,7 +1072,7 @@ app.get(
       connection = await connectToDB();
 
       const [results, fields] = await connection.execute(
-        "SELECT c.card_name, COUNT(d.card_ID) AS usage_count FROM Deck d JOIN Cards c ON d.card_ID = c.card_ID GROUP BY c.card_name ORDER BY usage_count DESC;"
+        "SELECT c.card_name, COUNT(d.card_ID) AS usage_count FROM Deck d JOIN Cards c ON d.card_ID = c.card_ID GROUP BY c.card_name ORDER BY usage_count DESC LIMIT 10;"
       );
 
       console.log(`${results.length} rows returned`);
@@ -1086,5 +1104,7 @@ app.use((err, request, response, next) => {
 
 // Inicialización del servidor
 app.listen(port, () => {
-  console.log(`App listening at http://localhost:${port}`);
+  console.log(
+    `App listening at http://localhost:${port} \nFor website go to http://localhost:${port}/play \nFor stats go to http://localhost:${port}/stats`
+  );
 });

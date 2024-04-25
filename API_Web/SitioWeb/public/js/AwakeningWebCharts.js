@@ -62,9 +62,14 @@ async function Win_Lose() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("username").value = "john.doe";
-  document.querySelector("button").addEventListener("click", Win_Lose);
-  Win_Lose();
+  document.getElementById("username").value = "john.doe"; // Set the default username
+  const getDataButton = document.getElementById("getDataButton");
+  if (getDataButton) {
+    getDataButton.addEventListener("click", Win_Lose);
+  } else {
+    console.error("Data button not found");
+  }
+  Win_Lose(); // Optionally run on load to display default data
 });
 
 try {
@@ -180,7 +185,7 @@ try {
         },
         title: {
           display: true,
-          text: "Most Used Cards",
+          text: "Top 10 Most Used Cards",
           font: {
             size: 20,
           },

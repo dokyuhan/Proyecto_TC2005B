@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      type="module"
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.umd.js"
+      integrity="sha512-vCUbejtS+HcWYtDHRF2T5B0BKwVG/CLeuew5uT2AiX4SJ2Wff52+kfgONvtdATqkqQMC9Ye5K+Td0OTaz+P7cw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script type="module" defer src="../js/AwakeningWebCharts.js"></script>
+    <link href="../css/AwakeningWebPage.css" rel="stylesheet" />
+    <title>Statistics - Awakening Web Page</title>
+  </head>
+  <body>
+    <header>
+      <div class="top-bar">
+        <h3>Play <i>Awakening of the Realms</i> for Free!</h3>
+        <div>
+          <button onclick="window.location.href='play'">Play</button>
+          <button onclick="window.location.href='stats'">Stats</button>
+        </div>
+      </div>
+      <div class="main">
+        <h1>Game Statistics</h1>
+        <p>
+          Here you can find usefull statistics about the game. Maybe out of all
+          this information you may find a way to improve your gameplay. Good
+          Luck!
+        </p>
+      </div>
+    </header>
+
+    <section class="content">
+      <div class="user-input">
+        <label for="username">Enter Username:</label>
+        <input type="text" id="username" placeholder="e.g., john.doe" />
+        <button id="getDataButton">Get Data</button>
+      </div>
+
+      <div class="container">
+        <div class="chartContainer">
+          <canvas id="apiChart1" width="400" height="400"></canvas>
+          <canvas id="apiChart4" width="400" height="400"></canvas>
+        </div>
+        <div class="chartContainer">
+          <canvas id="apiChart2" width="400" height="400"></canvas>
+          <canvas id="apiChart3" width="400" height="400"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        All Rights Reserved. Alberto Limón Cancino, Do Kyu Han Kim & Gabriel
+        Edid Harari ©2024
+      </p>
+    </footer>
+  </body>
+</html>

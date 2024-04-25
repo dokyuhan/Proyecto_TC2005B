@@ -11,7 +11,6 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <script type="module" defer src="./../js/AwakeningWebCharts.js"></script>
     <link href="../css/AwakeningWebPage.css" type="text/css" rel="stylesheet" />
     <link
       rel="stylesheet"
@@ -21,13 +20,17 @@
       rel="shortcut icon"
       href="./../game/AwakeningV1.0/TemplateData/favicon.ico"
     />
-    <title>Awakening Web Page</title>
+    <title>Play - Awakening Web Page</title>
   </head>
 
   <body>
     <header>
       <div class="top-bar">
         <h3>Play <i>Awakening of the Realms</i> for Free!</h3>
+        <div>
+          <button onclick="window.location.href='play'">Play</button>
+          <button onclick="window.location.href='stats'">Stats</button>
+        </div>
       </div>
       <div class="main">
         <h1>Awakening of the Realms</h1>
@@ -221,23 +224,6 @@
         </div>
       </article>
     </section>
-
-    <div class="user-input">
-      <label for="username">Enter Username:</label>
-      <input type="text" id="username" placeholder="e.g., john.doe" />
-      <button onclick="updateChart()">Get Data</button>
-    </div>
-
-    <div class="container">
-      <div class="chartContainer">
-        <canvas id="apiChart1" width="400" height="400"></canvas>
-        <canvas id="apiChart4" width="400" height="400"></canvas>
-      </div>
-      <div class="chartContainer">
-        <canvas id="apiChart2" width="400" height="400"></canvas>
-        <canvas id="apiChart3" width="400" height="400"></canvas>
-      </div>
-    </div>
 
     <footer>
       <p>

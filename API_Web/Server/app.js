@@ -22,14 +22,16 @@ async function connectToDB() {
   });
 }
 
-// async function connectToDB() {
-//   return await mysql.createConnection({
-//     host: "127.0.0.1",
-//     user: "root",
-//     password: "@Dokyu2379",
-//     database: "Awakening_realm",
-//   });
-// }
+/*
+async function connectToDB() {
+  return await mysql.createConnection({
+    host: "127.0.0.1",
+    user: "root",
+    password: "@Dokyu2379",
+    database: "Awakening_realm",
+  });
+}
+*/
 
 // Serve index.html for the root route
 app.get("/play", (request, response) => {

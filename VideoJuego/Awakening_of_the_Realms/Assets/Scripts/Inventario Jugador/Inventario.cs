@@ -11,8 +11,6 @@ public class Inventario : MonoBehaviour
 
     public CardDisplayManager cardDisplayManager; 
     public APIConnection conexion;
-    public CardFetch cardFetch;
-
     public List<Card> available = new List<Card>();
     public List<int> playerInv = new List<int>();
 

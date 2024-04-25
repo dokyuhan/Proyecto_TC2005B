@@ -30,8 +30,6 @@ public class AI : MonoBehaviour
         }
     }
 
-
-
     void DisplayFetchedCards(List<Card> fetchedCards)
     {
         int[] deck = new int[10];
@@ -78,6 +76,7 @@ public class AI : MonoBehaviour
             }
             else
             {
+                Debug.Log("Card with ID " + cardID + " not found.");
             }
         }
         handDeck.ShuffleAndDisplayHand(); // Shuffle and display the hand deck

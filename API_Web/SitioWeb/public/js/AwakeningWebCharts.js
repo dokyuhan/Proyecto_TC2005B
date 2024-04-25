@@ -12,7 +12,7 @@ Chart.defaults.font.size = 16;
 async function Win_Lose() {
   const username =
     document.getElementById("username").value || "defaultUsername";
-  const url = `http://localhost:3200/api/awakening/players/${encodeURIComponent(
+  const url = `http://127.0.0.1:3200/api/awakening/players/${encodeURIComponent(
     username
   )}/stats/win_lose`;
 
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 try {
   const response = await fetch(
-    "http://localhost:3200/api/awakening/players/stats/ages"
+    "http://127.0.0.1:3200/api/awakening/players/stats/ages"
   );
   if (!response.ok) throw new Error("Failed to fetch age data");
   const data = await response.json();
@@ -113,7 +113,7 @@ try {
 
 try {
   const response = await fetch(
-    "http://localhost:3200/api/awakening/players/stats/levels"
+    "http://127.0.0.1:3200/api/awakening/players/stats/levels"
   );
   if (!response.ok) throw new Error("Failed to fetch level data");
   const data = await response.json();
@@ -154,7 +154,7 @@ try {
 
 try {
   const response = await fetch(
-    "http://localhost:3200/api/awakening/players/stats/used_cards"
+    "http://127.0.0.1:3200/api/awakening/players/stats/used_cards"
   );
   if (!response.ok) throw new Error("Failed to fetch used cards data");
   const data = await response.json();

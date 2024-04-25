@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class APIConnection : MonoBehaviour
 {
     //Variables para AddUser
-    [SerializeField] private string apiURL = "http://127.0.0.1:3200";
+    private string apiURL = "http://127.0.0.1:3200";
 
     public List<int> cardIds = new List<int>();
     Card card;

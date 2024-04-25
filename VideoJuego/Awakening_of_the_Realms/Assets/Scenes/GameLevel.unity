@@ -972,6 +972,7 @@ GameObject:
   - component: {fileID: 446232768}
   - component: {fileID: 446232767}
   - component: {fileID: 446232769}
+  - component: {fileID: 446232770}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -1029,13 +1030,10 @@ MonoBehaviour:
   aiEnergyBar: {fileID: 590674907}
   cartasJugadorEnJuego: []
   cartasOponenteEnJuego: []
-  playerCardArea1: {fileID: 756665756}
-  playerCardArea2: {fileID: 1596934380}
-  aiCardArea1: {fileID: 2006226772}
-  aiCardArea2: {fileID: 678362843}
   turnCount: 0
   turnCounterText: {fileID: 336229108}
   nombre: {fileID: 1601540325}
+  cardRetrievalManager: {fileID: 446232770}
 --- !u!114 &446232767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1076,7 +1074,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   apiURL: localhost:3200
   cardEndpoint: /api/awakening/cards/
-  cards: []
+--- !u!114 &446232770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446232760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e7addea6aa6e401183749ebed284fb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCardArea1: {fileID: 756665756}
+  playerCardArea2: {fileID: 1596934380}
+  aiCardArea1: {fileID: 2006226772}
+  aiCardArea2: {fileID: 678362843}
 --- !u!1 &452829870
 GameObject:
   m_ObjectHideFlags: 0
@@ -1779,6 +1792,7 @@ MonoBehaviour:
     rarity: 
     Effect_type: 
     desbloqueada: 0
+    uniqueID: 0
     cardGameObject: {fileID: 0}
   playerDeck: {fileID: 446232769}
   handDeck: {fileID: 634685327}
@@ -2804,6 +2818,7 @@ MonoBehaviour:
     rarity: 
     Effect_type: 
     desbloqueada: 0
+    uniqueID: 0
     cardGameObject: {fileID: 0}
   handDeck: {fileID: 1587240206}
 --- !u!114 &1587240206
@@ -2861,6 +2876,7 @@ MonoBehaviour:
     rarity: 
     Effect_type: 
     desbloqueada: 0
+    uniqueID: 0
     cardGameObject: {fileID: 0}
 --- !u!114 &1587240211
 MonoBehaviour:

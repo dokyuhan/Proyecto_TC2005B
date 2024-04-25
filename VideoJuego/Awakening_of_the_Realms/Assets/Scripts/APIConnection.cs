@@ -170,7 +170,7 @@ public class APIConnection : MonoBehaviour
     }
 
 
-    public IEnumerator getPlayerInvnetory(string playerId, Action<List<int>> callback)
+    public IEnumerator getPlayerInventory(string playerId, Action<List<int>> callback)
     {
         UnityWebRequest www = UnityWebRequest.Get(apiURL + "/api/awakening/players/" + playerId + "/inventory");
         yield return www.SendWebRequest();

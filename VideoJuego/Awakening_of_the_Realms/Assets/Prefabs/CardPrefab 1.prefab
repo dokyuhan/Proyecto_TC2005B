@@ -374,6 +374,7 @@ MonoBehaviour:
     rarity: 
     Effect_type: 
     desbloqueada: 0
+    uniqueID: 0
     cardGameObject: {fileID: 0}
 --- !u!1 &2359514544036863233
 GameObject:

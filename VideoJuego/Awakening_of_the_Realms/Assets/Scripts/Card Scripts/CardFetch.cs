@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using TMPro;
 
 public class CardFetch : MonoBehaviour
 {
@@ -10,57 +12,45 @@ public class CardFetch : MonoBehaviour
 
     Card card;
 
-    public List<Card> cards = new List<Card>(); 
-    /* delegate y event son clases que permiten utilizar los metodos como objetos en #C, en donde el delegate define una firma (OnCardsFetched) y recibe el tipo de parametro (en este caso seria la Lista) y regresa un void
-    Hay muchas maneras de uso del delegate y event, pero para este caso se esta utilizando para la visualizacion de las cartas especificas para cada mazo. Se utiliza la clase de delegate porque para otros casos (dentro del juego)
-    solo se necesitaria visualizar las cartas del deck y no todo el inventario. En resumen estas clases son utilizadas para mandar los datos especificos para cada mazo al igual de tener un mejor mantenimiento */
-    public delegate void OnCardsFetched(List<Card> cards);
-    public static event OnCardsFetched CardsFetched;
-
+    // Use a dictionary to keep track of which deck is getting updated
+    public Dictionary<string, List<Card>> cardsByDeck = new Dictionary<string, List<Card>>();
+    public delegate void OnCardsFetched(string deckIdentifier, List<Card> cards);
+    public event OnCardsFetched cardsFetched;
 
     private void Start()
     {
-        StartCoroutine(FetchCards());
+        // Dynamically fetching cards based on AILevel enum
+        foreach (AILevel level in Enum.GetValues(typeof(AILevel)))
+        {
+            string deckIdentifier = level.ToString() + "Deck";
+            StartCoroutine(FetchCards(deckIdentifier));
+        }
+        StartCoroutine(FetchCards("playerDeck"));
     }
 
-    IEnumerator FetchCards()
+    IEnumerator FetchCards(string deckIdentifier)
     {
+        List<Card> cards = new List<Card>();
         for (int i = 1; i <= 40; i++)
         {
-            yield return StartCoroutine(GetCard(i));
+            yield return StartCoroutine(GetCard(i, cards));
         }
-        /* CardsFetched proviene del evento OnCardsFetched, que este evento en si contiene argumentos especificos (en este caso seria la List<Card> cards),
-        porque se pasan parametros especificos, cuando este evento es llamado en otra parte agrega dentro del evento el metodo que se desea correr o implementar (un ejemplo seria en el script del inventario en donde se programa un codigo 
-        utilizando la clase de CardFetch el evento CardsFetched y un operador que suma (+=) la funcion de  DisplayAllCards encontrada en inventario.) Con esos parametros recibidos se ejecuta los metodos del evento (en este caso se estaria ejecutando
-        la visualizacion de las cartas que la funcion mando, analiznado la funcion DisplayAllCards sabemos que se desea implementar una visualizacion de todas las cartas. En resumen el evento guardaria cardDisplayManager.DisplayCards(card) de cada carta que se mando en la lista de cartas.)
-        La clase Invoke sirve para encapsular exepciones, esto se refiere a que si cuando un evento no recibe ningun metodo o valor en lugar de mandar el error de un null, no se realize nada y no mande ningun output  */
-        CardsFetched?.Invoke(cards);
+        cardsByDeck[deckIdentifier] = cards; // Assign the fetched cards to the right deck
+        cardsFetched?.Invoke(deckIdentifier, cards);
     }
-        
 
-    IEnumerator GetCard(int id)
+    IEnumerator GetCard(int id, List<Card> cards)
     {
         UnityWebRequest www = UnityWebRequest.Get($"{apiURL}{cardEndpoint}{id}");
-
         yield return www.SendWebRequest();
-
         if (www.result == UnityWebRequest.Result.Success)
         {
-           // Debug.Log("se conecto");
-            // If the request is successful, we parse the JSON data and store it in the card object
-            // The response of the request is stored in the downloadHandler property of the UnityWebRequest object
             string data = www.downloadHandler.text;
-
-            // Using the JsonUtility class, we can parse the JSON data and store it in the card object
-            // It is important to note that the JSON data must match the structure of the Card class
             card = JsonUtility.FromJson<Card>(data);
-
+            card.uniqueID = UnityEngine.Random.Range(100000, 999999);
             card.desbloqueada = true;
-
             cards.Add(card);
-
         }
-
         else
         {
             Debug.Log($"Request failed: {www.error}");

@@ -11,13 +11,12 @@ public class Inventario : MonoBehaviour
 
     public CardDisplayManager cardDisplayManager; 
     public APIConnection conexion;
+    public CardFetch cardFetch;
 
     public List<Card> available = new List<Card>();
     public List<int> playerInv = new List<int>();
 
     public TextMeshProUGUI mensajes;
-
-
 
     IEnumerator Start()
     {
@@ -26,7 +25,7 @@ public class Inventario : MonoBehaviour
         available.Clear();
         playerInv.Clear();
 
-        yield return StartCoroutine(conexion.getPlayerInvnetory(Usuario.usuario.player_ID, ProcessCardIds));
+        yield return StartCoroutine(conexion.getPlayerInventory(Usuario.usuario.player_ID, ProcessCardIds));
         // Obtener todas las cartas
         for (int i = 1; i <= 40; i++)
         {

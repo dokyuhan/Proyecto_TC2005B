@@ -14,13 +14,22 @@ public class AI : MonoBehaviour
 
     private void OnEnable()
     {
-        CardFetch.CardsFetched += DisplayFetchedCards;
+        deckAI.cardsFetched += AIFetchedCards;
     }
 
     private void OnDisable()
     {
-        CardFetch.CardsFetched -= DisplayFetchedCards;
+        deckAI.cardsFetched -= AIFetchedCards;
     }
+
+    void AIFetchedCards(string deckIdentifier, List<Card> fetchedCards)
+    {
+        if (deckIdentifier == personality.ToString() + "Deck")
+        {
+            DisplayFetchedCards(fetchedCards);
+        }
+    }
+
 
 
     void DisplayFetchedCards(List<Card> fetchedCards)
@@ -60,7 +69,7 @@ public class AI : MonoBehaviour
     {
         foreach (int cardID in deck)
         {
-            aiCard = deckAI.cards.Find(card => card.card_ID == cardID);
+            aiCard = fetchedCards.Find(card => card.card_ID == cardID);
             
             // Check if a card with the given ID was found
             if (aiCard != null)

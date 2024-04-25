@@ -12,17 +12,22 @@ public class PlayerDeck : MonoBehaviour
 
     private void OnEnable()
     {
-        CardFetch.CardsFetched += PlayerCards;
+        playerDeck.cardsFetched += PlayerCards;
     }
 
     private void OnDisable()
     {
-        CardFetch.CardsFetched -= PlayerCards;
+        playerDeck.cardsFetched -= PlayerCards;
     }
 
-    public void PlayerCards(List<Card> fetchedCards)
+    // Adjusted to accept deckIdentifier
+    public void PlayerCards(string deckIdentifier, List<Card> fetchedCards)
     {
-        StartCoroutine(GetAndProcessCardIds(fetchedCards));
+        // Check if the fetched cards are for the player's deck
+        if (deckIdentifier == "playerDeck") // Assuming "playerDeck" is the identifier used for player's cards
+        {
+            StartCoroutine(GetAndProcessCardIds(fetchedCards));
+        }
     }
 
     private IEnumerator GetAndProcessCardIds(List<Card> fetchedCards)
@@ -45,7 +50,7 @@ public class PlayerDeck : MonoBehaviour
     {
         foreach (int cardID in deck)
         {
-            playerCard = playerDeck.cards.Find(card => card.card_ID == cardID);
+            playerCard = fetchedCards.Find(card => card.card_ID == cardID);
 
             if (playerCard != null)
             {

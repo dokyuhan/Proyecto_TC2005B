@@ -1840,7 +1840,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8074d21df5894848b33dd034a136b49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  apiURL: http://localhost:3200
   cardIds: 
 --- !u!4 &634685331
 Transform:
@@ -2943,6 +2942,7 @@ MonoBehaviour:
   aiScript: {fileID: 1587240205}
   cardPlacementUI1: {fileID: 2006226772}
   cardPlacementUI2: {fileID: 678362843}
+  energyBar: {fileID: 590674907}
 --- !u!114 &1587240205
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,17 +1,18 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 using Random = UnityEngine.Random;
 
 public class AIFunction : MonoBehaviour
 {
     public AI aiScript;
     public Transform cardPlacementUI1, cardPlacementUI2;
-    private bool isTurnComplete = false;
-    public bool IsTurnComplete => isTurnComplete;
 
     private Arrastrar arrastrarScript;  // Reference to the Arrastrar script
-
+    
+    public EnergyBar energyBar;
     public void InitializeAIActions()
     {
         arrastrarScript = FindObjectOfType<Arrastrar>();
@@ -21,7 +22,6 @@ public class AIFunction : MonoBehaviour
     private IEnumerator PlaceCardsRoutine()
     {
         Debug.Log("Coroutine started");
-        isTurnComplete = false;
         Debug.Log($"Initial card count: {aiScript.handDeck.displayedCards.Count}"); // Check the initial count of cards
         if (aiScript.handDeck.displayedCards.Count < 1)
         {
@@ -32,47 +32,85 @@ public class AIFunction : MonoBehaviour
             Debug.Log("Inicializando el funcionamiento de la IA");
             PlaceRandomCard();
         }
-        isTurnComplete = true;
         Debug.Log("All cards placed, routine complete.");
     }
     public void PlaceRandomCard()
     {
         Debug.Log($"Current hand count before placement: {aiScript.handDeck.displayedCards.Count}");
-        if (aiScript.handDeck.displayedCards.Count >= 2) // Ensure there are at least two cards
+        if (aiScript.handDeck.displayedCards.Count < 2) // Ensure there are at least two cards
         {
-            Debug.Log("Attempting to place two cards.");
-            int randomIndex1 = Random.Range(0, aiScript.handDeck.displayedCards.Count);
-            Card card1 = aiScript.handDeck.displayedCards[randomIndex1];
-            Debug.Log($"Placing card1: {card1.card_name} at index {randomIndex1}");
+            Debug.Log("Not enough cards in hand to place two cards.");
+            return; // Exit if not enough cards
+        }
 
-            int randomIndex2;
-            Card card2;
-            do {
-                randomIndex2 = Random.Range(0, aiScript.handDeck.displayedCards.Count);
-                card2 = aiScript.handDeck.displayedCards[randomIndex2];
-            } while (randomIndex1 == randomIndex2);
+        Debug.Log("Attempting to place two cards.");
+        int randomIndex1 = 0, randomIndex2 = 0;
+        Card card1 = null, card2 = null;
 
-            Debug.Log($"Placing card2: {card2.card_name} at index {randomIndex2}");
+        if (aiScript == null)
+        {
+            Debug.LogError("aiScript is null");
+            return;
+        }
+        if (aiScript.handDeck == null)
+        {
+            Debug.LogError("handDeck is null");
+            return;
+        }
+        if (aiScript.handDeck.displayedCards == null)
+        {
+            Debug.LogError("displayedCards is null");
+            return;
+        }
+        if (aiScript.handDeck.displayedCards.Any(card => card == null))
+        {
+            Debug.LogError("A Card in displayedCards is null");
+            return;
+        }
+        if (energyBar == null)
+        {
+            Debug.LogError("energyBar is null");
+            return;
+        }
+        // Get the list of cards that the AI can afford to place
+        Debug.Log("Checking affordable cards.");
+        List<Card> affordableCards = aiScript.handDeck.displayedCards.Where(card => card.power_cost <= energyBar.currentEnergy).ToList();
+        Debug.Log($"Affordable cards count: {affordableCards.Count}");
 
-            PlaceCardInUI(card1, cardPlacementUI1);
-            PlaceCardInUI(card2, cardPlacementUI2);
+        if (affordableCards.Count < 2)
+        {
+            Debug.Log("Not enough affordable cards to proceed.");
+            return; // Exit if there are not enough affordable cards
+        }
 
-            if (arrastrarScript != null)
-            {
-                Debug.Log("Invoking placement events.");
-                arrastrarScript.InvokeOnCardPlacedInOpponentZone(card1);
-                arrastrarScript.InvokeOnCardPlacedInOpponentZone(card2);
-            }
-            else
-            {
-                Debug.LogError("Arrastrar script not found.");
-            }
+        // Randomly select two different affordable cards
+        randomIndex1 = Random.Range(0, affordableCards.Count);
+        card1 = affordableCards[randomIndex1];
+
+        do
+        {
+            randomIndex2 = Random.Range(0, affordableCards.Count);
+        } while (randomIndex1 == randomIndex2);
+        card2 = affordableCards[randomIndex2];
+
+        Debug.Log($"Placing card1: {card1.card_name} at index {randomIndex1}");
+        Debug.Log($"Placing card2: {card2.card_name} at index {randomIndex2}");
+
+        PlaceCardInUI(card1, cardPlacementUI1);
+        PlaceCardInUI(card2, cardPlacementUI2);
+
+        if (arrastrarScript != null)
+        {
+            Debug.Log("Invoking placement events.");
+            arrastrarScript.InvokeOnCardPlacedInOpponentZone(card1);
+            arrastrarScript.InvokeOnCardPlacedInOpponentZone(card2);
         }
         else
         {
-            Debug.Log("Not enough cards in hand to place two cards.");
+            Debug.LogError("Arrastrar script not found.");
         }
     }
+
 
 
 

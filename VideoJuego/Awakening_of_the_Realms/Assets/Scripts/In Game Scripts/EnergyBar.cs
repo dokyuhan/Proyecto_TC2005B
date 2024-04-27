@@ -37,7 +37,18 @@ public class EnergyBar : MonoBehaviour
 
     public void DecrementEnergy(int amount)
     {
-        currentEnergy = Mathf.Max(currentEnergy - amount, (int)slider.maxValue);
-        SetEnergy(currentEnergy);
+        // Check if subtracting the amount would drop the energy below zero.
+        if (currentEnergy - amount < 0)
+        {
+            Debug.LogWarning("You can't play the legendary card because there's not enough energy.");
+            return;
+        }
+
+        // Subtract the amount from currentEnergy and ensure it doesn't go below zero.
+        currentEnergy -= amount;  // This ensures that the energy is decreased by 'amount'.
+        currentEnergy = Mathf.Max(currentEnergy, 0);  // This line is redundant if checks are in place, but safe to keep.
+
+        SetEnergy(currentEnergy);  // Update the energy display or other related elements.
     }
+
 }

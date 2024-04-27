@@ -84,17 +84,32 @@ public class Game : MonoBehaviour
 
     void HandlePlayerCardPlacement(Card card)
     {
+        // Check if the card is Legendary and if there's enough energy to place it
+        if (card.rarity == "Legendary" && playerEnergyBar.currentEnergy < card.power_cost)
+        {
+            Debug.Log("Not enough energy to place this legendary card.");
+            // Optionally notify the player visually or with a sound
+            return; // Prevents the card from being placed
+        }
+
         if (!cartasJugadorEnJuego.Contains(card)) {
             cartasJugadorEnJuego.Add(card);
-            Debug.Log("Carta agregada a la zona de juego del jugador");
+            Debug.Log("Card placed for Player: " + card.card_name);
         }
     }
 
     void HandleAICardPlacement(Card card)
     {
+        // Check if the card is Legendary and if there's enough energy to place it
+        if (card.rarity == "Legendary" && aiEnergyBar.currentEnergy < card.power_cost)
+        {
+            Debug.Log("AI cannot place legendary card due to insufficient energy.");
+            return; // Prevents the card from being placed
+        }
+
         if (!cartasOponenteEnJuego.Contains(card)) {
             cartasOponenteEnJuego.Add(card);
-            Debug.Log("Carta agregada a la zona de juego del oponente");
+            Debug.Log("AI placed card: " + card.card_name);
         }
     }
 
@@ -110,7 +125,7 @@ public class Game : MonoBehaviour
                 break;
             case GameState.AITurn:
                 aiFunction.InitializeAIActions();
-                SetGameState(GameState.CheckWinConditions);
+                AIEndTurn();
                 break;
             case GameState.CheckWinConditions:
                 CheckActionsCompleted();
@@ -129,8 +144,26 @@ public class Game : MonoBehaviour
 
     public void OnEndTurnButtonPressed()
     {
+        if (cartasJugadorEnJuego.Any(card => card.rarity == "Legendary" && playerEnergyBar.currentEnergy < card.power_cost))
+        {
+            Debug.Log("Cannot end turn: Insufficient energy to play legendary cards.");
+            return; // Prevents the turn from ending
+        }
         Debug.Log("Player has ended their turn.");
         SetGameState(GameState.AITurn); // Transition to AI turn
+    }
+
+    void AIEndTurn()
+    {
+        // Check if there is any Legendary card placed without sufficient energy
+        if (cartasOponenteEnJuego.Any(card => card.rarity == "Legendary" && aiEnergyBar.currentEnergy < card.power_cost))
+        {
+            Debug.Log("AI cannot end turn: Insufficient energy to play legendary cards.");
+            return; // Prevents AI turn from ending
+        }
+
+        Debug.Log("AI has ended their turn.");
+        SetGameState(GameState.CheckWinConditions); // Proceed to check win conditions or change to the next appropriate state
     }
 
     void CheckActionsCompleted()
@@ -144,8 +177,6 @@ public class Game : MonoBehaviour
     void EndTurn()
     {
         Debug.Log("[GameAI] Ending turn, starting combat and resetting game state.");
-        playerEnergyBar.IncrementEnergy(1); 
-        aiEnergyBar.IncrementEnergy(1);
         RealizarCombate();
         ResetGameState();
     }
@@ -166,6 +197,9 @@ public class Game : MonoBehaviour
             {
                 Debug.Log($"Applying Legendary player card effect: {card.Effect_type}");
                 ApplyCardEffect(card.Effect_type, aiEffects, playerEffects, true);
+                Debug.Log("Decreasing Energy");
+                playerEnergyBar.DecrementEnergy(card.power_cost);
+                Debug.Log($"Energy cost: {card.power_cost}");
             }
         }
 
@@ -181,6 +215,9 @@ public class Game : MonoBehaviour
             {
                 Debug.Log($"Applying Legendary AI card effect: {card.Effect_type}");
                 ApplyCardEffect(card.Effect_type, playerEffects, aiEffects, false);
+                Debug.Log("Decreasing Energy");
+                aiEnergyBar.DecrementEnergy(card.power_cost);
+                Debug.Log($"Energy cost: {card.power_cost}");
             }
         }
 
@@ -443,6 +480,8 @@ public class Game : MonoBehaviour
             Debug.Log("[GameAI] Game state reset completed.");
             retrievalCount = 0;
             turnCount++;
+            playerEnergyBar.IncrementEnergy(1); 
+            aiEnergyBar.IncrementEnergy(1);
 
             if (turnCounterText != null)
                 turnCounterText.text = $"Turn: {turnCount}";

@@ -149,8 +149,11 @@ public class Game : MonoBehaviour
             Debug.Log("Cannot end turn: Insufficient energy to play legendary cards.");
             return; // Prevents the turn from ending
         }
-        Debug.Log("Player has ended their turn.");
-        SetGameState(GameState.AITurn); // Transition to AI turn
+        else
+        {
+            Debug.Log("Player has ended their turn.");
+            SetGameState(GameState.AITurn); // Transition to AI turn
+        }
     }
 
     void AIEndTurn()
@@ -482,6 +485,7 @@ public class Game : MonoBehaviour
             turnCount++;
             playerEnergyBar.IncrementEnergy(1); 
             aiEnergyBar.IncrementEnergy(1);
+            EffectsDebug.TriggerTurnEnd();
 
             if (turnCounterText != null)
                 turnCounterText.text = $"Turn: {turnCount}";

@@ -69,6 +69,10 @@ public class EffectsDebug : MonoBehaviour
 
     void UpdateEffectIcons(Dictionary<string, int> effects, Image container, TextMeshProUGUI descriptionText)
     {
+        if (container == null)
+        {
+            return;
+        }
         // Remove all children that are not currently active effects
         foreach (Transform child in new List<Transform>(container.transform.Cast<Transform>()))
         {

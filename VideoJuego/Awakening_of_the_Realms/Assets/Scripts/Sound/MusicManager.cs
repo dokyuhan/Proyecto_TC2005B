@@ -8,8 +8,7 @@ public class MusicManager : MonoBehaviour
     // Assign clips via the Inspector
     public AudioClip winClip;
     public AudioClip loseClip;
-    public AudioClip backgroundClip;
-
+    
     void Awake()
     {
         if (Instance == null)
@@ -75,12 +74,6 @@ public class MusicManager : MonoBehaviour
     {
         if (Instance != null)
             Instance.PlayMusic(Instance.loseClip);
-    }
-
-    public static void PlayGameMusic()
-    {
-        if (Instance != null)
-            Instance.PlayMusic(Instance.backgroundClip);
     }
 
 }

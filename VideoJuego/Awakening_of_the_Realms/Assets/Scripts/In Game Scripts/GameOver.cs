@@ -75,7 +75,6 @@ public class GameOver : MonoBehaviour
     public void Continue() 
     {
         SceneManager.LoadScene("MainScreen");
-        MusicManager.PlayGameMusic();
     }
 
 

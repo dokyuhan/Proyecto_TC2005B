@@ -17,6 +17,7 @@ public class HealthBar : MonoBehaviour
     {
         currentHealth = health;
         slider.value = health;  // Again, assigning int to float is fine
+        Debug.Log("Health set to: " + health);
     }
 
     public void TakeDamage(int damage)

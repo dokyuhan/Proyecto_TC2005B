@@ -2,42 +2,45 @@ using UnityEngine;
 
 public class BackgroundMusic : MonoBehaviour
 {
+    private static BackgroundMusic instance;
+    public AudioClip currentClip;  // Public to assign default clip or modify in Inspector
     private AudioSource audioSource;
+
+    public static BackgroundMusic Instance
+    {
+        get { return instance; }
+    }
 
     void Awake()
     {
-        // Get the AudioSource component from the current GameObject
+        ManageSingleton();
         audioSource = GetComponent<AudioSource>();
-        
-        // Find all game objects with the "GameMusic" tag
-        GameObject[] musicObj = GameObject.FindGameObjectsWithTag("GameMusic");
-        
-        // Check if there is more than one music object
-        if (musicObj.Length > 1)
+    }
+
+    private void ManageSingleton()
+    {
+        if (instance == null)
         {
-            foreach (GameObject obj in musicObj)
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (instance != this)
+        {
+            if (instance.currentClip != this.currentClip)
             {
-                // Check if the current object is not this object
-                if (obj != this.gameObject)
-                {
-                    // If it's another music object, stop its AudioSource and destroy it
-                    AudioSource otherAudioSource = obj.GetComponent<AudioSource>();
-                    if (otherAudioSource != null)
-                    {
-                        otherAudioSource.Stop();
-                    }
-                    Destroy(obj);
-                }
+                instance.PlayMusic(this.currentClip);  // Play new clip
             }
+            Destroy(this.gameObject);  // Destroy the new instance
         }
-        
-        // Set this music object to not be destroyed on load
-        DontDestroyOnLoad(this.gameObject);
-        
-        // Start playing music if not already playing
-        if (!audioSource.isPlaying)
-        {
-            audioSource.Play();
-        }
+    }
+
+    public void PlayMusic(AudioClip newClip)
+    {
+        if (audioSource.clip == newClip && audioSource.isPlaying)
+            return; // The correct music is already playing
+
+        audioSource.clip = newClip;
+        audioSource.Play();
+        currentClip = newClip; // Update the current clip reference
     }
 }

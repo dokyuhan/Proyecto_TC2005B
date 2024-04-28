@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class EnergyBar : MonoBehaviour
 {
     public Slider slider;
     public int currentEnergy;
+    public TextMeshProUGUI energyText;
 
     // Set the maximum energy without affecting the current energy value displayed
     public void SetMaxEnergy(int energy)
@@ -14,12 +16,14 @@ public class EnergyBar : MonoBehaviour
         slider.maxValue = energy;
         // Only set slider.value to the lower of currentEnergy or energy to respect the new max
         slider.value = Mathf.Min(currentEnergy, energy);
+        UpdateEnergyText();
     }
     
     public void SetEnergy(int energy)
     {
         currentEnergy = energy;
         slider.value = energy;  // Set the slider to the new energy level
+        UpdateEnergyText();
     }
 
     public void IncrementEnergy(int amount)
@@ -49,6 +53,11 @@ public class EnergyBar : MonoBehaviour
         currentEnergy = Mathf.Max(currentEnergy, 0);  // This line is redundant if checks are in place, but safe to keep.
 
         SetEnergy(currentEnergy);  // Update the energy display or other related elements.
+    }
+
+    public void UpdateEnergyText()
+    {
+        energyText.text = currentEnergy.ToString();  // Update the energy text to display the current energy value
     }
 
 }

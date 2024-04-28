@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using System.Linq;
+using UnityEngine.EventSystems;
 
 public class Game : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class Game : MonoBehaviour
     bool aiCardsRetrieved = false;
     public int turnCount;
     public TextMeshProUGUI turnCounterText;
+    public TextMeshProUGUI battleLog;
 
     int attackTotalPlayer = 0, defenseTotalPlayer = 0, healingTotalPlayer = 0;
     int attackTotalAI = 0, defenseTotalAI = 0, healingTotalAI = 0;
@@ -60,6 +62,13 @@ public class Game : MonoBehaviour
             Debug.Log($"Awake called on GameAI with instance ID: {GetInstanceID()} in scene: {SceneManager.GetActiveScene().name}");
             Destroy(gameObject);
             return;
+        }
+        if (FindObjectOfType<EventSystem>() == null)
+        {
+            // If not, add an Event System
+            GameObject eventSystem = new GameObject("EventSystem");
+            eventSystem.AddComponent<EventSystem>();
+            eventSystem.AddComponent<StandaloneInputModule>();
         }
     }
 
@@ -100,13 +109,6 @@ public class Game : MonoBehaviour
 
     void HandleAICardPlacement(Card card)
     {
-        // Check if the card is Legendary and if there's enough energy to place it
-        if (card.rarity == "Legendary" && aiEnergyBar.currentEnergy < card.power_cost)
-        {
-            Debug.Log("AI cannot place legendary card due to insufficient energy.");
-            return; // Prevents the card from being placed
-        }
-
         if (!cartasOponenteEnJuego.Contains(card)) {
             cartasOponenteEnJuego.Add(card);
             Debug.Log("AI placed card: " + card.card_name);
@@ -158,13 +160,6 @@ public class Game : MonoBehaviour
 
     void AIEndTurn()
     {
-        // Check if there is any Legendary card placed without sufficient energy
-        if (cartasOponenteEnJuego.Any(card => card.rarity == "Legendary" && aiEnergyBar.currentEnergy < card.power_cost))
-        {
-            Debug.Log("AI cannot end turn: Insufficient energy to play legendary cards.");
-            return; // Prevents AI turn from ending
-        }
-
         Debug.Log("AI has ended their turn.");
         SetGameState(GameState.CheckWinConditions); // Proceed to check win conditions or change to the next appropriate state
     }
@@ -219,7 +214,6 @@ public class Game : MonoBehaviour
                 Debug.Log($"Applying Legendary AI card effect: {card.Effect_type}");
                 ApplyCardEffect(card.Effect_type, playerEffects, aiEffects, false);
                 Debug.Log("Decreasing Energy");
-                aiEnergyBar.DecrementEnergy(card.power_cost);
                 Debug.Log($"Energy cost: {card.power_cost}");
             }
         }
@@ -245,7 +239,7 @@ public class Game : MonoBehaviour
         playerHealthBar.TakeDamage(damageToPlayer);
         playerHealthBar.Heal(healingTotalAI);
 
-        Debug.Log($"Combat results - Damage to Player: {damageToPlayer}, Damage to AI: {damageToAI}, Player Healing: {healingTotalAI}, AI Healing: {healingTotalPlayer}");
+        battleLog.text = $"Player damage: {damageToAI} Healing: {healingTotalPlayer} \nEnemy damage: {damageToPlayer} Healing: {healingTotalAI} ";
 
         attackTotalPlayer = 0;
         defenseTotalPlayer = 0;
@@ -255,17 +249,6 @@ public class Game : MonoBehaviour
         healingTotalAI = 0;
         ignorePlayerDefense = false;
         ignoreAIDefense = false;
-
-        if (playerHealthBar.currentHealth <= 0 || aiHealthBar.currentHealth <= 0)
-        {
-            if (playerHealthBar.currentHealth <= 0) {
-                gameOutcome = GameOutcome.Lose;
-            } else {
-                gameOutcome = GameOutcome.Win;
-            }
-
-            GameOver(gameOutcome);
-        }
 
     }
 
@@ -489,6 +472,17 @@ public class Game : MonoBehaviour
 
             if (turnCounterText != null)
                 turnCounterText.text = $"Turn: {turnCount}";
+            
+            if (playerHealthBar.currentHealth <= 0 || aiHealthBar.currentHealth <= 0)
+            {
+                if (playerHealthBar.currentHealth <= 0) {
+                    gameOutcome = GameOutcome.Lose;
+                } else {
+                    gameOutcome = GameOutcome.Win;
+                }
+
+                GameOver(gameOutcome);
+            }
         };
 
         RetrieveCardsFromPlay(onCardsRetrieved);
@@ -530,7 +524,22 @@ public class Game : MonoBehaviour
         gameOutcome = outcome;
         Debug.Log(outcome == GameOutcome.Lose ? "AI Wins!" : "Player Wins!");
         CleanupGame(); // Handle cleanup
-        SceneManager.LoadScene("GameOver"); // Transition to GameOver scene
+        StartCoroutine(LoadGameOverScene());
+    }
+
+    IEnumerator LoadGameOverScene()
+    {
+        // Get the current active scene
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        // Load the GameOver scene
+        SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
+
+        // Wait for the next frame to ensure that the GameOver scene has been loaded
+        yield return null;
+
+        // Unload the current scene
+        SceneManager.UnloadSceneAsync(currentScene);
     }
 
     // Method to handle the cleanup process

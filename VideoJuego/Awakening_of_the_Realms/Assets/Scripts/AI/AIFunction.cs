@@ -13,6 +13,8 @@ public class AIFunction : MonoBehaviour
     private Arrastrar arrastrarScript;  // Reference to the Arrastrar script
     
     public EnergyBar energyBar;
+    private float cardPlacementDuration = 1.0f;
+    public Transform deckTransform;
     public void InitializeAIActions()
     {
         arrastrarScript = FindObjectOfType<Arrastrar>();
@@ -47,31 +49,6 @@ public class AIFunction : MonoBehaviour
         int randomIndex1 = 0, randomIndex2 = 0;
         Card card1 = null, card2 = null;
 
-        if (aiScript == null)
-        {
-            Debug.LogError("aiScript is null");
-            return;
-        }
-        if (aiScript.handDeck == null)
-        {
-            Debug.LogError("handDeck is null");
-            return;
-        }
-        if (aiScript.handDeck.displayedCards == null)
-        {
-            Debug.LogError("displayedCards is null");
-            return;
-        }
-        if (aiScript.handDeck.displayedCards.Any(card => card == null))
-        {
-            Debug.LogError("A Card in displayedCards is null");
-            return;
-        }
-        if (energyBar == null)
-        {
-            Debug.LogError("energyBar is null");
-            return;
-        }
         // Get the list of cards that the AI can afford to place
         Debug.Log("Checking affordable cards.");
         List<Card> affordableCards = aiScript.handDeck.displayedCards.Where(card => card.power_cost <= energyBar.currentEnergy).ToList();
@@ -86,18 +63,21 @@ public class AIFunction : MonoBehaviour
         // Randomly select two different affordable cards
         randomIndex1 = Random.Range(0, affordableCards.Count);
         card1 = affordableCards[randomIndex1];
+        energyBar.DecrementEnergy(card1.power_cost);
 
+        affordableCards = aiScript.handDeck.displayedCards.Where(card => card.power_cost <= energyBar.currentEnergy).ToList();
         do
         {
             randomIndex2 = Random.Range(0, affordableCards.Count);
         } while (randomIndex1 == randomIndex2);
         card2 = affordableCards[randomIndex2];
+        energyBar.DecrementEnergy(card2.power_cost);
 
         Debug.Log($"Placing card1: {card1.card_name} at index {randomIndex1}");
         Debug.Log($"Placing card2: {card2.card_name} at index {randomIndex2}");
 
-        PlaceCardInUI(card1, cardPlacementUI1);
-        PlaceCardInUI(card2, cardPlacementUI2);
+        StartPlaceCardInUI(card1, cardPlacementUI1, cardPlacementDuration);
+        StartPlaceCardInUI(card2, cardPlacementUI2, cardPlacementDuration);
 
         if (arrastrarScript != null)
         {
@@ -111,14 +91,30 @@ public class AIFunction : MonoBehaviour
         }
     }
 
-
-
-
-    private void PlaceCardInUI(Card card, Transform targetUI)
+    private IEnumerator PlaceCardInUI(Card card, Transform targetUI, float duration)
     {
         RectTransform cardRectTransform = card.cardGameObject.GetComponent<RectTransform>();
         cardRectTransform.SetParent(targetUI, false);
-        cardRectTransform.localPosition = Vector3.zero;
+
+        Vector3 startPosition = deckTransform.localPosition;
+        Vector3 endPosition = Vector3.zero;
+
+        float startTime = Time.time;
+
+        while (Time.time < startTime + duration)
+        {
+            float t = (Time.time - startTime) / duration;
+            cardRectTransform.localPosition = Vector3.Lerp(startPosition, endPosition, t);
+            yield return null;
+        }
+
+        cardRectTransform.localPosition = endPosition;
         Debug.Log("Placed card at UI: " + targetUI.name);
+    }
+
+    // Call this method instead of PlaceCardInUI
+    public void StartPlaceCardInUI(Card card, Transform targetUI, float duration)
+    {
+        StartCoroutine(PlaceCardInUI(card, targetUI, duration));
     }
 }

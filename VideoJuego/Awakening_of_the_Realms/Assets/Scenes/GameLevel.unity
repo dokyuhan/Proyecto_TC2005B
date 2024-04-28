@@ -942,7 +942,9 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 169291605}
   m_CullTransparentMesh: 1
+
 --- !u!1 &275362680
+
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -950,16 +952,19 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 275362681}
+
+- component: {fileID: 275362681}
   - component: {fileID: 275362683}
   - component: {fileID: 275362682}
   m_Layer: 5
   m_Name: Energy points
   m_TagString: Untagged
+
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+
 --- !u!224 &275362681
 RectTransform:
   m_ObjectHideFlags: 0
@@ -980,6 +985,7 @@ RectTransform:
   m_SizeDelta: {x: 309.448, y: 18.013}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &275362682
+
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1070,12 +1076,14 @@ MonoBehaviour:
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &275362683
 CanvasRenderer:
+
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275362680}
   m_CullTransparentMesh: 1
+
 --- !u!1 &279004187
 GameObject:
   m_ObjectHideFlags: 0
@@ -5577,3 +5585,4 @@ SceneRoots:
   - {fileID: 634685331}
   - {fileID: 1587240209}
   - {fileID: 446232762}
+  - {fileID: 178922943}

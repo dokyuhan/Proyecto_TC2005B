@@ -32,7 +32,8 @@ public class GameOver : MonoBehaviour
 
         if (Game.gameOutcome == Game.GameOutcome.Win){
             messageText.text = "Congratulations! You won!";
-            coins.text = " + 150 coins";
+            coins.text = " + 450 coins";
+            MusicManager.PlayWinMusic();
             StartCoroutine(conexion.AddCoins(Usuario.usuario.player_ID, HandleCoinsAdded));
 
             string jsonData = $"{{\"game\": {{\"player_ID_1\": \"{idUsuario}\", \"player_ID_2\": \"{AI}\", \"winner_ID\": \"{idUsuario}\", \"game_level\": \"{level}\", \"game_scene\": \"{scene}\", \"game_duration\": {gameDuration}, \"game_turns\": {gameTurns}}}}}";
@@ -41,9 +42,10 @@ public class GameOver : MonoBehaviour
             StartCoroutine(conexion.UpdatePlayerRecord("/api/players/updateRecord/" + idUsuario + "1", "{}", HandleUpdateResponse));
 
 
-        }else{
+        } else {
             messageText.text = "Game Over. You lost.";
             coins.text = " + 0 coins";
+            MusicManager.PlayLoseMusic();
             string jsonData = $"{{\"game\": {{\"player_ID_1\": \"{idUsuario}\", \"player_ID_2\": \"{AI}\", \"winner_ID\": \"{AI}\", \"game_level\": \"{level}\", \"game_scene\": \"{scene}\", \"game_duration\": {gameDuration}, \"game_turns\": {gameTurns}}}}}";
             StartCoroutine(conexion.CreateGameMatch("/api/awakening/match/create", jsonData, HandleGameCreationResponse));
 
@@ -70,9 +72,10 @@ public class GameOver : MonoBehaviour
         }
     }
 
-    public void Continue() {
-
+    public void Continue() 
+    {
         SceneManager.LoadScene("MainScreen");
+        MusicManager.PlayGameMusic();
     }
 
 

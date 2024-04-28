@@ -109,9 +109,9 @@ public class Inventario : MonoBehaviour
         if ((ControladorDeMazo.cartasEnMazo.Count == 10) && (sum <= 2)){
             StartCoroutine(Save());
         }else if(ControladorDeMazo.cartasEnMazo.Count != 10){
-            StartCoroutine(ShowMessageForSeconds("Tu mazo debe contener 10 cartas.", 4));
+            StartCoroutine(ShowMessageForSeconds("Your deck must contain 10 cards!", 5));
         }else if(sum > 2){
-            StartCoroutine(ShowMessageForSeconds("Tu mazo no puede tener mas de 2 cartas legendarias.", 4));
+            StartCoroutine(ShowMessageForSeconds("Your deck can't have more than 2 legendary cards!", 5));
         }
     }
 

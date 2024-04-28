@@ -794,7 +794,7 @@ app.post("/api/awakening/players/:id/coins/add", async (request, response) => {
     connection = await connectToDB();
 
     const [results] = await connection.execute(
-      "UPDATE Players SET coins = coins + 150 WHERE player_ID = ?",
+      "UPDATE Players SET coins = coins + 450 WHERE player_ID = ?",
       [request.params.id]
     );
 

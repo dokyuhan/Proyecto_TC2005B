@@ -23,7 +23,8 @@ public class MusicManager : MonoBehaviour
                 audioSource = gameObject.AddComponent<AudioSource>(); // Add AudioSource if it does not exist
             }
         }
-        else if (Instance != this)
+
+        else
         {
             Destroy(gameObject);
         }
@@ -74,6 +75,16 @@ public class MusicManager : MonoBehaviour
     {
         if (Instance != null)
             Instance.PlayMusic(Instance.loseClip);
+    }
+
+    public void DestroyMusicManager()
+    {
+        if (Instance != null)
+        {
+            Destroy(Instance.gameObject);
+            Instance = null;
+            Debug.Log("MusicManager has been destroyed.");
+        }
     }
 
 }

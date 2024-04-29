@@ -74,6 +74,13 @@ public class GameOver : MonoBehaviour
 
     public void Continue()
     {
+        // Call to destroy the MusicManager
+        if (MusicManager.Instance != null)
+        {
+            MusicManager.Instance.DestroyMusicManager();
+        }
+
+        // Scene management to unload or load scenes
         if (SceneManager.sceneCount > 1)
         {
             SceneManager.UnloadSceneAsync("GameOver");

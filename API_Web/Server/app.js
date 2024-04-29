@@ -12,7 +12,7 @@ app.use(express.json());
 
 app.use(express.static("../SitioWeb/public"));
 // Funcion para conectarse a la base de datos
-
+/*
 async function connectToDB() {
   return await mysql.createConnection({
     host: "localhost",
@@ -21,8 +21,8 @@ async function connectToDB() {
     database: "Awakening_realm",
   });
 }
+*/
 
-/*
 async function connectToDB() {
   return await mysql.createConnection({
     host: "127.0.0.1",
@@ -31,7 +31,7 @@ async function connectToDB() {
     database: "Awakening_realm",
   });
 }
-*/
+
 
 // Serve index.html for the root route
 app.get("/play", (request, response) => {

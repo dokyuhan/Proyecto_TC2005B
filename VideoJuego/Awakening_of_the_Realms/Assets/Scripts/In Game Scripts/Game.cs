@@ -68,10 +68,15 @@ public class Game : MonoBehaviour
         }
         if (FindObjectOfType<EventSystem>() == null)
         {
-            // If not, add an Event System
             GameObject eventSystem = new GameObject("EventSystem");
             eventSystem.AddComponent<EventSystem>();
             eventSystem.AddComponent<StandaloneInputModule>();
+            DontDestroyOnLoad(eventSystem);
+        }
+        else
+        {
+            // If an EventSystem already exists, log and consider whether you need to handle this case differently
+            Debug.Log("An Event System already exists in the scene.");
         }
     }
 
@@ -527,22 +532,20 @@ public class Game : MonoBehaviour
         gameOutcome = outcome;
         Debug.Log(outcome == GameOutcome.Lose ? "AI Wins!" : "Player Wins!");
         CleanupGame(); // Handle cleanup
-        StartCoroutine(LoadGameOverScene());
+        LoadGameOverScene();
     }
 
-    IEnumerator LoadGameOverScene()
+    void LoadGameOverScene()
     {
-        // Get the current active scene
-        Scene currentScene = SceneManager.GetActiveScene();
-
-        // Load the GameOver scene
-        SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
-
-        // Wait for the next frame to ensure that the GameOver scene has been loaded
-        yield return null;
-
-        // Unload the current scene
-        SceneManager.UnloadSceneAsync(currentScene);
+        if (SceneManager.sceneCount > 1)
+        {
+            Scene currentScene = SceneManager.GetActiveScene();
+            SceneManager.UnloadSceneAsync(currentScene);
+        }
+        else
+        {
+            SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
+        }
     }
 
     // Method to handle the cleanup process
@@ -558,6 +561,17 @@ public class Game : MonoBehaviour
         attackTotalPlayer = defenseTotalPlayer = healingTotalPlayer = 0;
         attackTotalAI = defenseTotalAI = healingTotalAI = 0;
         ignorePlayerDefense = ignoreAIDefense = false;
+        if (Instance != null)
+        {
+
+            Destroy(Instance.gameObject);  // Destroy the singleton game object
+            Instance = null;  // Nullify the static reference to ensure clean re-instantiation later
+        }
+        
+        if (SceneController.Instance != null)
+        {
+            SceneController.Instance.CleanupController();
+        }
 
     }
 }

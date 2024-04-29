@@ -7,7 +7,9 @@ public class SelectLevel : MonoBehaviour {
     public int levelScenes;
     public TextMeshProUGUI locked;
     public void SelectGameLevel(int levelIndex) {
+
         if (Usuario.usuario.level - 1 < levelIndex) {
+
             StartCoroutine(ShowMessageForSeconds("Level Locked! You must complete all previous levels before!", 5));
             Debug.Log("Level locked");
             return;

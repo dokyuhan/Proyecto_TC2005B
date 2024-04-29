@@ -2,6 +2,7 @@
 
 // Importaciones necesarias para el funcionamiento del servidor
 import express from "express";
+import seedrandom from "seedrandom";
 import fs from "fs";
 import mysql from "mysql2/promise";
 
@@ -12,7 +13,7 @@ app.use(express.json());
 
 app.use(express.static("../SitioWeb/public"));
 // Funcion para conectarse a la base de datos
-/*
+
 async function connectToDB() {
   return await mysql.createConnection({
     host: "localhost",
@@ -21,17 +22,15 @@ async function connectToDB() {
     database: "Awakening_realm",
   });
 }
-*/
 
-async function connectToDB() {
-  return await mysql.createConnection({
-    host: "127.0.0.1",
-    user: "root",
-    password: "@Dokyu2379",
-    database: "Awakening_realm",
-  });
-}
-
+// async function connectToDB() {
+//   return await mysql.createConnection({
+//     host: "127.0.0.1",
+//     user: "root",
+//     password: "@Dokyu2379",
+//     database: "Awakening_realm",
+//   });
+// }
 
 // Serve index.html for the root route
 app.get("/play", (request, response) => {
@@ -359,9 +358,12 @@ app.post("/api/awakening/players", async (request, response) => {
     );
 
     // Generate 16 unique random card IDs
+    const rng = seedrandom(new Date().getTime()); // New RNG with current time as seed
+    const getRandomCardID = () => Math.floor(rng() * 40) + 1;
+
     const cardIDs = new Set();
     while (cardIDs.size < 16) {
-      cardIDs.add(Math.floor(Math.random() * 40) + 1);
+      cardIDs.add(getRandomCardID());
     }
 
     // Insert generated cards into the player's inventory
@@ -372,6 +374,7 @@ app.post("/api/awakening/players", async (request, response) => {
       );
     }
 
+    response.set("Cache-Control", "no-store");
     response.status(200).json({
       message: "Player added successfully with 16 random cards",
       playerID: results.insertId,
@@ -818,7 +821,6 @@ app.post("/api/awakening/players/:id/coins/add", async (request, response) => {
   }
 });
 
-// Endpoint para comprar una carta con monedas (hace todas las verificaciones necesarias)
 app.post(
   "/api/awakening/players/:id/inventory/buyCard",
   async (request, response) => {
@@ -826,25 +828,22 @@ app.post(
 
     try {
       connection = await connectToDB();
+      const playerID = request.params.id;
+      const cardPrice = 150;
 
-      if (!request.params.id) {
+      if (!playerID) {
         return response.status(400).json({
           message: "Missing required field. Ensure player_ID is provided.",
         });
       }
 
-      const playerID = request.params.id;
-      const cardPrice = 150;
-
       const [player] = await connection.execute(
         "SELECT coins FROM Players WHERE player_ID = ?",
         [playerID]
       );
-
       if (player.length === 0) {
         return response.status(404).json({ message: "Player not found" });
       }
-
       if (player[0].coins < cardPrice) {
         return response
           .status(400)
@@ -854,15 +853,15 @@ app.post(
       let attempts = 0;
       let cardFetched;
       let allCardsOwned = true;
+      const rng = seedrandom();
 
       do {
-        const randomNumber = Math.floor(Math.random() * 40) + 1;
+        const randomNumber = Math.floor(rng() * 40) + 1;
 
         [cardFetched] = await connection.execute(
           "SELECT * FROM Cards WHERE card_ID = ?",
           [randomNumber]
         );
-
         const [existingCard] = await connection.execute(
           "SELECT card_ID FROM Inventory WHERE card_ID = ? AND player_ID = ?",
           [randomNumber, playerID]
@@ -903,10 +902,6 @@ app.post(
         "UPDATE Players SET coins = coins - ? WHERE player_ID = ?",
         [cardPrice, playerID]
       );
-      const [remainingCoins] = await connection.execute(
-        "SELECT coins FROM Players WHERE player_ID = ?",
-        [playerID]
-      );
       if (updateResult.affectedRows === 0) {
         await connection.rollback();
         return response
@@ -915,6 +910,10 @@ app.post(
       }
 
       await connection.commit();
+      const [remainingCoins] = await connection.execute(
+        "SELECT coins FROM Players WHERE player_ID = ?",
+        [playerID]
+      );
       response.status(200).json({
         message: "Card purchased!",
         card: cardFetched[0],
@@ -1041,7 +1040,7 @@ app.get("/api/awakening/players/stats/levels", async (request, response) => {
     connection = await connectToDB();
 
     const [results, fields] = await connection.execute(
-      "SELECT level, COUNT(*) AS count_of_people FROM players GROUP BY level ORDER BY level"
+      "SELECT level, COUNT(*) AS count_of_people FROM players WHERE player_name <> 'AI' GROUP BY level ORDER BY level"
     );
 
     console.log(`${results.length} rows returned`);

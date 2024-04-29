@@ -23,6 +23,8 @@ public class NewUser : MonoBehaviour
         Usuario.usuario.player_age = int.Parse(player_age.text); // Asegúrate de manejar posibles excepciones aquí
         Usuario.usuario.user_name = user_name.text;
         Usuario.usuario.password = password.text;
+        Usuario.usuario.win_record = 0;
+        Usuario.usuario.lose_record = 0;
 
         // Cambia a la escena 'RealmInfo' para continuar el proceso
         SceneManager.LoadScene("RealmInfo");

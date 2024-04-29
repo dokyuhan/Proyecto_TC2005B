@@ -25,7 +25,7 @@ public class Game : MonoBehaviour
     //public Transform playerCardArea1, playerCardArea2, aiCardArea1, aiCardArea2;
     bool playerCardsRetrieved = false;
     bool aiCardsRetrieved = false;
-    public int turnCount;
+    public static int turnCount;
     public TextMeshProUGUI turnCounterText;
     public TextMeshProUGUI battleLog;
 
@@ -44,6 +44,8 @@ public class Game : MonoBehaviour
     public Dictionary<string, int> playerEffects = new Dictionary<string, int>();
     public Dictionary<string, int> aiEffects = new Dictionary<string, int>();
 
+    public static string gameScene;
+
 
 
     void Awake()
@@ -60,6 +62,7 @@ public class Game : MonoBehaviour
         else
         {
             Debug.Log($"Awake called on GameAI with instance ID: {GetInstanceID()} in scene: {SceneManager.GetActiveScene().name}");
+            gameScene = SceneManager.GetActiveScene().name;
             Destroy(gameObject);
             return;
         }

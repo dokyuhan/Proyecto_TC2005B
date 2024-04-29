@@ -26,55 +26,55 @@ INSERT INTO Effect (Effect_type, effect_description) VALUES
 
 -- Human Realm
 INSERT INTO Cards (card_name, card_description, attack, defense, healing, card_realm, power_cost, rarity, Effect_type) VALUES
-('Warrior', 'A sturdy soldier with balanced attack and defense.', 10, 10, 0, 'Human', 0, 'Common', NULL),
-('Archer', 'Quick and precise, excellent at dealing damage from a distance.', 15, 5, 0, 'Human', 1, 'Common', NULL),
-('Cleric', 'A dedicated healer, vital for sustaining the team.', 2, 2, 7, 'Human', 0, 'Common', NULL),
-('Knight', 'Clad in armor, great at absorbing attacks.', 5, 15, 0, 'Human', 0, 'Common', NULL),
-('Sorceress', 'Wields magical attacks, but fragile.', 10, 1, 0, 'Human', 0, 'Common', NULL),
-('Royal Guard', 'Elite defender with high defense.', 12, 20, 0, 'Human', 0, 'Common', NULL),
-('Assasin', 'Deadly in attack with a focus on quick, lethal strikes.', 25, 1, 0, 'Human', 0, 'Common', NULL),
-('Mercenary', 'Versatile fighter with moderate attack and healing capabilities.', 10, 4, 2, 'Human', 0, 'Common', NULL),
+('Warrior', 'A sturdy soldier with balanced attack and defense.', 10, 10, 10, 'Human', 0, 'Common', NULL),
+('Archer', 'Quick and precise, excellent at dealing damage from a distance.', 15, 5, 10, 'Human', 1, 'Common', NULL),
+('Cleric', 'A dedicated healer, vital for sustaining the team.', 3, 7, 20, 'Human', 0, 'Common', NULL),
+('Knight', 'Clad in armor, great at absorbing attacks.', 5, 20, 5, 'Human', 0, 'Common', NULL),
+('Sorceress', 'Wields magical attacks, but fragile.', 25, 5, 0, 'Human', 0, 'Common', NULL),
+('Royal Guard', 'Elite defender with high defense.', 10, 20, 0, 'Human', 0, 'Common', NULL),
+('Assasin', 'Deadly in attack with a focus on quick, lethal strikes.', 28, 0, 2, 'Human', 0, 'Common', NULL),
+('Mercenary', 'Versatile fighter with moderate attack and healing capabilities.', 10, 8, 12, 'Human', 0, 'Common', NULL),
 
 -- Monster Realm
-('Ogre', 'Brutish and strong, good in both offense and defense.', 7, 10, 1, 'Monster', 0, 'Common', NULL),
-('Basilisc', 'Mystical creature that can petrify enemies, balanced skills.', 12, 7, 2, 'Monster', 0, 'Common', NULL),
-('Werewolf', 'Fierce and resilient, a threat in close combat.', 10, 12, 1, 'Monster', 0, 'Common', NULL),
-('Goblin', 'Tricky and elusive, surprisingly effective at healing.', 3, 5, 5, 'Monster', 0, 'Common', NULL),
-('Harpies', 'Agile and dangerous, balanced attributes with a touch of healing.', 10, 10, 4, 'Monster', 0, 'Common', NULL),
-('Troll', 'Tough and hardy, capable of withstanding considerable damage.', 6, 15, 2, 'Monster', 0, 'Common', NULL),
-('Treant', 'Ancient and wise, focuses on healing and protection.', 2, 6, 7, 'Monster', 0, 'Common', NULL),
-('Ghoul', 'Menacing and aggressive, excellent at dealing damage.', 15, 10, 0, 'Monster', 0, 'Common', NULL),
+('Ogre', 'Brutish and strong, good in both offense and defense.', 10, 15, 5, 'Monster', 0, 'Common', NULL),
+('Basilisc', 'Mystical creature that can petrify enemies, balanced skills.', 17, 3, 10, 'Monster', 0, 'Common', NULL),
+('Werewolf', 'Fierce and resilient, a threat in close combat.', 7, 13, 10, 'Monster', 0, 'Common', NULL),
+('Goblin', 'Tricky and elusive, surprisingly effective at healing.', 21, 9, 0, 'Monster', 0, 'Common', NULL),
+('Harpies', 'Agile and dangerous, balanced attributes with a touch of healing.', 18, 6, 6, 'Monster', 0, 'Common', NULL),
+('Troll', 'Tough and hardy, capable of withstanding considerable damage.', 8, 15, 7, 'Monster', 0, 'Common', NULL),
+('Treant', 'Ancient and wise, focuses on healing and protection.', 2, 17, 9, 'Monster', 0, 'Common', NULL),
+('Ghoul', 'Menacing and aggressive, excellent at dealing damage.', 23, 2, 5, 'Monster', 0, 'Common', NULL),
 
 -- Magical Realm
-('Giant', 'Imposing force, extremely tough.', 5, 15, 0, 'Magical', 0, 'Common', NULL),
-('Elf', 'Graceful and quick, adept at both attack and defense.', 10, 5, 0, 'Magical', 0, 'Common', NULL),
-('Necromancer', 'Masters of the dark arts, can both harm and heal.', 15, 2, 5, 'Magical', 0, 'Common', NULL),
-('Golem', 'Constructed titan, almost impervious to damage.', 1, 20, 0, 'Magical', 0, 'Common', NULL),
-('Elemental Guardian', 'Powerful protector, balanced in attack and defense with healing.', 12, 12, 4, 'Magical', 0, 'Common', NULL),
-('Dwarves', 'Stout and sturdy, good at defending and healing.', 8, 12, 3, 'Magical', 0, 'Common', NULL),
-('Witch', 'Skilled in curses and healing, a formidable foe.', 14, 4, 5, 'Magical', 0, 'Common', NULL),
-('Dark Wizard', 'Deals in forbidden spells, good at damage and healing.', 7, 7, 6, 'Magical', 0, 'Common', NULL),
+('Giant', 'Imposing force, extremely tough.', 0, 23, 7, 'Magical', 0, 'Common', NULL),
+('Elf', 'Graceful and quick, adept at both attack and defense.', 20, 7, 3, 'Magical', 0, 'Common', NULL),
+('Necromancer', 'Masters of the dark arts, can both harm and heal.', 21, 4, 5, 'Magical', 0, 'Common', NULL),
+('Golem', 'Constructed titan, almost impervious to damage.', 5, 21, 4, 'Magical', 0, 'Common', NULL),
+('Elemental Guardian', 'Powerful protector, balanced in attack and defense with healing.', 10, 10, 10, 'Magical', 0, 'Common', NULL),
+('Dwarves', 'Stout and sturdy, good at defending and healing.', 8, 12, 10, 'Magical', 0, 'Common', NULL),
+('Witch', 'Skilled in curses and healing, a formidable foe.', 18, 2, 10, 'Magical', 0, 'Common', NULL),
+('Dark Wizard', 'Deals in forbidden spells, good at damage and healing.', 25, 0, 5, 'Magical', 0, 'Common', NULL),
 
 -- Celestial Realm
-('Hell Hound', 'Ferocious and relentless in attack.', 10, 8, 1, 'Celestial', 0, 'Common', NULL),
-('Archangel', 'Mighty and majestic, strong in combat.', 14, 10, 0, 'Celestial', 0, 'Common', NULL),
-('Nephalem', 'Offspring of angels and demons, versatile in battle.', 10, 5, 5, 'Celestial', 0, 'Common', NULL),
-('Succubus', 'Seduces and deceives, moderate in defense and healing.', 9, 12, 2, 'Celestial', 0, 'Common', NULL),
-('Nymph', 'Gentle and healing, crucial support role.', 0, 2, 10, 'Celestial', 0, 'Common', NULL),
-('Titan', 'Giant warriors, formidable in defense and healing.', 1, 15, 2, 'Celestial', 0, 'Common', NULL),
-('Valkyrie', 'Warrior maidens from the skies, balanced attack and moderate healing.', 8, 4, 4, 'Celestial', 0, 'Common', NULL),
-('Pegasus', 'Swift and agile, great for quick strikes.', 14, 0, 1, 'Celestial', 0, 'Common', NULL);
+('Hell Hound', 'Ferocious and relentless in attack.', 12, 12, 6, 'Celestial', 0, 'Common', NULL),
+('Archangel', 'Mighty and majestic, strong in combat.', 20, 1, 9, 'Celestial', 0, 'Common', NULL),
+('Nephalem', 'Offspring of angels and demons, versatile in battle.', 7, 13, 10, 'Celestial', 0, 'Common', NULL),
+('Succubus', 'Seduces and deceives, moderate in defense and healing.', 14, 10, 6, 'Celestial', 0, 'Common', NULL),
+('Nymph', 'Gentle and healing, crucial support role.', 2, 8, 20, 'Celestial', 0, 'Common', NULL),
+('Titan', 'Giant warriors, formidable in defense and healing.', 2, 19, 9, 'Celestial', 0, 'Common', NULL),
+('Valkyrie', 'Warrior maidens from the skies, balanced attack and moderate healing.', 14, 8, 8, 'Celestial', 0, 'Common', NULL),
+('Pegasus', 'Swift and agile, great for quick strikes.', 12, 8, 10, 'Celestial', 0, 'Common', NULL);
 
 -- Insertion of legendary cards with specific effects
 INSERT INTO Cards (card_name, card_description, attack, defense, healing, card_realm, power_cost, rarity, Effect_type) VALUES
 ('Princess', 'A royal healer with unparalleled powers of restoration.', 10, 10, 20, 'Human', 3, 'Legendary', 'Effect 1'),
-('King Arthur', 'The legendary king with a mighty sword and armor.', 35, 25, 7, 'Human', 4, 'Legendary', 'Effect 2'),
-('Griffin', 'Majestic creature that commands the skies, dodges attacks effortlessly.', 30, 30, 5, 'Monster', 3, 'Legendary', 'Effect 3'),
-('Dragon', 'Fearsome and fiery, deals devastating damage over time.', 40, 20, 5, 'Monster', 4, 'Legendary', 'Effect 4'),
-('Runeforge Dwarf', 'Master craftsman, provides formidable defenses and repairs.', 15, 40, 10, 'Magical', 3, 'Legendary', 'Effect 5'),
-('Moonshadow Elf', 'Elusive and deadly, weakens enemies while stealing their life force.', 35, 15, 10, 'Magical', 4, 'Legendary', 'Effect 6'),
-('Hercules', 'The hero of myths, reflects damage and heals over time.', 35, 25, 10, 'Celestial', 3, 'Legendary', 'Effect 7'),
-('Demon King', 'Ruler of the underworld, enhances damage and curses enemies.', 35, 15, 15, 'Celestial', 4, 'Legendary', 'Effect 8');
+('King Arthur', 'The legendary king with a mighty sword and armor.', 27, 13, 0, 'Human', 4, 'Legendary', 'Effect 2'),
+('Griffin', 'Majestic creature that commands the skies, dodges attacks effortlessly.', 5, 30, 5, 'Monster', 3, 'Legendary', 'Effect 3'),
+('Dragon', 'Fearsome and fiery, deals devastating damage over time.', 30, 5, 5, 'Monster', 4, 'Legendary', 'Effect 4'),
+('Runeforge Dwarf', 'Master craftsman, provides formidable defenses and repairs.', 0, 30, 10, 'Magical', 3, 'Legendary', 'Effect 5'),
+('Moonshadow Elf', 'Elusive and deadly, weakens enemies while stealing their life force.', 28, 0, 12, 'Magical', 4, 'Legendary', 'Effect 6'),
+('Hercules', 'The hero of myths, reflects damage and heals over time.', 15, 15, 10, 'Celestial', 3, 'Legendary', 'Effect 7'),
+('Demon King', 'Ruler of the underworld, enhances damage and curses enemies.', 32, 3, 5, 'Celestial', 4, 'Legendary', 'Effect 8');
 
 
 -- Special Cards

@@ -18,10 +18,10 @@ public class GameOver : MonoBehaviour
         int level = SceneController.CurrentLevelIndex + 1;
         string idUsuario = Usuario.usuario.player_ID;
         int AI = 1;
-        string scene = "forest";
+        string scene = Game.gameScene;
 
         int gameDuration = 3600;
-        int gameTurns = 10; 
+        int gameTurns = Game.turnCount;
 
         if(level == 1 || level == 2){scene = "Human";}
         else if(level == 3 || level == 4){scene = "Monster";}

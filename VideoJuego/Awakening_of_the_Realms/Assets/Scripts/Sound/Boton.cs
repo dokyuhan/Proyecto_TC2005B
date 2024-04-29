@@ -1,27 +1,21 @@
 using UnityEngine;
+using UnityEngine.UI; // Necesario para interactuar con los botones de la UI.
 
 public class Boton : MonoBehaviour
 {
-    public static Boton Instance;
-    private AudioSource audioSource;
+    public AudioSource audioSource; // Asignar en el Inspector, asegúrate de que cada botón tiene su propio AudioSource
 
-    void Awake()
+    void Start()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (Instance != this)
-        {
-            Destroy(gameObject);
-        }
-
-        audioSource = GetComponent<AudioSource>();
+        Button btn = GetComponent<Button>();
+        btn.onClick.AddListener(PlaySound);
     }
 
     public void PlaySound()
     {
-        audioSource.Play();
+        if (audioSource.isPlaying)
+            audioSource.Stop(); // Detener el sonido actual si ya se está reproduciendo
+
+        audioSource.Play(); // Reproducir el sonido
     }
 }

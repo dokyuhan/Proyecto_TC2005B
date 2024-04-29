@@ -270,10 +270,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Every 3 turns can place an extra card
+  m_text: Max health limit increases 30 health
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
-  m_sharedMaterial: {fileID: -4296501476212617008, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 904ad8a94a9f34482b50e21d5e50bdb6, type: 2}
+  m_sharedMaterial: {fileID: 8039875826394222594, guid: 904ad8a94a9f34482b50e21d5e50bdb6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -404,10 +404,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Every 3 turns  disables one of the enemy players cards
+  m_text: 15% bonus health for every card
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
-  m_sharedMaterial: {fileID: -4296501476212617008, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 904ad8a94a9f34482b50e21d5e50bdb6, type: 2}
+  m_sharedMaterial: {fileID: 8039875826394222594, guid: 904ad8a94a9f34482b50e21d5e50bdb6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1025,7 +1025,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8074d21df5894848b33dd034a136b49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  apiURL: http://localhost:3200
   cardIds: 
 --- !u!4 &471553702
 Transform:
@@ -1726,8 +1725,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Every 2 turns steals one energy of the enemy
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
-  m_sharedMaterial: {fileID: -4296501476212617008, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 904ad8a94a9f34482b50e21d5e50bdb6, type: 2}
+  m_sharedMaterial: {fileID: 8039875826394222594, guid: 904ad8a94a9f34482b50e21d5e50bdb6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2273,10 +2272,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '30 more health and 10% bonus attack for every card '
+  m_text: '15% bonus attack for every card '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
-  m_sharedMaterial: {fileID: -4296501476212617008, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 904ad8a94a9f34482b50e21d5e50bdb6, type: 2}
+  m_sharedMaterial: {fileID: 8039875826394222594, guid: 904ad8a94a9f34482b50e21d5e50bdb6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

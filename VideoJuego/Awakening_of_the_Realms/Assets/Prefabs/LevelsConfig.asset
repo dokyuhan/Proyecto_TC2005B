@@ -16,40 +16,56 @@ MonoBehaviour:
   - name: Human 1
     aiLevel: 0
     background: {fileID: 2100000, guid: ad38df687e5724b80ade849d17c6d5de, type: 2}
-    maxPlayerEnergy: 12
-    maxAIEnergy: 4
+    maxPlayerEnergy: 8
+    maxAIEnergy: 8
+    realm: Human
+    aiEnergyIncrease: 1
   - name: Human 2
     aiLevel: 1
     background: {fileID: 2100000, guid: a59a66564afc24c06a18f8033da83bc0, type: 2}
-    maxPlayerEnergy: 10
-    maxAIEnergy: 6
+    maxPlayerEnergy: 8
+    maxAIEnergy: 8
+    realm: Human
+    aiEnergyIncrease: 1
   - name: Monster 1
     aiLevel: 2
     background: {fileID: 2100000, guid: 194a0255f8a0d452688b58637d5174b2, type: 2}
-    maxPlayerEnergy: 10
-    maxAIEnergy: 6
+    maxPlayerEnergy: 8
+    maxAIEnergy: 10
+    realm: Monster
+    aiEnergyIncrease: 2
   - name: Monster 2
     aiLevel: 3
     background: {fileID: 2100000, guid: 27c077d95cb8148049dca800cc7dabd6, type: 2}
     maxPlayerEnergy: 8
-    maxAIEnergy: 8
+    maxAIEnergy: 10
+    realm: Monster
+    aiEnergyIncrease: 2
   - name: Celestial 1
     aiLevel: 6
     background: {fileID: 2100000, guid: 9eaf14a7ce0284e5d87c33cc388962b4, type: 2}
-    maxPlayerEnergy: 6
-    maxAIEnergy: 8
+    maxPlayerEnergy: 8
+    maxAIEnergy: 12
+    realm: Celestial
+    aiEnergyIncrease: 3
   - name: Celestial 2
     aiLevel: 7
     background: {fileID: 2100000, guid: 4fe75dbc6b5344993bf9e22435242131, type: 2}
-    maxPlayerEnergy: 6
-    maxAIEnergy: 10
+    maxPlayerEnergy: 8
+    maxAIEnergy: 14
+    realm: Celestial
+    aiEnergyIncrease: 3
   - name: Magical 1
     aiLevel: 4
     background: {fileID: 2100000, guid: 2163264b0cb5941ea82757e7e0dc3b0b, type: 2}
-    maxPlayerEnergy: 4
-    maxAIEnergy: 10
+    maxPlayerEnergy: 8
+    maxAIEnergy: 16
+    realm: Magical
+    aiEnergyIncrease: 4
   - name: Magical 2
     aiLevel: 5
     background: {fileID: 2100000, guid: 1627e12463f3344359122d9f1ed32488, type: 2}
-    maxPlayerEnergy: 4
-    maxAIEnergy: 12
+    maxPlayerEnergy: 8
+    maxAIEnergy: 18
+    realm: Magical
+    aiEnergyIncrease: 4

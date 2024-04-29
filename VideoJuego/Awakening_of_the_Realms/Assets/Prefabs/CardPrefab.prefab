@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
-  m_sharedMaterial: {fileID: -4296501476212617008, guid: 94a08df1a09f74561a84691d186cae35, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 904ad8a94a9f34482b50e21d5e50bdb6, type: 2}
+  m_sharedMaterial: {fileID: 8039875826394222594, guid: 904ad8a94a9f34482b50e21d5e50bdb6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -375,6 +375,7 @@ MonoBehaviour:
     rarity: 
     Effect_type: 
     desbloqueada: 0
+    uniqueID: 0
     cardGameObject: {fileID: 0}
 --- !u!114 &3697455777879645276
 MonoBehaviour:

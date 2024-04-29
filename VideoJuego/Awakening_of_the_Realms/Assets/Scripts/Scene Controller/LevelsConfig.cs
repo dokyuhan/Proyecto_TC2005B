@@ -14,4 +14,6 @@ public class Level {
     public Material background; // Reference to the background Material
     public int maxPlayerEnergy;
     public int maxAIEnergy;
+    public string realm;
+    public int aiEnergyIncrease;
 }

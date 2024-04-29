@@ -7,6 +7,7 @@ using TMPro;
 using System;
 using System.Linq;
 using UnityEngine.EventSystems;
+using static SceneController;
 
 public class Game : MonoBehaviour
 {
@@ -19,7 +20,8 @@ public class Game : MonoBehaviour
     public HealthBar playerHealthBar, aiHealthBar;
     public EnergyBar playerEnergyBar, aiEnergyBar;
     private int retrievalCount = 0;
-    //public CardManager cardManager;
+    private string aiCurrentRealm;
+
     public List<Card> cartasJugadorEnJuego = new List<Card>();
     public List<Card> cartasOponenteEnJuego = new List<Card>();
     //public Transform playerCardArea1, playerCardArea2, aiCardArea1, aiCardArea2;
@@ -82,9 +84,29 @@ public class Game : MonoBehaviour
 
     void Start()
     {
+
         nombre.text = Usuario.usuario.user_name;
-        playerHealthBar.SetMaxHealth(100);
-        aiHealthBar.SetMaxHealth(100);
+        aiCurrentRealm = SceneController.Instance.GetCurrentRealm();
+        Debug.Log("Current realm: " + aiCurrentRealm);
+
+        if (Usuario.usuario.realm == "Monster")
+        {
+            playerHealthBar.SetMaxHealth(130);
+        }
+        else
+        {
+            playerHealthBar.SetMaxHealth(100);
+        }
+
+        if (aiCurrentRealm == "Monster")
+        {
+            aiHealthBar.SetMaxHealth(130);
+        }
+        else
+        {
+            aiHealthBar.SetMaxHealth(100);
+        }
+
         playerEnergyBar.ResetEnergy();
         aiEnergyBar.ResetEnergy();
         turnCount = 0;
@@ -172,6 +194,15 @@ public class Game : MonoBehaviour
         SetGameState(GameState.CheckWinConditions); // Proceed to check win conditions or change to the next appropriate state
     }
 
+    private void AIEnergyIncrease()
+    {
+        Level currentLevel = SceneController.Instance.levelsConfig.levels[SceneController.CurrentLevelIndex];
+        // Apply the energy increase factor from the LevelsConfig
+        aiEnergyBar.IncrementEnergy(currentLevel.aiEnergyIncrease);
+
+        Debug.Log($"Level loaded: {currentLevel.name}, Energy Increase: {currentLevel.aiEnergyIncrease}");
+    }
+
     void CheckActionsCompleted()
     {
         if (cartasJugadorEnJuego.Count >= 2 && cartasOponenteEnJuego.Count >= 2)
@@ -184,7 +215,28 @@ public class Game : MonoBehaviour
     {
         Debug.Log("[GameAI] Ending turn, starting combat and resetting game state.");
         RealizarCombate();
+        ApplyTurnBasedEffects();
         ResetGameState();
+    }
+
+    private void ApplyTurnBasedEffects()
+    {
+        // Apply the Monster Realm effect every 2 turns
+        if (aiCurrentRealm == "Magical" && turnCount % 2 == 0)
+        {
+            StealEnergy();
+        }
+    }
+
+    private void StealEnergy()
+    {
+        // Assuming both players start with a minimum of 1 energy to prevent negative values
+        if (aiEnergyBar.currentEnergy > 0 && playerEnergyBar.currentEnergy > 0)
+        {
+            aiEnergyBar.DecrementEnergy(1);
+            playerEnergyBar.IncrementEnergy(1);
+            Debug.Log("Magical realm effect: 1 energy stolen from AI and given to Player.");
+        }
     }
 
 
@@ -197,7 +249,8 @@ public class Game : MonoBehaviour
             attackTotalPlayer += card.attack;
             defenseTotalPlayer += card.defense;
             healingTotalPlayer += card.healing;
-            Debug.Log($"Player card processed: {card.card_name}, Attack: {card.attack}, Defense: {card.defense}, Healing: {card.healing}");
+
+            Debug.Log($"Player card: {card.card_name} Attack: {card.attack} Defense: {card.defense} Healing: {card.healing}");
 
             if (card.rarity == "Legendary")
             {
@@ -208,6 +261,18 @@ public class Game : MonoBehaviour
                 Debug.Log($"Energy cost: {card.power_cost}");
             }
         }
+        string playerRealm = Usuario.usuario.realm;
+        switch (playerRealm)
+        {
+            case "Human":
+                attackTotalPlayer = (int)(attackTotalPlayer * 1.5);
+                Debug.Log($"Human realm effect: {attackTotalPlayer}, card: {cartasJugadorEnJuego[0].card_name}");
+                break;
+            case "Celestial":
+                healingTotalPlayer = (int)(healingTotalPlayer * 1.5);
+                Debug.Log($"Celestial realm effect: {healingTotalPlayer}, card: {cartasJugadorEnJuego[0].card_name}");
+                break;
+        }
 
         // Process AI cards
         foreach (var card in cartasOponenteEnJuego)
@@ -215,7 +280,8 @@ public class Game : MonoBehaviour
             attackTotalAI += card.attack;
             defenseTotalAI += card.defense;
             healingTotalAI += card.healing;
-            Debug.Log($"AI card processed: {card.card_name}, Attack: {card.attack}, Defense: {card.defense}, Healing: {card.healing}");
+
+            Debug.Log($"AI card: {card.card_name} Attack: {card.attack} Defense: {card.defense} Healing: {card.healing}");
 
             if (card.rarity == "Legendary")
             {
@@ -226,11 +292,26 @@ public class Game : MonoBehaviour
             }
         }
 
+        switch (aiCurrentRealm)
+        {
+            case "Human":
+                attackTotalAI = (int)(attackTotalAI * 1.5);
+                Debug.Log($"Human realm effect: {attackTotalAI}, card: {cartasOponenteEnJuego[0].card_name}");
+                break;
+            case "Celestial":
+                healingTotalAI = (int)(healingTotalAI * 1.5);
+                Debug.Log($"Celestial realm effect: {healingTotalAI}, card: {cartasOponenteEnJuego[0].card_name}");
+                break;
+        }
+
         // Initialize effect application (assuming some effects are pre-existing)
         Debug.Log("Effects being applied...");
         Debug.Log("Player effects: " + string.Join(", ", playerEffects.Keys));
         Debug.Log("AI effects: " + string.Join(", ", aiEffects.Keys));
         ApplyEffects(playerEffects, aiEffects);
+
+        Debug.Log("Player attack: " + attackTotalPlayer + " Defense: " + defenseTotalPlayer + " Healing: " + healingTotalPlayer);
+        Debug.Log("AI attack: " + attackTotalAI + " Defense: " + defenseTotalAI + " Healing: " + healingTotalAI);
 
         // Calculate and apply damages
         int damageToAI = ignoreAIDefense ? attackTotalPlayer : Math.Max(0, attackTotalPlayer - defenseTotalAI);
@@ -242,11 +323,12 @@ public class Game : MonoBehaviour
         GameStats.TotalDefenseMitigated += defenseTotalPlayer + defenseTotalAI;
 
         aiHealthBar.TakeDamage(damageToAI);
-        aiHealthBar.Heal(healingTotalPlayer);
+        aiHealthBar.Heal(healingTotalAI);
         
         playerHealthBar.TakeDamage(damageToPlayer);
-        playerHealthBar.Heal(healingTotalAI);
-
+        playerHealthBar.Heal(healingTotalPlayer);
+        
+        Debug.Log($"AI health bar: {aiHealthBar.currentHealth} Player health bar: {playerHealthBar.currentHealth}");
         battleLog.text = $"Player damage: {damageToAI} Healing: {healingTotalPlayer} \nEnemy damage: {damageToPlayer} Healing: {healingTotalAI} ";
 
         attackTotalPlayer = 0;
@@ -475,7 +557,7 @@ public class Game : MonoBehaviour
             retrievalCount = 0;
             turnCount++;
             playerEnergyBar.IncrementEnergy(1); 
-            aiEnergyBar.IncrementEnergy(1);
+            AIEnergyIncrease();
             EffectsDebug.TriggerTurnEnd();
 
             if (turnCounterText != null)

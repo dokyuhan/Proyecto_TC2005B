@@ -72,9 +72,16 @@ public class GameOver : MonoBehaviour
         }
     }
 
-    public void Continue() 
+    public void Continue()
     {
-        SceneManager.LoadScene("MainScreen");
+        if (SceneManager.sceneCount > 1)
+        {
+            SceneManager.UnloadSceneAsync("GameOver");
+        }
+        else
+        {
+            SceneManager.LoadScene("MainScreen", LoadSceneMode.Single);
+        }
     }
 
 

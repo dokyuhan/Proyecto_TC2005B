@@ -70,4 +70,15 @@ public class SceneController : MonoBehaviour
 
         Debug.Log("Level " + level.name + " loaded with AI setting " + level.aiLevel);
     }
+
+    public void CleanupController()
+    {
+        if (Instance != null)
+        {
+            Destroy(Instance.gameObject);
+            Instance = null;  // Ensure the static instance is nullified
+            Debug.Log("SceneController has been destroyed and cleaned up.");
+        }
+    }
+
 }

@@ -4088,7 +4088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e2c6a26417f14d50b6f2d189fc73847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 1314568882345004036, guid: 1a8444f009bac4197bcca1d24cfc0d3d, type: 3}
+  cardPrefab: {fileID: 1314568882345004036, guid: 49c774fb6e5504156b1a1dec34db4a77, type: 3}
   inv: {fileID: 50592190}
 --- !u!1 &1596934379
 GameObject:

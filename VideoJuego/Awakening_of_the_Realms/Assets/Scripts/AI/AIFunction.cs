@@ -4,6 +4,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using Random = UnityEngine.Random;
+using UnityEngine.UI;
+
 
 public class AIFunction : MonoBehaviour
 {
@@ -84,11 +86,30 @@ public class AIFunction : MonoBehaviour
             Debug.Log("Invoking placement events.");
             arrastrarScript.InvokeOnCardPlacedInOpponentZone(card1);
             arrastrarScript.InvokeOnCardPlacedInOpponentZone(card2);
+
+            // Hacer la animación de transparencia en la carta 1
+            StartCoroutine(FadeCardToTransparentAndBack(card1.cardGameObject));
+
+            // Hacer la animación de transparencia en la carta 2
+            StartCoroutine(FadeCardToTransparentAndBack(card2.cardGameObject));
+
         }
         else
         {
             Debug.LogError("Arrastrar script not found.");
         }
+    }
+
+    IEnumerator FadeCardToTransparentAndBack(GameObject cardGameObject)
+    {
+        Image imagenCarta = cardGameObject.transform.Find("back").GetComponent<Image>();
+        Color originalColor = imagenCarta.color;
+        // Cambiar alfa a 0
+        imagenCarta.color = new Color(imagenCarta.color.r, imagenCarta.color.g, imagenCarta.color.b, 0);
+        // Esperar 2 segundos
+        yield return new WaitForSeconds(2);
+        // Restaurar alfa a 255
+        imagenCarta.color = originalColor;
     }
 
     private IEnumerator PlaceCardInUI(Card card, Transform targetUI, float duration)

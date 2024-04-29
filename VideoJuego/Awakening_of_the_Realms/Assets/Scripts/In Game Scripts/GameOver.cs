@@ -41,6 +41,8 @@ public class GameOver : MonoBehaviour
 
             StartCoroutine(conexion.UpdatePlayerRecord("/api/players/updateRecord/" + idUsuario + "/1", "{}", HandleUpdateResponse));
 
+            Usuario.usuario.level = Usuario.usuario.level +1;
+
 
         } else {
             messageText.text = "Game Over. You lost.";

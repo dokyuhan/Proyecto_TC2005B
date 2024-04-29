@@ -39,7 +39,7 @@ public class GameOver : MonoBehaviour
             string jsonData = $"{{\"game\": {{\"player_ID_1\": \"{idUsuario}\", \"player_ID_2\": \"{AI}\", \"winner_ID\": \"{idUsuario}\", \"game_level\": \"{level}\", \"game_scene\": \"{scene}\", \"game_duration\": {gameDuration}, \"game_turns\": {gameTurns}}}}}";
             StartCoroutine(conexion.CreateGameMatch("/api/awakening/match/create", jsonData, HandleGameCreationResponse));
 
-            StartCoroutine(conexion.UpdatePlayerRecord("/api/players/updateRecord/" + idUsuario + "1", "{}", HandleUpdateResponse));
+            StartCoroutine(conexion.UpdatePlayerRecord("/api/players/updateRecord/" + idUsuario + "/1", "{}", HandleUpdateResponse));
 
 
         } else {

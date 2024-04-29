@@ -70,6 +70,11 @@ public class SceneController : MonoBehaviour
 
         Debug.Log("Level " + level.name + " loaded with AI setting " + level.aiLevel);
     }
+    public string GetCurrentRealm()
+    {
+        return levelsConfig.levels[CurrentLevelIndex].realm;
+    }
+
 
     public void CleanupController()
     {

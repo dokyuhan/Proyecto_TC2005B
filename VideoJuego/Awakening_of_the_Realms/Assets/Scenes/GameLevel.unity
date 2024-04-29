@@ -1110,7 +1110,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 63.68994, y: 45}
+  m_AnchoredPosition: {x: 67, y: 99.786}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &336229108
@@ -1437,7 +1437,6 @@ MonoBehaviour:
   aiEnergyBar: {fileID: 590674907}
   cartasJugadorEnJuego: []
   cartasOponenteEnJuego: []
-  turnCount: 0
   turnCounterText: {fileID: 336229108}
   battleLog: {fileID: 1929862403}
   nombre: {fileID: 1601540325}
@@ -1872,7 +1871,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 60, y: -6.2046}
+  m_AnchoredPosition: {x: 60, y: 29.99999}
   m_SizeDelta: {x: 230, y: 60}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &490450535
@@ -3320,8 +3319,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3515,7 +3514,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1600, y: 600}
+  m_ReferenceResolution: {x: 1200, y: 600}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -4338,7 +4337,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 60, y: -65}
+  m_AnchoredPosition: {x: 60, y: -33.783}
   m_SizeDelta: {x: 230, y: 60}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1601952239
@@ -5059,8 +5058,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 587.80273, y: -33.783276}
-  m_SizeDelta: {x: 383.4298, y: 179.2193}
+  m_AnchoredPosition: {x: 422.54, y: 76.016}
+  m_SizeDelta: {x: 310.9966, y: 97.5393}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1929862403
 MonoBehaviour:
@@ -5109,8 +5108,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5480,8 +5479,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -74.8, y: 151.4}
-  m_SizeDelta: {x: 240.285, y: 122.3705}
+  m_AnchoredPosition: {x: -948.42, y: -96}
+  m_SizeDelta: {x: 153.1688, y: 54.785}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &2100902878
 MonoBehaviour:

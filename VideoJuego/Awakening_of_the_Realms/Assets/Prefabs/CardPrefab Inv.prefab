@@ -282,7 +282,7 @@ GameObject:
   - component: {fileID: 4894793878133587987}
   - component: {fileID: 6995637721012872358}
   m_Layer: 5
-  m_Name: CardPrefab 1
+  m_Name: CardPrefab Inv
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -374,6 +374,7 @@ MonoBehaviour:
     power_cost: 0
     rarity: 
     Effect_type: 
+    Effect_description: 
     desbloqueada: 0
     uniqueID: 0
     cardGameObject: {fileID: 0}

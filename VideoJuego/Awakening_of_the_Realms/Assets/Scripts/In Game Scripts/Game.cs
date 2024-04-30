@@ -16,7 +16,6 @@ public class Game : MonoBehaviour
     GameState currentState;
     public PlayerDeck playerDeck;
     public AIFunction aiFunction;
-    public Timer timer;
     public HealthBar playerHealthBar, aiHealthBar;
     public EnergyBar playerEnergyBar, aiEnergyBar;
     private int retrievalCount = 0;
@@ -123,17 +122,19 @@ public class Game : MonoBehaviour
 
     void HandlePlayerCardPlacement(Card card)
     {
-        // Check if the card is Legendary and if there's enough energy to place it
-        if (card.rarity == "Legendary" && playerEnergyBar.currentEnergy < card.power_cost)
-        {
-            Debug.Log("Not enough energy to place this legendary card.");
-            // Optionally notify the player visually or with a sound
-            return; // Prevents the card from being placed
-        }
+        // First, simulate adding the card to check if the turn can be ended validly
+        cartasJugadorEnJuego.Add(card);
+        Debug.Log("Attempting to place card for Player: " + card.card_name);
 
-        if (!cartasJugadorEnJuego.Contains(card)) {
-            cartasJugadorEnJuego.Add(card);
-            Debug.Log("Card placed for Player: " + card.card_name);
+        if (CanEndTurn()) {
+            Debug.Log("Card placed successfully.");
+            if (cartasJugadorEnJuego.Count == 2) {
+                PlayerEndTurn();
+            }
+        } else {
+            // If the card placement results in an invalid state, remove it
+            cartasJugadorEnJuego.Remove(card);
+            Debug.Log("Card cannot be placed due to insufficient energy.");
         }
     }
 
@@ -174,19 +175,34 @@ public class Game : MonoBehaviour
         SetGameState(GameState.PlayerTurn);
     }
 
-    public void OnEndTurnButtonPressed()
+    bool CanEndTurn()
     {
+        int totalLegendaryCost = cartasJugadorEnJuego.Where(card => card.rarity == "Legendary").Sum(card => card.power_cost);
         if (cartasJugadorEnJuego.Any(card => card.rarity == "Legendary" && playerEnergyBar.currentEnergy < card.power_cost))
         {
-            Debug.Log("Cannot end turn: Insufficient energy to play legendary cards.");
-            return; // Prevents the turn from ending
+            Debug.Log("Cannot end turn: Insufficient energy to play legendary cards. Adjust your cards.");
+            return false;
         }
-        else
+
+        if (totalLegendaryCost > playerEnergyBar.currentEnergy)
         {
+            Debug.Log("Cannot end turn: Insufficient energy to play all legendary cards. Adjust your cards.");
+            return false;
+        }
+
+        return true;
+    }
+
+    public void PlayerEndTurn()
+    {
+        if (CanEndTurn()) {
             Debug.Log("Player has ended their turn.");
             SetGameState(GameState.AITurn); // Transition to AI turn
+        } else {
+            Debug.Log("Turn cannot end due to unresolved issues.");
         }
     }
+
 
     void AIEndTurn()
     {
@@ -226,16 +242,43 @@ public class Game : MonoBehaviour
         {
             StealEnergy();
         }
+
+        if (Usuario.usuario.realm == "Magical" && turnCount % 2 == 0)
+        {
+            StealEnergy();
+        }
     }
 
     private void StealEnergy()
     {
-        // Assuming both players start with a minimum of 1 energy to prevent negative values
-        if (aiEnergyBar.currentEnergy > 0 && playerEnergyBar.currentEnergy > 0)
+        if (aiCurrentRealm == "Magical")
         {
-            aiEnergyBar.DecrementEnergy(1);
-            playerEnergyBar.IncrementEnergy(1);
-            Debug.Log("Magical realm effect: 1 energy stolen from AI and given to Player.");
+            // Assuming both players start with a minimum of 1 energy to prevent negative values
+            if (aiEnergyBar.currentEnergy > 0 && playerEnergyBar.currentEnergy > 0)
+            {
+                aiEnergyBar.IncrementEnergy(1);
+                playerEnergyBar.DecrementEnergy(1);
+                Debug.Log("Magical realm effect: 1 energy stolen from Player and given to AI.");
+            }
+            else
+            {
+                Debug.Log("Energy cannot be stolen due to insufficient energy levels.");
+            }
+        }
+        
+        if (Usuario.usuario.realm == "Magical")
+        {
+            // Assuming both players start with a minimum of 1 energy to prevent negative values
+            if (aiEnergyBar.currentEnergy > 0 && playerEnergyBar.currentEnergy > 0)
+            {
+                playerEnergyBar.IncrementEnergy(1);
+                aiEnergyBar.DecrementEnergy(1);
+                Debug.Log("Magical realm effect: 1 energy stolen from AI and given to Player.");
+            }
+            else
+            {
+                Debug.Log("Energy cannot be stolen due to insufficient energy levels.");
+            }
         }
     }
 
@@ -425,8 +468,8 @@ public class Game : MonoBehaviour
         switch (effect)
         {
             case "HealingDoubling":
-                healingTotalPlayer *= 2;
-                Debug.Log("Player healing doubled.");
+                healingTotalPlayer = (int)(healingTotalPlayer * 1.5);
+                Debug.Log("Player healing 50% more effective.");
                 break;
             case "EnergyReduction":
                 playerEnergyBar.DecrementEnergy(2);
@@ -441,7 +484,7 @@ public class Game : MonoBehaviour
                 Debug.Log("Player dodged attack.");
                 break;
             case "DotDamage":
-                playerHealthBar.TakeDamage(10);
+                playerHealthBar.TakeDamage(15);
                 Debug.Log("Player took 10 damage over time.");
                 break;
             case "HealingReduction":
@@ -449,7 +492,8 @@ public class Game : MonoBehaviour
                 Debug.Log("Player healing reduced by 50%.");
                 break;
             case "DefenseBarrier":
-                defenseTotalPlayer += 50;
+                defenseTotalPlayer += 100;
+                Debug.Log("Player defense barrier added.");
                 break;
             case "AttackWeakening":
                 attackTotalAI = (int)(attackTotalAI * (100 - 20) / 100f);
@@ -473,8 +517,8 @@ public class Game : MonoBehaviour
                 Debug.Log("Player damage doubled.");
                 break;
             case "CurseDamage":
-                playerHealthBar.TakeDamage(10);
-                Debug.Log("Player cursed and took 10 damage.");
+                playerHealthBar.TakeDamage(20);
+                Debug.Log("Player cursed and took 20 damage.");
                 break;
         }
     }
@@ -485,7 +529,7 @@ public class Game : MonoBehaviour
         switch (effect)
         {
             case "HealingDoubling":
-                healingTotalAI *= 2;
+                healingTotalAI = (int)(healingTotalAI * 1.5);
                 Debug.Log("AI healing doubled.");
                 break;
             case "EnergyReduction":
@@ -501,7 +545,7 @@ public class Game : MonoBehaviour
                 Debug.Log("AI dodged attack.");
                 break;
             case "DotDamage":
-                aiHealthBar.TakeDamage(10);
+                aiHealthBar.TakeDamage(15);
                 Debug.Log("AI took 10 damage over time.");
                 break;
             case "HealingReduction":
@@ -509,7 +553,7 @@ public class Game : MonoBehaviour
                 Debug.Log("AI healing reduced by 50%.");
                 break;
             case "DefenseBarrier":
-                defenseTotalAI += 50;
+                defenseTotalAI += 100;
                 Debug.Log("AI defense barrier added.");
                 break;
             case "AttackWeakening":
@@ -534,7 +578,7 @@ public class Game : MonoBehaviour
                 Debug.Log("AI damage doubled.");
                 break;
             case "CurseDamage":
-                aiHealthBar.TakeDamage(10);
+                aiHealthBar.TakeDamage(20);
                 Debug.Log("AI cursed and took 10 damage.");
                 break;
 
@@ -551,7 +595,6 @@ public class Game : MonoBehaviour
             cartasJugadorEnJuego.Clear();
             cartasOponenteEnJuego.Clear();
             
-            timer.StartCountdown(); // Restart the timer
             SetGameState(GameState.PlayerTurn); // Loop back to player turn
             Debug.Log("[GameAI] Game state reset completed.");
             retrievalCount = 0;

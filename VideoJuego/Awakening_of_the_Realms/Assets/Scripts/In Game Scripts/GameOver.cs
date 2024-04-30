@@ -34,15 +34,18 @@ public class GameOver : MonoBehaviour
             messageText.text = "Congratulations! You won!";
             coins.text = " + 450 coins";
             MusicManager.PlayWinMusic();
-            StartCoroutine(conexion.AddCoins(Usuario.usuario.player_ID, HandleCoinsAdded));
 
             string jsonData = $"{{\"game\": {{\"player_ID_1\": \"{idUsuario}\", \"player_ID_2\": \"{AI}\", \"winner_ID\": \"{idUsuario}\", \"game_level\": \"{level}\", \"game_scene\": \"{scene}\", \"game_duration\": {gameDuration}, \"game_turns\": {gameTurns}}}}}";
             StartCoroutine(conexion.CreateGameMatch("/api/awakening/match/create", jsonData, HandleGameCreationResponse));
+            
+            if (Usuario.usuario.level < level) {
+                StartCoroutine(conexion.UpdatePlayerRecord("/api/players/updateRecord/" + idUsuario + "/3", "{}", HandleUpdateResponse));
+            }
+            else{
+                StartCoroutine(conexion.UpdatePlayerRecord("/api/players/updateRecord/" + idUsuario + "/1", "{}", HandleUpdateResponse));
+            }
 
-            StartCoroutine(conexion.UpdatePlayerRecord("/api/players/updateRecord/" + idUsuario + "/1", "{}", HandleUpdateResponse));
-
-            Usuario.usuario.level = Usuario.usuario.level +1;
-
+            Usuario.usuario.level = Usuario.usuario.level + 1;
 
         } else {
             messageText.text = "Game Over. You lost.";
@@ -51,9 +54,12 @@ public class GameOver : MonoBehaviour
             string jsonData = $"{{\"game\": {{\"player_ID_1\": \"{idUsuario}\", \"player_ID_2\": \"{AI}\", \"winner_ID\": \"{AI}\", \"game_level\": \"{level}\", \"game_scene\": \"{scene}\", \"game_duration\": {gameDuration}, \"game_turns\": {gameTurns}}}}}";
             StartCoroutine(conexion.CreateGameMatch("/api/awakening/match/create", jsonData, HandleGameCreationResponse));
 
-            StartCoroutine(conexion.UpdatePlayerRecord("/api/players/updateRecord/" + idUsuario + "/2", "{}", HandleUpdateResponse));
-
-
+            if (Usuario.usuario.level < level) {
+                StartCoroutine(conexion.UpdatePlayerRecord("/api/players/updateRecord/" + idUsuario + "/4", "{}", HandleUpdateResponse));
+            }
+            else{
+                StartCoroutine(conexion.UpdatePlayerRecord("/api/players/updateRecord/" + idUsuario + "/2", "{}", HandleUpdateResponse));
+            }
 
         }
         // Display game stats

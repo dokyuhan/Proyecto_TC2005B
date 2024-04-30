@@ -34,8 +34,18 @@ public class Arrastrar : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         Vector2 position;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRectTransform, eventData.position, eventData.pressEventCamera, out position);
 
+        // Aplicar un desplazamiento constante, por ejemplo:
+        float offsetX = 40.0f; // desplazamiento en X
+        float offsetY = 90.0f; // desplazamiento en Y
+
+        // Modificar la posición aplicando el desplazamiento
+        position.x += offsetX;
+        position.y += offsetY;
+
+        // Asignar la nueva posición modificada
         cardRectTransform.localPosition = position;
-    }
+}
+
 
     public void OnEndDrag(PointerEventData eventData)
     {

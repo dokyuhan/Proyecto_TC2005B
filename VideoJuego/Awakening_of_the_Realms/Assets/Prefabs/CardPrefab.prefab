@@ -374,6 +374,7 @@ MonoBehaviour:
     power_cost: 0
     rarity: 
     Effect_type: 
+    Effect_description: 
     desbloqueada: 0
     uniqueID: 0
     cardGameObject: {fileID: 0}

@@ -128,43 +128,106 @@ public class Arrastrar : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public void ToggleCardState()
     {
         Transform backgroundTransform = transform.Find("background");
-        if (backgroundTransform != null)
+
+        if (SceneManager.GetActiveScene().name == "GameLevel")
         {
-            Image imagenCarta = backgroundTransform.GetComponent<Image>();
-            TextMeshProUGUI descripcion = transform.Find("Descript").GetComponent<TextMeshProUGUI>();
-
-            if (imagenCarta == null)
+            if (backgroundTransform != null)
             {
-                return;
-            }
+                Image imagenCarta = backgroundTransform.GetComponent<Image>();
+                TextMeshProUGUI descripcion = transform.Find("Descript").GetComponent<TextMeshProUGUI>();
 
-            if (!isCardModified)
-            {
-                if (descripcion != null)
+                if (imagenCarta == null)
                 {
-                    descripcion.text = cartaArrastrar.card_description.ToString();
+                    return;
                 }
-                imagenCarta.color = new Color(0, 0, 0, 0.9f);
+
+                if (!isCardModified)
+                {
+                    if (descripcion != null)
+                    {
+                        if(cartaArrastrar.Effect_type == "Effect 1"){
+                            descripcion.text = "Doubles the healing of the healers for 1 round and reduces two energy gage of the enemy player.";
+                        }else if(cartaArrastrar.Effect_type == "Effect 2"){
+                            descripcion.text = "Ignore the defense of one of the enemy cards placed for 1 round";
+                        }else if(cartaArrastrar.Effect_type == "Effect 3"){
+                            descripcion.text = "Can dodge one of the enemys card attacks";
+                        }else if(cartaArrastrar.Effect_type == "Effect 4"){
+                            descripcion.text = "Applies to the enemy a dot damage of 10 attack and the healing is 50% less effective for 3 rounds";
+                        }else if(cartaArrastrar.Effect_type == "Effect 5"){
+                            descripcion.text = "Creates a barrier for the alies that gives 50 defense for 2 rounds";
+                        }else if(cartaArrastrar.Effect_type == "Effect 6"){
+                            descripcion.text = "Debuf the enemy making the attacks 20% weaker for 2 rounds and life steal 30 life points of the enemy";
+                        }else if(cartaArrastrar.Effect_type == "Effect 7"){
+                            descripcion.text = "Reflect all damage taken for 1 round and also heals 10 life points for 3 rounds";
+                        }else if(cartaArrastrar.Effect_type == "Effect 8"){
+                            descripcion.text = "Double the damage of the ally cards for 1 round and curse the enemy causing 10 damage over time and 20% healing reduction for 2 rounds";
+                        }else{
+                            descripcion.text = cartaArrastrar.card_description.ToString();
+                        }
+                    }
+                    imagenCarta.color = new Color(0, 0, 0, 0.9f);
+                }
+                else
+                {
+                    descripcion.text = "";
+                    imagenCarta.sprite = originalSprite;
+                    imagenCarta.color = new Color(1, 1, 1, 1);
+
+
+                    if (!cartaArrastrar.desbloqueada)
+                    {
+                        imagenCarta.color = new Color(imagenCarta.color.r, imagenCarta.color.g, imagenCarta.color.b, 0.7f); 
+                    }
+                }
+
+                isCardModified = !isCardModified;
             }
             else
             {
-                descripcion.text = "";
-                imagenCarta.sprite = originalSprite;
-                imagenCarta.color = new Color(1, 1, 1, 1);
-
-
-                if (!cartaArrastrar.desbloqueada)
-                {
-                    imagenCarta.color = new Color(imagenCarta.color.r, imagenCarta.color.g, imagenCarta.color.b, 0.7f); 
-                }
+                Debug.LogError("No se encontró un objeto hijo llamado 'background'");
             }
+        }
+        else{
 
-            isCardModified = !isCardModified;
+            if (backgroundTransform != null)
+            {
+                Image imagenCarta = backgroundTransform.GetComponent<Image>();
+                TextMeshProUGUI descripcion = transform.Find("Descript").GetComponent<TextMeshProUGUI>();
+
+                if (imagenCarta == null)
+                {
+                    return;
+                }
+
+                if (!isCardModified)
+                {
+                    if (descripcion != null)
+                    {
+                        descripcion.text = cartaArrastrar.card_description.ToString();
+                    }
+                    imagenCarta.color = new Color(0, 0, 0, 0.9f);
+                }
+                else
+                {
+                    descripcion.text = "";
+                    imagenCarta.sprite = originalSprite;
+                    imagenCarta.color = new Color(1, 1, 1, 1);
+
+
+                    if (!cartaArrastrar.desbloqueada)
+                    {
+                        imagenCarta.color = new Color(imagenCarta.color.r, imagenCarta.color.g, imagenCarta.color.b, 0.7f); 
+                    }
+                }
+
+                isCardModified = !isCardModified;
+            }
+            else
+            {
+                Debug.LogError("No se encontró un objeto hijo llamado 'background'");
+            }
         }
-        else
-        {
-            Debug.LogError("No se encontró un objeto hijo llamado 'background'");
-        }
+
     }
 
 }

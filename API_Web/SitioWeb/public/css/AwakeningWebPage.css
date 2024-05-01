@@ -185,6 +185,27 @@ body {
   max-height: 400px;
 }
 
+.content {
+  font-family: "Opensans", sans-serif;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.content th,
+.content td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.content th {
+  background-color: #f2f2f2;
+}
+
 footer {
   background-color: #000000;
   color: white;

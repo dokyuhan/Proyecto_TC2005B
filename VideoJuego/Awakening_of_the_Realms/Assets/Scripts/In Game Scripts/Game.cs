@@ -46,7 +46,8 @@ public class Game : MonoBehaviour
     public Dictionary<string, int> aiEffects = new Dictionary<string, int>();
 
     public static string gameScene;
-    public EffectText effectText;
+    public EffectText playerEffectText;
+    public EffectText aiEffectText;
 
 
 
@@ -299,7 +300,7 @@ public class Game : MonoBehaviour
             if (card.rarity == "Legendary")
             {
                 Debug.Log($"Applying Legendary player card effect: {card.Effect_type}");
-                effectText.ShowEffect($"Legendary Effect Activated: {card.Effect_type} - {card.Effect_description}");
+                playerEffectText.ShowEffect($"Player Legendary Effect Activated: {card.Effect_type} - {card.Effect_description}");
                 ApplyCardEffect(card.Effect_type, aiEffects, playerEffects, true);
                 Debug.Log("Decreasing Energy");
                 playerEnergyBar.DecrementEnergy(card.power_cost);
@@ -331,7 +332,7 @@ public class Game : MonoBehaviour
             if (card.rarity == "Legendary")
             {
                 Debug.Log($"Applying Legendary AI card effect: {card.Effect_type}");
-                effectText.ShowEffect($"Legendary Effect Activated: {card.Effect_type} - {card.Effect_description}");
+                aiEffectText.ShowEffect($"AI Legendary Effect Activated: {card.Effect_type} - {card.Effect_description}");
                 ApplyCardEffect(card.Effect_type, playerEffects, aiEffects, false);
                 Debug.Log("Decreasing Energy");
                 Debug.Log($"Energy cost: {card.power_cost}");

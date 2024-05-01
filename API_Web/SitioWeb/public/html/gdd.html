@@ -11,10 +11,29 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
     <script type="module" defer src="../js/AwakeningWebCharts.js"></script>
     <link rel="icon" href="../assets/Icon.ico" />
     <link href="../css/AwakeningWebPage.css" rel="stylesheet" />
     <title>GDD - Awakening Web Page</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const converter = new showdown.Converter({
+          tables: true, // Enable table support
+          simplifiedAutoLink: true,
+          strikethrough: true,
+          tasklists: true,
+          ghCodeBlocks: true,
+        });
+        fetch("../assets/GDD.md") // Adjust the path as necessary
+          .then((response) => response.text())
+          .then((text) => {
+            const html = converter.makeHtml(text);
+            document.querySelector(".content").innerHTML = html;
+          })
+          .catch((err) => console.error("Failed to load GDD markdown:", err));
+      });
+    </script>
   </head>
   <body>
     <header>
@@ -37,7 +56,7 @@
     </header>
 
     <section class="content">
-      <p>Here is where the GDD will be shown</p>
+      <p>Loading GDD...</p>
     </section>
 
     <footer>

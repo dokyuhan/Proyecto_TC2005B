@@ -23,29 +23,43 @@ public class Arrastrar : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (!cartaArrastrar.desbloqueada) return;
+
+        transform.SetParent(transform.root);
+
+            
+        if (SceneManager.GetActiveScene().name == "DeckBuilding")
+        {
+            transform.SetParent(transform.root);
+
+        }
+        else{
+        }
+
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         if (!cartaArrastrar.desbloqueada) return;
 
+        if (SceneManager.GetActiveScene().name == "DeckBuilding")
+        {
+            RectTransform canvasRectTransform = transform.root.GetComponent<RectTransform>();
+            RectTransform cardRectTransform = GetComponent<RectTransform>();
+            Vector2 position;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRectTransform, eventData.position, eventData.pressEventCamera, out position);
+
+            cardRectTransform.localPosition = position;
+        }else{
+
+
         RectTransform canvasRectTransform = transform.root.GetComponent<RectTransform>();
-        RectTransform cardRectTransform = GetComponent<RectTransform>();
-        Vector2 position;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRectTransform, eventData.position, eventData.pressEventCamera, out position);
+            RectTransform cardRectTransform = GetComponent<RectTransform>();
+            Vector2 position;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRectTransform, eventData.position, eventData.pressEventCamera, out position);
 
-        // Aplicar un desplazamiento constante, por ejemplo:
-        float offsetX = 40.0f; // desplazamiento en X
-        float offsetY = 90.0f; // desplazamiento en Y
-
-        // Modificar la posición aplicando el desplazamiento
-        position.x += offsetX;
-        position.y += offsetY;
-
-        // Asignar la nueva posición modificada
-        cardRectTransform.localPosition = position;
-}
-
+            cardRectTransform.localPosition = position;
+        }
+    }
 
     public void OnEndDrag(PointerEventData eventData)
     {

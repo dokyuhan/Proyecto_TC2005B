@@ -1393,7 +1393,8 @@ MonoBehaviour:
   battleLog: {fileID: 1929862403}
   nombre: {fileID: 1601540325}
   cardRetrievalManager: {fileID: 446232770}
-  effectText: {fileID: 446232772}
+  playerEffectText: {fileID: 0}
+  aiEffectText: {fileID: 0}
 --- !u!114 &446232767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1487,7 +1488,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectText: {fileID: 1486002357}
   displayTime: 1
-  slideSpeed: 500
 --- !u!1 &452829870
 GameObject:
   m_ObjectHideFlags: 0
@@ -2613,7 +2613,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b3ed35fcbfc4844d49f71b4f8b9e497b, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0

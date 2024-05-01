@@ -730,98 +730,76 @@ app.post("/api/awakening/match/create", async (request, response) => {
   }
 });
 
-//Endpoint para update del record del jugador
+// Endpoint for updating player record and managing coins
 app.post(
   "/api/players/updateRecord/:userId/:recordType",
   async (request, response) => {
-    let connection = null;
-
+    let connection;
     try {
       connection = await connectToDB();
       const userId = parseInt(request.params.userId, 10);
-      const recordType = parseInt(request.params.recordType, 10);
-
-      if (![1, 2].includes(recordType)) {
+      if (isNaN(userId)) {
         return response.status(400).json({
-          error: "Invalid record type",
-          description: "Record type must be 1 (win) or 2 (loss).",
+          error: "Invalid user ID",
+          description: "User ID must be a valid integer.",
         });
       }
 
-      const fieldToUpdate = recordType === 1 ? "win_record" : "lose_record";
-      const sqlUpdateRecord = `UPDATE Players SET ${fieldToUpdate} = ${fieldToUpdate} + 1 WHERE player_ID = ?`;
+      const recordType = parseInt(request.params.recordType, 10);
+      if (![1, 2, 3, 4].includes(recordType)) {
+        return response.status(400).json({
+          error: "Invalid record type",
+          description:
+            "Record type must be 1 (win), 2 (loss), 3, or 4 (state where no changes in levels or coins).",
+        });
+      }
 
-      // Execute the update for win/loss record
+      await connection.beginTransaction();
+      const fieldToUpdate =
+        recordType === 1 || recordType === 3 ? "win_record" : "lose_record";
+      let sqlUpdateParts = [`${fieldToUpdate} = ${fieldToUpdate} + 1`];
+
+      if (recordType === 1) {
+        sqlUpdateParts.push("level = level + 1", "coins = coins + 450");
+      }
+
+      let sqlUpdateRecord = `UPDATE Players SET ${sqlUpdateParts.join(
+        ", "
+      )} WHERE player_ID = ?`;
+
       const [updateResults] = await connection.execute(sqlUpdateRecord, [
         userId,
       ]);
-
       if (updateResults.affectedRows === 0) {
+        await connection.rollback();
         return response.status(404).json({
           error: "Player not found",
           description: "No player with the given ID was found in the database.",
         });
       }
 
-      // If the player won, increment their level
-      if (recordType === 1) {
-        const sqlIncrementLevel =
-          "UPDATE Players SET level = level + 1 WHERE player_ID = ?";
-        await connection.execute(sqlIncrementLevel, [userId]);
-      }
+      await connection.commit();
 
-      console.log(
-        `Successfully updated ${fieldToUpdate} for user ID: ${userId}.`
-      );
       response.status(200).json({
-        message: `Successfully incremented the ${fieldToUpdate} for player ID ${userId}.`,
+        message: `Successfully updated record for user ID: ${userId}.`,
       });
     } catch (error) {
+      if (connection) {
+        await connection.rollback();
+      }
       console.error("Error updating player record:", error);
       response
         .status(500)
         .json({ error: "Internal server error", details: error.message });
     } finally {
-      if (connection !== null) {
+      if (connection) {
         connection.end();
-        console.log("Database connection closed.");
       }
     }
   }
 );
 
-//Endpoint para añadir monedas a cuenta con base en su id
-app.post("/api/awakening/players/:id/coins/add", async (request, response) => {
-  let connection = null;
-
-  try {
-    connection = await connectToDB();
-
-    const [results] = await connection.execute(
-      "UPDATE Players SET coins = coins + 450 WHERE player_ID = ?",
-      [request.params.id]
-    );
-
-    console.log(`${results.affectedRows} rows affected`);
-
-    if (results.affectedRows === 0) {
-      response
-        .status(404)
-        .json({ message: "Player not found or no update necessary" });
-    } else {
-      response.status(200).json({ message: "Coins updated successfully" });
-    }
-  } catch (error) {
-    response.status(500).json(error);
-    console.log(error);
-  } finally {
-    if (connection !== null) {
-      connection.end();
-      console.log("Connection closed successfully!");
-    }
-  }
-});
-
+// Endpoint para comprar una carta
 app.post(
   "/api/awakening/players/:id/inventory/buyCard",
   async (request, response) => {

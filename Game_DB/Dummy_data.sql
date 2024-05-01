@@ -2,7 +2,7 @@ USE Awakening_realm;
 
 -- Effect type, effect description
 INSERT INTO Effect (Effect_type, effect_description) VALUES
-('Effect 1', 'Doubles the healing of the healers for 1 round and reduces two energy gage of the enemy player.'),
+('Effect 1', 'Increases the healing of the healers for 1 round and reduces two energy gage of the enemy player.'),
 ('Effect 2', 'Ignore the defense of one of the enemy cards placed for 1 round 
 (ex. if the defense is 30 this ability would ignore the defense and apply the damage direct to the health of the player)'),
 ('Effect 3', 'Can dodge one of the enemys card attacks'),
@@ -67,8 +67,8 @@ INSERT INTO Cards (card_name, card_description, attack, defense, healing, card_r
 
 -- Insertion of legendary cards with specific effects
 INSERT INTO Cards (card_name, card_description, attack, defense, healing, card_realm, power_cost, rarity, Effect_type) VALUES
-('Princess', 'A royal healer with unparalleled powers of restoration.', 10, 10, 30, 'Human', 3, 'Legendary', 'Effect 1'),
-('King Arthur', 'The legendary king with a mighty sword and armor.', 30, 20, 0, 'Human', 4, 'Legendary', 'Effect 2'),
+('Princess', 'A royal healer with unparalleled powers of restoration.', 10, 10, 15, 'Human', 4, 'Legendary', 'Effect 1'),
+('King Arthur', 'The legendary king with a mighty sword and armor.', 30, 20, 0, 'Human', 3, 'Legendary', 'Effect 2'),
 ('Griffin', 'Majestic creature that commands the skies, dodges attacks effortlessly.', 10, 30, 10, 'Monster', 3, 'Legendary', 'Effect 3'),
 ('Dragon', 'Fearsome and fiery, deals devastating damage over time.', 30, 10, 10, 'Monster', 4, 'Legendary', 'Effect 4'),
 ('Runeforge Dwarf', 'Master craftsman, provides formidable defenses and repairs.', 5, 35, 10, 'Magical', 3, 'Legendary', 'Effect 5'),

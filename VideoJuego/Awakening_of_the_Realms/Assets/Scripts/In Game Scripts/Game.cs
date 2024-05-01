@@ -472,7 +472,7 @@ public class Game : MonoBehaviour
         switch (effect)
         {
             case "HealingDoubling":
-                healingTotalPlayer = (int)(healingTotalPlayer * 1.5);
+                healingTotalPlayer = (int)(healingTotalPlayer * 1.25);
                 Debug.Log("Player healing 50% more effective.");
                 break;
             case "EnergyReduction":
@@ -533,7 +533,7 @@ public class Game : MonoBehaviour
         switch (effect)
         {
             case "HealingDoubling":
-                healingTotalAI = (int)(healingTotalAI * 1.5);
+                healingTotalAI = (int)(healingTotalAI * 1.25);
                 Debug.Log("AI healing doubled.");
                 break;
             case "EnergyReduction":

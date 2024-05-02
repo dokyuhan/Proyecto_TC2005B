@@ -45,6 +45,17 @@ app.get("/stats", (request, response) => {
   });
 });
 
+// Serve stats.html for the /stats route
+app.get("/gdd", (request, response) => {
+  fs.readFile("../SitioWeb/public/html/gdd.html", "utf8", (err, html) => {
+    if (err) {
+      console.error("Error loading gdd.html:", err);
+      return response.status(500).send("There was an error loading the page.");
+    }
+    response.send(html);
+  });
+});
+
 // Endpoint para obtener todas las Cartas
 app.get("/api/awakening/cards", async (request, response) => {
   let connection = null;

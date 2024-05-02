@@ -696,4 +696,9 @@ public class Game : MonoBehaviour
         }
 
     }
+
+    public void EasterEgg()
+    {
+        SceneManager.LoadScene("Easter");
+    }
 }

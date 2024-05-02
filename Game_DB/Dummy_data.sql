@@ -11,16 +11,6 @@ INSERT INTO Effect (Effect_type, effect_description) VALUES
 ('Effect 6', 'Debuf the enemy making the attacks 20% weaker for 2 rounds and life steal 30 life points of the enemy (The life steal effect passes the amount of life steal from the enemy player to the player, in this case 30 would be decreasing to the enemy players health and 30 would be increasing to the player)'),
 ('Effect 7', 'Reflect all damage taken for 1 round and also heals 10 life points for 3 rounds'),
 ('Effect 8', 'Double the damage of the ally cards for 1 round and curse the enemy causing 10 damage over time and 20% healing reduction for 2 rounds');
--- ('Effect 9', 'Gives the player an Extra energy'),
--- ('Effect 10', 'The attack of the card placed deals x2 for one turn'),
--- ('Effect 11', 'Posion the enemy player for 2 rounds dealing 20 damage'),
--- ('Effect 12', 'Heals the player 30 health'),
--- ('Effect 13', 'Cures all debuf applied to the player'),
--- ('Effect 14', 'Enhance shields played x2'),
--- ('Effect 15', 'Reduces enemy attack to 50%'),
--- ('Effect 16', 'Damage taken will be reflected to the enemy'),
--- ('Effect 17', 'Disables an enemy card played'),
--- ('Effect 18', 'You can see the opponents cards');
 
 -- Insertion of common cards across realms
 
@@ -76,23 +66,10 @@ INSERT INTO Cards (card_name, card_description, attack, defense, healing, card_r
 ('Hercules', 'The hero of myths, reflects damage and heals over time.', 18, 16, 16, 'Celestial', 3, 'Legendary', 'Effect 7'),
 ('Demon King', 'Ruler of the underworld, enhances damage and curses enemies.', 37, 5, 8, 'Celestial', 4, 'Legendary', 'Effect 8');
 
-
--- Special Cards
--- ('Special 1', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 9'),
--- ('Special 2', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 10'),
--- ('Special 3', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 11'),
--- ('Special 4', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 12'),
--- ('Special 5', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 13'),
--- ('Special 6', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 14'),
--- ('Special 7', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 15'),
--- ('Special 8', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 16'),
--- ('Special 9', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 17'),
--- ('Special 10', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 18');
-
 -- player name, last name, age, email, realm, is npc, player exp, win, lost, coins, exp points
 INSERT INTO Players (player_name, player_last_name, player_age, user_name, password, realm, is_npc, level, win_record, lose_record, coins, token) VALUES
 ('AI', 'AI', 30, 'AI', 'AI', 'Human', true, 100 , 100, 0, 10000, 1),
-('John', 'Doe', 21, 'john.doe', 'password123', 'Human', false, 1, 10, 5, 10000, 2),
+('John', 'Doe', 21, 'john.doe', 'password123', 'Human', false, 8, 10, 5, 10000, 2),
 ('Alberto', 'Limón', 21, 'lemon', 'lemoncito', 'Monster', false, 7, 14, 7, 1000, 2),
 ('Do Kyu', 'Han Kim', 21, 'dokyu', '1234', 'Celestial', false, 8, 9, 8, 10000, 2),
 ('Gabriel', 'Edid', 21, 'Atrium20', 'gaboMagic', 'Magical', false, 7, 21, 7, 1000, 2),
@@ -153,16 +130,81 @@ INSERT INTO Inventory (card_ID, player_ID) VALUES
 (3, 3),
 (7, 3);
 
--- DELETE FROM Inventory WHERE player_ID = 2;
-SELECT * FROM Players where player_ID = 3;
-SELECT * FROM Players where Player_ID <> 2 LIMIT 5;
 
-DESC Awakening_realm.Players;
+INSERT INTO Deck (card_ID, player_ID)
+SELECT card_ID, player_ID
+FROM (
+    SELECT c.card_ID, p.player_ID
+    FROM Cards AS c
+    CROSS JOIN Players AS p
+    WHERE c.card_ID <= 20 AND p.player_ID <= 20
+    ORDER BY RAND()
+    LIMIT 200  -- Adjust the number for more or fewer entries
+) AS sub;
 
-SELECT * FROM Players;
+-- Generate entries for Inventory
+INSERT INTO Inventory (card_ID, player_ID, deck_ID)
+SELECT card_ID, player_ID, deck_ID
+FROM (
+    SELECT c.card_ID, p.player_ID, d.deck_ID
+    FROM Cards AS c
+    CROSS JOIN Players AS p
+    JOIN Deck AS d ON p.player_ID = d.player_ID
+    WHERE c.card_ID <= 40 AND p.player_ID <= 20 AND d.deck_ID <= 20
+    ORDER BY RAND()
+    LIMIT 200  -- Adjust the number for more or fewer entries
+) AS sub;
 
-UPDATE Players
-SET coins = coins + 1500
-WHERE player_ID = 25;
 
-SELECT * FROM Players;
+-- Add dummy data for players
+DELIMITER $$
+
+CREATE PROCEDURE AddDummyPlayers()
+BEGIN
+    DECLARE v_max INT DEFAULT 100;
+    DECLARE v_counter INT DEFAULT 0;
+
+    WHILE v_counter < v_max DO
+        INSERT INTO Players (
+            player_name, 
+            player_last_name, 
+            player_age, 
+            user_name, 
+            password, 
+            realm, 
+            is_npc, 
+            level, 
+            win_record, 
+            lose_record, 
+            coins, 
+            token
+        )
+        VALUES (
+            CONCAT('Name', v_counter), 
+            'Surname', 
+            FLOOR(17 + RAND() * (30-17)), 
+            CONCAT('user', v_counter), 
+            'password123', 
+            CASE 
+                WHEN v_counter % 4 = 0 THEN 'Human'
+                WHEN v_counter % 4 = 1 THEN 'Monster'
+                WHEN v_counter % 4 = 2 THEN 'Magical'
+                ELSE 'Celestial'
+            END, 
+            v_counter % 2 = 0, 
+            FLOOR(1 + RAND() * 8), 
+            FLOOR(RAND() * 100), 
+            FLOOR(RAND() * 100), 
+            FLOOR(100 + RAND() * 10000), 
+            FLOOR(RAND() * 100)
+        );
+        SET v_counter = v_counter + 1;
+    END WHILE;
+END$$
+
+DELIMITER ;
+
+-- Call the stored procedure
+CALL AddDummyPlayers();
+
+

@@ -232,57 +232,53 @@ public class Game : MonoBehaviour
     void EndTurn()
     {
         Debug.Log("[GameAI] Ending turn, starting combat and resetting game state.");
+        turnCount++;
         RealizarCombate();
         ApplyTurnBasedEffects();
+        AIEnergyIncrease();
+        playerEnergyBar.IncrementEnergy(1);
+        
+        // Debug log to track the energy level after all operations
+        Debug.Log($"Player's energy after all operations: {playerEnergyBar.currentEnergy}");
+        
         ResetGameState();
     }
 
     private void ApplyTurnBasedEffects()
     {
-        // Apply the Monster Realm effect every 2 turns
-        if (aiCurrentRealm == "Magical" && turnCount % 2 == 0)
+        // Every 2 turns, check if any magical effects should be applied
+        if (turnCount % 2 == 0)
         {
-            StealEnergy();
-        }
+            if (aiCurrentRealm == "Magical")
+            {
+                Debug.Log("AI's Magical realm effect active: Steal Energy from Player");
+                StealEnergy(playerEnergyBar, aiEnergyBar);  // AI steals energy from player
+            }
 
-        if (Usuario.usuario.realm == "Magical" && turnCount % 2 == 0)
-        {
-            StealEnergy();
+            if (Usuario.usuario.realm == "Magical")
+            {
+                Debug.Log("Player's Magical realm effect active: Steal Energy from AI");
+                StealEnergy(aiEnergyBar, playerEnergyBar);  // Player steals energy from AI
+            }
         }
     }
 
-    private void StealEnergy()
+    private void StealEnergy(EnergyBar fromEnergyBar, EnergyBar toEnergyBar)
     {
-        if (aiCurrentRealm == "Magical")
+        Debug.Log("Attempting to steal energy...");
+        // Ensure both players have at least 1 energy to perform a steal
+        if (fromEnergyBar.currentEnergy > 0 && toEnergyBar.currentEnergy > 0)
         {
-            // Assuming both players start with a minimum of 1 energy to prevent negative values
-            if (aiEnergyBar.currentEnergy > 0 && playerEnergyBar.currentEnergy > 0)
-            {
-                aiEnergyBar.IncrementEnergy(1);
-                playerEnergyBar.DecrementEnergy(1);
-                Debug.Log("Magical realm effect: 1 energy stolen from Player and given to AI.");
-            }
-            else
-            {
-                Debug.Log("Energy cannot be stolen due to insufficient energy levels.");
-            }
+            fromEnergyBar.DecrementEnergy(1);
+            toEnergyBar.IncrementEnergy(1);
+            Debug.Log("Energy stolen successfully.");
         }
-        
-        if (Usuario.usuario.realm == "Magical")
+        else
         {
-            // Assuming both players start with a minimum of 1 energy to prevent negative values
-            if (aiEnergyBar.currentEnergy > 0 && playerEnergyBar.currentEnergy > 0)
-            {
-                playerEnergyBar.IncrementEnergy(1);
-                aiEnergyBar.DecrementEnergy(1);
-                Debug.Log("Magical realm effect: 1 energy stolen from AI and given to Player.");
-            }
-            else
-            {
-                Debug.Log("Energy cannot be stolen due to insufficient energy levels.");
-            }
+            Debug.Log("Energy cannot be stolen due to insufficient energy levels.");
         }
     }
+
 
 
     public void RealizarCombate()
@@ -300,7 +296,7 @@ public class Game : MonoBehaviour
             if (card.rarity == "Legendary")
             {
                 Debug.Log($"Applying Legendary player card effect: {card.Effect_type}");
-                playerEffectText.ShowEffect($"Player Legendary Effect Activated: {card.Effect_type} - {card.Effect_description}");
+                playerEffectText.ShowEffect(card.Effect_type);
                 ApplyCardEffect(card.Effect_type, aiEffects, playerEffects, true);
                 Debug.Log("Decreasing Energy");
                 playerEnergyBar.DecrementEnergy(card.power_cost);
@@ -332,7 +328,7 @@ public class Game : MonoBehaviour
             if (card.rarity == "Legendary")
             {
                 Debug.Log($"Applying Legendary AI card effect: {card.Effect_type}");
-                aiEffectText.ShowEffect($"AI Legendary Effect Activated: {card.Effect_type} - {card.Effect_description}");
+                aiEffectText.ShowEffect(card.Effect_type);
                 ApplyCardEffect(card.Effect_type, playerEffects, aiEffects, false);
                 Debug.Log("Decreasing Energy");
                 Debug.Log($"Energy cost: {card.power_cost}");
@@ -394,39 +390,39 @@ public class Game : MonoBehaviour
         Debug.Log($"Applying card effect: {effectType} (IsPlayer: {isPlayer})");
         switch (effectType)
         {
-            case "Effect 1":
+            case "Princess Blessing":
                 selfEffects["HealingDoubling"] = 1; // Doubles healing for 1 round
                 targetEffects["EnergyReduction"] = 1; // Reduces two energy levels immediately
                 Debug.Log($"Healing doubling applied to self for 1 turn. Energy reduction by 2 applied to opponent.");
                 break;
-            case "Effect 2":
+            case "King Arthur wrath":
                 targetEffects["IgnoreDefense"] = 1; // Ignores defense for 1 round
                 Debug.Log("Defense ignored for 1 round.");
                 break;
-            case "Effect 3":
+            case "Skyfall":
                 selfEffects["DodgeAttack"] = 1; // Can dodge one attack
                 Debug.Log("Dodge attack effect applied for 1 round.");
                 break;
-            case "Effect 4":
+            case "Hell Fire":
                 targetEffects["DotDamage"] = 3; // Applies dot damage of 10
                 targetEffects["HealingReduction"] = 3; // Reduces healing by 50%
                 Debug.Log("Dot damage of 10 applied for 3 rounds. Healing reduction by 50% for 3 rounds.");
                 break;
-            case "Effect 5":
+            case "Fortress":
                 selfEffects["DefenseBarrier"] = 2; // Creates a barrier adding 50 defense for 2 rounds
                 Debug.Log("Defense barrier added for 2 rounds.");
                 break;
-            case "Effect 6":
+            case "Shadow Strike":
                 targetEffects["AttackWeakening"] = 2; // Makes attacks 20% weaker for 2 rounds
                 selfEffects["LifeSteal"] = 1; // Life steal effect of 30 points
                 Debug.Log("Attack weakened by 20% for 2 rounds. Life steal effect of 30 points applied.");
                 break;
-            case "Effect 7":
+            case "Mighty Soldier":
                 selfEffects["ReflectDamage"] = 1; // Reflects all damage taken for 1 round
                 selfEffects["HealOverTime"] = 3; // Heals 10 life points for 3 rounds
                 Debug.Log("Reflect damage effect applied for 1 round. Heal over time effect of 10 points for 3 rounds.");
                 break;
-            case "Effect 8":
+            case "Demon Curse":
                 selfEffects["DoubleDamage"] = 1; // Doubles the damage for 1 round
                 targetEffects["CurseDamage"] = 2; // 10 damage over time
                 targetEffects["HealingReduction"] = 2; // 20% healing reduction
@@ -602,9 +598,6 @@ public class Game : MonoBehaviour
             SetGameState(GameState.PlayerTurn); // Loop back to player turn
             Debug.Log("[GameAI] Game state reset completed.");
             retrievalCount = 0;
-            turnCount++;
-            playerEnergyBar.IncrementEnergy(1); 
-            AIEnergyIncrease();
             EffectsDebug.TriggerTurnEnd();
 
             if (turnCounterText != null)

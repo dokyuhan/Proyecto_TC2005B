@@ -405,52 +405,126 @@ Here is an example of how the main screen will look like when the game opens (su
 ### **Abstract Classes / Components**
 
 1. Card
-   1. Attack
-   2. Defense
-   3. Healing
-   4. Special habilities
-   5. Power needed
-   6. Rarity
-   7. Realm
-   8. Level
-2. Realm
-   1. Theme
-   2. Elements
-   3. Bonuses
-3. Player
-   1. Name
-   2. Realms
-   3. Health
-   4. Power
-   5. Current deck
-4. Opponent/NPC/Enemy
-   1. Health
-   2. Realm
-   3. Power
-   4. Current deck
-   5. Attack patterns
-5. Game Manager
+   1. card_id
+   2. card_name
+   3. description
+   4. attack
+   5. defense
+   6. healing
+   7. card_realm
+   8. power_cost
+   9. rarity
+   10. effect_type
+   11. unlocked
+   12. uniqueID
+2. Game
+   1. playerDeck
+   2. gameState currrent state
+   3. aifunction
+   4. PlayerHealth
+   5. PlayerEnergy
+   6. cartasEnJuegoJugador
+   7. cartasEnJuegoAI
+   8. turns
+   9. totalAttackPlayer, totalDefense, totalHealing
+   10. totalAttackAI, totalDefense, totalHealing
+   11. PlayerEffects, AIEffects
+   12. gameScene
+3. AI
+   1. deckAI
+   2. cardAI
+   3. personality
+4. Inventory
+   1. cardDisplayManager
+   2. playerInventory
+   3. availableCards
+5. User
+   1. player_ID
+   2. player_name
+   3. player_last_name
+   4. player_age
+   5. user_name
+   6. password
+   7. realm
+   8. is_npc
+   9. level
+   10. win_record
+   11. lose_record
+   12. coins
+   13. token
 6. APIConnection
+   1. apiURL
 7. AudioManager
-8.
-9. Battle Controller
-10. Card Database
-11. Player Data
+   1. audioInstance
+   2. audioSource
+8. Shop
+   1. buy
+   2. response
+   3. coins
+   4. unlocked
+9. CardDisplayManager
+   1. prefab
+   2. instance
+1. Effects
+   1. playerEffect
+   2. aiEffect
+   3. effectName
+   4. effectDescription
+1. Game Over
+   1. stats
+   2. messages
+   3. coins
+   4. apiConnection
+1. Level
+   1. name
+   2. aiLevel
+   3. background
+   4. playerEnergy
+   5. aiEnergy
+   6. realm
 
 ### **Derived Classes / Component Compositions**
 
 1. Card Derivatives
-   1. Common
-   2. Realm specials
-   3. Special cards
-2. Realm Derivatives
-   1. Human
-   2. Monster
-   3. Celestial
-   4. Magic
-3. Opponent Derivatives
-   1. BasicEnemy
-   2. BossEnemy
+   1. CommonCard
+   2. LegendaryCard
+   3. AttackCard
+   4. DefenseCard
+   5. HealingCard
+   6. MagicCard
+   7. HumanCard
+   8. MonsterCard
+   9. CelestialCard
+
+2. Game Derivatives
+   1. Monster Level
+   2. Human Level
+   3. Celestial Level
+   4. Magic Level
+
+3. AI Derivatives
+   1. AggressiveAI
+   2. DefensiveAI
+   3. BalancedAI
+
+4. Inventory Derivatives
+   1. Player Inventory
+   2. Unlocked Cards
+   3. Blocked Cards
+
+5. User Derivatives
+   1. PlayerUser
+   2. AIUser
+
+6. APIConnection Derivatives
+   1. GameAPIConnection
+
+7. AudioManager Derivatives
+   1. MusicManager
+   2. ButtonManager
+
+8. Shop Derivatives
+   1. ItemShop
 
 ## _Graphics_
 

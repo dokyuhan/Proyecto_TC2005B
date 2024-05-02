@@ -89,6 +89,7 @@ public class Game : MonoBehaviour
         nombre.text = Usuario.usuario.user_name;
         aiCurrentRealm = SceneController.Instance.GetCurrentRealm();
         Debug.Log("Current realm: " + aiCurrentRealm);
+        Debug.Log("Player realm: " + Usuario.usuario.realm);
 
         if (Usuario.usuario.realm == "Monster")
         {
@@ -151,6 +152,7 @@ public class Game : MonoBehaviour
     private void SetGameState(GameState newState)
     {
         currentState = newState;
+        Debug.Log($"AI Energy before state change: {aiEnergyBar.currentEnergy}");
         switch (currentState)
         {
             case GameState.Start:
@@ -215,10 +217,9 @@ public class Game : MonoBehaviour
     private void AIEnergyIncrease()
     {
         Level currentLevel = SceneController.Instance.levelsConfig.levels[SceneController.CurrentLevelIndex];
-        // Apply the energy increase factor from the LevelsConfig
+        Debug.Log($"Before Energy Increase - AI Energy: {aiEnergyBar.currentEnergy}");
         aiEnergyBar.IncrementEnergy(currentLevel.aiEnergyIncrease);
-
-        Debug.Log($"Level loaded: {currentLevel.name}, Energy Increase: {currentLevel.aiEnergyIncrease}");
+        Debug.Log($"After Energy Increase - AI Energy: {aiEnergyBar.currentEnergy}");
     }
 
     void CheckActionsCompleted()
@@ -238,9 +239,6 @@ public class Game : MonoBehaviour
         AIEnergyIncrease();
         playerEnergyBar.IncrementEnergy(1);
         
-        // Debug log to track the energy level after all operations
-        Debug.Log($"Player's energy after all operations: {playerEnergyBar.currentEnergy}");
-        
         ResetGameState();
     }
 
@@ -249,6 +247,7 @@ public class Game : MonoBehaviour
         // Every 2 turns, check if any magical effects should be applied
         if (turnCount % 2 == 0)
         {
+            Debug.Log("Applying turn-based effects...");
             if (aiCurrentRealm == "Magical")
             {
                 Debug.Log("AI's Magical realm effect active: Steal Energy from Player");
@@ -602,6 +601,7 @@ public class Game : MonoBehaviour
 
             if (turnCounterText != null)
                 turnCounterText.text = $"Turn: {turnCount}";
+            
             
             if (playerHealthBar.currentHealth <= 0 || aiHealthBar.currentHealth <= 0)
             {

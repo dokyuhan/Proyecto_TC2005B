@@ -5,6 +5,6 @@ using System.Collections;
 public class Easter : MonoBehaviour
 {    public void Back()
     {
-        SceneManager.LoadScene("MainScreen");
+        SceneManager.LoadScene("Menu");
     }
 }

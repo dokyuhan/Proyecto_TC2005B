@@ -376,7 +376,7 @@ public class Game : MonoBehaviour
         playerHealthBar.Heal(healingTotalPlayer);
         
         Debug.Log($"AI health bar: {aiHealthBar.currentHealth} Player health bar: {playerHealthBar.currentHealth}");
-        battleLog.text = $"Player damage: {damageToAI} Healing: {healingTotalPlayer} \nEnemy damage: {damageToPlayer} Healing: {healingTotalAI} ";
+        battleLog.text = $"Player damage: {damageToAI} Healing: {healingTotalPlayer} Defense: {defenseTotalPlayer} \nEnemy damage: {damageToPlayer} Healing: {healingTotalAI} Defense: {defenseTotalAI}";
 
         attackTotalPlayer = 0;
         defenseTotalPlayer = 0;

@@ -7,7 +7,7 @@ using TMPro;
 
 public class CardFetch : MonoBehaviour
 {
-    [SerializeField] private string apiURL = "127.0.0.1:3200";
+    private string apiURL = "http://127.0.0.1:3200";
     [SerializeField] private string cardEndpoint = "/api/awakening/cards/";
 
     Card card;

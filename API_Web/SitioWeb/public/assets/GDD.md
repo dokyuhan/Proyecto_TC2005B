@@ -465,27 +465,28 @@ Here is an example of how the main screen will look like when the game opens (su
 9. CardDisplayManager
    1. prefab
    2. instance
-1. Effects
-   1. playerEffect
-   2. aiEffect
-   3. effectName
-   4. effectDescription
-1. Game Over
-   1. stats
-   2. messages
-   3. coins
-   4. apiConnection
-1. Level
-   1. name
-   2. aiLevel
-   3. background
-   4. playerEnergy
-   5. aiEnergy
-   6. realm
+10. Effects
+    1. playerEffect
+    2. aiEffect
+    3. effectName
+    4. effectDescription
+11. Game Over
+    1. stats
+    2. messages
+    3. coins
+    4. apiConnection
+12. Level
+    1. name
+    2. aiLevel
+    3. background
+    4. playerEnergy
+    5. aiEnergy
+    6. realm
 
 ### **Derived Classes / Component Compositions**
 
 1. Card Derivatives
+
    1. CommonCard
    2. LegendaryCard
    3. AttackCard
@@ -497,29 +498,35 @@ Here is an example of how the main screen will look like when the game opens (su
    9. CelestialCard
 
 2. Game Derivatives
+
    1. Monster Level
    2. Human Level
    3. Celestial Level
    4. Magic Level
 
 3. AI Derivatives
+
    1. AggressiveAI
    2. DefensiveAI
    3. BalancedAI
 
 4. Inventory Derivatives
+
    1. Player Inventory
    2. Unlocked Cards
    3. Blocked Cards
 
 5. User Derivatives
+
    1. PlayerUser
    2. AIUser
 
 6. APIConnection Derivatives
+
    1. GameAPIConnection
 
 7. AudioManager Derivatives
+
    1. MusicManager
    2. ButtonManager
 
@@ -560,6 +567,7 @@ The artistic style is based on a combination between fantasy and a semi-realisti
    4. Styled buttons
    1. Styled dropdowns
    1. Styled containers
+   1. AI Animations
 
 5. Realms
 

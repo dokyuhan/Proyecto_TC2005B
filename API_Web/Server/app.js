@@ -1096,6 +1096,6 @@ app.use((err, request, response, next) => {
 // Inicialización del servidor
 app.listen(port, () => {
   console.log(
-    `App listening at http://127.0.0.1:${port} \nFor website go to http://127.0.0.1:${port}/play \nFor stats go to http://127.0.0.1:${port}/stats`
+    `App listening at http://127.0.0.1:${port} \nFor website go to http://127.0.0.1:${port}/play \nFor stats go to http://127.0.0.1:${port}/stats \nFor gdd go to http://127.0.0.1:${port}/gdd`
   );
 });

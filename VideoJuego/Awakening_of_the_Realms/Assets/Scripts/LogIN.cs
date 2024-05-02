@@ -3,8 +3,6 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.Collections;
-
-
 public class LogIN : MonoBehaviour
 {
     public TMP_InputField player_name;

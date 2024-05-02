@@ -24,12 +24,33 @@
           strikethrough: true,
           tasklists: true,
           ghCodeBlocks: true,
+          parseImgDimensions: true,
+          smoothLivePreview: true,
+          simplifiedAutoLink: true,
+          excludeTrailingPunctuationFromURLs: true,
+          literalMidWordUnderscores: true,
+          strikethrough: true,
+          tables: true,
+          tablesHeaderId: true,
+          ghCodeBlocks: true,
+          tasklists: true,
         });
-        fetch("../assets/GDD.md") // Adjust the path as necessary
+        fetch("../assets/GDD.md") // Ensure the path to your Markdown file is correct
           .then((response) => response.text())
           .then((text) => {
             const html = converter.makeHtml(text);
             document.querySelector(".content").innerHTML = html;
+            // Check and fix image paths if necessary after loading
+            document.querySelectorAll(".content img").forEach((img) => {
+              const originalSrc = img.getAttribute("src"); // Get the original attribute, not the resolved path
+              img.src = "../assets/" + originalSrc; // Adjust the path
+              console.log("Adjusted src:", img.src); // Log the new src
+
+              img.onerror = () => {
+                console.error("Adjusted failed to load image: ", img.src);
+                img.style.display = "none"; // Optionally hide the broken image icon
+              };
+            });
           })
           .catch((err) => console.error("Failed to load GDD markdown:", err));
       });

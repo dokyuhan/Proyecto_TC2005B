@@ -21,14 +21,13 @@ public class Card
         public int power_cost;
         public string rarity;
         public string Effect_type;
-        public string Effect_description;
         public bool desbloqueada;
         public int uniqueID;
 
         public GameObject cardGameObject; // Reference to the card's GameObject
 
 
-    public Card(int id, string nombre, string desc, int ataque, int defensa, int heal, string realm, int power, string rareza, string efecto, string efecto_desc, bool desb)
+    public Card(int id, string nombre, string desc, int ataque, int defensa, int heal, string realm, int power, string rareza, string efecto, bool desb)
     {
             card_ID = id;
             card_name = nombre;
@@ -40,7 +39,6 @@ public class Card
             power_cost = power;
             rarity = rareza;
             Effect_type = efecto;
-            Effect_description = efecto_desc;
             desbloqueada = desb;
     }
 

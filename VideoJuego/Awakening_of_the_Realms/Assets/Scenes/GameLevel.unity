@@ -2550,7 +2550,6 @@ MonoBehaviour:
     power_cost: 0
     rarity: 
     Effect_type: 
-    Effect_description: 
     desbloqueada: 0
     uniqueID: 0
     cardGameObject: {fileID: 0}
@@ -2628,7 +2627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectText: {fileID: 317493967}
-  displayTime: 3
+  displayTime: 5
 --- !u!1 &639453600
 GameObject:
   m_ObjectHideFlags: 0
@@ -4121,7 +4120,6 @@ MonoBehaviour:
     power_cost: 0
     rarity: 
     Effect_type: 
-    Effect_description: 
     desbloqueada: 0
     uniqueID: 0
     cardGameObject: {fileID: 0}
@@ -4180,7 +4178,6 @@ MonoBehaviour:
     power_cost: 0
     rarity: 
     Effect_type: 
-    Effect_description: 
     desbloqueada: 0
     uniqueID: 0
     cardGameObject: {fileID: 0}
@@ -4211,7 +4208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectText: {fileID: 1322254225}
-  displayTime: 3
+  displayTime: 5
 --- !u!1 &1596934379
 GameObject:
   m_ObjectHideFlags: 0

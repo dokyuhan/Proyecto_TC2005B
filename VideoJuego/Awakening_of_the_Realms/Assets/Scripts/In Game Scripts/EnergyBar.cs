@@ -10,15 +10,13 @@ public class EnergyBar : MonoBehaviour
     public int currentEnergy;
     public TextMeshProUGUI energyText;
 
-    // Set the maximum energy without affecting the current energy value displayed
     public void SetMaxEnergy(int energy)
     {
         slider.maxValue = energy;
-        // Only set slider.value to the lower of currentEnergy or energy to respect the new max
         slider.value = Mathf.Min(currentEnergy, energy);
         UpdateEnergyText();
     }
-    
+
     public void SetEnergy(int energy)
     {
         currentEnergy = energy;
@@ -28,36 +26,33 @@ public class EnergyBar : MonoBehaviour
 
     public void IncrementEnergy(int amount)
     {
-        // Ensure current energy does not exceed the maximum when incremented
+        if (currentEnergy + amount > (int)slider.maxValue)
+        {
+            Debug.LogWarning("Energy is already at maximum and cannot be increased further.");
+            return;
+        }
         currentEnergy = Mathf.Min(currentEnergy + amount, (int)slider.maxValue);
         SetEnergy(currentEnergy);
     }
 
     public void ResetEnergy()
     {
-        currentEnergy = 0;
-        SetEnergy(currentEnergy);  // Reset the energy to 0
+        SetEnergy(0);  // Reset the energy to 0
     }
 
     public void DecrementEnergy(int amount)
     {
-        // Check if subtracting the amount would drop the energy below zero.
         if (currentEnergy - amount < 0)
         {
-            Debug.LogWarning("You can't play the legendary card because there's not enough energy.");
+            Debug.LogWarning("Insufficient energy to perform this action.");
             return;
         }
-
-        // Subtract the amount from currentEnergy and ensure it doesn't go below zero.
-        currentEnergy -= amount;  // This ensures that the energy is decreased by 'amount'.
-        currentEnergy = Mathf.Max(currentEnergy, 0);  // This line is redundant if checks are in place, but safe to keep.
-
-        SetEnergy(currentEnergy);  // Update the energy display or other related elements.
+        currentEnergy = Mathf.Max(currentEnergy - amount, 0);
+        SetEnergy(currentEnergy);
     }
 
     public void UpdateEnergyText()
     {
         energyText.text = currentEnergy.ToString();  // Update the energy text to display the current energy value
     }
-
 }

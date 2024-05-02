@@ -2,15 +2,25 @@ USE Awakening_realm;
 
 -- Effect type, effect description
 INSERT INTO Effect (Effect_type, effect_description) VALUES
-('Effect 1', 'Increases the healing of the healers for 1 round and reduces two energy gage of the enemy player.'),
-('Effect 2', 'Ignore the defense of one of the enemy cards placed for 1 round 
+('Princess Blessing', 'Increases the healing of the healers for 1 round and reduces two energy gage of the enemy player.'),
+('King Arthur wrath', 'Ignore the defense of one of the enemy cards placed for 1 round 
 (ex. if the defense is 30 this ability would ignore the defense and apply the damage direct to the health of the player)'),
-('Effect 3', 'Can dodge one of the enemys card attacks'),
-('Effect 4', 'Applies to the enemy a dot damage of 10 attack and the healing is 50% less effective for 3 rounds (if the enemy places a card that heals 20, it just heals 10)'),
-('Effect 5', 'Creates a barrier for the alies that gives 50 defense for 2 rounds'),
-('Effect 6', 'Debuf the enemy making the attacks 20% weaker for 2 rounds and life steal 30 life points of the enemy (The life steal effect passes the amount of life steal from the enemy player to the player, in this case 30 would be decreasing to the enemy players health and 30 would be increasing to the player)'),
-('Effect 7', 'Reflect all damage taken for 1 round and also heals 10 life points for 3 rounds'),
-('Effect 8', 'Double the damage of the ally cards for 1 round and curse the enemy causing 10 damage over time and 20% healing reduction for 2 rounds');
+('Skyfall', 'Can dodge one of the enemys card attacks'),
+('Hell Fire', 'Applies to the enemy a dot damage of 10 attack and the healing is 50% less effective for 3 rounds (if the enemy places a card that heals 20, it just heals 10)'),
+('Fortress', 'Creates a barrier for the alies that gives 100 defense for 2 rounds'),
+('Shadow Strike', 'Debuf the enemy making the attacks 20% weaker for 2 rounds and life steal 30 life points of the enemy (The life steal effect passes the amount of life steal from the enemy player to the player, in this case 30 would be decreasing to the enemy players health and 30 would be increasing to the player)'),
+('Mighty Soldier', 'Reflect all damage taken for 1 round and also heals 10 life points for 3 rounds'),
+('Demon Curse', 'Double the damage of the ally cards for 1 round and curse the enemy causing 10 damage over time and 20% healing reduction for 2 rounds');
+-- ('Effect 9', 'Gives the player an Extra energy'),
+-- ('Effect 10', 'The attack of the card placed deals x2 for one turn'),
+-- ('Effect 11', 'Posion the enemy player for 2 rounds dealing 20 damage'),
+-- ('Effect 12', 'Heals the player 30 health'),
+-- ('Effect 13', 'Cures all debuf applied to the player'),
+-- ('Effect 14', 'Enhance shields played x2'),
+-- ('Effect 15', 'Reduces enemy attack to 50%'),
+-- ('Effect 16', 'Damage taken will be reflected to the enemy'),
+-- ('Effect 17', 'Disables an enemy card played'),
+-- ('Effect 18', 'You can see the opponents cards');
 
 -- Insertion of common cards across realms
 
@@ -57,14 +67,27 @@ INSERT INTO Cards (card_name, card_description, attack, defense, healing, card_r
 
 -- Insertion of legendary cards with specific effects
 INSERT INTO Cards (card_name, card_description, attack, defense, healing, card_realm, power_cost, rarity, Effect_type) VALUES
-('Princess', 'A royal healer with unparalleled powers of restoration.', 10, 10, 15, 'Human', 4, 'Legendary', 'Effect 1'),
-('King Arthur', 'The legendary king with a mighty sword and armor.', 30, 20, 0, 'Human', 3, 'Legendary', 'Effect 2'),
-('Griffin', 'Majestic creature that commands the skies, dodges attacks effortlessly.', 10, 30, 10, 'Monster', 3, 'Legendary', 'Effect 3'),
-('Dragon', 'Fearsome and fiery, deals devastating damage over time.', 30, 10, 10, 'Monster', 4, 'Legendary', 'Effect 4'),
-('Runeforge Dwarf', 'Master craftsman, provides formidable defenses and repairs.', 5, 35, 10, 'Magical', 3, 'Legendary', 'Effect 5'),
-('Moonshadow Elf', 'Elusive and deadly, weakens enemies while stealing their life force.', 32, 8, 10, 'Magical', 4, 'Legendary', 'Effect 6'),
-('Hercules', 'The hero of myths, reflects damage and heals over time.', 18, 16, 16, 'Celestial', 3, 'Legendary', 'Effect 7'),
-('Demon King', 'Ruler of the underworld, enhances damage and curses enemies.', 37, 5, 8, 'Celestial', 4, 'Legendary', 'Effect 8');
+('Princess', 'A royal healer with unparalleled powers of restoration.', 10, 10, 15, 'Human', 4, 'Legendary', 'Princess Blessing'),
+('King Arthur', 'The legendary king with a mighty sword and armor.', 30, 20, 0, 'Human', 3, 'Legendary', 'King Arthur wrath'),
+('Griffin', 'Majestic creature that commands the skies, dodges attacks effortlessly.', 10, 30, 10, 'Monster', 3, 'Legendary', 'Skyfall'),
+('Dragon', 'Fearsome and fiery, deals devastating damage over time.', 30, 10, 10, 'Monster', 4, 'Legendary', 'Hell Fire'),
+('Runeforge Dwarf', 'Master craftsman, provides formidable defenses and repairs.', 5, 35, 10, 'Magical', 3, 'Legendary', 'Fortress'),
+('Moonshadow Elf', 'Elusive and deadly, weakens enemies while stealing their life force.', 32, 8, 10, 'Magical', 4, 'Legendary', 'Shadow Strike'),
+('Hercules', 'The hero of myths, reflects damage and heals over time.', 18, 16, 16, 'Celestial', 3, 'Legendary', 'Mighty Soldier'),
+('Demon King', 'Ruler of the underworld, enhances damage and curses enemies.', 37, 5, 8, 'Celestial', 4, 'Legendary', 'Demon Curse');
+
+
+-- Special Cards
+-- ('Special 1', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 9'),
+-- ('Special 2', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 10'),
+-- ('Special 3', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 11'),
+-- ('Special 4', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 12'),
+-- ('Special 5', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 13'),
+-- ('Special 6', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 14'),
+-- ('Special 7', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 15'),
+-- ('Special 8', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 16'),
+-- ('Special 9', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 17'),
+-- ('Special 10', 'Description', 0, 0, 0, 'Global', 0, 150, 'Special', 1, 'Effect 18');
 
 -- player name, last name, age, email, realm, is npc, player exp, win, lost, coins, exp points
 INSERT INTO Players (player_name, player_last_name, player_age, user_name, password, realm, is_npc, level, win_record, lose_record, coins, token) VALUES

@@ -17,5 +17,7 @@ Para poder ver las mecánicas básicas del juego se debe meter a la escena “pr
 ## Para correr este proyecto
 
 Ir a Game_DB > Awakening_realm_DB.sql y Dummy_data.sql y correr ambos scripts.
+
 Ir a API_Web > Server > app.js y correr "npm i" y luego "npm start" para correr el servidor y el sitio web. IMPORTANTE: Cambiar las credenciales de SQL para que el API se conecte con SQL.
+
 Ir al sitio http://127.0.0.1:3200/play para empezar a jugar! El juego debería de estar ahí mismo listo para ser disfrutado. 

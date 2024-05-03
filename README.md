@@ -21,3 +21,7 @@ Ir a Game_DB > Awakening_realm_DB.sql y Dummy_data.sql y correr ambos scripts.
 Ir a API_Web > Server > app.js y correr "npm i" y luego "npm start" para correr el servidor y el sitio web. IMPORTANTE: Cambiar las credenciales de SQL para que el API se conecte con SQL.
 
 Ir al sitio http://127.0.0.1:3200/play para empezar a jugar! El juego debería de estar ahí mismo listo para ser disfrutado. 
+
+## Para ver este proyecto sin correrlo
+
+Ir a VideoJuego > Liga_Video_Funcionamiento.txt y abrir la liga de google drive donde esta un video del funcionamiento del juego en el sitio web.

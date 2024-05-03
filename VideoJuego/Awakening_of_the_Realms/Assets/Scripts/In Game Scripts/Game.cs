@@ -235,7 +235,10 @@ public class Game : MonoBehaviour
         Debug.Log("[GameAI] Ending turn, starting combat and resetting game state.");
         turnCount++;
         RealizarCombate();
-        ApplyTurnBasedEffects();
+        if (turnCount % 2 == 0)
+        {
+            ApplyTurnBasedEffects();
+        }
         AIEnergyIncrease();
         playerEnergyBar.IncrementEnergy(1);
         
@@ -244,21 +247,17 @@ public class Game : MonoBehaviour
 
     private void ApplyTurnBasedEffects()
     {
-        // Every 2 turns, check if any magical effects should be applied
-        if (turnCount % 2 == 0)
+        Debug.Log("Applying turn-based effects...");
+        if (aiCurrentRealm == "Magical")
         {
-            Debug.Log("Applying turn-based effects...");
-            if (aiCurrentRealm == "Magical")
-            {
-                Debug.Log("AI's Magical realm effect active: Steal Energy from Player");
-                StealEnergy(playerEnergyBar, aiEnergyBar);  // AI steals energy from player
-            }
+            Debug.Log("AI's Magical realm effect active: Steal Energy from Player");
+            StealEnergy(playerEnergyBar, aiEnergyBar);  // AI steals energy from player
+        }
 
-            if (Usuario.usuario.realm == "Magical")
-            {
-                Debug.Log("Player's Magical realm effect active: Steal Energy from AI");
-                StealEnergy(aiEnergyBar, playerEnergyBar);  // Player steals energy from AI
-            }
+        if (Usuario.usuario.realm == "Magical")
+        {
+            Debug.Log("Player's Magical realm effect active: Steal Energy from AI");
+            StealEnergy(aiEnergyBar, playerEnergyBar);  // Player steals energy from AI
         }
     }
 

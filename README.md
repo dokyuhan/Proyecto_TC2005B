@@ -13,3 +13,9 @@ Una vez iniciada la sesión se encuentra con otros dos botones; el primero lleva
 En caso de querer jugar vamos a ir a la selección de nivel en donde nos encontraremos con 8 niveles a los cuales le podremos picar y que nos llevaran directamente al nivel. De momento no se ha creado la lógica en la cual se llena una escena dependiendo el nivel seleccionado; por lo que, cada nivel tiene una escena diferente. Actualmente se están implementando 2 niveles. El primero es en el que se está implementando y probando la IA y el segundo es en donde se está implementando la lógica del juego. 
 
 Para poder ver las mecánicas básicas del juego se debe meter a la escena “prueba nivel”. En esta escena vamos a ver como carga un mazo con base en el jugador que inicio sesión y del otro lado un mazo estándar para el AI. Las mecánicas de momento permiten al usuario arrastrar 2 cartas al centro y arrastrar 2 cartas del oponente al centro (en esta escena no se está probando el AI por lo que manualmente hay que arrastrar las cartas del oponente), después de un timer las 4 cartas hacen sus sumas y restas y bajan vida y escudo al oponente o al jugador. Las cartas pasan a una sección a parte del mazo para que el usuario no las pueda usar hasta después que se acabe sus cartas del mazo.
+
+## Para correr este proyecto
+
+Ir a Game_DB > Awakening_realm_DB.sql y Dummy_data.sql y correr ambos scripts.
+Ir a API_Web > Server > app.js y correr "npm i" y luego "npm start" para correr el servidor y el sitio web. IMPORTANTE: Cambiar las credenciales de SQL para que el API se conecte con SQL.
+Ir al sitio http://127.0.0.1:3200/play para empezar a jugar! El juego debería de estar ahí mismo listo para ser disfrutado. 
